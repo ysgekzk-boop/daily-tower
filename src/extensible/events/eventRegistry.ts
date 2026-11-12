@@ -584,6 +584,114 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  worldtree_sap_altar: {
+    id: 'worldtree_sap_altar',
+    title: '世界樹液の契約祭壇',
+    category: 'shrine',
+    description:
+      '黄金の樹液が脈打つ世界樹の根元に、古代の祭壇が鎮座している。「命の鼓動か黄金を捧げよ。さすれば樹冠に伝わる秘宝か秘術を授けん」と刻まれている。',
+    speakerSpriteId: 'shrine',
+    palette: 'crimson_knight',
+    options: [
+      {
+        id: 'offer_vitality_to_worldtree',
+        label: '生命力を捧げる（HP 20%消費 ➔ レリック獲得）',
+        description: '最大HPの20%を代償に、世界樹の根に眠る古代のレリックを授かる。',
+        cost: {
+          hpPercent: 20,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '世界樹の祭壇に生命力を捧げ、古代のレリックを授かった！',
+        },
+      },
+      {
+        id: 'offer_gold_to_worldtree',
+        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
+        description: '40 Gを樹液の器に納め、新たな秘伝スキルを得る。',
+        cost: {
+          gold: 40,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '黄金の樹液が光へと変わり、新たなスキルの知識が脳裏に刻まれた！',
+        },
+      },
+      {
+        id: 'bow_to_worldtree_altar',
+        label: '静かに一礼して立ち去る（HP 15%回復）',
+        description: '代償を払わず敬意を示し、世界樹の穏やかな祝福を受ける。',
+        outcome: {
+          healHpPercent: 15,
+          logMessage: '世界樹の祭壇に敬意を表し、穏やかな祝福でHPが15%回復した。',
+        },
+      },
+    ],
+  },
+
+  canopy_seed_stele: {
+    id: 'canopy_seed_stele',
+    title: '樹冠種子の碑文',
+    category: 'lore',
+    description:
+      '天を突く世界樹の枝葉の合間に、光の種子を象った石碑が浮かんでいる。刻まれた古代文字を読み解けば、神域を生き抜く戦いの知恵が身につくという。',
+    speakerSpriteId: 'hero_mage',
+    palette: 'astral_mage',
+    options: [
+      {
+        id: 'decipher_canopy_tactics',
+        label: '種子の戦技を解読する（HP 15%消費 ➔ スキル習得）',
+        description: '集中力を極限まで使い（HP15%消費）、秘伝の技を習得する。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '樹冠の碑文に記された奥義を解読し、新たなスキルを習得した！',
+        },
+      },
+      {
+        id: 'meditate_under_canopy',
+        label: '聖なる樹冠の下で瞑想する（HP 25%回復）',
+        description: '無理な解読をせず、優しい木漏れ日と種子の光で心身を癒やす。',
+        outcome: {
+          healHpPercent: 25,
+          logMessage: '世界樹の穏やかな光が巡り、HPが25%回復した！',
+        },
+      },
+    ],
+  },
+
+  yggdrasil_golden_spring: {
+    id: 'yggdrasil_golden_spring',
+    title: '世界樹の黄金泉',
+    category: 'shrine',
+    description:
+      '巨樹の幹が抱く神域の泉から、樹液を溶かした黄金の湧水が滾々と溢れている。水底にはかつて頂を目指した冒険者の金貨もきらめいている。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_yggdrasil_spring',
+        label: '黄金泉の水を飲む（HP 35%回復）',
+        description: '清らかな樹液の泉で傷を癒やす。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '黄金泉の霊水を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_yggdrasil_coins',
+        label: '水底の金貨を拾う（+35 G）',
+        description: '濡れるのを厭わず金貨を回収する。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '黄金泉の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
 };
 
 

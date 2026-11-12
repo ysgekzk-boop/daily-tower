@@ -180,6 +180,34 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: `[レリック:古樹琥珀の貨印] 勝利時に追加で 20 Gold を発見！`,
     }),
   },
+  worldtree_seed_heart: {
+    id: 'worldtree_seed_heart',
+    name: '世界樹種子の核',
+    trigger: 'on_skill_use',
+    handler: (ctx) => {
+      const heal = Math.max(4, Math.floor(ctx.playerMaxHp * 0.05));
+      return {
+        healPlayer: heal,
+        logMessage: `[レリック:世界樹種子の核] 樹液の脈動が響き、HPを ${heal} 回復した！`,
+      };
+    },
+  },
+  canopy_crown: {
+    id: 'canopy_crown',
+    name: '樹冠の聖環',
+    trigger: 'on_skill_use',
+    handler: (ctx) => {
+      const shieldVal = Math.max(10, Math.floor(ctx.playerMaxHp * 0.12));
+      return {
+        applyStatusToPlayer: {
+          statusId: 'shield',
+          value: shieldVal,
+          duration: 2,
+        },
+        logMessage: `[レリック:樹冠の聖環] 聖なる枝葉が身を覆い、障壁(${shieldVal})を展開した！`,
+      };
+    },
+  },
 };
 
 

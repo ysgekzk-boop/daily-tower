@@ -1002,6 +1002,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '古樹琥珀の貨印',
     colors: ['transparent', '#78350f', '#f59e0b', '#fef9c3'],
   },
+  item_worldtree_branch_spear: {
+    id: 'item_worldtree_branch_spear',
+    name: '世界樹枝の巨槍',
+    colors: ['transparent', '#451a03', '#92400e', '#e2e8f0'],
+  },
+  item_yggdrasil_sap_blade: {
+    id: 'item_yggdrasil_sap_blade',
+    name: '世界樹液の聖剣',
+    colors: ['transparent', '#064e3b', '#10b981', '#fde047'],
+  },
+  item_worldtree_bark_plate: {
+    id: 'item_worldtree_bark_plate',
+    name: '世界樹皮の重鎧',
+    colors: ['transparent', '#271c19', '#78350f', '#4ade80'],
+  },
+  item_canopy_seed_cuirass: {
+    id: 'item_canopy_seed_cuirass',
+    name: '樹冠種子の聖甲',
+    colors: ['transparent', '#14532d', '#22c55e', '#fef08a'],
+  },
+  item_worldtree_spore_sting: {
+    id: 'item_worldtree_spore_sting',
+    name: '世界樹胞子の毒撃',
+    colors: ['transparent', '#3b0764', '#9333ea', '#a3e635'],
+  },
+  item_yggdrasil_canopy_cleave: {
+    id: 'item_yggdrasil_canopy_cleave',
+    name: '天蓋断ちの聖斬',
+    colors: ['transparent', '#065f46', '#34d399', '#fef9c3'],
+  },
+  item_amber_sap_surge: {
+    id: 'item_amber_sap_surge',
+    name: '琥珀樹液の躍撃',
+    colors: ['transparent', '#78350f', '#f59e0b', '#fef08a'],
+  },
+  item_worldtree_sap_elixir: {
+    id: 'item_worldtree_sap_elixir',
+    name: '世界樹液の癒やし',
+    colors: ['transparent', '#064e3b', '#2dd4bf', '#fef08a'],
+  },
+  item_seed_of_bastion: {
+    id: 'item_seed_of_bastion',
+    name: '守護種子の障壁',
+    colors: ['transparent', '#1e293b', '#64748b', '#fde047'],
+  },
+  item_root_crush_break: {
+    id: 'item_root_crush_break',
+    name: '巨根の破甲撃',
+    colors: ['transparent', '#451a03', '#b45309', '#f43f5e'],
+  },
+  item_worldtree_seed_ward: {
+    id: 'item_worldtree_seed_ward',
+    name: '世界樹種子の加護',
+    colors: ['transparent', '#14532d', '#4ade80', '#e0f2fe'],
+  },
+  item_worldtree_nectar: {
+    id: 'item_worldtree_nectar',
+    name: '世界樹の黄金蜜',
+    colors: ['transparent', '#713f12', '#eab308', '#fef9c3'],
+  },
+  item_canopy_seed_balm: {
+    id: 'item_canopy_seed_balm',
+    name: '樹冠種子の聖油',
+    colors: ['transparent', '#134e4a', '#14b8a6', '#fde047'],
+  },
+  item_worldtree_seed_heart_relic: {
+    id: 'item_worldtree_seed_heart_relic',
+    name: '世界樹種子の核',
+    colors: ['transparent', '#065f46', '#10b981', '#fef08a'],
+  },
+  item_canopy_crown_relic: {
+    id: 'item_canopy_crown_relic',
+    name: '樹冠の聖環',
+    colors: ['transparent', '#78350f', '#fbbf24', '#4ade80'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1207,6 +1282,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_hollow_stone_elixir: { id: 'item_hollow_stone_elixir', matrixId: 'item_hollow_stone_elixir', defaultPalette: 'item_hollow_stone_elixir' },
   item_rootstone_ember_seal_relic: { id: 'item_rootstone_ember_seal_relic', matrixId: 'item_rootstone_ember_seal_relic', defaultPalette: 'item_rootstone_ember_seal_relic' },
   item_ancient_amber_relic: { id: 'item_ancient_amber_relic', matrixId: 'item_ancient_amber_relic', defaultPalette: 'item_ancient_amber_relic' },
+  item_worldtree_branch_spear: { id: 'item_worldtree_branch_spear', matrixId: 'item_worldtree_branch_spear', defaultPalette: 'item_worldtree_branch_spear' },
+  item_yggdrasil_sap_blade: { id: 'item_yggdrasil_sap_blade', matrixId: 'item_yggdrasil_sap_blade', defaultPalette: 'item_yggdrasil_sap_blade' },
+  item_worldtree_bark_plate: { id: 'item_worldtree_bark_plate', matrixId: 'item_worldtree_bark_plate', defaultPalette: 'item_worldtree_bark_plate' },
+  item_canopy_seed_cuirass: { id: 'item_canopy_seed_cuirass', matrixId: 'item_canopy_seed_cuirass', defaultPalette: 'item_canopy_seed_cuirass' },
+  item_worldtree_spore_sting: { id: 'item_worldtree_spore_sting', matrixId: 'item_worldtree_spore_sting', defaultPalette: 'item_worldtree_spore_sting' },
+  item_yggdrasil_canopy_cleave: { id: 'item_yggdrasil_canopy_cleave', matrixId: 'item_yggdrasil_canopy_cleave', defaultPalette: 'item_yggdrasil_canopy_cleave' },
+  item_amber_sap_surge: { id: 'item_amber_sap_surge', matrixId: 'item_amber_sap_surge', defaultPalette: 'item_amber_sap_surge' },
+  item_worldtree_sap_elixir: { id: 'item_worldtree_sap_elixir', matrixId: 'item_worldtree_sap_elixir', defaultPalette: 'item_worldtree_sap_elixir' },
+  item_seed_of_bastion: { id: 'item_seed_of_bastion', matrixId: 'item_seed_of_bastion', defaultPalette: 'item_seed_of_bastion' },
+  item_root_crush_break: { id: 'item_root_crush_break', matrixId: 'item_root_crush_break', defaultPalette: 'item_root_crush_break' },
+  item_worldtree_seed_ward: { id: 'item_worldtree_seed_ward', matrixId: 'item_worldtree_seed_ward', defaultPalette: 'item_worldtree_seed_ward' },
+  item_worldtree_nectar: { id: 'item_worldtree_nectar', matrixId: 'item_worldtree_nectar', defaultPalette: 'item_worldtree_nectar' },
+  item_canopy_seed_balm: { id: 'item_canopy_seed_balm', matrixId: 'item_canopy_seed_balm', defaultPalette: 'item_canopy_seed_balm' },
+  item_worldtree_seed_heart_relic: { id: 'item_worldtree_seed_heart_relic', matrixId: 'item_worldtree_seed_heart_relic', defaultPalette: 'item_worldtree_seed_heart_relic' },
+  item_canopy_crown_relic: { id: 'item_canopy_crown_relic', matrixId: 'item_canopy_crown_relic', defaultPalette: 'item_canopy_crown_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
