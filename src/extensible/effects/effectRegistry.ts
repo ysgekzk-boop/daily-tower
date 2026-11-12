@@ -132,6 +132,33 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: `[レリック:古樹液の印章] スキル発動に呼応し敵の防御力を15%低下(2T)させた！`,
     }),
   },
+  mirror_talisman: {
+    id: 'mirror_talisman',
+    name: '水鏡の呪符',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'def_debuff',
+        value: 15,
+        duration: 3,
+      },
+      logMessage: `[レリック:水鏡の呪符] 水鏡の呪文が敵を映し、防御力を3ターンの間15%低下させた！`,
+    }),
+  },
+  reed_whistle: {
+    id: 'reed_whistle',
+    name: '葦笛の護符',
+    trigger: 'on_skill_use',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'atk_debuff',
+        value: 15,
+        duration: 2,
+      },
+      logMessage: `[レリック:葦笛の護符] スキル発動に呼応し葦笛が響き、敵の攻撃力を2ターンの間15%低下させた！`,
+    }),
+  },
 };
+
 
 

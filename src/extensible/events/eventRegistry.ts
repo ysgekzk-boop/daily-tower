@@ -368,6 +368,115 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  marsh_reed_shrine: {
+    id: 'marsh_reed_shrine',
+    title: '葦原の水辺祠',
+    category: 'shrine',
+    description:
+      '背の高い葦に囲まれた湿地の中に、水鏡のように澄んだ石盤の祠が建っている。「命の雫か黄金を捧げよ。さすれば水辺の秘宝か戦技を授けん」と刻まれている。',
+    speakerSpriteId: 'shrine',
+    palette: 'crimson_knight',
+    options: [
+      {
+        id: 'offer_vitality_to_marsh',
+        label: '生命力を捧げる（HP 20%消費 ➔ レリック獲得）',
+        description: '最大HPの20%を代償に、水辺に眠る古代のレリックを授かる。',
+        cost: {
+          hpPercent: 20,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '水辺の祠に生命力を捧げ、古代のレリックを授かった！',
+        },
+      },
+      {
+        id: 'offer_gold_to_marsh',
+        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
+        description: '40 Gを水盤に沈め、沼地を踏破する秘伝スキルを得る。',
+        cost: {
+          gold: 40,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '水盤に沈めた黄金が光の波紋となり、新たなスキルの知識が脳裏に刻まれた！',
+        },
+      },
+      {
+        id: 'bow_to_reed_shrine',
+        label: '静かに一礼して立ち去る（HP 15%回復）',
+        description: '代償を払わず敬意を示し、水辺の穏やかな祝福を受ける。',
+        outcome: {
+          healHpPercent: 15,
+          logMessage: '水辺の祠に敬意を表し、清らかな潤いでHPが15%回復した。',
+        },
+      },
+    ],
+  },
+
+  sunken_mirror_stele: {
+    id: 'sunken_mirror_stele',
+    title: '水鏡の沈み石碑',
+    category: 'lore',
+    description:
+      '浅瀬の水面に、星と葦の紋様が彫られた石碑が半分沈んでいる。水鏡に映る文字を辿れば、湿地を生き抜く戦術の奥義が読み解けそうだ。',
+    speakerSpriteId: 'hero_mage',
+    palette: 'astral_mage',
+    options: [
+      {
+        id: 'decipher_mirror_tactics',
+        label: '水鏡の文字を解読する（HP 15%消費 ➔ スキル習得）',
+        description: '集中力を極限まで使い（HP15%消費）、水辺の秘伝技を習得する。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '水鏡に映る石碑の奥義を解読し、新たなスキルを習得した！',
+        },
+      },
+      {
+        id: 'rest_by_mirror_water',
+        label: '静かな水鏡を眺めて瞑想する（HP 25%回復）',
+        description: '無理な解読はせず、澄んだ水辺の気配で心身を癒やす。',
+        outcome: {
+          healHpPercent: 25,
+          logMessage: '水鏡の静寂が傷を癒やし、HPが25%回復した！',
+        },
+      },
+    ],
+  },
+
+  lotus_spring_pool: {
+    id: 'lotus_spring_pool',
+    title: '睡蓮の湧き水',
+    category: 'shrine',
+    description:
+      '湿地の奥に、大輪の睡蓮が浮かぶ澄んだ湧き水を見つけた。清涼な水が傷を癒やすだけでなく、水底には古の旅人が落とした金貨もきらめいている。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_lotus_pool',
+        label: '睡蓮の湧水を飲む（HP 35%回復）',
+        description: '清らかな水で傷を癒やす。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '睡蓮の湧水を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_lotus_coins',
+        label: '水底の金貨を拾う（+35 G）',
+        description: '浅瀬に手を伸ばし、沈んだ金貨を回収する。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '睡蓮の池底から輝く金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
 };
+
 
 

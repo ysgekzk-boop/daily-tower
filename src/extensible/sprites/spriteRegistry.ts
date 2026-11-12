@@ -852,6 +852,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '古樹液の印章',
     colors: ['transparent', '#451a03', '#b45309', '#4ade80'],
   },
+  item_reed_harpoon: {
+    id: 'item_reed_harpoon',
+    name: '葦穂の銛槍',
+    colors: ['transparent', '#365314', '#94a3b8', '#e2e8f0'],
+  },
+  item_mirror_lotus_blade: {
+    id: 'item_mirror_lotus_blade',
+    name: '水鏡蓮の剣',
+    colors: ['transparent', '#064e3b', '#34d399', '#f472b6'],
+  },
+  item_reed_scale_jerkin: {
+    id: 'item_reed_scale_jerkin',
+    name: '葦鱗の革鎧',
+    colors: ['transparent', '#14532d', '#4d7c0f', '#a3e635'],
+  },
+  item_marsh_shell_cuirass: {
+    id: 'item_marsh_shell_cuirass',
+    name: '沼甲の胸鎧',
+    colors: ['transparent', '#1e293b', '#0f766e', '#5eead4'],
+  },
+  item_bog_venom_strike: {
+    id: 'item_bog_venom_strike',
+    name: '泥沼の毒撃',
+    colors: ['transparent', '#3b0764', '#7e22ce', '#a3e635'],
+  },
+  item_reed_crescent_slash: {
+    id: 'item_reed_crescent_slash',
+    name: '葦断ちの弧月',
+    colors: ['transparent', '#065f46', '#10b981', '#fef08a'],
+  },
+  item_marsh_lunge: {
+    id: 'item_marsh_lunge',
+    name: '水辺の疾駆撃',
+    colors: ['transparent', '#1e3a8a', '#3b82f6', '#bae6fd'],
+  },
+  item_water_mirror_grace: {
+    id: 'item_water_mirror_grace',
+    name: '水鏡の癒やし',
+    colors: ['transparent', '#164e63', '#22d3ee', '#ecfeff'],
+  },
+  item_reed_veil_stance: {
+    id: 'item_reed_veil_stance',
+    name: '葦隠れの構え',
+    colors: ['transparent', '#14532d', '#22c55e', '#bbf7d0'],
+  },
+  item_fen_frost_mist: {
+    id: 'item_fen_frost_mist',
+    name: '湿原の氷霧',
+    colors: ['transparent', '#1e3a8a', '#60a5fa', '#f0f9ff'],
+  },
+  item_bog_miasma: {
+    id: 'item_bog_miasma',
+    name: '沼地の瘴気',
+    colors: ['transparent', '#312e81', '#6d28d9', '#4ade80'],
+  },
+  item_reed_nectar_flask: {
+    id: 'item_reed_nectar_flask',
+    name: '葦露の霊水',
+    colors: ['transparent', '#365314', '#84cc16', '#fef08a'],
+  },
+  item_lotus_dew_phial: {
+    id: 'item_lotus_dew_phial',
+    name: '睡蓮の雫薬',
+    colors: ['transparent', '#831843', '#ec4899', '#fbcfe8'],
+  },
+  item_mirror_talisman_relic: {
+    id: 'item_mirror_talisman_relic',
+    name: '水鏡の呪符',
+    colors: ['transparent', '#0f172a', '#38bdf8', '#e0f2fe'],
+  },
+  item_reed_whistle_relic: {
+    id: 'item_reed_whistle_relic',
+    name: '葦笛の護符',
+    colors: ['transparent', '#3f6212', '#a3e635', '#fef08a'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1027,6 +1102,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_ancient_sap_vial: { id: 'item_ancient_sap_vial', matrixId: 'item_ancient_sap_vial', defaultPalette: 'item_ancient_sap_vial' },
   item_mist_veil_bell_relic: { id: 'item_mist_veil_bell_relic', matrixId: 'item_mist_veil_bell_relic', defaultPalette: 'item_mist_veil_bell_relic' },
   item_elder_sap_seal_relic: { id: 'item_elder_sap_seal_relic', matrixId: 'item_elder_sap_seal_relic', defaultPalette: 'item_elder_sap_seal_relic' },
+  item_reed_harpoon: { id: 'item_reed_harpoon', matrixId: 'item_reed_harpoon', defaultPalette: 'item_reed_harpoon' },
+  item_mirror_lotus_blade: { id: 'item_mirror_lotus_blade', matrixId: 'item_mirror_lotus_blade', defaultPalette: 'item_mirror_lotus_blade' },
+  item_reed_scale_jerkin: { id: 'item_reed_scale_jerkin', matrixId: 'item_reed_scale_jerkin', defaultPalette: 'item_reed_scale_jerkin' },
+  item_marsh_shell_cuirass: { id: 'item_marsh_shell_cuirass', matrixId: 'item_marsh_shell_cuirass', defaultPalette: 'item_marsh_shell_cuirass' },
+  item_bog_venom_strike: { id: 'item_bog_venom_strike', matrixId: 'item_bog_venom_strike', defaultPalette: 'item_bog_venom_strike' },
+  item_reed_crescent_slash: { id: 'item_reed_crescent_slash', matrixId: 'item_reed_crescent_slash', defaultPalette: 'item_reed_crescent_slash' },
+  item_marsh_lunge: { id: 'item_marsh_lunge', matrixId: 'item_marsh_lunge', defaultPalette: 'item_marsh_lunge' },
+  item_water_mirror_grace: { id: 'item_water_mirror_grace', matrixId: 'item_water_mirror_grace', defaultPalette: 'item_water_mirror_grace' },
+  item_reed_veil_stance: { id: 'item_reed_veil_stance', matrixId: 'item_reed_veil_stance', defaultPalette: 'item_reed_veil_stance' },
+  item_fen_frost_mist: { id: 'item_fen_frost_mist', matrixId: 'item_fen_frost_mist', defaultPalette: 'item_fen_frost_mist' },
+  item_bog_miasma: { id: 'item_bog_miasma', matrixId: 'item_bog_miasma', defaultPalette: 'item_bog_miasma' },
+  item_reed_nectar_flask: { id: 'item_reed_nectar_flask', matrixId: 'item_reed_nectar_flask', defaultPalette: 'item_reed_nectar_flask' },
+  item_lotus_dew_phial: { id: 'item_lotus_dew_phial', matrixId: 'item_lotus_dew_phial', defaultPalette: 'item_lotus_dew_phial' },
+  item_mirror_talisman_relic: { id: 'item_mirror_talisman_relic', matrixId: 'item_mirror_talisman_relic', defaultPalette: 'item_mirror_talisman_relic' },
+  item_reed_whistle_relic: { id: 'item_reed_whistle_relic', matrixId: 'item_reed_whistle_relic', defaultPalette: 'item_reed_whistle_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

@@ -420,14 +420,15 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
       { type: 'battle', enemyId: 'glen_elk', enemyStatScale: 1 },
-      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'event', eventId: 'marsh_reed_shrine' },
       { type: 'battle', enemyId: 'needle_porcupine', enemyStatScale: 1 },
       { type: 'battle', enemyId: 'bark_chameleon', enemyStatScale: 1 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
@@ -443,9 +444,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'amber_wisp', enemyStatScale: 1.01 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
@@ -456,15 +458,16 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'moss_owl', enemyStatScale: 1.03 },
       { type: 'battle', enemyId: 'thorn_trapper', enemyStatScale: 1.03 },
-      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'event', eventId: 'sunken_mirror_stele' },
       { type: 'battle', enemyId: 'ivy_creeper', enemyStatScale: 1.03 },
       { type: 'battle', enemyId: 'moss_crab', enemyStatScale: 1.03 },
       { type: 'battle', enemyId: 'amber_wisp', enemyStatScale: 1.03 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
@@ -474,14 +477,15 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
       { type: 'battle', enemyId: 'needle_porcupine', enemyStatScale: 1.04 },
-      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'event', eventId: 'lotus_spring_pool' },
       { type: 'battle', enemyId: 'thorn_mantis', enemyStatScale: 1.04 },
       { type: 'battle', enemyId: 'bloom_mandragora', enemyStatScale: 1.04 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
@@ -496,9 +500,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.06 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
@@ -515,9 +520,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['mist_moth', 'swamp_croc'], enemyStatScale: 1.07 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
@@ -532,9 +538,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'thorn_mantis', enemyStatScale: 1.08 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
@@ -550,9 +557,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['verdant_falcon', 'moss_tortoise'], enemyStatScale: 1.1 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
@@ -569,9 +577,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['spirit_fox', 'bloom_mandragora'], enemyStatScale: 1.11 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
@@ -586,9 +595,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'verdant_gryphon', enemyStatScale: 1.13 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
+      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
+      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
+      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
     },
   },
   {
