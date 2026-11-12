@@ -81,6 +81,9 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
       save.gold += save.inventory.skills[weakestIdx]?.salvageGold ?? 0;
       save.inventory.skills[weakestIdx] = item;
     }
+  } else if (item.kind === 'consumable') {
+    save.inventory.consumable = item;
+    save.midFloor.consumableCharges = item.maxCharges;
   }
 }
 
@@ -218,7 +221,15 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
     }
 
     // Reward cards
-    const cards = DropPacingEngine.generateFloorRewardCards(floorDef, rng);
+    const cards = DropPacingEngine.generateFloorRewardCards(floorDef, rng, {
+      skillIds: save.inventory.skills
+        .filter((s): s is NonNullable<typeof s> => s !== null)
+        .map((s) => s.id),
+      weaponId: save.inventory.weapon.id,
+      armorId: save.inventory.armor.id,
+      relicId: save.inventory.relic?.id ?? null,
+      consumableId: save.inventory.consumable?.id ?? null,
+    });
     const choice = PlaytestBot.chooseRewardCard(cards, {
       weapon: save.inventory.weapon,
       armor: save.inventory.armor,
@@ -234,6 +245,8 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
         maxCons,
         save.midFloor.consumableCharges + (card.potionRefillAmount ?? 1)
       );
+    } else if (card.type === 'gold_bonus') {
+      save.gold += card.goldBonusAmount ?? 0;
     } else if (card.item) {
       if (choice.action === 'equip') {
         applyEquip(save, card.item);

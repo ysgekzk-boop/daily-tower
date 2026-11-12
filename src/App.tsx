@@ -776,7 +776,11 @@ export function App() {
                           }}
                           className="w-full rounded-lg bg-amber-500 py-1.5 text-xs font-extrabold text-slate-950 transition hover:bg-amber-400 cursor-pointer"
                         >
-                          {card.type === 'potion_refill' ? '補充する' : '手に入れる'}
+                          {card.type === 'potion_refill'
+                            ? '補充する'
+                            : card.type === 'gold_bonus'
+                              ? '受け取る'
+                              : '手に入れる'}
                         </button>
                         {card.item && 'salvageGold' in card.item && (
                           <button

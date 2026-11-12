@@ -17,6 +17,7 @@ export interface FloorRewardPool {
   equipmentIds: string[];  // Card 1 candidates (Weapon / Armor)
   skillIds: string[];      // Card 2 candidates (Skill)
   utilityIds: string[];    // Card 3 candidates (Relic, or Consumable on Miniboss/Apex per §3.1)
+  consumableIds?: string[]; // Optional Card 3 Consumable candidates
 }
 
 export interface FloorDefinition {

@@ -2,6 +2,8 @@ import {
   AnyCatalogItem,
   ARMOR_CATALOG,
   ArmorItem,
+  CONSUMABLE_CATALOG,
+  ConsumableItem,
   RELIC_CATALOG,
   SKILL_CATALOG,
   WEAPON_CATALOG,
@@ -19,6 +21,14 @@ export interface RewardCard {
   goldBonusAmount?: number;
 }
 
+export interface OwnedRewardInfo {
+  skillIds: string[];
+  weaponId?: string;
+  armorId?: string;
+  relicId?: string | null;
+  consumableId?: string | null;
+}
+
 export class DropPacingEngine {
   /**
    * Generates the 3 floor-clear reward cards per Spec §3.1 and §5.3:
@@ -29,35 +39,75 @@ export class DropPacingEngine {
    */
   static generateFloorRewardCards(
     floorDef: FloorDefinition,
-    rng: () => number = Math.random
+    rng: () => number = Math.random,
+    owned?: OwnedRewardInfo
   ): [RewardCard, RewardCard, RewardCard] {
     const isApex = floorDef.floor % 50 === 0;
     const isMiniboss = !isApex && floorDef.floor % 5 === 0;
+    const goldBonusAmount = 40 + floorDef.floor;
+
+    const makeGoldCard = (slot: 1 | 2 | 3): RewardCard => ({
+      slot,
+      title: '黄金の欠片',
+      subtitle: `Gold +${goldBonusAmount}`,
+      type: 'gold_bonus',
+      goldBonusAmount,
+    });
+
+    const makeConsumableCard = (consumable: ConsumableItem): RewardCard => ({
+      slot: 3,
+      title: consumable.name,
+      subtitle: `消耗品（最大${consumable.maxCharges}チャージ）`,
+      type: 'item',
+      item: consumable,
+    });
 
     // Card 1: Equipment
-    const equipPool: (WeaponItem | ArmorItem)[] = floorDef.rewardPool.equipmentIds
+    const rawEquipPool: (WeaponItem | ArmorItem)[] = floorDef.rewardPool.equipmentIds
       .map((id): WeaponItem | ArmorItem | undefined => WEAPON_CATALOG[id] ?? ARMOR_CATALOG[id])
       .filter((x): x is WeaponItem | ArmorItem => Boolean(x));
-    const chosenEquip: WeaponItem | ArmorItem =
-      equipPool[Math.floor(rng() * equipPool.length)] ?? WEAPON_CATALOG.verdant_blade;
 
-    const card1: RewardCard = {
-      slot: 1,
-      title: chosenEquip.name,
-      subtitle:
-        chosenEquip.kind === 'weapon'
-          ? `武器 (ATK +${chosenEquip.atk})`
-          : `防具 (DEF +${chosenEquip.def} / HP +${chosenEquip.maxHpBonus})`,
-      type: 'item',
-      item: chosenEquip,
-    };
+    let card1: RewardCard;
+    if (owned) {
+      const filteredEquipPool = rawEquipPool.filter(
+        (item) => item.id !== owned.weaponId && item.id !== owned.armorId
+      );
+      if (filteredEquipPool.length === 0) {
+        card1 = makeGoldCard(1);
+      } else {
+        const chosenEquip =
+          filteredEquipPool[Math.floor(rng() * filteredEquipPool.length)];
+        card1 = {
+          slot: 1,
+          title: chosenEquip.name,
+          subtitle:
+            chosenEquip.kind === 'weapon'
+              ? `武器 (ATK +${chosenEquip.atk})`
+              : `防具 (DEF +${chosenEquip.def} / HP +${chosenEquip.maxHpBonus})`,
+          type: 'item',
+          item: chosenEquip,
+        };
+      }
+    } else {
+      const chosenEquip: WeaponItem | ArmorItem =
+        rawEquipPool[Math.floor(rng() * rawEquipPool.length)] ??
+        WEAPON_CATALOG.verdant_blade;
+      card1 = {
+        slot: 1,
+        title: chosenEquip.name,
+        subtitle:
+          chosenEquip.kind === 'weapon'
+            ? `武器 (ATK +${chosenEquip.atk})`
+            : `防具 (DEF +${chosenEquip.def} / HP +${chosenEquip.maxHpBonus})`,
+        type: 'item',
+        item: chosenEquip,
+      };
+    }
 
     // Card 2: Skill
-    const skillPool = floorDef.rewardPool.skillIds
+    const rawSkillPool = floorDef.rewardPool.skillIds
       .map((id) => SKILL_CATALOG[id])
       .filter(Boolean);
-    const chosenSkill =
-      skillPool[Math.floor(rng() * skillPool.length)] ?? SKILL_CATALOG.power_slash;
 
     const categoryMap: Record<string, string> = {
       attack: '攻撃技',
@@ -66,13 +116,37 @@ export class DropPacingEngine {
       debuff: '弱体技',
     };
 
-    const card2: RewardCard = {
-      slot: 2,
-      title: chosenSkill.name,
-      subtitle: `${categoryMap[chosenSkill.category] ?? 'スキル'}（使用回数 ${chosenSkill.maxChargesPerBattle}）`,
-      type: 'item',
-      item: chosenSkill,
-    };
+    let card2: RewardCard;
+    if (owned) {
+      const ownedSkillSet = new Set(owned.skillIds);
+      const filteredSkillPool = rawSkillPool.filter(
+        (skill) => !ownedSkillSet.has(skill.id)
+      );
+      if (filteredSkillPool.length === 0) {
+        card2 = makeGoldCard(2);
+      } else {
+        const chosenSkill =
+          filteredSkillPool[Math.floor(rng() * filteredSkillPool.length)];
+        card2 = {
+          slot: 2,
+          title: chosenSkill.name,
+          subtitle: `${categoryMap[chosenSkill.category] ?? 'スキル'}（使用回数 ${chosenSkill.maxChargesPerBattle}）`,
+          type: 'item',
+          item: chosenSkill,
+        };
+      }
+    } else {
+      const chosenSkill =
+        rawSkillPool[Math.floor(rng() * rawSkillPool.length)] ??
+        SKILL_CATALOG.power_slash;
+      card2 = {
+        slot: 2,
+        title: chosenSkill.name,
+        subtitle: `${categoryMap[chosenSkill.category] ?? 'スキル'}（使用回数 ${chosenSkill.maxChargesPerBattle}）`,
+        type: 'item',
+        item: chosenSkill,
+      };
+    }
 
     // Card 3: Utility (Strictly enforce consumable scarcity per Spec §3.1)
     let card3: RewardCard;
@@ -92,6 +166,39 @@ export class DropPacingEngine {
         type: 'potion_refill',
         potionRefillAmount: 1,
       };
+    } else if (owned) {
+      const filteredRelicPool = floorDef.rewardPool.utilityIds
+        .map((id) => RELIC_CATALOG[id])
+        .filter((r) => Boolean(r) && r.id !== owned.relicId);
+      const filteredConsumablePool = (floorDef.rewardPool.consumableIds ?? [])
+        .map((id) => CONSUMABLE_CATALOG[id])
+        .filter((c) => Boolean(c) && c.id !== owned.consumableId);
+
+      if (isMiniboss && filteredConsumablePool.length > 0 && rng() < 0.3) {
+        const chosenConsumable =
+          filteredConsumablePool[
+            Math.floor(rng() * filteredConsumablePool.length)
+          ];
+        card3 = makeConsumableCard(chosenConsumable);
+      } else if (filteredRelicPool.length > 0) {
+        const chosenRelic =
+          filteredRelicPool[Math.floor(rng() * filteredRelicPool.length)];
+        card3 = {
+          slot: 3,
+          title: chosenRelic.name,
+          subtitle: 'レリック',
+          type: 'item',
+          item: chosenRelic,
+        };
+      } else if (filteredConsumablePool.length > 0) {
+        const chosenConsumable =
+          filteredConsumablePool[
+            Math.floor(rng() * filteredConsumablePool.length)
+          ];
+        card3 = makeConsumableCard(chosenConsumable);
+      } else {
+        card3 = makeGoldCard(3);
+      }
     } else {
       const relicPool = floorDef.rewardPool.utilityIds
         .map((id) => RELIC_CATALOG[id])

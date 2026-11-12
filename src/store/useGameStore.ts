@@ -293,6 +293,26 @@ function syncAchievements(save: SaveData): SaveData {
         setStageAfterSkillPrompt(afterStage);
         setStage('skill_replace_prompt');
       }
+    } else if (item.kind === 'consumable') {
+      const nextSave: SaveData = {
+        ...saveData,
+        midFloor: {
+          ...saveData.midFloor,
+          consumableCharges: item.maxCharges,
+        },
+        inventory: {
+          ...saveData.inventory,
+          consumable: item,
+        },
+      };
+      setSystemBanner(
+        `🧪 消耗品「${item.name}」を装備！（チャージ ${item.maxCharges}/${item.maxCharges}）`
+      );
+      if (afterStage === 'next_floor') {
+        advanceToNextFloorWithSave(nextSave);
+      } else {
+        advanceToNextEncounterWithSave(nextSave);
+      }
     }
   };
 
@@ -355,7 +375,15 @@ function syncAchievements(save: SaveData): SaveData {
     } else {
       // Floor cleared! Offer 3 reward cards
       setSaveData(baseSave);
-      const cards = DropPacingEngine.generateFloorRewardCards(fDef);
+      const cards = DropPacingEngine.generateFloorRewardCards(fDef, Math.random, {
+        skillIds: baseSave.inventory.skills
+          .filter((s): s is SkillItem => s !== null)
+          .map((s) => s.id),
+        weaponId: baseSave.inventory.weapon.id,
+        armorId: baseSave.inventory.armor.id,
+        relicId: baseSave.inventory.relic?.id ?? null,
+        consumableId: baseSave.inventory.consumable?.id ?? null,
+      });
       setRewardCards(cards);
       setStage('floor_reward');
     }
@@ -488,6 +516,17 @@ function syncAchievements(save: SaveData): SaveData {
   };
 
   const selectFloorRewardCard = (card: RewardCard, action: 'equip' | 'salvage') => {
+    if (card.type === 'gold_bonus') {
+      const amount = card.goldBonusAmount ?? 0;
+      const nextSave: SaveData = {
+        ...saveData,
+        gold: saveData.gold + amount,
+      };
+      setSystemBanner(`💰 黄金の欠片を換金して +${amount}G を獲得！`);
+      advanceToNextFloorWithSave(nextSave);
+      return;
+    }
+
     if (card.type === 'potion_refill') {
       const maxCons = saveData.inventory.consumable?.maxCharges ?? 2;
       const nextSave: SaveData = {
