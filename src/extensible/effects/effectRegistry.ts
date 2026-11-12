@@ -106,6 +106,32 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       };
     },
   },
+  mist_veil_bell: {
+    id: 'mist_veil_bell',
+    name: '霧隠れの鈴',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'atk_debuff',
+        value: 15,
+        duration: 3,
+      },
+      logMessage: `[レリック:霧隠れの鈴] 霧の鈴音が響き、敵の攻撃力を15%低下(3T)させた！`,
+    }),
+  },
+  elder_sap_seal: {
+    id: 'elder_sap_seal',
+    name: '古樹液の印章',
+    trigger: 'on_skill_use',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'def_debuff',
+        value: 15,
+        duration: 2,
+      },
+      logMessage: `[レリック:古樹液の印章] スキル発動に呼応し敵の防御力を15%低下(2T)させた！`,
+    }),
+  },
 };
 
 

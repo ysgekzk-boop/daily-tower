@@ -305,6 +305,69 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  misty_totem_stone: {
+    id: 'misty_totem_stone',
+    title: '霧深き古樹の石碑',
+    category: 'lore',
+    description:
+      '濃霧に包まれた古木の根元に、苔むした石碑が静かに佇んでいる。霧の合間に浮かび上がる古代文字には、森を生き抜く戦技が記されているようだ。',
+    speakerSpriteId: 'treant',
+    palette: 'ancient_bark',
+    options: [
+      {
+        id: 'decipher_mist_tactics',
+        label: '霧の戦技を解読する（HP 15%消費 ➔ スキル習得）',
+        description: '集中力を極限まで使い（HP15%消費）、古樹林の秘伝技を習得する。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '霧に浮かぶ石碑の奥義を解読し、新たなスキルを習得した！',
+        },
+      },
+      {
+        id: 'rest_in_silent_mist',
+        label: '静かな霧の中で瞑想する（HP 25%回復）',
+        description: '無理な解読はせず、ひんやりと澄んだ森の霧で心身を癒やす。',
+        outcome: {
+          healHpPercent: 25,
+          logMessage: '古樹林の清浄な霧が傷を包み、HPが25%回復した！',
+        },
+      },
+    ],
+  },
+
+  foggy_hollow_spring: {
+    id: 'foggy_hollow_spring',
+    title: '霧隠れの古泉',
+    category: 'shrine',
+    description:
+      '古木のうろの奥、白い霧が立ち込める静かな泉を見つけた。澄み切った水面の底には、かつての探索者が落とした金貨が淡く光っている。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_foggy_spring',
+        label: '古泉の水を掬って飲む（HP 35%回復）',
+        description: '冷たく清らかな泉の水で傷を癒やす。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '霧隠れの古泉を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'gather_sunken_coins',
+        label: '水底の金貨を拾い集める（+35 G）',
+        description: '冷たい水に手を伸ばし、沈んだ金貨を回収する。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '古泉の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
 };
 
 

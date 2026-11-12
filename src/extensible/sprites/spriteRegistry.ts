@@ -777,6 +777,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '茨棘の腕輪',
     colors: ['transparent', '#451a03', '#15803d', '#ef4444'],
   },
+  item_mistwood_glaive: {
+    id: 'item_mistwood_glaive',
+    name: '霧木の大薙刀',
+    colors: ['transparent', '#334155', '#94a3b8', '#a7f3d0'],
+  },
+  item_elder_thorn_sword: {
+    id: 'item_elder_thorn_sword',
+    name: '古棘の妖剣',
+    colors: ['transparent', '#14532d', '#22c55e', '#fde047'],
+  },
+  item_mistweave_cloak: {
+    id: 'item_mistweave_cloak',
+    name: '霧織りの外套',
+    colors: ['transparent', '#1e293b', '#64748b', '#99f6e4'],
+  },
+  item_ancient_bark_mail: {
+    id: 'item_ancient_bark_mail',
+    name: '古樹皮の重鎧',
+    colors: ['transparent', '#271c19', '#78350f', '#4ade80'],
+  },
+  item_wisp_flame_strike: {
+    id: 'item_wisp_flame_strike',
+    name: '鬼火の斬撃',
+    colors: ['transparent', '#451a03', '#f59e0b', '#fef08a'],
+  },
+  item_ancient_trunk_cleave: {
+    id: 'item_ancient_trunk_cleave',
+    name: '古樹断ちの一撃',
+    colors: ['transparent', '#1c1917', '#a8a29e', '#34d399'],
+  },
+  item_mist_step_strike: {
+    id: 'item_mist_step_strike',
+    name: '霧歩きの連撃',
+    colors: ['transparent', '#0f172a', '#cbd5e1', '#38bdf8'],
+  },
+  item_mist_spring_prayer: {
+    id: 'item_mist_spring_prayer',
+    name: '霧泉の癒やし',
+    colors: ['transparent', '#065f46', '#34d399', '#e0f2fe'],
+  },
+  item_ancient_roar: {
+    id: 'item_ancient_roar',
+    name: '古森の雄叫び',
+    colors: ['transparent', '#7f1d1d', '#ea580c', '#fde047'],
+  },
+  item_mist_rend: {
+    id: 'item_mist_rend',
+    name: '霧裂きの破甲',
+    colors: ['transparent', '#312e81', '#94a3b8', '#f43f5e'],
+  },
+  item_canopy_aegis: {
+    id: 'item_canopy_aegis',
+    name: '樹冠の霧障壁',
+    colors: ['transparent', '#064e3b', '#10b981', '#bae6fd'],
+  },
+  item_mist_herb_draught: {
+    id: 'item_mist_herb_draught',
+    name: '霧草の煎じ薬',
+    colors: ['transparent', '#134e4a', '#2dd4bf', '#fef9c3'],
+  },
+  item_ancient_sap_vial: {
+    id: 'item_ancient_sap_vial',
+    name: '古樹液の小瓶',
+    colors: ['transparent', '#451a03', '#d97706', '#fef08a'],
+  },
+  item_mist_veil_bell_relic: {
+    id: 'item_mist_veil_bell_relic',
+    name: '霧隠れの鈴',
+    colors: ['transparent', '#334155', '#cbd5e1', '#38bdf8'],
+  },
+  item_elder_sap_seal_relic: {
+    id: 'item_elder_sap_seal_relic',
+    name: '古樹液の印章',
+    colors: ['transparent', '#451a03', '#b45309', '#4ade80'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -937,6 +1012,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_moss_elixir: { id: 'item_moss_elixir', matrixId: 'item_moss_elixir', defaultPalette: 'item_moss_elixir' },
   item_forest_dewdrop_relic: { id: 'item_forest_dewdrop_relic', matrixId: 'item_forest_dewdrop_relic', defaultPalette: 'item_forest_dewdrop_relic' },
   item_briar_thorn_relic: { id: 'item_briar_thorn_relic', matrixId: 'item_briar_thorn_relic', defaultPalette: 'item_briar_thorn_relic' },
+  item_mistwood_glaive: { id: 'item_mistwood_glaive', matrixId: 'item_mistwood_glaive', defaultPalette: 'item_mistwood_glaive' },
+  item_elder_thorn_sword: { id: 'item_elder_thorn_sword', matrixId: 'item_elder_thorn_sword', defaultPalette: 'item_elder_thorn_sword' },
+  item_mistweave_cloak: { id: 'item_mistweave_cloak', matrixId: 'item_mistweave_cloak', defaultPalette: 'item_mistweave_cloak' },
+  item_ancient_bark_mail: { id: 'item_ancient_bark_mail', matrixId: 'item_ancient_bark_mail', defaultPalette: 'item_ancient_bark_mail' },
+  item_wisp_flame_strike: { id: 'item_wisp_flame_strike', matrixId: 'item_wisp_flame_strike', defaultPalette: 'item_wisp_flame_strike' },
+  item_ancient_trunk_cleave: { id: 'item_ancient_trunk_cleave', matrixId: 'item_ancient_trunk_cleave', defaultPalette: 'item_ancient_trunk_cleave' },
+  item_mist_step_strike: { id: 'item_mist_step_strike', matrixId: 'item_mist_step_strike', defaultPalette: 'item_mist_step_strike' },
+  item_mist_spring_prayer: { id: 'item_mist_spring_prayer', matrixId: 'item_mist_spring_prayer', defaultPalette: 'item_mist_spring_prayer' },
+  item_ancient_roar: { id: 'item_ancient_roar', matrixId: 'item_ancient_roar', defaultPalette: 'item_ancient_roar' },
+  item_mist_rend: { id: 'item_mist_rend', matrixId: 'item_mist_rend', defaultPalette: 'item_mist_rend' },
+  item_canopy_aegis: { id: 'item_canopy_aegis', matrixId: 'item_canopy_aegis', defaultPalette: 'item_canopy_aegis' },
+  item_mist_herb_draught: { id: 'item_mist_herb_draught', matrixId: 'item_mist_herb_draught', defaultPalette: 'item_mist_herb_draught' },
+  item_ancient_sap_vial: { id: 'item_ancient_sap_vial', matrixId: 'item_ancient_sap_vial', defaultPalette: 'item_ancient_sap_vial' },
+  item_mist_veil_bell_relic: { id: 'item_mist_veil_bell_relic', matrixId: 'item_mist_veil_bell_relic', defaultPalette: 'item_mist_veil_bell_relic' },
+  item_elder_sap_seal_relic: { id: 'item_elder_sap_seal_relic', matrixId: 'item_elder_sap_seal_relic', defaultPalette: 'item_elder_sap_seal_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

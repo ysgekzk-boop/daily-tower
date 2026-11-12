@@ -232,15 +232,16 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'moss_owl', enemyStatScale: 0.86 },
       { type: 'battle', enemyId: 'canopy_spider', enemyStatScale: 0.86 },
-      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'event', eventId: 'misty_totem_stone' },
       { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.86 },
       { type: 'battle', enemyId: 'amber_beetle', enemyStatScale: 0.86 },
       { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.86 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
@@ -250,14 +251,15 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
       { type: 'battle', enemyId: 'thorn_trapper', enemyStatScale: 0.87 },
-      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'event', eventId: 'foggy_hollow_spring' },
       { type: 'battle', enemyId: 'woodland_viper', enemyStatScale: 0.87 },
       { type: 'battle', enemyId: 'forest_bat', enemyStatScale: 0.87 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
@@ -273,9 +275,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'bramble_boar', enemyStatScale: 0.89 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
@@ -292,9 +295,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_crab', enemyStatScale: 0.9 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
@@ -309,9 +313,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'shadow_panther', enemyStatScale: 0.92 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
@@ -327,9 +332,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'glen_elk', enemyStatScale: 0.93 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
@@ -346,9 +352,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_crab', enemyStatScale: 0.94 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
@@ -363,9 +370,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'amber_wisp', enemyStatScale: 0.96 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
@@ -381,9 +389,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'glen_elk', enemyStatScale: 0.97 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
@@ -398,9 +407,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'ironwood_colossus', enemyStatScale: 0.99 },
     ],
     rewardPool: {
-      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
+      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
+      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
+      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
     },
   },
   {
