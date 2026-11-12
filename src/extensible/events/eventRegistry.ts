@@ -184,4 +184,48 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  apprentice_desk: {
+    id: 'apprentice_desk',
+    title: '司書の見習いの机',
+    category: 'lore',
+    description:
+      '静まり返った書架の片隅に、見習い司書が使っていた机が残されている。書きかけの羊皮紙と散らばった銀貨、そして魔力を帯びたインク壺が置かれている。',
+    speakerSpriteId: 'tome',
+    palette: 'arcane_tome',
+    options: [
+      {
+        id: 'collect_silver',
+        label: '散らばった銀貨を整理して受け取る',
+        description: '机の上の銀貨を拾い集める（+25 G）。',
+        outcome: {
+          grantGold: 25,
+          logMessage: '机の上に散らばっていた銀貨を整理し、25 G を受け取った！',
+        },
+      },
+      {
+        id: 'transcribe_forbidden_margin',
+        label: '指先をインクに浸し、禁書の余白を書き写す',
+        description: '最大HPの12%を代償に、秘術の知識を書き写し銀貨も回収する（スキル習得 + 15 G）。',
+        cost: {
+          hpPercent: 12,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          grantGold: 15,
+          logMessage: '魔力のインクに生命力を吸われつつも、禁書の術式を書き写し新たなスキルと 15 G を得た！',
+        },
+      },
+      {
+        id: 'close_page_and_leave',
+        label: '静かにページを閉じて立ち去る',
+        description: '深追いをせず、静寂の中で一息つく（HP 10%回復）。',
+        outcome: {
+          healHpPercent: 10,
+          logMessage: '静かにページを閉じて深呼吸し、HPが10%回復した。',
+        },
+      },
+    ],
+  },
 };
+

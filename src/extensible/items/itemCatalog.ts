@@ -121,6 +121,15 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     salvageGold: 90,
     description: 'あらゆる装甲を断ち切る黒曜石の刃。',
   },
+  stargazer_silver_sword: {
+    id: 'stargazer_silver_sword',
+    name: '星見の銀剣',
+    kind: 'weapon',
+    atk: 14,
+    element: 'void',
+    salvageGold: 20,
+    description: '虚空の図書館の銀細工で鍛えられた、静かな星光を宿す剣。',
+  },
 };
 
 export const ARMOR_CATALOG: Record<string, ArmorItem> = {
@@ -159,6 +168,15 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     maxHpBonus: 90,
     salvageGold: 65,
     description: '熱と衝撃を分散する特殊な合金メイル。',
+  },
+  librarian_robe: {
+    id: 'librarian_robe',
+    name: '司書の法衣',
+    kind: 'armor',
+    def: 5,
+    maxHpBonus: 15,
+    salvageGold: 20,
+    description: '知識の守り手が纏う、防護術式が織り込まれた法衣。',
   },
 };
 
@@ -289,6 +307,22 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     salvageGold: 30,
     description: '最大HPの32%を回復し、すべてのデバフを解除する（1戦1回）。',
   },
+  chrono_flip: {
+    id: 'chrono_flip',
+    name: 'ページめくり',
+    kind: 'skill',
+    category: 'debuff',
+    maxChargesPerBattle: 2,
+    damageMultiplier: 1.5,
+    applyStatus: {
+      target: 'enemy',
+      statusId: 'def_debuff',
+      value: 35,
+      duration: 3,
+    },
+    salvageGold: 30,
+    description: '時の頁を鋭くめくる一撃。1.5倍ダメージ＋敵の防御力を35%低下(3T)（1戦2回）。',
+  },
 };
 
 export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
@@ -358,4 +392,13 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     salvageGold: 35,
     description: 'バトル勝利時に獲得するゴールドが +15 増加する。',
   },
+  bookmark_charm_relic: {
+    id: 'bookmark_charm_relic',
+    name: '栞の護符',
+    kind: 'relic',
+    effectId: 'bookmark_charm',
+    salvageGold: 40,
+    description: '各バトルの1ターン目の攻撃時、+15%相当の追加ダメージを与える。',
+  },
 };
+

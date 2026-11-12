@@ -1,5 +1,6 @@
 import { FloorDefinition, REALM_01_FLOORS } from './realm_01_greenwood';
 import { REALM_02_FLOORS } from './realm_02_volcano';
+import { REALM_03_FLOORS } from './realm_03_library';
 
 export interface RealmMetadata {
   realm: number;
@@ -42,10 +43,25 @@ export const REALM_METADATA: Record<number, RealmMetadata> = {
       duration: 2,
     },
   },
+  3: {
+    realm: 3,
+    name: '虚空の図書館',
+    englishName: 'The Starless Library',
+    startFloor: 101,
+    endFloor: 150,
+    bossName: '時詠みの司書 (The Chrono Archivist)',
+    environmentalRuleDescription: '静寂の書架：3ターンごとに敵味方へシールド(8)が発生',
+    environmentalStatus: {
+      everyNTurns: 3,
+      statusId: 'shield',
+      value: 8,
+      duration: 2,
+    },
+  },
 };
 
 export const ALL_FLOORS: Record<number, FloorDefinition> = {};
-for (const f of [...REALM_01_FLOORS, ...REALM_02_FLOORS]) {
+for (const f of [...REALM_01_FLOORS, ...REALM_02_FLOORS, ...REALM_03_FLOORS]) {
   ALL_FLOORS[f.floor] = f;
 }
 

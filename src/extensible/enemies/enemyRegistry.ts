@@ -542,4 +542,174 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  living_tome: {
+    id: 'living_tome',
+    name: '生ける魔導書',
+    spriteId: 'tome',
+    palette: 'arcane_tome',
+    hp: 52,
+    atk: 11,
+    def: 4,
+    goldReward: 18,
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '紙刃の斬撃',
+            type: 'attack',
+            weight: 65,
+            damageMultiplier: 1.0,
+            logMessage: '生ける魔導書が鋭い紙刃を飛ばした！',
+          },
+          {
+            name: '装丁強化',
+            type: 'buff',
+            weight: 35,
+            statusId: 'shield',
+            statusValue: 10,
+            statusDuration: 2,
+            logMessage: '魔導書の装丁が硬質化し、障壁(10)を展開した！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        phaseName: '禁書解放',
+        actions: [
+          {
+            name: '禁呪の詠唱',
+            type: 'attack',
+            weight: 70,
+            damageMultiplier: 1.4,
+            logMessage: '【禁書解放】生ける魔導書が禁呪を詠唱し、魔力の奔流を放つ！',
+          },
+          {
+            name: '知識の奪取',
+            type: 'debuff',
+            weight: 30,
+            statusId: 'atk_debuff',
+            statusValue: 25,
+            statusDuration: 2,
+            logMessage: '【禁書解放】呪いの文字が絡みつき、こちらの攻撃力を奪った！',
+          },
+        ],
+      },
+    ],
+  },
+
+  ink_phantom: {
+    id: 'ink_phantom',
+    name: 'インクの亡霊',
+    spriteId: 'phantom',
+    palette: 'ink_phantom',
+    hp: 44,
+    atk: 13,
+    def: 2,
+    goldReward: 16,
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '漆黒の飛沫',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: 'インクの亡霊が漆黒の飛沫を浴びせかけた！',
+          },
+          {
+            name: '染み込む闇',
+            type: 'debuff',
+            weight: 40,
+            damageMultiplier: 1.0,
+            statusId: 'poison',
+            statusValue: 3,
+            statusDuration: 2,
+            logMessage: '呪われたインクが肌に染み込み、毒を受けた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 40,
+        phaseName: '深淵浸食',
+        actions: [
+          {
+            name: '虚無のインク',
+            type: 'attack',
+            weight: 75,
+            damageMultiplier: 1.35,
+            logMessage: '【深淵浸食】虚無のインクが渦巻き、鋭い奔流となって襲いかかる！',
+          },
+          {
+            name: '視界遮断',
+            type: 'debuff',
+            weight: 25,
+            statusId: 'def_debuff',
+            statusValue: 25,
+            statusDuration: 2,
+            logMessage: '【深淵浸食】黒い霧が視界を奪い、こちらの防御力が低下した！',
+          },
+        ],
+      },
+    ],
+  },
+
+  brass_astrolabe: {
+    id: 'brass_astrolabe',
+    name: '真鍮の天球儀',
+    spriteId: 'astrolabe',
+    palette: 'brass_astrolabe',
+    hp: 64,
+    atk: 10,
+    def: 6,
+    goldReward: 22,
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '歯車回転',
+            type: 'attack',
+            weight: 55,
+            damageMultiplier: 1.0,
+            logMessage: '真鍮の天球儀が高速回転し、歯車で斬りつける！',
+          },
+          {
+            name: '星図の加護',
+            type: 'buff',
+            weight: 45,
+            statusId: 'def_buff',
+            statusValue: 30,
+            statusDuration: 2,
+            logMessage: '天球儀の円環が輝き、星図の加護で防御力が高まった！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 50,
+        phaseName: '時空干渉',
+        actions: [
+          {
+            name: '時空歪曲',
+            type: 'attack',
+            weight: 65,
+            damageMultiplier: 1.3,
+            logMessage: '【時空干渉】天球儀が時空を歪め、重力の衝撃波を放った！',
+          },
+          {
+            name: '停滞の針',
+            type: 'debuff',
+            weight: 35,
+            statusId: 'freeze',
+            statusValue: 1,
+            statusDuration: 1,
+            logMessage: '【時空干渉】停滞の針が時を縫い止め、1ターン凍結させられた！',
+          },
+        ],
+      },
+    ],
+  },
 };
+

@@ -67,6 +67,21 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '黄金祭壇',
     colors: ['transparent', '#78350f', '#fbbf24', '#fef9c3'],
   },
+  arcane_tome: {
+    id: 'arcane_tome',
+    name: '魔導書',
+    colors: ['transparent', '#3b2a63', '#7a4fa3', '#e6d7a8'],
+  },
+  ink_phantom: {
+    id: 'ink_phantom',
+    name: '漆黒の亡霊',
+    colors: ['transparent', '#14141f', '#3d3d5c', '#a8e6e0'],
+  },
+  brass_astrolabe: {
+    id: 'brass_astrolabe',
+    name: '真鍮天球',
+    colors: ['transparent', '#4a3512', '#a87e2f', '#f2d98c'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -85,6 +100,9 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   treant: { id: 'treant', matrixId: 'treant', defaultPalette: 'ancient_bark' },
   colossus: { id: 'colossus', matrixId: 'colossus', defaultPalette: 'molten_iron' },
   shrine: { id: 'shrine', matrixId: 'shrine', defaultPalette: 'golden_shrine' },
+  tome: { id: 'tome', matrixId: 'tome', defaultPalette: 'arcane_tome' },
+  phantom: { id: 'phantom', matrixId: 'phantom', defaultPalette: 'ink_phantom' },
+  astrolabe: { id: 'astrolabe', matrixId: 'astrolabe', defaultPalette: 'brass_astrolabe' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

@@ -64,4 +64,22 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: `[レリック:黄金の羅針盤] 勝利時に追加で 15 Gold を発見！`,
     }),
   },
+  bookmark_charm: {
+    id: 'bookmark_charm',
+    name: '栞の護符',
+    trigger: 'on_attack',
+    handler: (ctx) => {
+      if (ctx.turnNumber !== 1) {
+        return {
+          logMessage: '',
+        };
+      }
+      const bonus = Math.max(1, Math.floor(ctx.playerAtk * 0.15));
+      return {
+        bonusDamage: bonus,
+        logMessage: `[レリック:栞の護符] 初撃の栞が輝き、追加ダメージ +${bonus}！`,
+      };
+    },
+  },
 };
+
