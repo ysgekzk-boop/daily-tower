@@ -451,6 +451,15 @@ export function useGameStore() {
     initCurrentEncounter(nextSave);
   };
 
+  const resetSave = () => {
+    const fresh = StorageValidator.createDefaultSave();
+    setRewardCards(null);
+    setPendingSkillToEquip(null);
+    setSystemBanner('🌅 新たな挑戦が始まった。');
+    setSaveData(fresh);
+    initCurrentEncounter(fresh);
+  };
+
   const completeDimensionalLeapModal = () => {
     initCurrentEncounter(saveData);
   };
@@ -507,6 +516,7 @@ export function useGameStore() {
     selectFloorRewardCard,
     confirmSkillReplace,
     respawnFromCheckpoint,
+    resetSave,
     completeDimensionalLeapModal,
     unlockOrEquipCosmetic,
   };

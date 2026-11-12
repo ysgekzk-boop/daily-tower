@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AreaEngine } from './core/AreaEngine';
 import { EventEngine } from './core/EventEngine';
 import { BattleStage2D, CombatMotionState } from './components/BattleStage2D';
+import { TitleScreen } from './components/TitleScreen';
 import { WardrobeArchiveModal } from './components/WardrobeArchiveModal';
 import { useGameStore } from './store/useGameStore';
 
@@ -24,6 +25,7 @@ export function App() {
     selectFloorRewardCard,
     confirmSkillReplace,
     respawnFromCheckpoint,
+    resetSave,
     completeDimensionalLeapModal,
     unlockOrEquipCosmetic,
   } = useGameStore();
@@ -32,6 +34,13 @@ export function App() {
   const [activeSkillCallout, setActiveSkillCallout] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [targetIndex, setTargetIndex] = useState<number>(0);
+  const [showTitle, setShowTitle] = useState<boolean>(true);
+
+  const hasProgress =
+    saveData.midFloor.currentFloor > 1 ||
+    saveData.midFloor.currentEncounterIndex > 0 ||
+    saveData.gold > 30 ||
+    saveData.archive.length > 0;
 
   // Reset target selection whenever a new encounter begins
   useEffect(() => {
@@ -119,6 +128,26 @@ export function App() {
     }, 450);
   };
 
+  if (showTitle) {
+    return (
+      <TitleScreen
+        hasProgress={hasProgress}
+        floor={saveData.midFloor.currentFloor}
+        realmName={currentRealmMeta.name}
+        gold={saveData.gold}
+        gems={saveData.cosmeticGems}
+        archiveCount={saveData.archive.length}
+        playerSpriteId={saveData.activeSkinSpriteId}
+        playerPaletteId={saveData.activeSkinPaletteId}
+        onContinue={() => setShowTitle(false)}
+        onReset={() => {
+          resetSave();
+          setShowTitle(false);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="min-h-dvh flex flex-col bg-slate-950 text-slate-100">
       {/* Compact RPG Header */}
@@ -158,6 +187,7 @@ export function App() {
       {/* Main 2D RPG Screen */}
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 px-4 py-4">
         {/* 1. 2D RPG Stage Viewport (Background + Facing Characters + Motions) */}
+        <div className="relative">
         <BattleStage2D
           realm={floorDef.realm}
           floor={floorDef.floor}
@@ -178,6 +208,20 @@ export function App() {
           selectedTargetIndex={targetIndex}
           onSelectTarget={setTargetIndex}
         />
+        {stage === 'defeat' && (
+          <div className="defeat-pulse pointer-events-none absolute inset-0 z-30 flex items-center justify-center rounded-2xl bg-slate-950/60">
+            <div className="anim-rise-in px-4 text-center">
+              <p className="text-4xl" aria-hidden="true">💀</p>
+              <p className="mt-1 text-2xl font-black tracking-widest text-rose-400">
+                力尽きた…
+              </p>
+              <p className="mt-1 text-xs font-bold text-slate-300">
+                {currentRealmMeta.name}（第{saveData.midFloor.currentFloor}層）で倒れた
+              </p>
+            </div>
+          </div>
+        )}
+        </div>
 
         {/* Notification Toast Bar */}
         {systemBanner && (
@@ -201,7 +245,7 @@ export function App() {
             {stage === 'combat' && battleSession && (
               <>
                 {battleSession.status === 'victory' ? (
-                  <div className="flex flex-1 flex-col items-center justify-center py-6 text-center">
+                  <div className="anim-rise-in flex flex-1 flex-col items-center justify-center py-6 text-center">
                     <p className="text-base font-extrabold text-emerald-300">
                       🏆 {battleSession.enemyDefs.map((d) => d.name).join(' と ')} を倒した！
                     </p>
@@ -323,7 +367,7 @@ export function App() {
 
             {/* EVENT DIALOGUE & CHOICES */}
             {stage === 'event' && activeEvent && (
-              <div className="flex flex-1 flex-col justify-between gap-3">
+              <div key={activeEvent.id} className="anim-rise-in flex flex-1 flex-col justify-between gap-3">
                 <div>
                   <h2 className="text-base font-extrabold text-amber-300">
                     {activeEvent.title}
@@ -468,7 +512,7 @@ export function App() {
 
             {/* DIMENSIONAL LEAP */}
             {stage === 'dimensional_leap' && (
-              <div className="flex flex-1 flex-col items-center justify-center py-4 text-center">
+              <div className="anim-rise-in flex flex-1 flex-col items-center justify-center py-4 text-center">
                 <h2 className="text-lg font-extrabold text-amber-300">
                   領域制覇！次なる領域への扉が開かれた
                 </h2>
@@ -489,7 +533,7 @@ export function App() {
 
             {/* DEFEAT */}
             {stage === 'defeat' && (
-              <div className="flex flex-1 flex-col items-center justify-center py-4 text-center">
+              <div className="anim-rise-in flex flex-1 flex-col items-center justify-center py-4 text-center">
                 <h2 className="text-lg font-extrabold text-rose-400">
                   💀 力尽きてしまった…
                 </h2>

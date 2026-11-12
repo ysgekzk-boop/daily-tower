@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { BattleSessionState } from '../core/CombatEngine';
 import { GameEventDefinition } from '../extensible/events/types';
 import { Encounter } from '../extensible/realms/realm_01_greenwood';
@@ -67,6 +68,7 @@ function StatusRow({ statuses }: { statuses: ActiveStatusInstance[] }) {
 
 export function BattleStage2D({
   realm,
+  floor,
   floorTitle,
   encounters,
   currentEncounterIndex,
@@ -127,6 +129,32 @@ export function BattleStage2D({
   let enemyMotionClass = '';
   if (motionState === 'enemy_attack') enemyMotionClass = 'motion-enemy-attack';
   else if (motionState === 'enemy_hit') enemyMotionClass = 'motion-hit';
+
+  // Boss intro banner: shown once when a miniboss / apex encounter begins
+  const encounterType = encounters[currentEncounterIndex]?.type;
+  const bossKind =
+    encounterType === 'apex_boss' ? 'apex' : encounterType === 'miniboss' ? 'mini' : null;
+  const encounterKey = `${floor}-${currentEncounterIndex}`;
+  const [introKey, setIntroKey] = useState<string | null>(null);
+  useEffect(() => {
+    if (!bossKind || !battleSession) return;
+    setIntroKey(encounterKey);
+    const t = setTimeout(() => setIntroKey(null), 2350);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [encounterKey, bossKind, battleSession === null]);
+  const showBossIntro = introKey === encounterKey && battleSession?.status === 'ongoing';
+
+  // Event category accent for the event actor chip
+  const eventChipClass = activeEvent
+    ? {
+        rest: 'border-emerald-500/50 text-emerald-300',
+        shrine: 'border-amber-500/50 text-amber-300',
+        merchant: 'border-sky-500/50 text-sky-300',
+        lore: 'border-indigo-500/50 text-indigo-300',
+        forge: 'border-rose-500/50 text-rose-300',
+      }[activeEvent.category]
+    : '';
 
   return (
     <div
@@ -234,6 +262,45 @@ export function BattleStage2D({
           })}
         </ol>
       </div>
+
+      {/* Boss Intro Overlay */}
+      {showBossIntro && battleSession && (
+        <div
+          className="anim-fade-in absolute inset-0 z-30 flex items-center justify-center bg-slate-950/70 backdrop-blur-[1px]"
+          onClick={() => setIntroKey(null)}
+          role="presentation"
+        >
+          <div className="anim-boss-intro px-4 text-center">
+            <p
+              className={`text-[11px] font-black tracking-[0.4em] ${
+                bossKind === 'apex' ? 'text-amber-300' : 'text-rose-300'
+              }`}
+            >
+              {bossKind === 'apex' ? '👑 領域の主、降臨' : '💀 強敵 出現'}
+            </p>
+            <p className="mt-2 text-2xl font-black tracking-wider text-slate-50 sm:text-3xl">
+              {battleSession.enemyDefs.map((d) => d.name).join(' と ')}
+            </p>
+            {battleSession.enemyDefs[0]?.title && (
+              <p className="mt-1 text-xs font-bold text-slate-400">
+                {battleSession.enemyDefs[0].title}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Victory Overlay */}
+      {battleSession?.status === 'victory' && (
+        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+          <div className="anim-victory-banner rounded-2xl border border-emerald-400/50 bg-slate-950/85 px-6 py-3 text-center shadow-2xl backdrop-blur">
+            <p className="text-xl font-black tracking-widest text-emerald-300">🏆 VICTORY</p>
+            <p className="mt-0.5 text-[11px] font-bold text-amber-300">
+              +{battleSession.totalGoldReward} G を手に入れた
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Action Overlay Banner for Skill Callout */}
       {activeSkillName && (
@@ -408,7 +475,7 @@ export function BattleStage2D({
                     <div
                       className={`${
                         def.isBoss ? 'rpg-actor-boss' : 'rpg-actor'
-                      } ${isDead ? '' : enemyMotionClass}`}
+                      } ${isDead ? 'motion-defeat' : enemyMotionClass}`}
                     >
                       <PixelSpriteCanvas
                         spriteId={def.spriteId}
@@ -433,9 +500,11 @@ export function BattleStage2D({
             })}
           </div>
         ) : activeEvent ? (
-          <div className="flex flex-col items-center">
-            <div className="mb-2 rounded-xl border border-amber-500/50 bg-slate-950/85 px-3 py-1.5 text-center shadow-xl backdrop-blur-xs">
-              <span className="text-[11px] sm:text-xs font-extrabold text-amber-300">
+          <div key={activeEvent.id} className="anim-rise-in flex flex-col items-center">
+            <div
+              className={`mb-2 rounded-xl border bg-slate-950/85 px-3 py-1.5 text-center shadow-xl backdrop-blur-xs ${eventChipClass}`}
+            >
+              <span className="text-[11px] sm:text-xs font-extrabold">
                 {activeEvent.title}
               </span>
             </div>
