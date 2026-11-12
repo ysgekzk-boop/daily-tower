@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import { AreaEngine } from './core/AreaEngine';
 import { EventEngine } from './core/EventEngine';
 import { BattleStage2D, CombatMotionState, HitFx } from './components/BattleStage2D';
+import { BestiaryModal } from './components/BestiaryModal';
 import { HelpModal } from './components/HelpModal';
 import { TitleScreen } from './components/TitleScreen';
 import { WardrobeArchiveModal } from './components/WardrobeArchiveModal';
+import { ACHIEVEMENTS } from './extensible/achievements/achievements';
 import { useGameStore } from './store/useGameStore';
 import { isSfxMuted, playSfx, setSfxMuted, SfxName, unlockAudio } from './utils/sound';
 
@@ -38,6 +40,48 @@ export function App() {
   const [targetIndex, setTargetIndex] = useState<number>(0);
   const [showTitle, setShowTitle] = useState<boolean>(true);
   const [isMuted, setIsMuted] = useState<boolean>(() => isSfxMuted());
+
+  // Achievement unlock toast queue
+  const isFirstMountRef = useRef<boolean>(true);
+  const prevAchievementsRef = useRef<Record<string, true>>(saveData.achievements ?? {});
+  const [toastQueue, setToastQueue] = useState<string[]>([]);
+  const [currentToast, setCurrentToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isFirstMountRef.current) {
+      isFirstMountRef.current = false;
+      prevAchievementsRef.current = saveData.achievements ?? {};
+      return;
+    }
+
+    const prev = prevAchievementsRef.current;
+    const current = saveData.achievements ?? {};
+    const newlyUnlockedIds = Object.keys(current).filter((id) => current[id] && !prev[id]);
+    prevAchievementsRef.current = current;
+
+    if (newlyUnlockedIds.length > 0) {
+      const newNames = newlyUnlockedIds.map((id) => {
+        const ach = ACHIEVEMENTS.find((a) => a.id === id);
+        return ach ? ach.name : id;
+      });
+      setToastQueue((q) => [...q, ...newNames]);
+    }
+  }, [saveData.achievements]);
+
+  useEffect(() => {
+    if (currentToast || toastQueue.length === 0) return;
+
+    const [next, ...rest] = toastQueue;
+    setCurrentToast(next);
+    setToastQueue(rest);
+    playSfx('unlock');
+
+    const timer = setTimeout(() => {
+      setCurrentToast(null);
+    }, 3500);
+
+    return () => clearTimeout(timer);
+  }, [currentToast, toastQueue]);
 
   const toggleMute = () => {
     const next = !isMuted;
@@ -378,6 +422,10 @@ export function App() {
                 <span aria-hidden="true">{isMuted ? '🔇' : '🔊'}</span>
               </button>
               <HelpModal />
+              <BestiaryModal
+                bestiary={saveData.bestiary}
+                achievements={saveData.achievements}
+              />
               <WardrobeArchiveModal
               cosmeticGems={saveData.cosmeticGems}
               unlockedCosmetics={saveData.unlockedCosmetics}
@@ -865,6 +913,18 @@ export function App() {
           </div>
         </div>
       </main>
+      {/* Achievement Unlock Toast */}
+      {currentToast && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="anim-rise-in fixed bottom-6 left-1/2 z-50 -translate-x-1/2 flex items-center gap-2 rounded-xl border border-amber-500/60 bg-slate-900/95 px-4 py-2.5 text-xs font-bold text-amber-300 shadow-2xl backdrop-blur"
+        >
+          <span className="text-base" aria-hidden="true">🏆</span>
+          <span>実績解除「{currentToast}」</span>
+        </div>
+      )}
+
       {floorFade > 0 && (
         <div
           key={floorFade}

@@ -18,6 +18,7 @@ import { EFFECT_REGISTRY } from '../extensible/effects/effectRegistry';
 import { EventOption } from '../extensible/events/types';
 import { AnyCatalogItem, SkillItem } from '../extensible/items/itemCatalog';
 import { REALM_METADATA } from '../extensible/realms/realmIndex';
+import { evaluateAchievements } from '../extensible/achievements/achievements';
 
 export type GameStage =
   | 'combat'
@@ -63,6 +64,24 @@ export function useGameStore() {
     }
   }, [saveData]);
 
+function syncAchievements(save: SaveData): SaveData {
+  const unlockedIds = evaluateAchievements(save);
+  const currentAchievements = save.achievements ?? {};
+  let changed = false;
+  const nextAchievements = { ...currentAchievements };
+  for (const id of unlockedIds) {
+    if (!nextAchievements[id]) {
+      nextAchievements[id] = true;
+      changed = true;
+    }
+  }
+  if (!changed) return save;
+  return {
+    ...save,
+    achievements: nextAchievements,
+  };
+}
+
   // Initialize encounter session when floor or encounterIndex changes
   const initCurrentEncounter = useCallback(
     (currentSave: SaveData) => {
@@ -70,10 +89,51 @@ export function useGameStore() {
       const enc = FloorRunner.resolveEncounter(fDef, currentSave.midFloor.currentEncounterIndex);
       const maxHp = BASE_PLAYER_MAX_HP + currentSave.inventory.armor.maxHpBonus;
 
+      const currentFloor = currentSave.midFloor.currentFloor;
+      const prevStats = currentSave.playStats ?? {
+        maxFloorReached: 1,
+        battlesWon: 0,
+        enemiesDefeated: 0,
+        leaps: 0,
+      };
+      const nextMaxFloor = Math.max(prevStats.maxFloorReached, currentFloor);
+
       if (enc.kind === 'event') {
         setBattleSession(null);
         setStage('event');
+
+        let updatedSave: SaveData = {
+          ...currentSave,
+          playStats: {
+            ...prevStats,
+            maxFloorReached: nextMaxFloor,
+          },
+        };
+        updatedSave = syncAchievements(updatedSave);
+        if (
+          nextMaxFloor !== prevStats.maxFloorReached ||
+          updatedSave.achievements !== currentSave.achievements
+        ) {
+          setSaveData(updatedSave);
+        }
       } else {
+        const nextBestiary = { ...(currentSave.bestiary ?? {}) };
+        for (const def of enc.enemyDefs) {
+          const prev = nextBestiary[def.id] ?? { seen: 0, defeated: 0 };
+          nextBestiary[def.id] = { ...prev, seen: prev.seen + 1 };
+        }
+
+        let updatedSave: SaveData = {
+          ...currentSave,
+          bestiary: nextBestiary,
+          playStats: {
+            ...prevStats,
+            maxFloorReached: nextMaxFloor,
+          },
+        };
+        updatedSave = syncAchievements(updatedSave);
+        setSaveData(updatedSave);
+
         const session = CombatEngine.createBattleSession(
           currentSave.midFloor.playerCurrentHp,
           maxHp,
@@ -109,6 +169,33 @@ export function useGameStore() {
       currentRealmMeta.environmentalStatus
     );
     setBattleSession(nextSession);
+
+    if (battleSession.status === 'ongoing' && nextSession.status === 'victory') {
+      setSaveData((currentSave) => {
+        const nextBestiary = { ...(currentSave.bestiary ?? {}) };
+        for (const def of nextSession.enemyDefs) {
+          const prev = nextBestiary[def.id] ?? { seen: 0, defeated: 0 };
+          nextBestiary[def.id] = { ...prev, defeated: prev.defeated + 1 };
+        }
+        const prevStats = currentSave.playStats ?? {
+          maxFloorReached: currentSave.midFloor.currentFloor,
+          battlesWon: 0,
+          enemiesDefeated: 0,
+          leaps: 0,
+        };
+        const nextStats = {
+          ...prevStats,
+          battlesWon: prevStats.battlesWon + 1,
+          enemiesDefeated: prevStats.enemiesDefeated + nextSession.enemyDefs.length,
+        };
+        const updated: SaveData = {
+          ...currentSave,
+          bestiary: nextBestiary,
+          playStats: nextStats,
+        };
+        return syncAchievements(updated);
+      });
+    }
 
     if (nextSession.status === 'defeat') {
       setStage('defeat');
@@ -461,7 +548,22 @@ export function useGameStore() {
   };
 
   const completeDimensionalLeapModal = () => {
-    initCurrentEncounter(saveData);
+    const prevStats = saveData.playStats ?? {
+      maxFloorReached: saveData.midFloor.currentFloor,
+      battlesWon: 0,
+      enemiesDefeated: 0,
+      leaps: 0,
+    };
+    let nextSave: SaveData = {
+      ...saveData,
+      playStats: {
+        ...prevStats,
+        leaps: prevStats.leaps + 1,
+      },
+    };
+    nextSave = syncAchievements(nextSave);
+    setSaveData(nextSave);
+    initCurrentEncounter(nextSave);
   };
 
   const unlockOrEquipCosmetic = (item: CosmeticItem) => {

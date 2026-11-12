@@ -37,6 +37,14 @@ export interface SaveData {
   activeSkinPaletteId: string;
   activeTitle: string;
   archive: RunArchiveRecord[];
+  bestiary?: Record<string, { seen: number; defeated: number }>;
+  achievements?: Record<string, true>;
+  playStats?: {
+    maxFloorReached: number;
+    battlesWon: number;
+    enemiesDefeated: number;
+    leaps: number;
+  };
 }
 
 export const SAVE_STORAGE_KEY = 'DAILY_TOWER_SAVE';
@@ -70,6 +78,14 @@ export class StorageValidator {
       activeSkinPaletteId: 'steel_knight',
       activeTitle: '【塔の挑戦者】',
       archive: [],
+      bestiary: {},
+      achievements: {},
+      playStats: {
+        maxFloorReached: 1,
+        battlesWon: 0,
+        enemiesDefeated: 0,
+        leaps: 0,
+      },
     };
   }
 
@@ -198,6 +214,71 @@ export class StorageValidator {
       healNotes.push('エンカウントインデックスの不整合を検出しチェックポイントへ復帰しました。');
     }
 
+    // Validate bestiary
+    const safeBestiary: Record<string, { seen: number; defeated: number }> = {};
+    if (raw.bestiary && typeof raw.bestiary === 'object' && !Array.isArray(raw.bestiary)) {
+      for (const [key, val] of Object.entries(raw.bestiary)) {
+        if (typeof key === 'string' && val && typeof val === 'object') {
+          const v = val as { seen?: unknown; defeated?: unknown };
+          const seen =
+            typeof v.seen === 'number' && Number.isFinite(v.seen) && v.seen >= 0
+              ? Math.floor(v.seen)
+              : 0;
+          const defeated =
+            typeof v.defeated === 'number' && Number.isFinite(v.defeated) && v.defeated >= 0
+              ? Math.floor(v.defeated)
+              : 0;
+          safeBestiary[key] = { seen, defeated };
+        }
+      }
+    }
+
+    // Validate achievements
+    const safeAchievements: Record<string, true> = {};
+    if (
+      raw.achievements &&
+      typeof raw.achievements === 'object' &&
+      !Array.isArray(raw.achievements)
+    ) {
+      for (const [key, val] of Object.entries(raw.achievements)) {
+        if (typeof key === 'string' && val === true) {
+          safeAchievements[key] = true;
+        }
+      }
+    }
+
+    // Validate playStats
+    const rawStats =
+      raw.playStats && typeof raw.playStats === 'object' && !Array.isArray(raw.playStats)
+        ? raw.playStats
+        : {};
+    const safePlayStats = {
+      maxFloorReached:
+        typeof rawStats.maxFloorReached === 'number' &&
+        Number.isFinite(rawStats.maxFloorReached) &&
+        rawStats.maxFloorReached >= 1
+          ? Math.floor(rawStats.maxFloorReached)
+          : Math.max(1, currentFloor),
+      battlesWon:
+        typeof rawStats.battlesWon === 'number' &&
+        Number.isFinite(rawStats.battlesWon) &&
+        rawStats.battlesWon >= 0
+          ? Math.floor(rawStats.battlesWon)
+          : 0,
+      enemiesDefeated:
+        typeof rawStats.enemiesDefeated === 'number' &&
+        Number.isFinite(rawStats.enemiesDefeated) &&
+        rawStats.enemiesDefeated >= 0
+          ? Math.floor(rawStats.enemiesDefeated)
+          : 0,
+      leaps:
+        typeof rawStats.leaps === 'number' &&
+        Number.isFinite(rawStats.leaps) &&
+        rawStats.leaps >= 0
+          ? Math.floor(rawStats.leaps)
+          : 0,
+    };
+
     return {
       save: {
         version: 4,
@@ -228,6 +309,9 @@ export class StorageValidator {
         activeTitle:
           typeof raw.activeTitle === 'string' ? raw.activeTitle : defaults.activeTitle,
         archive: safeArchive,
+        bestiary: safeBestiary,
+        achievements: safeAchievements,
+        playStats: safePlayStats,
       },
       healed,
       healNotes,
