@@ -249,7 +249,7 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'lava_diver', enemyStatScale: 0.95 },
       { type: 'event', eventId: 'sanctuary_campfire' },
       { type: 'battle', enemyId: 'steam_venter', enemyStatScale: 0.95 },
-      { type: 'battle', enemyIds: ['scorch_scorpion', 'soot_wraith'], enemyStatScale: 0.95 },
+      { type: 'battle', enemyId: 'soot_wraith', enemyStatScale: 0.95 },
       { type: 'battle', enemyId: 'crucible_mimic', enemyStatScale: 0.95 },
     ],
     rewardPool: {
@@ -285,7 +285,7 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'lava_diver', enemyStatScale: 0.97 },
       { type: 'event', eventId: 'crimson_pact_altar' },
       { type: 'battle', enemyId: 'steam_venter', enemyStatScale: 0.97 },
-      { type: 'battle', enemyIds: ['crucible_mimic', 'scorch_scorpion'], enemyStatScale: 0.97 },
+      { type: 'battle', enemyId: 'crucible_mimic', enemyStatScale: 0.97 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
@@ -303,7 +303,7 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'quarry_troll', enemyStatScale: 0.99 },
       { type: 'event', eventId: 'wandering_blacksmith' },
       { type: 'battle', enemyId: 'furnace_gargoyle', enemyStatScale: 0.99 },
-      { type: 'battle', enemyIds: ['lava_diver', 'steam_venter', 'soot_wraith'], enemyStatScale: 0.99 },
+      { type: 'battle', enemyIds: ['lava_diver', 'steam_venter'], enemyStatScale: 0.99 },
       { type: 'battle', enemyId: 'obsidian_wasp', enemyStatScale: 0.99 },
     ],
     rewardPool: {
@@ -338,7 +338,7 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'furnace_gargoyle', enemyStatScale: 1.01 },
       { type: 'battle', enemyId: 'soot_wraith', enemyStatScale: 1.01 },
       { type: 'event', eventId: 'emerald_spring' },
-      { type: 'battle', enemyIds: ['lava_diver', 'obsidian_wasp'], enemyStatScale: 1.01 },
+      { type: 'battle', enemyId: 'obsidian_wasp', enemyStatScale: 1.01 },
       { type: 'battle', enemyId: 'crucible_mimic', enemyStatScale: 1.01 },
     ],
     rewardPool: {
