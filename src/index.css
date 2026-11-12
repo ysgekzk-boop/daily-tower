@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgb(2 6 23 / 0.78);
+  backdrop-filter: blur(4px);
+}
+
+.scrollable-log {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+}
+
+/* Individual transform properties with mandatory base identity transforms */
+.rpg-actor {
+  translate: 0px 0px;
+  rotate: 0deg;
+  scale: 1;
+  animation: rpg-idle-bob 2.4s infinite ease-in-out;
+  transition: translate 0.2s ease, scale 0.2s ease, filter 0.2s ease;
+}
+
+.rpg-actor-boss {
+  translate: 0px 0px;
+  rotate: 0deg;
+  scale: 1;
+  animation: rpg-boss-float 3s infinite ease-in-out;
+  transition: translate 0.2s ease, scale 0.2s ease, filter 0.2s ease;
+}
+
+/* --- Actor Combat Motion Classes --- */
+
+/* Player Physical Attack: Dash forward */
+.motion-player-attack {
+  animation: player-dash 0.45s ease-out !important;
+}
+
+/* Player Skill Attack: Jump leap forward with slash */
+.motion-skill-attack {
+  animation: player-jump-slash 0.55s ease-out !important;
+}
+
+/* Player Skill Heal / Consumable: Floating rise with glowing pulse */
+.motion-skill-heal {
+  animation: player-heal-glow 0.6s ease-in-out !important;
+}
+
+/* Player Skill Buff: Powering up pulse */
+.motion-skill-buff {
+  animation: player-buff-charge 0.55s ease-out !important;
+}
+
+/* Player Skill Debuff: Casting aura shake */
+.motion-skill-debuff {
+  animation: player-debuff-cast 0.55s ease-out !important;
+}
+
+/* Enemy Attack: Dash toward player (leftward) */
+.motion-enemy-attack {
+  animation: enemy-dash 0.45s ease-out !important;
+}
+
+/* Hit Reaction: Shake and flash red */
+.motion-hit {
+  animation: actor-hit-shake 0.4s ease-in-out !important;
+}
+
+/* --- Keyframe Animations --- */
+
+@keyframes rpg-idle-bob {
+  0%, 100% {
+    translate: 0px 0px;
+  }
+  50% {
+    translate: 0px -5px;
+  }
+}
+
+@keyframes rpg-boss-float {
+  0%, 100% {
+    translate: 0px 0px;
+    scale: 1;
+  }
+  50% {
+    translate: 0px -8px;
+    scale: 1.03;
+  }
+}
+
+@keyframes player-dash {
+  0% {
+    translate: 0px 0px;
+  }
+  40% {
+    translate: 45px -4px;
+    rotate: 6deg;
+  }
+  100% {
+    translate: 0px 0px;
+    rotate: 0deg;
+  }
+}
+
+@keyframes player-jump-slash {
+  0% {
+    translate: 0px 0px;
+    scale: 1;
+  }
+  35% {
+    translate: 35px -24px;
+    scale: 1.15;
+    rotate: -8deg;
+  }
+  65% {
+    translate: 50px 4px;
+    scale: 1.1;
+    rotate: 10deg;
+  }
+  100% {
+    translate: 0px 0px;
+    scale: 1;
+    rotate: 0deg;
+  }
+}
+
+@keyframes player-heal-glow {
+  0% {
+    translate: 0px 0px;
+    scale: 1;
+    filter: brightness(1) drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    translate: 0px -14px;
+    scale: 1.12;
+    filter: brightness(1.6) drop-shadow(0 0 16px #34d399);
+  }
+  100% {
+    translate: 0px 0px;
+    scale: 1;
+    filter: brightness(1) drop-shadow(0 0 0 transparent);
+  }
+}
+
+@keyframes player-buff-charge {
+  0% {
+    translate: 0px 0px;
+    scale: 1;
+    filter: brightness(1);
+  }
+  40% {
+    translate: 0px 4px;
+    scale: 0.95;
+    filter: brightness(1.5) drop-shadow(0 0 12px #38bdf8);
+  }
+  70% {
+    translate: 0px -10px;
+    scale: 1.15;
+    filter: brightness(1.7) drop-shadow(0 0 20px #fbbf24);
+  }
+  100% {
+    translate: 0px 0px;
+    scale: 1;
+    filter: brightness(1);
+  }
+}
+
+@keyframes player-debuff-cast {
+  0% {
+    translate: 0px 0px;
+    rotate: 0deg;
+  }
+  30% {
+    translate: 0px -8px;
+    rotate: -6deg;
+    filter: brightness(1.4) drop-shadow(0 0 12px #c084fc);
+  }
+  60% {
+    translate: 15px -4px;
+    rotate: 6deg;
+    filter: brightness(1.6) drop-shadow(0 0 16px #818cf8);
+  }
+  100% {
+    translate: 0px 0px;
+    rotate: 0deg;
+    filter: brightness(1);
+  }
+}
+
+@keyframes enemy-dash {
+  0% {
+    translate: 0px 0px;
+  }
+  40% {
+    translate: -45px -4px;
+    rotate: -6deg;
+  }
+  100% {
+    translate: 0px 0px;
+    rotate: 0deg;
+  }
+}
+
+@keyframes actor-hit-shake {
+  0%, 100% {
+    translate: 0px 0px;
+    filter: brightness(1);
+  }
+  20% {
+    translate: -10px 0px;
+    filter: brightness(2) drop-shadow(0 0 12px #f43f5e);
+  }
+  40% {
+    translate: 10px 0px;
+    filter: brightness(1.8) drop-shadow(0 0 10px #f43f5e);
+  }
+  60% {
+    translate: -6px 0px;
+    filter: brightness(1.4);
+  }
+  80% {
+    translate: 4px 0px;
+  }
+}
+
+/* Styled native <progress> bars for RPG HP meters */
+progress.rpg-hp-bar {
+  appearance: none;
+  border: 0 solid;
+  overflow: clip;
+  --progress-bar-radius: 1e5px;
+  border-radius: var(--progress-bar-radius);
+  background: var(--progress-bar-track, #1e293b);
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.45);
+}
+
+progress.rpg-hp-bar::-webkit-progress-bar {
+  background: transparent;
+}
+
+progress.rpg-hp-bar::-webkit-progress-value {
+  background: var(--progress-bar-fill, #10b981);
+  border-radius: var(--progress-bar-radius);
+  transition: inline-size 0.3s ease;
+}
+
+progress.rpg-hp-bar::-moz-progress-bar {
+  background: var(--progress-bar-fill, #10b981);
+  border-radius: var(--progress-bar-radius);
+  transition: inline-size 0.3s ease;
+}

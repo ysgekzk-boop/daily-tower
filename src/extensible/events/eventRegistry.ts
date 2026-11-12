@@ -1,0 +1,187 @@
+import { GameEventDefinition } from './types';
+
+export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
+  sanctuary_campfire: {
+    id: 'sanctuary_campfire',
+    title: '微睡みの篝火',
+    category: 'rest',
+    isRestEvent: true,
+    description:
+      '静かな空洞に蒼い篝火が揺れている。ここでは敵の気配はなく、傷を癒やすか、秘薬の力を充填することができる。',
+    speakerSpriteId: 'shrine',
+    palette: 'golden_shrine',
+    options: [
+      {
+        id: 'rest_heal',
+        label: '篝火のそばで休息する（HP 50%回復）',
+        description: '最大HPの50%を回復する。',
+        outcome: {
+          healHpPercent: 50,
+          logMessage: '篝火の温もりに包まれ、HPが50%回復した！',
+        },
+      },
+      {
+        id: 'rest_refill',
+        label: '霊薬の器に魔力を注ぐ（秘薬 +1回分）',
+        description: '秘薬の使用回数を 1 補充する。',
+        outcome: {
+          refillConsumable: 1,
+          logMessage: '篝火の魔力を器に集め、秘薬を 1回分 補充した！',
+        },
+      },
+    ],
+  },
+
+  emerald_spring: {
+    id: 'emerald_spring',
+    title: '翠玉の湧水',
+    category: 'shrine',
+    description:
+      '樹海の奥深くで、魔力を帯びた湧水が滾々と溢れている。水底には古の冒険者が残した金貨も光っている。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_spring',
+        label: '湧水を飲む（HP 35%回復）',
+        description: '清らかな水で傷を癒やす。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '清涼な湧水を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_coins',
+        label: '水底の金貨を拾う（+35 G）',
+        description: '濡れるのを厭わず金貨を回収する。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '水底から輝く金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
+
+  crimson_pact_altar: {
+    id: 'crimson_pact_altar',
+    title: '紅の契約祭壇',
+    category: 'shrine',
+    description:
+      '「血か黄金を捧げよ。さすれば汝に新たな武具か秘術を授けん」――古びた石碑に文字が浮かび上がっている。',
+    speakerSpriteId: 'shrine',
+    palette: 'crimson_knight',
+    options: [
+      {
+        id: 'blood_for_relic',
+        label: '生命力を捧げる（HP 20%消費 ➔ レリック獲得）',
+        description: '最大HPの20%を代償に、古代のレリックを授かる。',
+        cost: {
+          hpPercent: 20,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '紅の祭壇に生命力を捧げ、古代のレリックを授かった！',
+        },
+      },
+      {
+        id: 'gold_for_skill',
+        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
+        description: '40 Gを奉納し、新たな秘伝スキルを得る。',
+        cost: {
+          gold: 40,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '黄金が光へと変わり、新たなスキルの知識が脳裏に刻まれた！',
+        },
+      },
+      {
+        id: 'respectful_prayer',
+        label: '静かに一礼して立ち去る（HP 15%回復）',
+        description: '代償を払わず敬意を示し、ささやかな祝福を受ける。',
+        outcome: {
+          healHpPercent: 15,
+          logMessage: '祭壇に敬意を表し、穏やかな祝福でHPが15%回復した。',
+        },
+      },
+    ],
+  },
+
+  wandering_blacksmith: {
+    id: 'wandering_blacksmith',
+    title: '彷徨う鍛冶師の工房',
+    category: 'forge',
+    description:
+      '塔の狭間で槌を振るう老鍛冶師と出会った。「いい目をしているな。金貨があれば良い武具を譲ってやろう」',
+    speakerSpriteId: 'hero_knight',
+    palette: 'steel_knight',
+    options: [
+      {
+        id: 'buy_weapon',
+        label: '業物の武器を購入する（45 G ➔ 武器獲得）',
+        description: '45 Gを支払い、より強力な武器を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'weapon',
+          logMessage: '老鍛冶師から鍛え抜かれた武器を受け取った！',
+        },
+      },
+      {
+        id: 'buy_armor',
+        label: '堅牢な防具を購入する（45 G ➔ 防具獲得）',
+        description: '45 Gを支払い、より堅牢な防具を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'armor',
+          logMessage: '老鍛冶師から重厚な防具を受け取った！',
+        },
+      },
+      {
+        id: 'assist_bellows',
+        label: 'ふいご作業を手伝う（+25 G）',
+        description: '鍛冶作業を手伝い、手間賃を受け取る。',
+        outcome: {
+          grantGold: 25,
+          logMessage: '鍛冶師の作業を手伝い、礼として 25 G を受け取った！',
+        },
+      },
+    ],
+  },
+
+  starlight_archive: {
+    id: 'starlight_archive',
+    title: '星光の碑文',
+    category: 'lore',
+    description:
+      '塔の歴史を記した光の碑文が宙に浮いている。文字を読み解けば戦いの知恵が身につくという。',
+    speakerSpriteId: 'hero_mage',
+    palette: 'astral_mage',
+    options: [
+      {
+        id: 'decipher_tactics',
+        label: '戦術の章を解読する（HP 15%消費 ➔ スキル習得）',
+        description: '集中力を極限まで使い（HP15%消費）、秘伝の技を習得する。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '碑文の奥義を解読し、新たなスキルを習得した！',
+        },
+      },
+      {
+        id: 'meditate_under_light',
+        label: '星の光を浴びて瞑想する（HP 25%回復）',
+        description: '無理な解読をせず、優しい星光で心身を癒やす。',
+        outcome: {
+          healHpPercent: 25,
+          logMessage: '星光のエネルギーが巡り、HPが25%回復した！',
+        },
+      },
+    ],
+  },
+};
