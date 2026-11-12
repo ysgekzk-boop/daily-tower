@@ -17,6 +17,14 @@ export type CombatMotionState =
   | 'enemy_hit'
   | 'player_hit';
 
+export interface HitFx {
+  key: number;
+  side: 'player' | 'enemy';
+  index: number; // enemy index (0 for the player)
+  amount: number;
+  kind: 'damage' | 'heal' | 'shield';
+}
+
 interface BattleStage2DProps {
   realm: number;
   floor: number;
@@ -31,12 +39,33 @@ interface BattleStage2DProps {
   playerAtk: number;
   playerDef: number;
   battleSession: BattleSessionState | null;
+  hitFx?: HitFx[];
   activeEvent: GameEventDefinition | null;
   motionState?: CombatMotionState;
   activeSkillName?: string | null;
   /** Index of the enemy the player is targeting (multi-enemy battles). */
   selectedTargetIndex?: number;
   onSelectTarget?: (index: number) => void;
+}
+
+function statusValueLabel(s: ActiveStatusInstance): string | null {
+  switch (s.statusId) {
+    case 'shield':
+    case 'poison':
+      return `${s.value}`;
+    case 'burn':
+      return `${s.value}%`;
+    case 'atk_buff':
+    case 'def_buff':
+    case 'flat_atk_up':
+      return `+${s.value}${s.statusId === 'flat_atk_up' ? '' : '%'}`;
+    case 'atk_debuff':
+    case 'def_debuff':
+    case 'flat_atk_down':
+      return `-${s.value}${s.statusId === 'flat_atk_down' ? '' : '%'}`;
+    default:
+      return null;
+  }
 }
 
 function StatusRow({ statuses }: { statuses: ActiveStatusInstance[] }) {
@@ -47,9 +76,11 @@ function StatusRow({ statuses }: { statuses: ActiveStatusInstance[] }) {
         const def = STATUS_REGISTRY[s.statusId];
         if (!def) return null;
         const isBuff = def.category === 'buff';
+        const valueLabel = statusValueLabel(s);
         return (
           <li
             key={s.statusId}
+            title={`${def.name}：${def.description ?? ''}（残り${s.duration}ターン）`}
             className={`inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-bold shadow ${
               isBuff
                 ? 'border-emerald-400/50 bg-emerald-950/90 text-emerald-200'
@@ -58,11 +89,67 @@ function StatusRow({ statuses }: { statuses: ActiveStatusInstance[] }) {
           >
             <span>{def.icon}</span>
             <span>{def.name}</span>
+            {valueLabel && <span className="font-mono">{valueLabel}</span>}
             <span className="opacity-80">{s.duration}T</span>
           </li>
         );
       })}
     </ul>
+  );
+}
+
+function HpBar({ value, max, color, label }: { value: number; max: number; color: string; label: string }) {
+  const pct = Math.max(0, Math.min(100, (value / Math.max(1, max)) * 100));
+  return (
+    <div
+      role="progressbar"
+      aria-label={label}
+      aria-valuenow={value}
+      aria-valuemin={0}
+      aria-valuemax={max}
+      className="relative mt-1 h-2 w-full overflow-hidden rounded bg-slate-800 sm:h-2.5"
+    >
+      <div
+        className="absolute inset-y-0 left-0 rounded bg-white/45 transition-[width] delay-200 duration-700 ease-out"
+        style={{ width: `${pct}%` }}
+      />
+      <div
+        className="absolute inset-y-0 left-0 rounded transition-[width] duration-300 ease-out"
+        style={{ width: `${pct}%`, background: color }}
+      />
+    </div>
+  );
+}
+
+function FxLayer({ fx, align }: { fx: HitFx[]; align: 'player' | 'enemy' }) {
+  if (fx.length === 0) return null;
+  return (
+    <>
+      {fx
+        .filter((f) => f.kind === 'damage')
+        .map((f) => (
+          <div
+            key={`flash-${f.key}`}
+            className="fx-hit-flash pointer-events-none absolute inset-x-2 top-6 bottom-4 z-20 rounded-full bg-white/80 blur-[3px]"
+          />
+        ))}
+      {fx.map((f) => (
+        <span
+          key={f.key}
+          className={`fx-float-damage pointer-events-none absolute -top-6 right-0 left-0 z-30 text-center font-mono text-lg font-extrabold whitespace-nowrap sm:text-2xl ${
+            f.kind === 'heal'
+              ? 'text-emerald-300'
+              : f.kind === 'shield'
+                ? 'text-sky-300'
+                : align === 'player'
+                  ? 'text-rose-300'
+                  : 'text-amber-200'
+          }`}
+        >
+          {f.kind === 'heal' ? `+${f.amount}` : f.kind === 'shield' ? `🛡️${f.amount}` : `-${f.amount}`}
+        </span>
+      ))}
+    </>
   );
 }
 
@@ -80,6 +167,7 @@ export function BattleStage2D({
   playerAtk,
   playerDef,
   battleSession,
+  hitFx,
   activeEvent,
   motionState = 'idle',
   activeSkillName = null,
@@ -159,6 +247,8 @@ export function BattleStage2D({
   return (
     <div
       className={`relative w-full h-72 sm:h-84 md:h-96 lg:h-[clamp(26rem,52dvh,36rem)] rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
+        hitFx?.some((f) => f.side === 'player' && f.kind === 'damage') ? 'fx-stage-shake' : ''
+      } ${
         isVolcano
           ? 'border-orange-900/70 bg-gradient-to-b from-stone-950 via-red-950/80 to-orange-950/90'
           : 'border-emerald-900/70 bg-gradient-to-b from-slate-950 via-teal-950/70 to-emerald-950/90'
@@ -355,18 +445,11 @@ export function BattleStage2D({
                   {hpShown} / {maxHpShown}
                 </span>
               </div>
-              <progress
-                aria-label="プレイヤーのHP"
-                className="rpg-hp-bar mt-1 block h-2 sm:h-2.5 w-full"
+              <HpBar
                 value={hpShown}
                 max={maxHpShown}
-                style={
-                  {
-                    '--progress-bar-fill':
-                      hpShown / maxHpShown > 0.3 ? '#10b981' : '#f43f5e',
-                    '--progress-bar-track': '#1e293b',
-                  } as React.CSSProperties
-                }
+                color={hpShown / maxHpShown > 0.3 ? '#10b981' : '#f43f5e'}
+                label="プレイヤーのHP"
               />
             </div>
 
@@ -379,6 +462,7 @@ export function BattleStage2D({
 
           {/* Player Character Sprite on Floor Platform */}
           <div className="relative flex flex-col items-center">
+            <FxLayer fx={(hitFx ?? []).filter((f) => f.side === 'player')} align="player" />
             <div className={`rpg-actor ${playerMotionClass}`}>
               <PixelSpriteCanvas
                 spriteId={playerSpriteId}
@@ -449,18 +533,10 @@ export function BattleStage2D({
                           {enemy.currentHp} / {enemy.maxHp}
                         </span>
                       </div>
-                      <progress
-                        aria-label={`${enemy.name}のHP`}
-                        className="rpg-hp-bar mt-1 block h-2 sm:h-2.5 w-full"
-                        value={enemy.currentHp}
-                        max={enemy.maxHp}
-                        style={
-                          {
-                            '--progress-bar-fill': '#f43f5e',
-                            '--progress-bar-track': '#1e293b',
-                          } as React.CSSProperties
-                        }
-                      />
+                      <HpBar value={enemy.currentHp} max={enemy.maxHp} color="#f43f5e" label={`${enemy.name}のHP`} />
+                      <div className="mt-1 text-right text-[9px] font-bold text-slate-400 sm:text-[10px]">
+                        ATK {enemy.baseAtk} / DEF {enemy.baseDef}
+                      </div>
                     </div>
 
                     {enemy.statuses.length > 0 && (
@@ -472,6 +548,7 @@ export function BattleStage2D({
 
                   {/* Enemy Sprite on Floor Platform (facing left towards player) */}
                   <div className="relative flex flex-col items-center">
+                    <FxLayer fx={(hitFx ?? []).filter((f) => f.side === 'enemy' && f.index === idx)} align="enemy" />
                     <div
                       className={`${
                         def.isBoss ? 'rpg-actor-boss' : 'rpg-actor'

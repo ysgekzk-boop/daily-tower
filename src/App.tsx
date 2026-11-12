@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AreaEngine } from './core/AreaEngine';
 import { EventEngine } from './core/EventEngine';
-import { BattleStage2D, CombatMotionState } from './components/BattleStage2D';
+import { BattleStage2D, CombatMotionState, HitFx } from './components/BattleStage2D';
+import { HelpModal } from './components/HelpModal';
 import { TitleScreen } from './components/TitleScreen';
 import { WardrobeArchiveModal } from './components/WardrobeArchiveModal';
 import { useGameStore } from './store/useGameStore';
@@ -46,6 +47,53 @@ export function App() {
   useEffect(() => {
     setTargetIndex(0);
   }, [saveData.midFloor.currentFloor, saveData.midFloor.currentEncounterIndex]);
+
+  // Floating combat numbers: diff the battle session before/after each resolved turn.
+  // Enemy-side results appear with the player's action; player-side results are
+  // delayed ~700ms so they land with the enemy's retaliation motion.
+  const [hitFx, setHitFx] = useState<HitFx[]>([]);
+  const prevSessionRef = useRef<typeof battleSession>(null);
+  const prevBattleKeyRef = useRef<string>('');
+  const fxKeyRef = useRef(0);
+
+  useEffect(() => {
+    const battleKey = `${saveData.midFloor.currentFloor}:${saveData.midFloor.currentEncounterIndex}`;
+    const prev = prevSessionRef.current;
+    const next = battleSession;
+    if (!next || !prev || prev === next || prevBattleKeyRef.current !== battleKey) {
+      prevSessionRef.current = next;
+      prevBattleKeyRef.current = battleKey;
+      return;
+    }
+    prevSessionRef.current = next;
+
+    const spawn = (fx: Omit<HitFx, 'key'>, delayMs: number) => {
+      const key = ++fxKeyRef.current;
+      const entry: HitFx = { ...fx, key };
+      window.setTimeout(() => {
+        setHitFx((cur) => [...cur.slice(-11), entry]);
+        window.setTimeout(() => {
+          setHitFx((cur) => cur.filter((f) => f.key !== key));
+        }, 1000);
+      }, delayMs);
+    };
+    const shieldOf = (c: { statuses: { statusId: string; value: number }[] }): number =>
+      c.statuses.find((x) => x.statusId === 'shield')?.value ?? 0;
+
+    next.enemies.forEach((enemy, i) => {
+      const before = prev.enemies[i];
+      if (!before) return;
+      const dmg = before.currentHp - enemy.currentHp;
+      if (dmg > 0) spawn({ side: 'enemy', index: i, amount: dmg, kind: 'damage' }, 0);
+      const absorbed = shieldOf(before) - shieldOf(enemy);
+      if (absorbed > 0) spawn({ side: 'enemy', index: i, amount: absorbed, kind: 'shield' }, 0);
+    });
+    const pDmg = prev.player.currentHp - next.player.currentHp;
+    if (pDmg > 0) spawn({ side: 'player', index: 0, amount: pDmg, kind: 'damage' }, 700);
+    if (pDmg < 0) spawn({ side: 'player', index: 0, amount: -pDmg, kind: 'heal' }, 0);
+    const pAbsorbed = shieldOf(prev.player) - shieldOf(next.player);
+    if (pAbsorbed > 0) spawn({ side: 'player', index: 0, amount: pAbsorbed, kind: 'shield' }, 700);
+  }, [battleSession, saveData.midFloor.currentFloor, saveData.midFloor.currentEncounterIndex]);
 
   const currentHp =
     stage === 'combat' && battleSession
@@ -170,7 +218,9 @@ export function App() {
               <span className="text-fuchsia-300">💎 {saveData.cosmeticGems}</span>
             </div>
 
-            <WardrobeArchiveModal
+            <div className="flex items-center gap-2">
+              <HelpModal />
+              <WardrobeArchiveModal
               cosmeticGems={saveData.cosmeticGems}
               unlockedCosmetics={saveData.unlockedCosmetics}
               activeSkinSpriteId={saveData.activeSkinSpriteId}
@@ -179,7 +229,8 @@ export function App() {
               cosmeticCatalog={cosmeticCatalog}
               archive={saveData.archive}
               onSelectCosmetic={unlockOrEquipCosmetic}
-            />
+              />
+            </div>
           </div>
         </div>
       </header>
@@ -204,6 +255,7 @@ export function App() {
           playerAtk={saveData.inventory.weapon.atk}
           playerDef={saveData.inventory.armor.def}
           battleSession={stage === 'combat' ? battleSession : null}
+          hitFx={hitFx}
           activeEvent={activeEvent}
           motionState={motionState}
           activeSkillName={activeSkillCallout}

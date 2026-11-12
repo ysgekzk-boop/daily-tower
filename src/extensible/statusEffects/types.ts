@@ -43,6 +43,7 @@ export interface StatusDefinition {
   id: string;                       // Unique, stable, snake_case
   name: string;
   icon: string;                     // Display symbol / icon
+  description?: string;             // Player-facing explanation of the effect (uses 効果値 for the current value)
   category: StatusCategory;
   counterpartId?: string;           // Paired buff/debuff counterpart ID
   stacking: StackingRule;
