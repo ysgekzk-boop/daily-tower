@@ -507,6 +507,56 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: 'フォージ・マスター',
     colors: ['transparent', '#31100b', '#991b1b', '#f59e0b'],
   },
+  lava_diver: {
+    id: 'lava_diver',
+    name: 'ラヴァ・ダイバー',
+    colors: ['transparent', '#450a0a', '#ea580c', '#fde047'],
+  },
+  steam_venter: {
+    id: 'steam_venter',
+    name: 'スチーム・ベンター',
+    colors: ['transparent', '#1e293b', '#94a3b8', '#38bdf8'],
+  },
+  scorch_scorpion: {
+    id: 'scorch_scorpion',
+    name: 'スコーチ・スコーピオン',
+    colors: ['transparent', '#422006', '#b45309', '#f97316'],
+  },
+  crucible_mimic: {
+    id: 'crucible_mimic',
+    name: 'クルーシブル・ミミック',
+    colors: ['transparent', '#1c1917', '#78716c', '#f59e0b'],
+  },
+  soot_wraith: {
+    id: 'soot_wraith',
+    name: 'スート・レイス',
+    colors: ['transparent', '#09090b', '#3f3f46', '#ef4444'],
+  },
+  quarry_troll: {
+    id: 'quarry_troll',
+    name: 'クオリー・トロル',
+    colors: ['transparent', '#292524', '#78350f', '#a8a29e'],
+  },
+  furnace_gargoyle: {
+    id: 'furnace_gargoyle',
+    name: 'ファーネス・ガーゴイル',
+    colors: ['transparent', '#1f2937', '#4b5563', '#fbbf24'],
+  },
+  obsidian_wasp: {
+    id: 'obsidian_wasp',
+    name: 'オブシディアン・ワスプ',
+    colors: ['transparent', '#020617', '#475569', '#a855f7'],
+  },
+  molten_core_sentinel: {
+    id: 'molten_core_sentinel',
+    name: 'コア・センチネル',
+    colors: ['transparent', '#18181b', '#71717a', '#f97316'],
+  },
+  molten_iron_centurion: {
+    id: 'molten_iron_centurion',
+    name: 'アイアン・センチュリオン',
+    colors: ['transparent', '#262626', '#b91c1c', '#fbbf24'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -613,6 +663,16 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   magma_slime: { id: 'magma_slime', matrixId: 'magma_slime', defaultPalette: 'magma_slime' },
   barrier_sentry_golem: { id: 'barrier_sentry_golem', matrixId: 'barrier_sentry_golem', defaultPalette: 'barrier_sentry_golem' },
   furnace_overseer: { id: 'furnace_overseer', matrixId: 'furnace_overseer', defaultPalette: 'furnace_overseer' },
+  lava_diver: { id: 'lava_diver', matrixId: 'lava_diver', defaultPalette: 'lava_diver' },
+  steam_venter: { id: 'steam_venter', matrixId: 'steam_venter', defaultPalette: 'steam_venter' },
+  scorch_scorpion: { id: 'scorch_scorpion', matrixId: 'scorch_scorpion', defaultPalette: 'scorch_scorpion' },
+  crucible_mimic: { id: 'crucible_mimic', matrixId: 'crucible_mimic', defaultPalette: 'crucible_mimic' },
+  soot_wraith: { id: 'soot_wraith', matrixId: 'soot_wraith', defaultPalette: 'soot_wraith' },
+  quarry_troll: { id: 'quarry_troll', matrixId: 'quarry_troll', defaultPalette: 'quarry_troll' },
+  furnace_gargoyle: { id: 'furnace_gargoyle', matrixId: 'furnace_gargoyle', defaultPalette: 'furnace_gargoyle' },
+  obsidian_wasp: { id: 'obsidian_wasp', matrixId: 'obsidian_wasp', defaultPalette: 'obsidian_wasp' },
+  molten_core_sentinel: { id: 'molten_core_sentinel', matrixId: 'molten_core_sentinel', defaultPalette: 'molten_core_sentinel' },
+  molten_iron_centurion: { id: 'molten_iron_centurion', matrixId: 'molten_iron_centurion', defaultPalette: 'molten_iron_centurion' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
