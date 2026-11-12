@@ -74,6 +74,10 @@ my_golem: {
 - A skill may declare `targetScope: 'all_enemies'` so its damage and enemy-targeted status hit every living enemy (default: `'single'`). Keep AoE multipliers below single-target equivalents.
 - `CombatEngine.createBattleSession` accepts `EnemyDefinition | EnemyDefinition[]`; sessions expose `enemies[]` / `enemyDefs[]` / `totalGoldReward`.
 
+### 2.6 Playtest Simulation (`src/sim/`, `tests/playtest_simulation.test.ts`)
+- `PlaytestBot` (`src/sim/playtestBot.ts`) plays the game with fixed heuristics (focus-fire lowest HP, AoE vs groups, heal thresholds, reward/event choices). `simulateRun` / `simulateMany` (`src/sim/runSimulation.ts`) run full 1–100F playthroughs with seeded RNG and aggregate clear rates, death hotspots and end-of-floor HP.
+- Run it via `npm test` (the report test prints the balance report). Use it after any balance-affecting change: new floors, enemies, items or engine rules. The bot is dev tooling only — never import `src/sim/` from the app.
+
 ---
 
 ## 3. Mandatory Quality Gate Verification
