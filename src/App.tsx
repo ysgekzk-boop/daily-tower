@@ -152,7 +152,7 @@ export function App() {
     <div className="min-h-dvh flex flex-col bg-slate-950 text-slate-100">
       {/* Compact RPG Header */}
       <header className="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-2.5">
+        <div className="mx-auto flex w-full max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 py-2.5 sm:px-6">
           <div className="flex items-center gap-3">
             <h1 className="text-base font-extrabold tracking-wider text-amber-400">
               DAILY TOWER
@@ -185,7 +185,10 @@ export function App() {
       </header>
 
       {/* Main 2D RPG Screen */}
-      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 px-4 py-4">
+      <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 px-4 py-4 sm:px-6">
+        {/* PC: stage column + console rail side by side; stacked on smaller screens */}
+        <div className="flex min-h-0 flex-1 flex-col gap-4 lg:grid lg:grid-cols-[minmax(0,1fr)_400px] lg:grid-rows-[auto_minmax(0,1fr)]">
+        <div className="flex flex-col gap-4 lg:col-start-1 lg:row-start-1">
         {/* 1. 2D RPG Stage Viewport (Background + Facing Characters + Motions) */}
         <div className="relative">
         <BattleStage2D
@@ -234,13 +237,11 @@ export function App() {
           </div>
         )}
 
-        {/* 2. Bottom 2D RPG Console (Left: Commands / Event / Rewards, Right: Message Window & Gear) */}
-        <section
-          aria-label="コマンドとメッセージウィンドウ"
-          className="grid flex-1 gap-4 lg:grid-cols-12"
-        >
-          {/* LEFT CONSOLE (7 cols): Commands / Event Choices / Rewards */}
-          <div className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 p-4 shadow-xl lg:col-span-7">
+        </div>
+
+        {/* 2. Consoles & Panels (grid-placed on PC, stacked on mobile) */}
+          {/* COMMANDS CONSOLE: Commands / Event Choices / Rewards */}
+          <div aria-label="コマンドとメッセージウィンドウ" className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 p-4 shadow-xl lg:col-start-2 lg:row-start-1">
             {/* COMBAT COMMANDS */}
             {stage === 'combat' && battleSession && (
               <>
@@ -271,13 +272,13 @@ export function App() {
                       </span>
                     </div>
 
-                    <div className="grid gap-2 sm:grid-cols-2">
+                    <div className="grid gap-2">
                       {/* Attack Button */}
                       <button
                         type="button"
                         disabled={isAnimating}
                         onClick={() => handleCombatAction({ type: 'attack' })}
-                        className="flex items-center justify-between rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-3 text-left transition hover:border-amber-400 hover:bg-slate-800/90 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer sm:col-span-2"
+                        className="flex items-center justify-between rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-3 text-left transition hover:border-amber-400 hover:bg-slate-800/90 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                       >
                         <div>
                           <span className="font-extrabold text-sm text-amber-300">
@@ -553,78 +554,81 @@ export function App() {
             )}
           </div>
 
-          {/* RIGHT CONSOLE (5 cols): Battle Message Log & Equipment Status */}
-          <div className="flex flex-col justify-between gap-3 rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 p-4 shadow-xl lg:col-span-5">
-            {/* Battle Message Window */}
-            <div>
-              <span className="text-xs font-extrabold tracking-wider text-amber-300">
-                メッセージ
-              </span>
-              <ul className="scrollable-log mt-2 h-32 space-y-1 rounded-xl border border-slate-800 bg-slate-950 p-3 text-xs font-mono text-slate-200">
-                {battleSession ? (
-                  [...battleSession.logs].reverse().map((line, i) => (
-                    <li
-                      key={i}
-                      className={
-                        line.startsWith('──')
-                          ? 'text-amber-400 font-bold pt-1'
-                          : line.includes('撃破') || line.includes('回復') || line.includes('倒した')
-                          ? 'text-emerald-300'
-                          : line.includes('🩸') || line.includes('💀')
-                          ? 'text-rose-300'
-                          : 'text-slate-200'
-                      }
-                    >
-                      {line}
-                    </li>
-                  ))
-                ) : (
-                  <li className="text-slate-400">
-                    {activeEvent ? `${activeEvent.title}に到達した。` : '次の階層へ進む準備を整えている…'}
-                  </li>
-                )}
-              </ul>
-            </div>
+        {/* Message Log Panel (under the stage) */}
+        <div className="flex min-h-0 flex-1 flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 p-4 shadow-xl lg:col-start-1 lg:row-start-2">
+        {/* Battle Message Window */}
+        <div className="flex min-h-0 flex-1 flex-col">
+          <span className="text-xs font-extrabold tracking-wider text-amber-300">
+            メッセージ
+          </span>
+          <ul className="scrollable-log mt-2 min-h-32 flex-1 space-y-1 rounded-xl border border-slate-800 bg-slate-950 p-3 text-xs font-mono text-slate-200">
+            {battleSession ? (
+              [...battleSession.logs].reverse().map((line, i) => (
+                <li
+                  key={i}
+                  className={
+                    line.startsWith('──')
+                      ? 'text-amber-400 font-bold pt-1'
+                      : line.includes('撃破') || line.includes('回復') || line.includes('倒した')
+                      ? 'text-emerald-300'
+                      : line.includes('🩸') || line.includes('💀')
+                      ? 'text-rose-300'
+                      : 'text-slate-200'
+                  }
+                >
+                  {line}
+                </li>
+              ))
+            ) : (
+              <li className="text-slate-400">
+                {activeEvent ? `${activeEvent.title}に到達した。` : '次の階層へ進む準備を整えている…'}
+              </li>
+            )}
+          </ul>
+        </div>
+        </div>
 
+          {/* Equipment Status (rail, under commands) */}
+          <div className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 p-4 shadow-xl lg:col-start-2 lg:row-start-2">
             {/* Compact Equipment Status Window */}
-            <div className="border-t border-slate-800 pt-2.5">
+            <div>
               <span className="text-xs font-extrabold tracking-wider text-amber-300">
                 現在の装備
               </span>
-              <div className="mt-2 grid grid-cols-3 gap-2 text-xs">
-                <div className="rounded-lg border border-slate-800 bg-slate-950 p-2">
+              <div className="mt-2 flex flex-col gap-2 text-xs">
+                <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
                   <span className="block text-[10px] text-slate-400">武器</span>
-                  <span className="font-bold text-slate-100">
+                  <span className="min-w-0 flex-1 truncate font-bold text-slate-100">
                     🗡️ {saveData.inventory.weapon.name}
                   </span>
-                  <span className="block text-[10px] text-amber-300">
+                  <span className="shrink-0 text-[10px] font-bold text-amber-300">
                     ATK +{saveData.inventory.weapon.atk}
                   </span>
                 </div>
 
-                <div className="rounded-lg border border-slate-800 bg-slate-950 p-2">
+                <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
                   <span className="block text-[10px] text-slate-400">防具</span>
-                  <span className="font-bold text-slate-100">
+                  <span className="min-w-0 flex-1 truncate font-bold text-slate-100">
                     🛡️ {saveData.inventory.armor.name}
                   </span>
-                  <span className="block text-[10px] text-sky-300">
+                  <span className="shrink-0 text-[10px] font-bold text-sky-300">
                     DEF +{saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}
                   </span>
                 </div>
 
-                <div className="rounded-lg border border-slate-800 bg-slate-950 p-2">
+                <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
                   <span className="block text-[10px] text-slate-400">レリック</span>
-                  <span className="font-bold text-slate-100">
+                  <span className="min-w-0 flex-1 truncate font-bold text-slate-100">
                     🔮 {saveData.inventory.relic?.name ?? 'なし'}
                   </span>
-                  <span className="block truncate text-[10px] text-fuchsia-300">
+                  <span className="max-w-40 truncate text-[10px] font-bold text-fuchsia-300" title={saveData.inventory.relic?.description ?? undefined}>
                     {saveData.inventory.relic?.description ?? '―'}
                   </span>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
       </main>
     </div>
   );
