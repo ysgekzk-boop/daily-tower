@@ -158,6 +158,28 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: `[レリック:葦笛の護符] スキル発動に呼応し葦笛が響き、敵の攻撃力を2ターンの間15%低下させた！`,
     }),
   },
+  rootstone_ember_seal: {
+    id: 'rootstone_ember_seal',
+    name: '苔火の石印',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'burn',
+        value: 8,
+        duration: 3,
+      },
+      logMessage: `[レリック:苔火の石印] 古樹の燐火が灯り、敵に火傷(最大HP8%/3T)を付与した！`,
+    }),
+  },
+  ancient_amber: {
+    id: 'ancient_amber',
+    name: '古樹琥珀の貨印',
+    trigger: 'battle_victory',
+    handler: () => ({
+      grantGold: 20,
+      logMessage: `[レリック:古樹琥珀の貨印] 勝利時に追加で 20 Gold を発見！`,
+    }),
+  },
 };
 
 

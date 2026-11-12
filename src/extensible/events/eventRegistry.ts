@@ -476,6 +476,114 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  mossy_ruin_tablet: {
+    id: 'mossy_ruin_tablet',
+    title: '苔石遺跡の古碑',
+    category: 'lore',
+    description:
+      '古樹の根に抱かれた遺跡の奥で、苔に覆われた石碑を見つけた。刻まれた古代文字には、樹洞と根の回廊を生き抜くための戦技が記されているようだ。',
+    speakerSpriteId: 'treant',
+    palette: 'ancient_bark',
+    options: [
+      {
+        id: 'decipher_ruin_tactics',
+        label: '苔石の戦技を解読する（HP 15%消費 ➔ スキル習得）',
+        description: '集中力を極限まで使い（HP15%消費）、古樹遺跡の秘伝技を習得する。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '苔石の古碑に刻まれた奥義を解読し、新たなスキルを習得した！',
+        },
+      },
+      {
+        id: 'rest_by_ruin_tablet',
+        label: '根の回廊で静かに瞑想する（HP 25%回復）',
+        description: '無理な解読はせず、古樹の穏やかな息吹で心身を癒やす。',
+        outcome: {
+          healHpPercent: 25,
+          logMessage: '苔石の静寂が傷を癒やし、HPが25%回復した！',
+        },
+      },
+    ],
+  },
+
+  hollow_root_basin: {
+    id: 'hollow_root_basin',
+    title: '樹洞の石盤泉',
+    category: 'shrine',
+    description:
+      '太い古根が組み合わさってできた樹洞の中に、苔石の盤へ澄んだ雫が滴り落ちる泉がある。底にはかつての探索者が残した金貨も淡く光っている。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_hollow_basin',
+        label: '石盤の雫を飲む（HP 35%回復）',
+        description: '清らかな雫で傷を癒やす。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '樹洞の清らかな雫を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_hollow_coins',
+        label: '石盤の底の金貨を拾う（+35 G）',
+        description: '冷たい水に手を伸ばし、沈んだ金貨を回収する。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '石盤泉の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
+
+  ancient_root_altar: {
+    id: 'ancient_root_altar',
+    title: '古根の石祭壇',
+    category: 'shrine',
+    description:
+      '古樹の根が石柱を貫く祭壇が佇んでいる。「命の鼓動か黄金を捧げよ。さすれば樹洞に眠る秘宝か戦技を授けん」と苔石に刻まれている。',
+    speakerSpriteId: 'shrine',
+    palette: 'crimson_knight',
+    options: [
+      {
+        id: 'offer_vitality_to_roots',
+        label: '生命力を捧げる（HP 20%消費 ➔ レリック獲得）',
+        description: '最大HPの20%を代償に、古樹の根に眠る古代のレリックを授かる。',
+        cost: {
+          hpPercent: 20,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '古根の祭壇に生命力を捧げ、古代のレリックを授かった！',
+        },
+      },
+      {
+        id: 'offer_gold_to_roots',
+        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
+        description: '40 Gを石皿に納め、樹洞の遺跡を踏破する秘伝スキルを得る。',
+        cost: {
+          gold: 40,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '石皿に納めた黄金が緑光へと変わり、新たなスキルの知識が脳裏に刻まれた！',
+        },
+      },
+      {
+        id: 'bow_to_root_altar',
+        label: '静かに一礼して立ち去る（HP 15%回復）',
+        description: '代償を払わず敬意を示し、古樹の穏やかな祝福を受ける。',
+        outcome: {
+          healHpPercent: 15,
+          logMessage: '古根の祭壇に敬意を表し、穏やかな祝福でHPが15%回復した。',
+        },
+      },
+    ],
+  },
 };
 
 

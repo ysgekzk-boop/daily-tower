@@ -927,6 +927,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '葦笛の護符',
     colors: ['transparent', '#3f6212', '#a3e635', '#fef08a'],
   },
+  item_rootstone_mace: {
+    id: 'item_rootstone_mace',
+    name: '根石の戦鎚',
+    colors: ['transparent', '#292524', '#78716c', '#65a30d'],
+  },
+  item_hollow_bough_blade: {
+    id: 'item_hollow_bough_blade',
+    name: '樹洞枝の霊剣',
+    colors: ['transparent', '#14532d', '#4ade80', '#fde047'],
+  },
+  item_moss_stone_cuirass: {
+    id: 'item_moss_stone_cuirass',
+    name: '苔石の胸甲',
+    colors: ['transparent', '#1c1917', '#57534e', '#84cc16'],
+  },
+  item_elder_root_brigandine: {
+    id: 'item_elder_root_brigandine',
+    name: '古根の重胴鎧',
+    colors: ['transparent', '#451a03', '#92400e', '#a3e635'],
+  },
+  item_lichen_ember_strike: {
+    id: 'item_lichen_ember_strike',
+    name: '苔火の石撃',
+    colors: ['transparent', '#450a0a', '#ea580c', '#fef08a'],
+  },
+  item_root_breaker_smash: {
+    id: 'item_root_breaker_smash',
+    name: '巨根砕き',
+    colors: ['transparent', '#271c19', '#a8a29e', '#f59e0b'],
+  },
+  item_hollow_root_pierce: {
+    id: 'item_hollow_root_pierce',
+    name: '根絡みの穿撃',
+    colors: ['transparent', '#14532d', '#84cc16', '#f43f5e'],
+  },
+  item_hollow_spring_blessing: {
+    id: 'item_hollow_spring_blessing',
+    name: '樹洞泉の恵み',
+    colors: ['transparent', '#065f46', '#34d399', '#e0f2fe'],
+  },
+  item_moss_stone_bastion: {
+    id: 'item_moss_stone_bastion',
+    name: '苔石の堅壁',
+    colors: ['transparent', '#334155', '#94a3b8', '#4ade80'],
+  },
+  item_ancient_root_bind: {
+    id: 'item_ancient_root_bind',
+    name: '古根の縛鎖',
+    colors: ['transparent', '#3b0764', '#6d28d9', '#a3e635'],
+  },
+  item_elder_bark_resonance: {
+    id: 'item_elder_bark_resonance',
+    name: '古樹核の共鳴',
+    colors: ['transparent', '#78350f', '#f59e0b', '#fef08a'],
+  },
+  item_root_marrow_draught: {
+    id: 'item_root_marrow_draught',
+    name: '古根髄の霊薬',
+    colors: ['transparent', '#451a03', '#d97706', '#a3e635'],
+  },
+  item_hollow_stone_elixir: {
+    id: 'item_hollow_stone_elixir',
+    name: '樹洞石の浄水',
+    colors: ['transparent', '#164e63', '#2dd4bf', '#fef9c3'],
+  },
+  item_rootstone_ember_seal_relic: {
+    id: 'item_rootstone_ember_seal_relic',
+    name: '苔火の石印',
+    colors: ['transparent', '#292524', '#78716c', '#fb923c'],
+  },
+  item_ancient_amber_relic: {
+    id: 'item_ancient_amber_relic',
+    name: '古樹琥珀の貨印',
+    colors: ['transparent', '#78350f', '#f59e0b', '#fef9c3'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1117,6 +1192,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_lotus_dew_phial: { id: 'item_lotus_dew_phial', matrixId: 'item_lotus_dew_phial', defaultPalette: 'item_lotus_dew_phial' },
   item_mirror_talisman_relic: { id: 'item_mirror_talisman_relic', matrixId: 'item_mirror_talisman_relic', defaultPalette: 'item_mirror_talisman_relic' },
   item_reed_whistle_relic: { id: 'item_reed_whistle_relic', matrixId: 'item_reed_whistle_relic', defaultPalette: 'item_reed_whistle_relic' },
+  item_rootstone_mace: { id: 'item_rootstone_mace', matrixId: 'item_rootstone_mace', defaultPalette: 'item_rootstone_mace' },
+  item_hollow_bough_blade: { id: 'item_hollow_bough_blade', matrixId: 'item_hollow_bough_blade', defaultPalette: 'item_hollow_bough_blade' },
+  item_moss_stone_cuirass: { id: 'item_moss_stone_cuirass', matrixId: 'item_moss_stone_cuirass', defaultPalette: 'item_moss_stone_cuirass' },
+  item_elder_root_brigandine: { id: 'item_elder_root_brigandine', matrixId: 'item_elder_root_brigandine', defaultPalette: 'item_elder_root_brigandine' },
+  item_lichen_ember_strike: { id: 'item_lichen_ember_strike', matrixId: 'item_lichen_ember_strike', defaultPalette: 'item_lichen_ember_strike' },
+  item_root_breaker_smash: { id: 'item_root_breaker_smash', matrixId: 'item_root_breaker_smash', defaultPalette: 'item_root_breaker_smash' },
+  item_hollow_root_pierce: { id: 'item_hollow_root_pierce', matrixId: 'item_hollow_root_pierce', defaultPalette: 'item_hollow_root_pierce' },
+  item_hollow_spring_blessing: { id: 'item_hollow_spring_blessing', matrixId: 'item_hollow_spring_blessing', defaultPalette: 'item_hollow_spring_blessing' },
+  item_moss_stone_bastion: { id: 'item_moss_stone_bastion', matrixId: 'item_moss_stone_bastion', defaultPalette: 'item_moss_stone_bastion' },
+  item_ancient_root_bind: { id: 'item_ancient_root_bind', matrixId: 'item_ancient_root_bind', defaultPalette: 'item_ancient_root_bind' },
+  item_elder_bark_resonance: { id: 'item_elder_bark_resonance', matrixId: 'item_elder_bark_resonance', defaultPalette: 'item_elder_bark_resonance' },
+  item_root_marrow_draught: { id: 'item_root_marrow_draught', matrixId: 'item_root_marrow_draught', defaultPalette: 'item_root_marrow_draught' },
+  item_hollow_stone_elixir: { id: 'item_hollow_stone_elixir', matrixId: 'item_hollow_stone_elixir', defaultPalette: 'item_hollow_stone_elixir' },
+  item_rootstone_ember_seal_relic: { id: 'item_rootstone_ember_seal_relic', matrixId: 'item_rootstone_ember_seal_relic', defaultPalette: 'item_rootstone_ember_seal_relic' },
+  item_ancient_amber_relic: { id: 'item_ancient_amber_relic', matrixId: 'item_ancient_amber_relic', defaultPalette: 'item_ancient_amber_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
