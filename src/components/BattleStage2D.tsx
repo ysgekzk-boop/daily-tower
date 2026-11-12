@@ -81,13 +81,13 @@ function StatusRow({ statuses }: { statuses: ActiveStatusInstance[] }) {
           <li
             key={s.statusId}
             title={`${def.name}：${def.description ?? ''}（残り${s.duration}ターン）`}
-            className={`inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[10px] font-bold shadow ${
+            className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] font-bold shadow sm:gap-1.5 sm:px-2 sm:py-1 sm:text-xs lg:px-2.5 lg:py-1.5 lg:text-sm ${
               isBuff
                 ? 'border-emerald-400/50 bg-emerald-950/90 text-emerald-200'
                 : 'border-rose-400/50 bg-rose-950/90 text-rose-200'
             }`}
           >
-            <span>{def.icon}</span>
+            <span className="text-[11px] sm:text-sm lg:text-base">{def.icon}</span>
             <span>{def.name}</span>
             {valueLabel && <span className="font-mono">{valueLabel}</span>}
             <span className="opacity-80">{s.duration}T</span>
@@ -461,7 +461,7 @@ export function BattleStage2D({
         {/* LEFT ACTOR: PLAYER */}
         <div className="anim-actor-enter-left flex flex-col items-center">
           {/* Player Floating HUD */}
-          <div className="mb-2 w-28 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 shadow-xl backdrop-blur-xs">
+          <div className="mb-2 w-28 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 lg:p-3 shadow-xl backdrop-blur-xs">
             <div className="flex items-center justify-between gap-1">
               <span className="truncate text-[11px] sm:text-xs font-extrabold text-amber-300">
                 {playerTitle}
@@ -543,7 +543,7 @@ export function BattleStage2D({
                       isTarget
                         ? 'border-amber-400 ring-2 ring-amber-400/60'
                         : 'border-rose-800/80'
-                    } bg-slate-950/85 p-2 sm:p-2.5 shadow-xl backdrop-blur-xs ${
+                    } bg-slate-950/85 p-2 sm:p-2.5 lg:p-3 shadow-xl backdrop-blur-xs ${
                       isMulti && !isDead ? 'cursor-pointer' : ''
                     }`}
                   >
