@@ -5,6 +5,8 @@ import { Encounter } from '../extensible/realms/realm_01_greenwood';
 import { STATUS_REGISTRY } from '../extensible/statusEffects/statusRegistry';
 import { ActiveStatusInstance } from '../extensible/statusEffects/types';
 import { PixelSpriteCanvas } from './PixelSpriteCanvas';
+import { InfoTip } from './InfoTip';
+import { EnemyPhase } from '../extensible/enemies/types';
 
 export type CombatMotionState =
   | 'idle'
@@ -68,7 +70,7 @@ function statusValueLabel(s: ActiveStatusInstance): string | null {
   }
 }
 
-function StatusRow({ statuses }: { statuses: ActiveStatusInstance[] }) {
+function StatusRow({ statuses, align = 'left' }: { statuses: ActiveStatusInstance[]; align?: 'left' | 'right' }) {
   if (statuses.length === 0) return null;
   return (
     <ul className="flex flex-wrap items-center gap-1">
@@ -78,19 +80,29 @@ function StatusRow({ statuses }: { statuses: ActiveStatusInstance[] }) {
         const isBuff = def.category === 'buff';
         const valueLabel = statusValueLabel(s);
         return (
-          <li
-            key={s.statusId}
-            title={`${def.name}：${def.description ?? ''}（残り${s.duration}ターン）`}
-            className={`inline-flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] font-bold shadow sm:gap-1.5 sm:px-2 sm:py-1 sm:text-xs lg:px-2.5 lg:py-1.5 lg:text-sm ${
-              isBuff
-                ? 'border-emerald-400/50 bg-emerald-950/90 text-emerald-200'
-                : 'border-rose-400/50 bg-rose-950/90 text-rose-200'
-            }`}
-          >
-            <span className="text-[11px] sm:text-sm lg:text-base">{def.icon}</span>
-            <span>{def.name}</span>
-            {valueLabel && <span className="font-mono">{valueLabel}</span>}
-            <span className="opacity-80">{s.duration}T</span>
+          <li key={s.statusId}>
+            <InfoTip
+              align={align}
+              title={`${def.icon} ${def.name}`}
+              triggerClassName={`inline-flex cursor-help items-center gap-1 rounded-md border px-1.5 py-0.5 text-[10px] font-bold shadow sm:gap-1.5 sm:px-2 sm:py-1 sm:text-xs lg:px-2.5 lg:py-1.5 lg:text-sm ${
+                isBuff
+                  ? 'border-emerald-400/50 bg-emerald-950/90 text-emerald-200'
+                  : 'border-rose-400/50 bg-rose-950/90 text-rose-200'
+              }`}
+              body={
+                <>
+                  {def.description ?? '特殊な効果を持つ状態です。'}
+                  <span className="mt-1 block font-bold text-sky-300">
+                    効果値：{valueLabel ?? '―'} ／ 残り{s.duration}ターン
+                  </span>
+                </>
+              }
+            >
+              <span className="text-[11px] sm:text-sm lg:text-base">{def.icon}</span>
+              <span>{def.name}</span>
+              {valueLabel && <span className="font-mono">{valueLabel}</span>}
+              <span className="opacity-80">{s.duration}T</span>
+            </InfoTip>
           </li>
         );
       })}
@@ -181,16 +193,32 @@ export function BattleStage2D({
   const playerStatuses = battleSession ? battleSession.player.statuses : [];
 
   // Enraged phase badge for one enemy, from its current HP threshold
-  const phaseBadgeFor = (enemyIdx: number): string | undefined => {
+  const phaseFor = (enemyIdx: number): EnemyPhase | undefined => {
     if (!battleSession) return undefined;
     const enemy = battleSession.enemies[enemyIdx];
     const def = battleSession.enemyDefs[enemyIdx];
     if (!enemy || !def || enemy.currentHp <= 0) return undefined;
     const hpPct = (enemy.currentHp / enemy.maxHp) * 100;
-    const activePhase = [...def.phases]
+    return [...def.phases]
       .filter((p) => hpPct <= p.hpThresholdPercent)
       .sort((a, b) => a.hpThresholdPercent - b.hpThresholdPercent)[0];
-    return activePhase?.phaseName;
+  };
+
+  const phaseDescription = (phase: EnemyPhase): string => {
+    const names = phase.actions.map((a) => a.name).filter(Boolean).slice(0, 3);
+    const statusNames = [
+      ...new Set(
+        phase.actions
+          .map((a) => (a.statusId ? STATUS_REGISTRY[a.statusId]?.name : undefined))
+          .filter(Boolean) as string[]
+      ),
+    ];
+    const maxMult = Math.max(...phase.actions.map((a) => a.damageMultiplier ?? 0), 0);
+    let body = `敵のHPが${phase.hpThresholdPercent}%以下になると突入する変化状態。行動パターンが変わります。`;
+    if (names.length) body += ` 主な技：${names.join('、')}。`;
+    if (maxMult >= 1.3) body += ' 強力な技を繰り出すようになります。';
+    if (statusNames.length) body += ` ${statusNames.join('、')}を付与する技を使います。`;
+    return body;
   };
 
   // Target shown as selected in the UI: the chosen enemy, or the first
@@ -488,7 +516,7 @@ export function BattleStage2D({
 
             {playerStatuses.length > 0 && (
               <div className="mt-1.5">
-                <StatusRow statuses={playerStatuses} />
+                <StatusRow statuses={playerStatuses} align="left" />
               </div>
             )}
           </div>
@@ -526,7 +554,8 @@ export function BattleStage2D({
               const isMulti = battleSession.enemies.length > 1;
               const isTarget =
                 isMulti && !isDead && battleSession.status === 'ongoing' && idx === effectiveTargetIndex;
-              const phaseBadge = phaseBadgeFor(idx);
+              const phase = phaseFor(idx);
+              const phaseBadge = phase?.phaseName;
               return (
                 <div
                   key={idx}
@@ -552,10 +581,15 @@ export function BattleStage2D({
                         {isDead ? '💀 ' : ''}
                         {enemy.name}
                       </span>
-                      {phaseBadge && (
-                        <span className="rounded bg-rose-500/25 px-1 py-0.5 text-[9px] sm:text-[10px] font-bold text-rose-200 animate-pulse">
+                      {phaseBadge && phase && (
+                        <InfoTip
+                          align="right"
+                          title={`🔥 ${phaseBadge}`}
+                          body={phaseDescription(phase)}
+                          triggerClassName="animate-pulse cursor-help rounded bg-rose-500/25 px-1 py-0.5 text-[9px] font-bold text-rose-200 sm:text-[10px]"
+                        >
                           🔥 {phaseBadge}
-                        </span>
+                        </InfoTip>
                       )}
                     </div>
 
@@ -574,7 +608,7 @@ export function BattleStage2D({
 
                     {enemy.statuses.length > 0 && (
                       <div className="mt-1.5">
-                        <StatusRow statuses={enemy.statuses} />
+                        <StatusRow statuses={enemy.statuses} align="right" />
                       </div>
                     )}
                   </div>
