@@ -14,10 +14,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第51層：黄昏の製鉄坑道',
     subtitle: '熱風と火花が舞う4連戦エリア',
     encounters: [
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.78 },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.78 },
+      { type: 'battle', enemyId: 'slag_crawler', enemyStatScale: 0.78 },
+      { type: 'battle', enemyId: 'forge_imp', enemyStatScale: 0.78 },
       { type: 'event', eventId: 'wandering_blacksmith' },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.78 },
+      { type: 'battle', enemyId: 'scrap_automaton', enemyStatScale: 0.78 },
       { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.78 },
     ],
     rewardPool: {
@@ -32,12 +32,12 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第52層：黄昏の製鉄坑道',
     subtitle: '熱風と火花が舞う5連戦エリア',
     encounters: [
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.79 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.79 },
+      { type: 'battle', enemyId: 'cinder_hound', enemyStatScale: 0.79 },
+      { type: 'battle', enemyId: 'furnace_sprite', enemyStatScale: 0.79 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.79 },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.79 },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.79 },
+      { type: 'battle', enemyId: 'slag_crawler', enemyStatScale: 0.79 },
+      { type: 'battle', enemyId: 'ash_drake', enemyStatScale: 0.79 },
+      { type: 'battle', enemyId: 'iron_drill_beetle', enemyStatScale: 0.79 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
@@ -51,10 +51,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第53層：黄昏の製鉄坑道',
     subtitle: '熱風と火花が舞う3連戦エリア',
     encounters: [
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.81 },
+      { type: 'battle', enemyId: 'forge_imp', enemyStatScale: 0.81 },
       { type: 'event', eventId: 'emerald_spring' },
-      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.81 },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.81 },
+      { type: 'battle', enemyId: 'cinder_hound', enemyStatScale: 0.81 },
+      { type: 'battle', enemyId: 'magma_slime', enemyStatScale: 0.81 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
@@ -68,11 +68,11 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第54層：黄昏の製鉄坑道',
     subtitle: '熱風と火花が舞う4連戦エリア',
     encounters: [
-      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.82 },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.82 },
+      { type: 'battle', enemyId: 'scrap_automaton', enemyStatScale: 0.82 },
+      { type: 'battle', enemyId: 'ash_drake', enemyStatScale: 0.82 },
       { type: 'event', eventId: 'crimson_pact_altar' },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.82 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.82 },
+      { type: 'battle', enemyId: 'iron_drill_beetle', enemyStatScale: 0.82 },
+      { type: 'battle', enemyIds: ['slag_crawler', 'forge_imp'], enemyStatScale: 0.82 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
@@ -86,10 +86,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第55層：熔鉄の防衛隔壁',
     subtitle: '強固な装甲を持つ守護者が行く手を阻む',
     encounters: [
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.83 },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.83 },
+      { type: 'battle', enemyId: 'furnace_sprite', enemyStatScale: 0.83 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.83 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 0.83 },
+      { type: 'miniboss', enemyId: 'barrier_sentry_golem', enemyStatScale: 0.83 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
@@ -103,10 +103,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第56層：黄昏の製鉄坑道',
     subtitle: '熱風と火花が舞う3連戦エリア',
     encounters: [
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.84 },
+      { type: 'battle', enemyId: 'magma_slime', enemyStatScale: 0.84 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.84 },
-      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.84 },
+      { type: 'battle', enemyId: 'scrap_automaton', enemyStatScale: 0.84 },
+      { type: 'battle', enemyId: 'cinder_hound', enemyStatScale: 0.84 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
@@ -120,11 +120,11 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第57層：黄昏の製鉄坑道',
     subtitle: '熱風と火花が舞う4連戦エリア',
     encounters: [
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.86 },
-      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.86 },
+      { type: 'battle', enemyId: 'iron_drill_beetle', enemyStatScale: 0.86 },
+      { type: 'battle', enemyId: 'slag_crawler', enemyStatScale: 0.86 },
       { type: 'event', eventId: 'emerald_spring' },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.86 },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.86 },
+      { type: 'battle', enemyId: 'furnace_sprite', enemyStatScale: 0.86 },
+      { type: 'battle', enemyIds: ['cinder_hound', 'forge_imp'], enemyStatScale: 0.86 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
@@ -139,11 +139,11 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     subtitle: '熱風と火花が舞う5連戦エリア',
     encounters: [
       { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.87 },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.87 },
+      { type: 'battle', enemyId: 'magma_slime', enemyStatScale: 0.87 },
       { type: 'event', eventId: 'crimson_pact_altar' },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.87 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.87 },
-      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.87 },
+      { type: 'battle', enemyId: 'ash_drake', enemyStatScale: 0.87 },
+      { type: 'battle', enemyIds: ['magma_slime', 'iron_drill_beetle'], enemyStatScale: 0.87 },
+      { type: 'battle', enemyId: 'scrap_automaton', enemyStatScale: 0.87 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
@@ -157,10 +157,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第59層：黄昏の製鉄坑道',
     subtitle: '熱風と火花が舞う3連戦エリア',
     encounters: [
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.88 },
+      { type: 'battle', enemyId: 'cinder_hound', enemyStatScale: 0.88 },
       { type: 'event', eventId: 'wandering_blacksmith' },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.88 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.88 },
+      { type: 'battle', enemyId: 'ash_drake', enemyStatScale: 0.88 },
+      { type: 'battle', enemyIds: ['forge_imp', 'slag_crawler', 'iron_drill_beetle'], enemyStatScale: 0.88 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
@@ -174,10 +174,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第60層：熔鉄の防衛隔壁',
     subtitle: '強固な装甲を持つ守護者が行く手を阻む',
     encounters: [
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.9 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.9 },
+      { type: 'battle', enemyId: 'furnace_sprite', enemyStatScale: 0.9 },
+      { type: 'battle', enemyId: 'magma_slime', enemyStatScale: 0.9 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 0.9 },
+      { type: 'miniboss', enemyId: 'furnace_overseer', enemyStatScale: 0.9 },
     ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],

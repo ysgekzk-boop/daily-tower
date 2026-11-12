@@ -457,6 +457,56 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: 'ヴァーダント・アルコン',
     colors: ['transparent', '#132a13', '#2d6a4f', '#52b788'],
   },
+  slag_crawler: {
+    id: 'slag_crawler',
+    name: 'スラグ・クローラー',
+    colors: ['transparent', '#261b17', '#7c4d32', '#f97316'],
+  },
+  forge_imp: {
+    id: 'forge_imp',
+    name: 'フォージ・インプ',
+    colors: ['transparent', '#3b0d0c', '#b91c1c', '#fbbf24'],
+  },
+  scrap_automaton: {
+    id: 'scrap_automaton',
+    name: 'スクラップ・オートマトン',
+    colors: ['transparent', '#1f2937', '#6b7280', '#06b6d4'],
+  },
+  cinder_hound: {
+    id: 'cinder_hound',
+    name: 'シンダー・ハウンド',
+    colors: ['transparent', '#271206', '#9a3412', '#fdba74'],
+  },
+  furnace_sprite: {
+    id: 'furnace_sprite',
+    name: 'ファーネス・スプライト',
+    colors: ['transparent', '#7c2d12', '#ea580c', '#fef08a'],
+  },
+  ash_drake: {
+    id: 'ash_drake',
+    name: 'アッシュ・ドレイク',
+    colors: ['transparent', '#374151', '#4b5563', '#fb923c'],
+  },
+  iron_drill_beetle: {
+    id: 'iron_drill_beetle',
+    name: 'アイアン・ドリルビートル',
+    colors: ['transparent', '#1e293b', '#475569', '#facc15'],
+  },
+  magma_slime: {
+    id: 'magma_slime',
+    name: 'マグマ・スライム',
+    colors: ['transparent', '#450a0a', '#dc2626', '#fef08a'],
+  },
+  barrier_sentry_golem: {
+    id: 'barrier_sentry_golem',
+    name: 'バリア・セントリー',
+    colors: ['transparent', '#18181b', '#52525b', '#38bdf8'],
+  },
+  furnace_overseer: {
+    id: 'furnace_overseer',
+    name: 'フォージ・マスター',
+    colors: ['transparent', '#31100b', '#991b1b', '#f59e0b'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -553,6 +603,16 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   chasm_moss_core: { id: 'chasm_moss_core', matrixId: 'chasm_moss_core', defaultPalette: 'chasm_moss_core' },
   amber_crystal_idol: { id: 'amber_crystal_idol', matrixId: 'amber_crystal_idol', defaultPalette: 'amber_crystal_idol' },
   verdant_archon: { id: 'verdant_archon', matrixId: 'verdant_archon', defaultPalette: 'verdant_archon' },
+  slag_crawler: { id: 'slag_crawler', matrixId: 'slag_crawler', defaultPalette: 'slag_crawler' },
+  forge_imp: { id: 'forge_imp', matrixId: 'forge_imp', defaultPalette: 'forge_imp' },
+  scrap_automaton: { id: 'scrap_automaton', matrixId: 'scrap_automaton', defaultPalette: 'scrap_automaton' },
+  cinder_hound: { id: 'cinder_hound', matrixId: 'cinder_hound', defaultPalette: 'cinder_hound' },
+  furnace_sprite: { id: 'furnace_sprite', matrixId: 'furnace_sprite', defaultPalette: 'furnace_sprite' },
+  ash_drake: { id: 'ash_drake', matrixId: 'ash_drake', defaultPalette: 'ash_drake' },
+  iron_drill_beetle: { id: 'iron_drill_beetle', matrixId: 'iron_drill_beetle', defaultPalette: 'iron_drill_beetle' },
+  magma_slime: { id: 'magma_slime', matrixId: 'magma_slime', defaultPalette: 'magma_slime' },
+  barrier_sentry_golem: { id: 'barrier_sentry_golem', matrixId: 'barrier_sentry_golem', defaultPalette: 'barrier_sentry_golem' },
+  furnace_overseer: { id: 'furnace_overseer', matrixId: 'furnace_overseer', defaultPalette: 'furnace_overseer' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
