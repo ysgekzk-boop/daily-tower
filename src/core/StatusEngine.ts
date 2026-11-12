@@ -179,7 +179,8 @@ export class StatusEngine {
   }
 
   /**
-   * Consume shield points when absorbing damage.
+   * Consume absorption-pool status points (definitions flagged absorbPool,
+   * e.g. shield) when absorbing damage. Core never names a status ID.
    */
   static consumeShield(
     statuses: ActiveStatusInstance[],
@@ -194,7 +195,8 @@ export class StatusEngine {
     const nextStatuses: ActiveStatusInstance[] = [];
 
     for (const s of statuses) {
-      if (s.statusId === 'shield' && remaining > 0) {
+      const def = STATUS_REGISTRY[s.statusId];
+      if (def?.absorbPool && remaining > 0) {
         const take = Math.min(s.value, remaining);
         remaining -= take;
         absorbed += take;

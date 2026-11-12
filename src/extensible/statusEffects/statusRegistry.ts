@@ -67,6 +67,7 @@ export const STATUS_REGISTRY: Record<string, StatusDefinition> = {
     maxValue: 200,
     maxDuration: 4,
     cleansable: false,
+    absorbPool: true,
     hooks: {
       action_resolution: (ctx) => ({
         absorbAmount: Math.max(0, ctx.value),

@@ -50,6 +50,7 @@ export interface StatusDefinition {
   maxDuration?: number;
   cleansable: boolean;              // Can cleanse/dispel remove it?
   blocksAction?: boolean;           // True for freeze-like statuses
+  absorbPool?: boolean;             // True if the instance value is a damage-absorption pool (e.g. shield)
   hooks: Partial<Record<LifecyclePhase, StatusHandler>>;
 }
 

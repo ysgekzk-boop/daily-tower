@@ -22,102 +22,901 @@ export interface FloorDefinition {
   rewardPool: FloorRewardPool;
 }
 
-const REALM_1_ENEMIES = ['moss_slime', 'venom_slime', 'thorn_goblin', 'dire_wolf'];
-const REALM_1_EVENTS = [
-  'emerald_spring',
-  'crimson_pact_altar',
-  'wandering_blacksmith',
-  'starlight_archive',
-];
+/**
+ * Floors in this file are AUTHORED DATA.
+ * Daily floors are added or changed by editing entries below — never by
+ * procedural generation. Composition rules (Spec §5.2) are enforced by
+ * tests/floor_structure.test.ts.
+ */
 
-function buildRealm1Floor(floor: number): FloorDefinition {
-  const scale = Number((1 + (floor - 1) * 0.045).toFixed(2));
-  const isApex = floor % 50 === 0;
-  const isMiniboss = !isApex && floor % 5 === 0;
-
-  // Guarantee a rest event ('sanctuary_campfire') at least once every 4 floors (e.g. floors 2, 5, 8, 12...)
-  const useRestEvent = floor % 4 === 2 || isMiniboss || isApex;
-  const eventId = useRestEvent
-    ? 'sanctuary_campfire'
-    : REALM_1_EVENTS[floor % REALM_1_EVENTS.length];
-
-  const pickEnemy = (offset: number) =>
-    REALM_1_ENEMIES[(floor + offset) % REALM_1_ENEMIES.length];
-
-  let encounters: Encounter[];
-  let title: string;
-  let subtitle: string;
-
-  if (isApex) {
-    title = `第${floor}層：世界樹の頂・神域`;
-    subtitle = '領域裁定者「始原の世界樹・ユグドラ」が待ち受ける最終試練';
-    encounters = [
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: scale },
-      { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'apex_boss', enemyId: 'primordial_treant', enemyStatScale: 1.0 },
-    ];
-  } else if (isMiniboss) {
-    title = `第${floor}層：古樹の結界回廊`;
-    subtitle = 'フロア最奥に領域の守護ミニボスが立ち塞がる';
-    encounters = [
-      { type: 'battle', enemyId: pickEnemy(0), enemyStatScale: scale },
-      { type: 'battle', enemyId: pickEnemy(1), enemyStatScale: scale },
-      { type: 'event', eventId },
-      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: scale },
-    ];
-  } else {
-    // Standard floor: 3-5 battles + 1 event (event never first or last)
-    const battleCount = 3 + (floor % 3); // 3, 4, or 5 battles
-    title = `第${floor}層：樹海の迷宮回廊`;
-    subtitle = `${battleCount}連戦と1つの邂逅が待つ樹海エリア`;
-    encounters = [];
-    const eventPosition = Math.max(1, Math.min(battleCount - 1, Math.floor(battleCount / 2)));
-
-    for (let i = 0; i < battleCount; i++) {
-      if (i === eventPosition) {
-        encounters.push({ type: 'event', eventId });
-      }
-      encounters.push({
-        type: 'battle',
-        enemyId: pickEnemy(i),
-        enemyStatScale: scale,
-      });
-    }
-  }
-
-  return {
-    floor,
+export const REALM_01_FLOORS: FloorDefinition[] = [
+  {
+    floor: 1,
     realm: 1,
-    title,
-    subtitle,
-    encounters,
+    title: '第1層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1 },
+    ],
     rewardPool: {
-      equipmentIds:
-        floor < 15
-          ? ['verdant_blade', 'bark_cuirass']
-          : ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
-      skillIds: [
-        'power_slash',
-        'flame_burst',
-        'armor_crush',
-        'venom_strike',
-        'aegis_stance',
-        'war_cry',
-        'purifying_light',
-        'frost_lance',
-      ],
-      utilityIds: [
-        'vampiric_fang_relic',
-        'guardian_crest_relic',
-        'berserker_idol_relic',
-        'venom_gland_relic',
-        'golden_compass_relic',
-      ],
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
     },
-  };
-}
-
-export const REALM_01_FLOORS: FloorDefinition[] = Array.from(
-  { length: 50 },
-  (_, idx) => buildRealm1Floor(idx + 1)
-);
+  },
+  {
+    floor: 2,
+    realm: 1,
+    title: '第2層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.04 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.04 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.04 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.04 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.04 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 3,
+    realm: 1,
+    title: '第3層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.09 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.09 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.09 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 4,
+    realm: 1,
+    title: '第4層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.14 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.14 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.14 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.14 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 5,
+    realm: 1,
+    title: '第5層：古樹の結界回廊',
+    subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.18 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.18 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.18 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 6,
+    realm: 1,
+    title: '第6層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.23 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.23 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.23 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 7,
+    realm: 1,
+    title: '第7層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.27 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.27 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.27 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.27 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 8,
+    realm: 1,
+    title: '第8層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.31 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.31 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.31 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.31 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.31 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 9,
+    realm: 1,
+    title: '第9層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.36 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.36 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.36 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 10,
+    realm: 1,
+    title: '第10層：古樹の結界回廊',
+    subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.41 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.41 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.41 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 11,
+    realm: 1,
+    title: '第11層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.45 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.45 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.45 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.45 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.45 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 12,
+    realm: 1,
+    title: '第12層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.5 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.5 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.5 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 13,
+    realm: 1,
+    title: '第13層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.54 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.54 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.54 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.54 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 14,
+    realm: 1,
+    title: '第14層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.58 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.58 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.58 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.58 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.58 },
+    ],
+    rewardPool: {
+      equipmentIds: ['verdant_blade', 'bark_cuirass'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 15,
+    realm: 1,
+    title: '第15層：古樹の結界回廊',
+    subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.63 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.63 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.63 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 16,
+    realm: 1,
+    title: '第16層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.67 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.67 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.67 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.67 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 17,
+    realm: 1,
+    title: '第17層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.72 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.72 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.72 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.72 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.72 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 18,
+    realm: 1,
+    title: '第18層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.77 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.77 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.77 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 19,
+    realm: 1,
+    title: '第19層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.81 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.81 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.81 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.81 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 20,
+    realm: 1,
+    title: '第20層：古樹の結界回廊',
+    subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.85 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.85 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.85 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 21,
+    realm: 1,
+    title: '第21層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.9 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.9 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.9 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 22,
+    realm: 1,
+    title: '第22層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.94 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.94 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.94 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.94 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 23,
+    realm: 1,
+    title: '第23層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.99 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.99 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.99 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.99 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.99 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 24,
+    realm: 1,
+    title: '第24層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.04 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.04 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.04 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 25,
+    realm: 1,
+    title: '第25層：古樹の結界回廊',
+    subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.08 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.08 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 2.08 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 26,
+    realm: 1,
+    title: '第26層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.13 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.13 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.13 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.13 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.13 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 27,
+    realm: 1,
+    title: '第27層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.17 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.17 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.17 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 28,
+    realm: 1,
+    title: '第28層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.21 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.21 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.21 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.21 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 29,
+    realm: 1,
+    title: '第29層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.26 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.26 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.26 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.26 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.26 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 30,
+    realm: 1,
+    title: '第30層：古樹の結界回廊',
+    subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.3 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.3 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 2.3 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 31,
+    realm: 1,
+    title: '第31層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.35 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.35 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.35 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.35 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 32,
+    realm: 1,
+    title: '第32層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.4 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.4 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.4 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.4 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.4 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 33,
+    realm: 1,
+    title: '第33層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.44 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.44 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.44 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 34,
+    realm: 1,
+    title: '第34層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.48 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.48 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.48 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.48 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 35,
+    realm: 1,
+    title: '第35層：古樹の結界回廊',
+    subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.53 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.53 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 2.53 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 36,
+    realm: 1,
+    title: '第36層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.58 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.58 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.58 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 37,
+    realm: 1,
+    title: '第37層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.62 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.62 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.62 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.62 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 38,
+    realm: 1,
+    title: '第38層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.67 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.67 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.67 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.67 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.67 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 39,
+    realm: 1,
+    title: '第39層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.71 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.71 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.71 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 40,
+    realm: 1,
+    title: '第40層：古樹の結界回廊',
+    subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.75 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.75 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 2.75 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 41,
+    realm: 1,
+    title: '第41層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.8 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.8 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.8 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.8 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.8 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 42,
+    realm: 1,
+    title: '第42層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.84 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.84 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.84 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 43,
+    realm: 1,
+    title: '第43層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.89 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.89 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.89 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.89 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 44,
+    realm: 1,
+    title: '第44層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.93 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.93 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.93 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.93 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 2.93 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 45,
+    realm: 1,
+    title: '第45層：古樹の結界回廊',
+    subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.98 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.98 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 2.98 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 46,
+    realm: 1,
+    title: '第46層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.02 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.02 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 3.02 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.02 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 47,
+    realm: 1,
+    title: '第47層：樹海の迷宮回廊',
+    subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.07 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 3.07 },
+      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.07 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.07 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.07 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 48,
+    realm: 1,
+    title: '第48層：樹海の迷宮回廊',
+    subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 3.11 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.11 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.11 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 49,
+    realm: 1,
+    title: '第49層：樹海の迷宮回廊',
+    subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.16 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.16 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.16 },
+      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 3.16 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 50,
+    realm: 1,
+    title: '第50層：世界樹の頂・神域',
+    subtitle: '領域裁定者「始原の世界樹・ユグドラ」が待ち受ける最終試練',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.21 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'apex_boss', enemyId: 'primordial_treant', enemyStatScale: 1 },
+    ],
+    rewardPool: {
+      equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+];

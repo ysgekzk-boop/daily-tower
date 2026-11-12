@@ -1,96 +1,900 @@
-import { Encounter, FloorDefinition } from './realm_01_greenwood';
+import { FloorDefinition } from './realm_01_greenwood';
 
-const REALM_2_ENEMIES = ['cinder_golem', 'dire_wolf', 'thorn_goblin', 'venom_slime'];
-const REALM_2_EVENTS = [
-  'crimson_pact_altar',
-  'wandering_blacksmith',
-  'starlight_archive',
-  'emerald_spring',
-];
+/**
+ * Floors in this file are AUTHORED DATA.
+ * Daily floors are added or changed by editing entries below — never by
+ * procedural generation. Composition rules (Spec §5.2) are enforced by
+ * tests/floor_structure.test.ts.
+ */
 
-function buildRealm2Floor(floor: number): FloorDefinition {
-  const localFloor = floor - 50; // 1..50 within Realm 2
-  const scale = Number((1 + (localFloor - 1) * 0.05).toFixed(2));
-  const isApex = floor % 50 === 0;
-  const isMiniboss = !isApex && floor % 5 === 0;
-
-  const useRestEvent = localFloor % 4 === 2 || isMiniboss || isApex;
-  const eventId = useRestEvent
-    ? 'sanctuary_campfire'
-    : REALM_2_EVENTS[localFloor % REALM_2_EVENTS.length];
-
-  const pickEnemy = (offset: number) =>
-    REALM_2_ENEMIES[(localFloor + offset) % REALM_2_ENEMIES.length];
-
-  let encounters: Encounter[];
-  let title: string;
-  let subtitle: string;
-
-  if (isApex) {
-    title = `第${floor}層：黄昏の神炉・最深部`;
-    subtitle = '領域裁定者「灰燼の巨神・ヴルカン」が君臨する灼熱の玉座';
-    encounters = [
-      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: scale },
-      { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'apex_boss', enemyId: 'ashen_colossus', enemyStatScale: 1.0 },
-    ];
-  } else if (isMiniboss) {
-    title = `第${floor}層：熔鉄の防衛隔壁`;
-    subtitle = '強固な装甲を持つ守護者が行く手を阻む';
-    encounters = [
-      { type: 'battle', enemyId: pickEnemy(0), enemyStatScale: scale },
-      { type: 'battle', enemyId: pickEnemy(1), enemyStatScale: scale },
-      { type: 'event', eventId },
-      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: scale * 1.25 },
-    ];
-  } else {
-    const battleCount = 3 + (localFloor % 3);
-    title = `第${floor}層：黄昏の製鉄坑道`;
-    subtitle = `熱風と火花が舞う${battleCount}連戦エリア`;
-    encounters = [];
-    const eventPosition = Math.max(1, Math.min(battleCount - 1, Math.floor(battleCount / 2)));
-
-    for (let i = 0; i < battleCount; i++) {
-      if (i === eventPosition) {
-        encounters.push({ type: 'event', eventId });
-      }
-      encounters.push({
-        type: 'battle',
-        enemyId: pickEnemy(i),
-        enemyStatScale: scale,
-      });
-    }
-  }
-
-  return {
-    floor,
+export const REALM_02_FLOORS: FloorDefinition[] = [
+  {
+    floor: 51,
     realm: 2,
-    title,
-    subtitle,
-    encounters,
+    title: '第51層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1 },
+    ],
     rewardPool: {
       equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: [
-        'flame_burst',
-        'frost_lance',
-        'armor_crush',
-        'venom_strike',
-        'aegis_stance',
-        'war_cry',
-        'purifying_light',
-      ],
-      utilityIds: [
-        'vampiric_fang_relic',
-        'guardian_crest_relic',
-        'berserker_idol_relic',
-        'venom_gland_relic',
-        'golden_compass_relic',
-      ],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
     },
-  };
-}
-
-export const REALM_02_FLOORS: FloorDefinition[] = Array.from(
-  { length: 50 },
-  (_, idx) => buildRealm2Floor(51 + idx)
-);
+  },
+  {
+    floor: 52,
+    realm: 2,
+    title: '第52層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.05 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.05 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.05 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.05 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.05 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 53,
+    realm: 2,
+    title: '第53層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.1 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.1 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.1 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 54,
+    realm: 2,
+    title: '第54層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.15 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.15 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.15 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.15 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 55,
+    realm: 2,
+    title: '第55層：熔鉄の防衛隔壁',
+    subtitle: '強固な装甲を持つ守護者が行く手を阻む',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.2 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.2 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.5 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 56,
+    realm: 2,
+    title: '第56層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.25 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.25 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.25 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 57,
+    realm: 2,
+    title: '第57層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.3 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.3 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.3 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.3 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 58,
+    realm: 2,
+    title: '第58層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.35 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.35 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.35 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.35 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.35 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 59,
+    realm: 2,
+    title: '第59層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.4 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.4 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.4 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 60,
+    realm: 2,
+    title: '第60層：熔鉄の防衛隔壁',
+    subtitle: '強固な装甲を持つ守護者が行く手を阻む',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.45 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.45 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.8125 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 61,
+    realm: 2,
+    title: '第61層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.5 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.5 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.5 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.5 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.5 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 62,
+    realm: 2,
+    title: '第62層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.55 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.55 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.55 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 63,
+    realm: 2,
+    title: '第63層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.6 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.6 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.6 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.6 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 64,
+    realm: 2,
+    title: '第64層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.65 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.65 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.65 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.65 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.65 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 65,
+    realm: 2,
+    title: '第65層：熔鉄の防衛隔壁',
+    subtitle: '強固な装甲を持つ守護者が行く手を阻む',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.7 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.7 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 2.125 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 66,
+    realm: 2,
+    title: '第66層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.75 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.75 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.75 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.75 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 67,
+    realm: 2,
+    title: '第67層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.8 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.8 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.8 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.8 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.8 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 68,
+    realm: 2,
+    title: '第68層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.85 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.85 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.85 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 69,
+    realm: 2,
+    title: '第69層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.9 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.9 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.9 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.9 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 70,
+    realm: 2,
+    title: '第70層：熔鉄の防衛隔壁',
+    subtitle: '強固な装甲を持つ守護者が行く手を阻む',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 1.95 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.95 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 2.4375 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 71,
+    realm: 2,
+    title: '第71層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 72,
+    realm: 2,
+    title: '第72層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.05 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.05 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.05 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.05 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 73,
+    realm: 2,
+    title: '第73層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.1 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.1 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.1 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.1 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.1 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 74,
+    realm: 2,
+    title: '第74層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.15 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.15 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.15 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 75,
+    realm: 2,
+    title: '第75層：熔鉄の防衛隔壁',
+    subtitle: '強固な装甲を持つ守護者が行く手を阻む',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.2 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.2 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 2.75 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 76,
+    realm: 2,
+    title: '第76層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.25 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.25 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.25 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.25 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.25 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 77,
+    realm: 2,
+    title: '第77層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.3 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.3 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.3 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 78,
+    realm: 2,
+    title: '第78層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.35 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.35 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.35 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.35 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 79,
+    realm: 2,
+    title: '第79層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.4 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.4 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.4 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.4 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.4 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 80,
+    realm: 2,
+    title: '第80層：熔鉄の防衛隔壁',
+    subtitle: '強固な装甲を持つ守護者が行く手を阻む',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.45 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.45 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 3.0625 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 81,
+    realm: 2,
+    title: '第81層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.5 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.5 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.5 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.5 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 82,
+    realm: 2,
+    title: '第82層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.55 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.55 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.55 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.55 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.55 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 83,
+    realm: 2,
+    title: '第83層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.6 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.6 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.6 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 84,
+    realm: 2,
+    title: '第84層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.65 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.65 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.65 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.65 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 85,
+    realm: 2,
+    title: '第85層：熔鉄の防衛隔壁',
+    subtitle: '強固な装甲を持つ守護者が行く手を阻む',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.7 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.7 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 3.375 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 86,
+    realm: 2,
+    title: '第86層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.75 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.75 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.75 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 87,
+    realm: 2,
+    title: '第87層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.8 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.8 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.8 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.8 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 88,
+    realm: 2,
+    title: '第88層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.85 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.85 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.85 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.85 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 2.85 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 89,
+    realm: 2,
+    title: '第89層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 2.9 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.9 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.9 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 90,
+    realm: 2,
+    title: '第90層：熔鉄の防衛隔壁',
+    subtitle: '強固な装甲を持つ守護者が行く手を阻む',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 2.95 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 2.95 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 3.6875 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 91,
+    realm: 2,
+    title: '第91層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 92,
+    realm: 2,
+    title: '第92層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.05 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.05 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3.05 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 93,
+    realm: 2,
+    title: '第93層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.1 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3.1 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.1 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.1 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 94,
+    realm: 2,
+    title: '第94層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3.15 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.15 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.15 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.15 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3.15 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 95,
+    realm: 2,
+    title: '第95層：熔鉄の防衛隔壁',
+    subtitle: '強固な装甲を持つ守護者が行く手を阻む',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.2 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.2 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 4 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 96,
+    realm: 2,
+    title: '第96層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.25 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.25 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3.25 },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.25 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 97,
+    realm: 2,
+    title: '第97層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う5連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.3 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3.3 },
+      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.3 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.3 },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.3 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 98,
+    realm: 2,
+    title: '第98層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う3連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3.35 },
+      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.35 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.35 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 99,
+    realm: 2,
+    title: '第99層：黄昏の製鉄坑道',
+    subtitle: '熱風と火花が舞う4連戦エリア',
+    encounters: [
+      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 3.4 },
+      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 3.4 },
+      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 3.4 },
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3.4 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+  {
+    floor: 100,
+    realm: 2,
+    title: '第100層：黄昏の神炉・最深部',
+    subtitle: '領域裁定者「灰燼の巨神・ヴルカン」が君臨する灼熱の玉座',
+    encounters: [
+      { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 3.45 },
+      { type: 'event', eventId: 'sanctuary_campfire' },
+      { type: 'apex_boss', enemyId: 'ashen_colossus', enemyStatScale: 1 },
+    ],
+    rewardPool: {
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
+      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+    },
+  },
+];
