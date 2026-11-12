@@ -6,6 +6,7 @@ import { HelpModal } from './components/HelpModal';
 import { TitleScreen } from './components/TitleScreen';
 import { WardrobeArchiveModal } from './components/WardrobeArchiveModal';
 import { useGameStore } from './store/useGameStore';
+import { isSfxMuted, playSfx, setSfxMuted, SfxName, unlockAudio } from './utils/sound';
 
 export function App() {
   const {
@@ -36,6 +37,31 @@ export function App() {
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [targetIndex, setTargetIndex] = useState<number>(0);
   const [showTitle, setShowTitle] = useState<boolean>(true);
+  const [isMuted, setIsMuted] = useState<boolean>(() => isSfxMuted());
+
+  const toggleMute = () => {
+    const next = !isMuted;
+    setIsMuted(next);
+    setSfxMuted(next);
+    if (!next) {
+      playSfx('click');
+    }
+  };
+
+  // Unlock Web Audio context on the first user interaction
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      unlockAudio();
+      window.removeEventListener('pointerdown', handleFirstInteraction);
+      window.removeEventListener('keydown', handleFirstInteraction);
+    };
+    window.addEventListener('pointerdown', handleFirstInteraction, { passive: true });
+    window.addEventListener('keydown', handleFirstInteraction, { passive: true });
+    return () => {
+      window.removeEventListener('pointerdown', handleFirstInteraction);
+      window.removeEventListener('keydown', handleFirstInteraction);
+    };
+  }, []);
 
   // Black fade flash whenever the floor changes (stairs, leaps, respawns)
   const [floorFade, setFloorFade] = useState(0);
@@ -58,6 +84,46 @@ export function App() {
     setTargetIndex(0);
   }, [saveData.midFloor.currentFloor, saveData.midFloor.currentEncounterIndex]);
 
+  // Battle victory sound effect
+  const prevBattleStatusRef = useRef<string | undefined>(battleSession?.status);
+  useEffect(() => {
+    if (battleSession?.status === 'victory' && prevBattleStatusRef.current !== 'victory') {
+      playSfx('victory');
+    }
+    prevBattleStatusRef.current = battleSession?.status;
+  }, [battleSession?.status]);
+
+  // Stage defeat sound effect
+  const prevStageRef = useRef<string>(stage);
+  useEffect(() => {
+    if (stage === 'defeat' && prevStageRef.current !== 'defeat') {
+      playSfx('defeat');
+    }
+    prevStageRef.current = stage;
+  }, [stage]);
+
+  // Boss encounter sound effect (once per miniboss / apex_boss encounter)
+  const playedBossEncounterKeyRef = useRef<string>('');
+  useEffect(() => {
+    const encounterKey = `${saveData.midFloor.currentFloor}:${saveData.midFloor.currentEncounterIndex}`;
+    if (
+      stage === 'combat' &&
+      resolvedEncounter.kind === 'combat' &&
+      (resolvedEncounter.encounterType === 'miniboss' ||
+        resolvedEncounter.encounterType === 'apex_boss')
+    ) {
+      if (playedBossEncounterKeyRef.current !== encounterKey) {
+        playedBossEncounterKeyRef.current = encounterKey;
+        playSfx('boss');
+      }
+    }
+  }, [
+    stage,
+    resolvedEncounter,
+    saveData.midFloor.currentFloor,
+    saveData.midFloor.currentEncounterIndex,
+  ]);
+
   // Floating combat numbers: diff the battle session before/after each resolved turn.
   // Enemy-side results appear with the player's action; player-side results are
   // delayed ~700ms so they land with the enemy's retaliation motion.
@@ -65,6 +131,43 @@ export function App() {
   const prevSessionRef = useRef<typeof battleSession>(null);
   const prevBattleKeyRef = useRef<string>('');
   const fxKeyRef = useRef(0);
+
+  const SFX_KNOWN_PRESETS = new Set<string>([
+    'click',
+    'attack',
+    'hit',
+    'critical',
+    'weak',
+    'shield',
+    'heal',
+    'buff',
+    'debuff',
+    'victory',
+    'defeat',
+    'reward',
+    'event',
+    'boss',
+    'leap',
+    'unlock',
+  ]);
+
+  const playHitFxSound = (fx: Omit<HitFx, 'key'>) => {
+    const kindStr = fx.kind as string;
+    // Prefer preset matching the kind name if available (e.g. future 'critical' / 'weak')
+    if (kindStr !== 'damage' && SFX_KNOWN_PRESETS.has(kindStr)) {
+      playSfx(kindStr as SfxName);
+      return;
+    }
+    if (fx.kind === 'damage') {
+      if (fx.side === 'enemy') {
+        playSfx('hit');
+      }
+    } else if (fx.kind === 'heal') {
+      playSfx('heal');
+    } else if (fx.kind === 'shield') {
+      playSfx('shield');
+    }
+  };
 
   useEffect(() => {
     const battleKey = `${saveData.midFloor.currentFloor}:${saveData.midFloor.currentEncounterIndex}`;
@@ -83,6 +186,7 @@ export function App() {
       const entry: HitFx = { ...fx, key };
       window.setTimeout(() => {
         setHitFx((cur) => [...cur.slice(-11), entry]);
+        playHitFxSound(fx);
         window.setTimeout(() => {
           setHitFx((cur) => cur.filter((f) => f.key !== key));
         }, 1000);
@@ -132,21 +236,27 @@ export function App() {
 
     if (cmd.type === 'attack') {
       playerMotion = 'player_attack';
+      playSfx('attack');
     } else if (cmd.type === 'skill') {
       const skill = saveData.inventory.skills[cmd.slotIndex];
       skillName = skill ? skill.name : null;
       if (skill?.category === 'heal') {
         playerMotion = 'player_skill_heal';
+        playSfx('heal');
       } else if (skill?.category === 'buff') {
         playerMotion = 'player_skill_buff';
+        playSfx('buff');
       } else if (skill?.category === 'debuff') {
         playerMotion = 'player_skill_debuff';
+        playSfx('debuff');
       } else {
         playerMotion = 'player_skill_attack';
+        playSfx('attack');
       }
     } else if (cmd.type === 'consumable') {
       playerMotion = 'player_skill_heal';
       skillName = saveData.inventory.consumable?.name ?? '秘薬使用';
+      playSfx('heal');
     }
 
     // Step 1: Player Action Motion
@@ -198,8 +308,12 @@ export function App() {
         archiveCount={saveData.archive.length}
         playerSpriteId={saveData.activeSkinSpriteId}
         playerPaletteId={saveData.activeSkinPaletteId}
-        onContinue={() => setShowTitle(false)}
+        onContinue={() => {
+          playSfx('click');
+          setShowTitle(false);
+        }}
         onReset={() => {
+          playSfx('click');
           resetSave();
           setShowTitle(false);
         }}
@@ -232,10 +346,22 @@ export function App() {
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => setShowTitle(true)}
+                onClick={() => {
+                  playSfx('click');
+                  setShowTitle(true);
+                }}
                 className="inline-flex items-center gap-1.5 rounded-lg border border-slate-600/60 bg-slate-800/60 px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer"
               >
                 <span>🏠 タイトル</span>
+              </button>
+              <button
+                type="button"
+                onClick={toggleMute}
+                aria-label={isMuted ? '効果音をONにする' : '効果音をミュートにする'}
+                title={isMuted ? '効果音をONにする' : '効果音をミュートにする'}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-600/60 bg-slate-800/60 px-2.5 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer"
+              >
+                <span aria-hidden="true">{isMuted ? '🔇' : '🔊'}</span>
               </button>
               <HelpModal />
               <WardrobeArchiveModal
@@ -324,7 +450,10 @@ export function App() {
                     </p>
                     <button
                       type="button"
-                      onClick={proceedAfterCombatVictory}
+                      onClick={() => {
+                        playSfx('click');
+                        proceedAfterCombatVictory();
+                      }}
                       className="mt-4 rounded-xl bg-emerald-500 px-8 py-2.5 text-sm font-extrabold text-slate-950 shadow-lg transition hover:bg-emerald-400 cursor-pointer"
                     >
                       先へ進む ➔
@@ -465,7 +594,10 @@ export function App() {
                         key={opt.id}
                         type="button"
                         disabled={!affordable}
-                        onClick={() => selectEventOption(opt)}
+                        onClick={() => {
+                          playSfx('event');
+                          selectEventOption(opt);
+                        }}
                         className="flex w-full items-center justify-between rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-left transition hover:border-amber-400 hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
                       >
                         <div>
@@ -516,7 +648,10 @@ export function App() {
                       <div className="mt-3 flex flex-col gap-1.5 border-t border-slate-800 pt-2.5">
                         <button
                           type="button"
-                          onClick={() => selectFloorRewardCard(card, 'equip')}
+                          onClick={() => {
+                            playSfx('reward');
+                            selectFloorRewardCard(card, 'equip');
+                          }}
                           className="w-full rounded-lg bg-amber-500 py-1.5 text-xs font-extrabold text-slate-950 transition hover:bg-amber-400 cursor-pointer"
                         >
                           {card.type === 'potion_refill' ? '補充する' : '手に入れる'}
@@ -524,7 +659,10 @@ export function App() {
                         {card.item && 'salvageGold' in card.item && (
                           <button
                             type="button"
-                            onClick={() => selectFloorRewardCard(card, 'salvage')}
+                            onClick={() => {
+                              playSfx('reward');
+                              selectFloorRewardCard(card, 'salvage');
+                            }}
                             className="w-full rounded-lg border border-slate-700 bg-slate-900 py-1 text-[11px] font-semibold text-slate-300 transition hover:bg-slate-800 cursor-pointer"
                           >
                             分解 (+{card.item.salvageGold} G)
@@ -556,7 +694,10 @@ export function App() {
                       <button
                         key={idx}
                         type="button"
-                        onClick={() => confirmSkillReplace(idx)}
+                        onClick={() => {
+                          playSfx('click');
+                          confirmSkillReplace(idx);
+                        }}
                         className="rounded-xl border border-slate-700 bg-slate-950 p-3 text-left transition hover:border-indigo-400 cursor-pointer"
                       >
                         <p className="font-bold text-xs text-slate-100">
@@ -572,7 +713,10 @@ export function App() {
 
                 <button
                   type="button"
-                  onClick={() => confirmSkillReplace('salvage')}
+                  onClick={() => {
+                    playSfx('click');
+                    confirmSkillReplace('salvage');
+                  }}
                   className="w-full rounded-xl border border-slate-700 bg-slate-800 py-2 text-xs font-bold text-slate-200 hover:bg-slate-700 cursor-pointer"
                 >
                   習得せず分解する (+{pendingSkillToEquip.salvageGold} G)
@@ -593,7 +737,10 @@ export function App() {
                 </p>
                 <button
                   type="button"
-                  onClick={completeDimensionalLeapModal}
+                  onClick={() => {
+                    playSfx('leap');
+                    completeDimensionalLeapModal();
+                  }}
                   className="mt-4 rounded-xl bg-fuchsia-500 px-6 py-2.5 text-sm font-extrabold text-white transition hover:bg-fuchsia-400 cursor-pointer"
                 >
                   第{saveData.midFloor.currentFloor}層へ進む ➔
@@ -614,7 +761,10 @@ export function App() {
                 </p>
                 <button
                   type="button"
-                  onClick={respawnFromCheckpoint}
+                  onClick={() => {
+                    playSfx('click');
+                    respawnFromCheckpoint();
+                  }}
                   className="mt-4 rounded-xl bg-rose-600 px-6 py-2.5 text-sm font-extrabold text-white transition hover:bg-rose-500 cursor-pointer"
                 >
                   第{AreaEngine.calculateRespawnFloor(saveData.midFloor.currentFloor)}層から再挑戦する

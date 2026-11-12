@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { PixelSpriteCanvas } from './PixelSpriteCanvas';
+import { playSfx } from '../utils/sound';
 
 interface TitleScreenProps {
   hasProgress: boolean;
@@ -110,7 +111,10 @@ export function TitleScreen({
                 </button>
                 <button
                   type="button"
-                  onClick={() => setConfirmingReset(false)}
+                  onClick={() => {
+                    playSfx('click');
+                    setConfirmingReset(false);
+                  }}
                   className="flex-1 rounded-2xl border border-slate-600 bg-slate-900 px-4 py-2.5 text-sm font-bold text-slate-200 transition hover:bg-slate-800 cursor-pointer"
                 >
                   やめる
@@ -119,7 +123,10 @@ export function TitleScreen({
             ) : (
               <button
                 type="button"
-                onClick={() => setConfirmingReset(true)}
+                onClick={() => {
+                  playSfx('click');
+                  setConfirmingReset(true);
+                }}
                 className="w-full rounded-2xl border border-slate-700 bg-slate-900/70 px-6 py-2.5 text-sm font-bold text-slate-300 transition hover:bg-slate-800 cursor-pointer"
               >
                 さいしょから始める
