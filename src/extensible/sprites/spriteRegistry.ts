@@ -362,6 +362,56 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '翠翼の守護獣・グリフォン',
     colors: ['transparent', '#132e1b', '#256338', '#f59e0b'],
   },
+  bog_toad: {
+    id: 'bog_toad',
+    name: 'ボグ・トード',
+    colors: ['transparent', '#143823', '#2d6a4f', '#a7f3d0'],
+  },
+  fungal_strider: {
+    id: 'fungal_strider',
+    name: 'ファンガル・ストライダー',
+    colors: ['transparent', '#3b1d11', '#854d0e', '#fde047'],
+  },
+  lichen_ape: {
+    id: 'lichen_ape',
+    name: 'ライケン・エイプ',
+    colors: ['transparent', '#1f2937', '#4b5563', '#fbbf24'],
+  },
+  thorn_centipede: {
+    id: 'thorn_centipede',
+    name: 'ソーン・センティピード',
+    colors: ['transparent', '#4a0404', '#991b1b', '#f59e0b'],
+  },
+  ancient_scarab: {
+    id: 'ancient_scarab',
+    name: 'エンシェント・スカラベ',
+    colors: ['transparent', '#14532d', '#16a34a', '#facc15'],
+  },
+  dusk_crow: {
+    id: 'dusk_crow',
+    name: 'ダスク・クロウ',
+    colors: ['transparent', '#18181b', '#3f3f46', '#c084fc'],
+  },
+  vine_stalker: {
+    id: 'vine_stalker',
+    name: 'ヴァイン・ストーカー',
+    colors: ['transparent', '#052e16', '#15803d', '#86efac'],
+  },
+  moss_gargoyle: {
+    id: 'moss_gargoyle',
+    name: 'モス・ガーゴイル',
+    colors: ['transparent', '#1c1917', '#57534e', '#4ade80'],
+  },
+  sylvan_hydra: {
+    id: 'sylvan_hydra',
+    name: 'シルヴァン・ヒドラ',
+    colors: ['transparent', '#064e3b', '#047857', '#34d399'],
+  },
+  verdant_basilisk: {
+    id: 'verdant_basilisk',
+    name: 'ヴァーダント・バジリスク',
+    colors: ['transparent', '#132a13', '#31572c', '#facc15'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -439,6 +489,16 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   verdant_falcon: { id: 'verdant_falcon', matrixId: 'verdant_falcon', defaultPalette: 'verdant_falcon' },
   spirit_fox: { id: 'spirit_fox', matrixId: 'spirit_fox', defaultPalette: 'spirit_fox' },
   verdant_gryphon: { id: 'verdant_gryphon', matrixId: 'verdant_gryphon', defaultPalette: 'verdant_gryphon' },
+  bog_toad: { id: 'bog_toad', matrixId: 'bog_toad', defaultPalette: 'bog_toad' },
+  fungal_strider: { id: 'fungal_strider', matrixId: 'fungal_strider', defaultPalette: 'fungal_strider' },
+  lichen_ape: { id: 'lichen_ape', matrixId: 'lichen_ape', defaultPalette: 'lichen_ape' },
+  thorn_centipede: { id: 'thorn_centipede', matrixId: 'thorn_centipede', defaultPalette: 'thorn_centipede' },
+  ancient_scarab: { id: 'ancient_scarab', matrixId: 'ancient_scarab', defaultPalette: 'ancient_scarab' },
+  dusk_crow: { id: 'dusk_crow', matrixId: 'dusk_crow', defaultPalette: 'dusk_crow' },
+  vine_stalker: { id: 'vine_stalker', matrixId: 'vine_stalker', defaultPalette: 'vine_stalker' },
+  moss_gargoyle: { id: 'moss_gargoyle', matrixId: 'moss_gargoyle', defaultPalette: 'moss_gargoyle' },
+  sylvan_hydra: { id: 'sylvan_hydra', matrixId: 'sylvan_hydra', defaultPalette: 'sylvan_hydra' },
+  verdant_basilisk: { id: 'verdant_basilisk', matrixId: 'verdant_basilisk', defaultPalette: 'verdant_basilisk' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

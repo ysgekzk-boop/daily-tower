@@ -576,11 +576,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第31層：樹海の迷宮回廊',
     subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.14 },
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.14 },
+      { type: 'battle', enemyId: 'bog_toad', enemyStatScale: 1.14 },
+      { type: 'battle', enemyId: 'mist_moth', enemyStatScale: 1.14 },
       { type: 'event', eventId: 'starlight_archive' },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.14 },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.14 },
+      { type: 'battle', enemyId: 'fungal_strider', enemyStatScale: 1.14 },
+      { type: 'battle', enemyIds: ['bog_toad', 'swamp_croc'], enemyStatScale: 1.14 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -594,12 +594,12 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第32層：樹海の迷宮回廊',
     subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.15 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.15 },
+      { type: 'battle', enemyId: 'lichen_ape', enemyStatScale: 1.15 },
+      { type: 'battle', enemyId: 'thorn_centipede', enemyStatScale: 1.15 },
       { type: 'event', eventId: 'emerald_spring' },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.15 },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.15 },
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.15 },
+      { type: 'battle', enemyId: 'bloom_mandragora', enemyStatScale: 1.15 },
+      { type: 'battle', enemyId: 'spirit_fox', enemyStatScale: 1.15 },
+      { type: 'battle', enemyIds: ['thorn_centipede', 'thorn_mantis'], enemyStatScale: 1.15 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -613,10 +613,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第33層：樹海の迷宮回廊',
     subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.17 },
+      { type: 'battle', enemyIds: ['ancient_scarab', 'verdant_falcon'], enemyStatScale: 1.17 },
       { type: 'event', eventId: 'crimson_pact_altar' },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.17 },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.17 },
+      { type: 'battle', enemyId: 'spirit_fox', enemyStatScale: 1.17 },
+      { type: 'battle', enemyId: 'moss_tortoise', enemyStatScale: 1.17 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -630,11 +630,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第34層：樹海の迷宮回廊',
     subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.18 },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.18 },
+      { type: 'battle', enemyId: 'dusk_crow', enemyStatScale: 1.18 },
+      { type: 'battle', enemyId: 'ancient_scarab', enemyStatScale: 1.18 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.18 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.18 },
+      { type: 'battle', enemyId: 'bog_toad', enemyStatScale: 1.18 },
+      { type: 'battle', enemyIds: ['lichen_ape', 'fungal_strider'], enemyStatScale: 1.18 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -648,10 +648,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第35層：古樹の結界回廊',
     subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
     encounters: [
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.2 },
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.2 },
+      { type: 'battle', enemyId: 'thorn_centipede', enemyStatScale: 1.2 },
+      { type: 'battle', enemyIds: ['dusk_crow', 'bog_toad'], enemyStatScale: 1.2 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.2 },
+      { type: 'miniboss', enemyId: 'sylvan_hydra', enemyStatScale: 1.2 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -665,10 +665,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第36層：樹海の迷宮回廊',
     subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.21 },
+      { type: 'battle', enemyId: 'vine_stalker', enemyStatScale: 1.21 },
       { type: 'event', eventId: 'emerald_spring' },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.21 },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.21 },
+      { type: 'battle', enemyId: 'ancient_scarab', enemyStatScale: 1.21 },
+      { type: 'battle', enemyIds: ['dusk_crow', 'lichen_ape'], enemyStatScale: 1.21 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -682,11 +682,11 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第37層：樹海の迷宮回廊',
     subtitle: '4連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.22 },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.22 },
+      { type: 'battle', enemyId: 'moss_gargoyle', enemyStatScale: 1.22 },
+      { type: 'battle', enemyId: 'vine_stalker', enemyStatScale: 1.22 },
       { type: 'event', eventId: 'crimson_pact_altar' },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.22 },
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.22 },
+      { type: 'battle', enemyId: 'fungal_strider', enemyStatScale: 1.22 },
+      { type: 'battle', enemyIds: ['thorn_centipede', 'lichen_ape'], enemyStatScale: 1.22 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -700,12 +700,12 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第38層：樹海の迷宮回廊',
     subtitle: '5連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.24 },
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.24 },
+      { type: 'battle', enemyId: 'bog_toad', enemyStatScale: 1.24 },
+      { type: 'battle', enemyId: 'dusk_crow', enemyStatScale: 1.24 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.24 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.24 },
-      { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 1.24 },
+      { type: 'battle', enemyId: 'ancient_scarab', enemyStatScale: 1.24 },
+      { type: 'battle', enemyId: 'vine_stalker', enemyStatScale: 1.24 },
+      { type: 'battle', enemyIds: ['moss_gargoyle', 'lichen_ape'], enemyStatScale: 1.24 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -719,10 +719,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第39層：樹海の迷宮回廊',
     subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.25 },
+      { type: 'battle', enemyId: 'fungal_strider', enemyStatScale: 1.25 },
       { type: 'event', eventId: 'starlight_archive' },
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.25 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.25 },
+      { type: 'battle', enemyId: 'thorn_centipede', enemyStatScale: 1.25 },
+      { type: 'battle', enemyIds: ['dusk_crow', 'moss_gargoyle'], enemyStatScale: 1.25 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -736,10 +736,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第40層：古樹の結界回廊',
     subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
     encounters: [
-      { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 1.27 },
-      { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 1.27 },
+      { type: 'battle', enemyId: 'moss_gargoyle', enemyStatScale: 1.27 },
+      { type: 'battle', enemyIds: ['vine_stalker', 'ancient_scarab'], enemyStatScale: 1.27 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.27 },
+      { type: 'miniboss', enemyId: 'verdant_basilisk', enemyStatScale: 1.27 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
