@@ -702,6 +702,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '大炉心の主帝',
     colors: ['transparent', '#311042', '#be123c', '#fbbf24'],
   },
+  item_ashwood_spear: {
+    id: 'item_ashwood_spear',
+    name: 'トネリコの槍',
+    colors: ['transparent', '#451a03', '#b45309', '#e2e8f0'],
+  },
+  item_mossfang_blade: {
+    id: 'item_mossfang_blade',
+    name: '苔牙の剣',
+    colors: ['transparent', '#14532d', '#86efac', '#fde047'],
+  },
+  item_leafweave_vest: {
+    id: 'item_leafweave_vest',
+    name: '葉織りの胸当て',
+    colors: ['transparent', '#064e3b', '#10b981', '#bef264'],
+  },
+  item_oakheart_brigandine: {
+    id: 'item_oakheart_brigandine',
+    name: '樫心の胴鎧',
+    colors: ['transparent', '#2a1a08', '#92400e', '#fbbf24'],
+  },
+  item_briar_lash: {
+    id: 'item_briar_lash',
+    name: '茨の鞭打ち',
+    colors: ['transparent', '#3b0764', '#16a34a', '#a855f7'],
+  },
+  item_oak_splitter: {
+    id: 'item_oak_splitter',
+    name: '樫割りの一閃',
+    colors: ['transparent', '#292524', '#d6d3d1', '#f59e0b'],
+  },
+  item_vine_snare: {
+    id: 'item_vine_snare',
+    name: '絡み蔦の斬撃',
+    colors: ['transparent', '#14532d', '#4ade80', '#f59e0b'],
+  },
+  item_forest_dew: {
+    id: 'item_forest_dew',
+    name: '森露の癒やし',
+    colors: ['transparent', '#065f46', '#34d399', '#e0f2fe'],
+  },
+  item_moss_ward: {
+    id: 'item_moss_ward',
+    name: '苔の守り',
+    colors: ['transparent', '#14532d', '#65a30d', '#fef08a'],
+  },
+  item_pollen_haze: {
+    id: 'item_pollen_haze',
+    name: '胞子の霞',
+    colors: ['transparent', '#4c1d95', '#c084fc', '#fde047'],
+  },
+  item_sap_guard: {
+    id: 'item_sap_guard',
+    name: '樹液の護り',
+    colors: ['transparent', '#78350f', '#f59e0b', '#fef9c3'],
+  },
+  item_sylvan_tonic: {
+    id: 'item_sylvan_tonic',
+    name: '森精の秘薬',
+    colors: ['transparent', '#064e3b', '#34d399', '#fca5a5'],
+  },
+  item_moss_elixir: {
+    id: 'item_moss_elixir',
+    name: '苔露の霊薬',
+    colors: ['transparent', '#14532d', '#65a30d', '#bae6fd'],
+  },
+  item_forest_dewdrop_relic: {
+    id: 'item_forest_dewdrop_relic',
+    name: '森露の護符',
+    colors: ['transparent', '#065f46', '#38bdf8', '#fef08a'],
+  },
+  item_briar_thorn_relic: {
+    id: 'item_briar_thorn_relic',
+    name: '茨棘の腕輪',
+    colors: ['transparent', '#451a03', '#15803d', '#ef4444'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -847,6 +922,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   void_cinder_reaper: { id: 'void_cinder_reaper', matrixId: 'void_cinder_reaper', defaultPalette: 'void_cinder_reaper' },
   molten_gear_sentinel: { id: 'molten_gear_sentinel', matrixId: 'molten_gear_sentinel', defaultPalette: 'molten_gear_sentinel' },
   grand_furnace_monarch: { id: 'grand_furnace_monarch', matrixId: 'grand_furnace_monarch', defaultPalette: 'grand_furnace_monarch' },
+  item_ashwood_spear: { id: 'item_ashwood_spear', matrixId: 'item_ashwood_spear', defaultPalette: 'item_ashwood_spear' },
+  item_mossfang_blade: { id: 'item_mossfang_blade', matrixId: 'item_mossfang_blade', defaultPalette: 'item_mossfang_blade' },
+  item_leafweave_vest: { id: 'item_leafweave_vest', matrixId: 'item_leafweave_vest', defaultPalette: 'item_leafweave_vest' },
+  item_oakheart_brigandine: { id: 'item_oakheart_brigandine', matrixId: 'item_oakheart_brigandine', defaultPalette: 'item_oakheart_brigandine' },
+  item_briar_lash: { id: 'item_briar_lash', matrixId: 'item_briar_lash', defaultPalette: 'item_briar_lash' },
+  item_oak_splitter: { id: 'item_oak_splitter', matrixId: 'item_oak_splitter', defaultPalette: 'item_oak_splitter' },
+  item_vine_snare: { id: 'item_vine_snare', matrixId: 'item_vine_snare', defaultPalette: 'item_vine_snare' },
+  item_forest_dew: { id: 'item_forest_dew', matrixId: 'item_forest_dew', defaultPalette: 'item_forest_dew' },
+  item_moss_ward: { id: 'item_moss_ward', matrixId: 'item_moss_ward', defaultPalette: 'item_moss_ward' },
+  item_pollen_haze: { id: 'item_pollen_haze', matrixId: 'item_pollen_haze', defaultPalette: 'item_pollen_haze' },
+  item_sap_guard: { id: 'item_sap_guard', matrixId: 'item_sap_guard', defaultPalette: 'item_sap_guard' },
+  item_sylvan_tonic: { id: 'item_sylvan_tonic', matrixId: 'item_sylvan_tonic', defaultPalette: 'item_sylvan_tonic' },
+  item_moss_elixir: { id: 'item_moss_elixir', matrixId: 'item_moss_elixir', defaultPalette: 'item_moss_elixir' },
+  item_forest_dewdrop_relic: { id: 'item_forest_dewdrop_relic', matrixId: 'item_forest_dewdrop_relic', defaultPalette: 'item_forest_dewdrop_relic' },
+  item_briar_thorn_relic: { id: 'item_briar_thorn_relic', matrixId: 'item_briar_thorn_relic', defaultPalette: 'item_briar_thorn_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

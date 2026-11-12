@@ -227,5 +227,84 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  mossy_stump_shrine: {
+    id: 'mossy_stump_shrine',
+    title: '苔むした切り株の祠',
+    category: 'shrine',
+    description:
+      '樹海の小道に、古い大樹の切り株をくり抜いた小さな祠が佇んでいる。木肌のくぼみには、森の精霊への捧げ物を求める文字が刻まれている。',
+    speakerSpriteId: 'shrine',
+    palette: 'ancient_bark',
+    options: [
+      {
+        id: 'offer_vitality_to_stump',
+        label: '森の精霊に血の契りを捧げる（HP 20%消費 ➔ レリック獲得）',
+        description: '最大HPの20%を代償に、切り株の奥に納められた森のレリックを授かる。',
+        cost: {
+          hpPercent: 20,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '切り株の祠に生命力を捧げ、森の精霊から古のレリックを授かった！',
+        },
+      },
+      {
+        id: 'offer_gold_to_stump',
+        label: '旅の金貨を祠に納める（40 G消費 ➔ スキル習得）',
+        description: '40 Gを納め、木霊が囁く森の戦闘術を習得する。',
+        cost: {
+          gold: 40,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '木霊の囁きが風に乗って響き、新たなスキルの極意を習得した！',
+        },
+      },
+      {
+        id: 'rest_by_stump',
+        label: '切り株に手を当てて一礼する（HP 15%回復）',
+        description: '無理な捧げ物はせず、森の息吹に感謝して傷を癒やす。',
+        outcome: {
+          healHpPercent: 15,
+          logMessage: '古樹の穏やかな木漏れ日に包まれ、HPが15%回復した。',
+        },
+      },
+    ],
+  },
+
+  carved_worldtree_bark: {
+    id: 'carved_worldtree_bark',
+    title: '古樹の刻み文',
+    category: 'lore',
+    description:
+      '巨木の幹に、かつて樹海を踏破した先人たちの戦術図と狩りの心得が深く刻み込まれている。読み解けば新たな技が身につくかもしれない。',
+    speakerSpriteId: 'treant',
+    palette: 'ancient_bark',
+    options: [
+      {
+        id: 'trace_carved_tactics',
+        label: '幹の刻み文を指で辿り読み解く（HP 15%消費 ➔ スキル習得）',
+        description: '樹皮の魔力に集中力を削られつつも（HP15%消費）、先人の秘術を習得する。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '古樹に刻まれた狩人の技を読み解き、新たなスキルを習得した！',
+        },
+      },
+      {
+        id: 'breathe_forest_air',
+        label: '大樹の木陰で深呼吸する（HP 25%回復）',
+        description: '刻み文の解読は控え、清浄な森の空気で心身を休める。',
+        outcome: {
+          healHpPercent: 25,
+          logMessage: '大樹の澄んだ木陰で休息し、HPが25%回復した！',
+        },
+      },
+    ],
+  },
 };
+
 

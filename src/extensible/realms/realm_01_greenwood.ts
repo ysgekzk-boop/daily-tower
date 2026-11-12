@@ -45,14 +45,15 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 0.72 },
       { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.72 },
-      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'event', eventId: 'mossy_stump_shrine' },
       { type: 'battle', enemyId: 'venom_slime', enemyStatScale: 0.72 },
       { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 0.72 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {
@@ -69,9 +70,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'forest_bat', enemyStatScale: 0.73 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {
@@ -81,14 +83,15 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
       { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.75 },
-      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'event', eventId: 'carved_worldtree_bark' },
       { type: 'battle', enemyId: 'spore_fungus', enemyStatScale: 0.75 },
       { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.75 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {
@@ -104,9 +107,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.76 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {
@@ -121,9 +125,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'thorn_queen_vespa', enemyStatScale: 0.78 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {
@@ -138,9 +143,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 0.79 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {
@@ -151,14 +157,15 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'forest_dryad', enemyStatScale: 0.8 },
       { type: 'battle', enemyId: 'spore_fungus', enemyStatScale: 0.8 },
-      { type: 'event', eventId: 'starlight_archive' },
+      { type: 'event', eventId: 'carved_worldtree_bark' },
       { type: 'battle', enemyId: 'woodland_viper', enemyStatScale: 0.8 },
       { type: 'battle', enemyId: 'amber_beetle', enemyStatScale: 0.8 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {
@@ -175,9 +182,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.82 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {
@@ -187,14 +195,15 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: '3連戦と1つの邂逅が待つ樹海エリア',
     encounters: [
       { type: 'battle', enemyId: 'bramble_boar', enemyStatScale: 0.83 },
-      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'event', eventId: 'mossy_stump_shrine' },
       { type: 'battle', enemyId: 'woodland_viper', enemyStatScale: 0.83 },
       { type: 'battle', enemyIds: ['moss_slime', 'spore_fungus'], enemyStatScale: 0.83 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {
@@ -209,9 +218,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'ancient_ursus', enemyStatScale: 0.85 },
     ],
     rewardPool: {
-      equipmentIds: ['verdant_blade', 'bark_cuirass'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['verdant_blade', 'thorn_halberd', 'bark_cuirass', 'ironwood_plate', 'ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
+      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
     },
   },
   {

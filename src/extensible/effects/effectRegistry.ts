@@ -81,5 +81,31 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       };
     },
   },
+  forest_dewdrop: {
+    id: 'forest_dewdrop',
+    name: '森露の護符',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'def_buff',
+        value: 25,
+        duration: 3,
+      },
+      logMessage: `[レリック:森露の護符] 戦闘開始時に3ターンの防御強化(+25%)！`,
+    }),
+  },
+  briar_thorn: {
+    id: 'briar_thorn',
+    name: '茨棘の腕輪',
+    trigger: 'on_attack',
+    handler: (ctx) => {
+      const bonus = Math.max(2, Math.floor(ctx.playerAtk * 0.12));
+      return {
+        bonusDamage: bonus,
+        logMessage: `[レリック:茨棘の腕輪] 茨の棘が弾け、追加ダメージ +${bonus}！`,
+      };
+    },
+  },
 };
+
 
