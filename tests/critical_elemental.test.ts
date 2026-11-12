@@ -151,7 +151,7 @@ describe('Critical Hits and Elemental Affinities (Spec 2/3)', () => {
   });
 
   it('records lastActionFx and outputs descriptive logs in executeTurn', () => {
-    // Fire weapon against moss_slime (weakness: fire, resistance: nature)
+    // Fire weapon against moss_slime (weakness: fire, resistance: ice)
     const fireWeapon = {
       ...WEAPON_CATALOG.rusty_shortsword,
       atk: 20,
@@ -183,19 +183,19 @@ describe('Critical Hits and Elemental Affinities (Spec 2/3)', () => {
     expect(session.logs.some((l) => l.includes('会心の一撃！'))).toBe(true);
     expect(session.logs.some((l) => l.includes('弱点を突いた！'))).toBe(true);
 
-    // Turn 2 with nature weapon against nature resistance
-    const natureWeapon = {
+    // Turn 2 with ice weapon against ice resistance
+    const iceWeapon = {
       ...WEAPON_CATALOG.rusty_shortsword,
       atk: 10,
-      element: 'nature' as const,
+      element: 'ice' as const,
     };
-    const natureLoadout = { ...loadout, weapon: natureWeapon };
-    let session2 = CombatEngine.createBattleSession(100, 100, 2, natureLoadout, enemy);
+    const iceLoadout = { ...loadout, weapon: iceWeapon };
+    let session2 = CombatEngine.createBattleSession(100, 100, 2, iceLoadout, enemy);
 
     session2 = CombatEngine.executeTurn(
       session2,
       { type: 'attack' },
-      natureLoadout,
+      iceLoadout,
       undefined,
       () => 0.99 // No crit
     );
