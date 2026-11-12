@@ -158,7 +158,7 @@ export function BattleStage2D({
 
   return (
     <div
-      className={`relative w-full h-72 sm:h-84 md:h-96 lg:h-[28rem] xl:h-[32rem] rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
+      className={`relative w-full h-72 sm:h-84 md:h-96 lg:h-[clamp(26rem,52dvh,36rem)] rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
         isVolcano
           ? 'border-orange-900/70 bg-gradient-to-b from-stone-950 via-red-950/80 to-orange-950/90'
           : 'border-emerald-900/70 bg-gradient-to-b from-slate-950 via-teal-950/70 to-emerald-950/90'

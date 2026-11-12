@@ -152,7 +152,7 @@ export function App() {
     <div className="min-h-dvh flex flex-col bg-slate-950 text-slate-100">
       {/* Compact RPG Header */}
       <header className="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 py-2.5 sm:px-6">
+        <div className="mx-auto flex w-full max-w-[1760px] flex-wrap items-center justify-between gap-3 px-3 py-2.5 sm:px-5">
           <div className="flex items-center gap-3">
             <h1 className="text-base font-extrabold tracking-wider text-amber-400">
               DAILY TOWER
@@ -185,10 +185,9 @@ export function App() {
       </header>
 
       {/* Main 2D RPG Screen */}
-      <main className="mx-auto flex w-full max-w-[1400px] flex-1 flex-col gap-4 px-4 py-4 sm:px-6">
+      <main className="mx-auto flex w-full max-w-[1760px] flex-1 flex-col gap-3 px-3 py-3 sm:px-5">
         {/* PC: stage column + console rail side by side; stacked on smaller screens */}
-        <div className="flex min-h-0 flex-1 flex-col gap-4 lg:grid lg:grid-cols-[minmax(0,1fr)_400px] lg:grid-rows-[auto_minmax(0,1fr)]">
-        <div className="flex flex-col gap-4 lg:col-start-1 lg:row-start-1">
+        <div className="flex flex-col gap-3">
         {/* 1. 2D RPG Stage Viewport (Background + Facing Characters + Motions) */}
         <div className="relative">
         <BattleStage2D
@@ -241,7 +240,7 @@ export function App() {
 
         {/* 2. Consoles & Panels (grid-placed on PC, stacked on mobile) */}
           {/* COMMANDS CONSOLE: Commands / Event Choices / Rewards */}
-          <div aria-label="コマンドとメッセージウィンドウ" className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 p-4 shadow-xl lg:col-start-2 lg:row-start-1">
+          <div aria-label="コマンドとメッセージウィンドウ" className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl">
             {/* COMBAT COMMANDS */}
             {stage === 'combat' && battleSession && (
               <>
@@ -272,23 +271,23 @@ export function App() {
                       </span>
                     </div>
 
-                    <div className="grid gap-2">
+                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
                       {/* Attack Button */}
                       <button
                         type="button"
                         disabled={isAnimating}
                         onClick={() => handleCombatAction({ type: 'attack' })}
-                        className="flex items-center justify-between rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-3 text-left transition hover:border-amber-400 hover:bg-slate-800/90 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                        className="col-span-2 flex items-center justify-between rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-left transition hover:border-amber-400 hover:bg-slate-800/90 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer sm:col-span-1"
                       >
-                        <div>
-                          <span className="font-extrabold text-sm text-amber-300">
+                        <div className="min-w-0">
+                          <span className="block truncate font-extrabold text-sm text-amber-300">
                             🗡️ たたかう（{saveData.inventory.weapon.name}）
                           </span>
                           <p className="text-[11px] text-slate-400">
                             通常攻撃（ATK {saveData.inventory.weapon.atk}）
                           </p>
                         </div>
-                        <span className="rounded bg-slate-800 px-2 py-0.5 text-[11px] font-bold text-slate-300">
+                        <span className="ml-2 shrink-0 whitespace-nowrap rounded bg-slate-800 px-2 py-0.5 text-[11px] font-bold text-slate-300">
                           回数無制限
                         </span>
                       </button>
@@ -307,7 +306,7 @@ export function App() {
                             onClick={() =>
                               handleCombatAction({ type: 'skill', slotIndex: slotIdx })
                             }
-                            className="flex flex-col justify-between rounded-xl border border-indigo-500/35 bg-indigo-950/35 px-3.5 py-2.5 text-left transition hover:border-indigo-400 hover:bg-indigo-900/45 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
+                            className="flex flex-col justify-between rounded-xl border border-indigo-500/35 bg-indigo-950/35 px-3.5 py-2 text-left transition hover:border-indigo-400 hover:bg-indigo-900/45 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
                           >
                             <div className="flex items-center justify-between gap-1">
                               <span className="font-bold text-xs text-slate-100">
@@ -346,7 +345,7 @@ export function App() {
                           battleSession.consumableCharges <= 0
                         }
                         onClick={() => handleCombatAction({ type: 'consumable' })}
-                        className="flex flex-col justify-between rounded-xl border border-emerald-500/35 bg-emerald-950/30 px-3.5 py-2.5 text-left transition hover:border-emerald-400 hover:bg-emerald-900/40 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
+                        className="flex flex-col justify-between rounded-xl border border-emerald-500/35 bg-emerald-950/30 px-3.5 py-2 text-left transition hover:border-emerald-400 hover:bg-emerald-900/40 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
                       >
                         <div className="flex items-center justify-between gap-1">
                           <span className="font-bold text-xs text-emerald-200">
@@ -368,7 +367,7 @@ export function App() {
 
             {/* EVENT DIALOGUE & CHOICES */}
             {stage === 'event' && activeEvent && (
-              <div key={activeEvent.id} className="anim-rise-in flex flex-1 flex-col justify-between gap-3">
+              <div key={activeEvent.id} className="anim-rise-in mx-auto flex w-full max-w-4xl flex-1 flex-col justify-between gap-3">
                 <div>
                   <h2 className="text-base font-extrabold text-amber-300">
                     {activeEvent.title}
@@ -417,7 +416,7 @@ export function App() {
 
             {/* FLOOR CLEAR REWARDS */}
             {stage === 'floor_reward' && rewardCards && (
-              <div className="flex flex-1 flex-col justify-between gap-3">
+              <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col justify-between gap-3">
                 <div>
                   <h2 className="text-base font-extrabold text-amber-300">
                     第{saveData.midFloor.currentFloor}層 踏破報酬（1つ選択）
@@ -470,7 +469,7 @@ export function App() {
 
             {/* SKILL REPLACE PROMPT */}
             {stage === 'skill_replace_prompt' && pendingSkillToEquip && (
-              <div className="flex flex-1 flex-col justify-between gap-3">
+              <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col justify-between gap-3">
                 <div>
                   <h2 className="text-sm font-bold text-indigo-300">
                     入れ替えるスキルを選択してください
@@ -554,8 +553,10 @@ export function App() {
             )}
           </div>
 
-        {/* Message Log Panel (under the stage) */}
-        <div className="flex min-h-0 flex-1 flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 p-4 shadow-xl lg:col-start-1 lg:row-start-2">
+        {/* Bottom strip: message log (wide) + equipment (narrow) */}
+        <div className="grid min-h-0 gap-3 lg:flex-1 lg:grid-cols-[minmax(0,1fr)_380px]">
+        {/* Message Log Panel */}
+        <div className="flex min-h-0 flex-1 flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl">
         {/* Battle Message Window */}
         <div className="flex min-h-0 flex-1 flex-col">
           <span className="text-xs font-extrabold tracking-wider text-amber-300">
@@ -589,7 +590,7 @@ export function App() {
         </div>
 
           {/* Equipment Status (rail, under commands) */}
-          <div className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 p-4 shadow-xl lg:col-start-2 lg:row-start-2">
+          <div className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl">
             {/* Compact Equipment Status Window */}
             <div>
               <span className="text-xs font-extrabold tracking-wider text-amber-300">
