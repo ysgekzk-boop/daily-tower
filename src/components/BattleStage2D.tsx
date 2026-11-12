@@ -313,28 +313,28 @@ export function BattleStage2D({
 
       {/* Visual Effect Overlays during attacks / hits */}
       {motionState === 'enemy_hit' && (
-        <div className="pointer-events-none absolute right-12 sm:right-28 bottom-28 z-20 flex items-center justify-center animate-ping">
+        <div className="pointer-events-none absolute right-12 bottom-28 sm:right-[calc(max(3rem,calc((100%-64rem)/2))+4rem)] z-20 flex items-center justify-center animate-ping">
           <span className="text-4xl">💥</span>
         </div>
       )}
       {motionState === 'player_hit' && (
-        <div className="pointer-events-none absolute left-12 sm:left-24 bottom-28 z-20 flex items-center justify-center animate-ping">
+        <div className="pointer-events-none absolute left-12 bottom-28 sm:left-[calc(max(3rem,calc((100%-64rem)/2))+3rem)] z-20 flex items-center justify-center animate-ping">
           <span className="text-4xl">🩸</span>
         </div>
       )}
       {motionState === 'player_skill_heal' && (
-        <div className="pointer-events-none absolute left-14 sm:left-28 bottom-32 z-20 flex items-center justify-center animate-pulse">
+        <div className="pointer-events-none absolute left-14 bottom-32 sm:left-[calc(max(3rem,calc((100%-64rem)/2))+4rem)] z-20 flex items-center justify-center animate-pulse">
           <span className="text-3xl">✨💚✨</span>
         </div>
       )}
       {motionState === 'player_skill_buff' && (
-        <div className="pointer-events-none absolute left-14 sm:left-28 bottom-32 z-20 flex items-center justify-center animate-pulse">
+        <div className="pointer-events-none absolute left-14 bottom-32 sm:left-[calc(max(3rem,calc((100%-64rem)/2))+4rem)] z-20 flex items-center justify-center animate-pulse">
           <span className="text-3xl">🛡️⚡</span>
         </div>
       )}
 
       {/* 2D STAGE ACTORS: PLAYER (LEFT) FACING ENEMY/EVENT (RIGHT) */}
-      <div className="relative z-10 flex h-[calc(100%-3rem)] items-end justify-between px-2 pb-6 sm:px-12 sm:pb-8">
+      <div className="relative z-10 flex h-[calc(100%-3rem)] items-end justify-between px-2 pb-6 sm:pb-8 sm:px-[max(3rem,calc((100%-64rem)/2))]">
         {/* LEFT ACTOR: PLAYER */}
         <div className="flex flex-col items-center">
           {/* Player Floating HUD */}
