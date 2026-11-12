@@ -219,6 +219,13 @@ export function App() {
             </div>
 
             <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setShowTitle(true)}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-600/60 bg-slate-800/60 px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer"
+              >
+                <span>🏠 タイトル</span>
+              </button>
               <HelpModal />
               <WardrobeArchiveModal
               cosmeticGems={saveData.cosmeticGems}
