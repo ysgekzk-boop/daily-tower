@@ -915,7 +915,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     title: '第50層：世界樹の頂・神域',
     subtitle: '領域裁定者「始原の世界樹・ユグドラ」が待ち受ける最終試練',
     encounters: [
-      { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 1.41 },
+      { type: 'battle', enemyId: 'rootbound_armor', enemyStatScale: 1.41 },
       { type: 'event', eventId: 'sanctuary_campfire' },
       { type: 'apex_boss', enemyId: 'primordial_treant', enemyStatScale: 0.8 },
     ],
