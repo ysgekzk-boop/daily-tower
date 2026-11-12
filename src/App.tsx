@@ -399,7 +399,7 @@ export function App() {
                                 </span>
                               )}
                             </div>
-                            <p className="mt-1 text-[11px] text-slate-400 line-clamp-1">
+                            <p className="mt-1 text-[11px] leading-snug text-slate-400">
                               {skill ? skill.description : '空きスロット'}
                             </p>
                           </button>
@@ -425,7 +425,7 @@ export function App() {
                             {battleSession.consumableCharges}/{maxConsCharges}
                           </span>
                         </div>
-                        <p className="mt-1 text-[11px] text-slate-400 line-clamp-1">
+                        <p className="mt-1 text-[11px] leading-snug text-slate-400">
                           {saveData.inventory.consumable?.description ?? '―'}
                         </p>
                       </button>
