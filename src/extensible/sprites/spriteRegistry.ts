@@ -657,6 +657,51 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: 'コアフォージ・オーバーロード',
     colors: ['transparent', '#111827', '#991b1b', '#f59e0b'],
   },
+  core_blaze_chimera: {
+    id: 'core_blaze_chimera',
+    name: '大炉心のキメラ',
+    colors: ['transparent', '#3b0764', '#b91c1c', '#fbbf24'],
+  },
+  slag_dross_amalgam: {
+    id: 'slag_dross_amalgam',
+    name: '残渣の混相体',
+    colors: ['transparent', '#1c1917', '#78350f', '#fdba74'],
+  },
+  abyssal_soot_harpy: {
+    id: 'abyssal_soot_harpy',
+    name: '深黒の煤羽',
+    colors: ['transparent', '#09090b', '#3f3f46', '#e0e7ff'],
+  },
+  crucible_iron_aegis: {
+    id: 'crucible_iron_aegis',
+    name: '神炉の重装歩兵',
+    colors: ['transparent', '#1e293b', '#64748b', '#38bdf8'],
+  },
+  doomsday_press_forge: {
+    id: 'doomsday_press_forge',
+    name: '終焉の鍛造圧搾機',
+    colors: ['transparent', '#27272a', '#ea580c', '#fef08a'],
+  },
+  magma_core_hydra: {
+    id: 'magma_core_hydra',
+    name: '熔核の九頭蛇',
+    colors: ['transparent', '#450a0a', '#dc2626', '#facc15'],
+  },
+  void_cinder_reaper: {
+    id: 'void_cinder_reaper',
+    name: '虚無燼の死神',
+    colors: ['transparent', '#18181b', '#581c87', '#c084fc'],
+  },
+  molten_gear_sentinel: {
+    id: 'molten_gear_sentinel',
+    name: '熔解歯車の尖兵',
+    colors: ['transparent', '#292524', '#d97706', '#fde047'],
+  },
+  grand_furnace_monarch: {
+    id: 'grand_furnace_monarch',
+    name: '大炉心の主帝',
+    colors: ['transparent', '#311042', '#be123c', '#fbbf24'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -793,6 +838,15 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   core_magma_weaver: { id: 'core_magma_weaver', matrixId: 'core_magma_weaver', defaultPalette: 'core_magma_weaver' },
   core_reactor_guardian: { id: 'core_reactor_guardian', matrixId: 'core_reactor_guardian', defaultPalette: 'core_reactor_guardian' },
   core_foundry_overlord: { id: 'core_foundry_overlord', matrixId: 'core_foundry_overlord', defaultPalette: 'core_foundry_overlord' },
+  core_blaze_chimera: { id: 'core_blaze_chimera', matrixId: 'core_blaze_chimera', defaultPalette: 'core_blaze_chimera' },
+  slag_dross_amalgam: { id: 'slag_dross_amalgam', matrixId: 'slag_dross_amalgam', defaultPalette: 'slag_dross_amalgam' },
+  abyssal_soot_harpy: { id: 'abyssal_soot_harpy', matrixId: 'abyssal_soot_harpy', defaultPalette: 'abyssal_soot_harpy' },
+  crucible_iron_aegis: { id: 'crucible_iron_aegis', matrixId: 'crucible_iron_aegis', defaultPalette: 'crucible_iron_aegis' },
+  doomsday_press_forge: { id: 'doomsday_press_forge', matrixId: 'doomsday_press_forge', defaultPalette: 'doomsday_press_forge' },
+  magma_core_hydra: { id: 'magma_core_hydra', matrixId: 'magma_core_hydra', defaultPalette: 'magma_core_hydra' },
+  void_cinder_reaper: { id: 'void_cinder_reaper', matrixId: 'void_cinder_reaper', defaultPalette: 'void_cinder_reaper' },
+  molten_gear_sentinel: { id: 'molten_gear_sentinel', matrixId: 'molten_gear_sentinel', defaultPalette: 'molten_gear_sentinel' },
+  grand_furnace_monarch: { id: 'grand_furnace_monarch', matrixId: 'grand_furnace_monarch', defaultPalette: 'grand_furnace_monarch' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
