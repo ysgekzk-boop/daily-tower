@@ -227,6 +227,46 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '栞の護符',
     colors: ['transparent', '#312e81', '#818cf8', '#f59e0b'],
   },
+  forest_bat: {
+    id: 'forest_bat',
+    name: 'フォレスト・バット',
+    colors: ['transparent', '#1f2937', '#4b5563', '#f43f5e'],
+  },
+  spore_fungus: {
+    id: 'spore_fungus',
+    name: 'スポア・マッシュ',
+    colors: ['transparent', '#2e1065', '#9333ea', '#a7f3d0'],
+  },
+  amber_beetle: {
+    id: 'amber_beetle',
+    name: 'アンバー・ビートル',
+    colors: ['transparent', '#451a03', '#d97706', '#fef08a'],
+  },
+  woodland_viper: {
+    id: 'woodland_viper',
+    name: 'ウッド・バイパー',
+    colors: ['transparent', '#064e3b', '#059669', '#fbbf24'],
+  },
+  forest_dryad: {
+    id: 'forest_dryad',
+    name: 'フォレスト・フェアリー',
+    colors: ['transparent', '#14532d', '#22c55e', '#ecfdf5'],
+  },
+  bramble_boar: {
+    id: 'bramble_boar',
+    name: 'ブランブル・ボア',
+    colors: ['transparent', '#3f2c1d', '#854d0e', '#fde047'],
+  },
+  thorn_queen_vespa: {
+    id: 'thorn_queen_vespa',
+    name: '棘森の女王・ウェスパ',
+    colors: ['transparent', '#422006', '#ca8a04', '#ef4444'],
+  },
+  ancient_ursus: {
+    id: 'ancient_ursus',
+    name: '古森の巨熊・アーサ',
+    colors: ['transparent', '#1c1917', '#78350f', '#f59e0b'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -277,6 +317,14 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_venom_gland_relic: { id: 'item_venom_gland_relic', matrixId: 'item_venom_gland_relic', defaultPalette: 'item_venom_gland_relic' },
   item_golden_compass_relic: { id: 'item_golden_compass_relic', matrixId: 'item_golden_compass_relic', defaultPalette: 'item_golden_compass_relic' },
   item_bookmark_charm_relic: { id: 'item_bookmark_charm_relic', matrixId: 'item_bookmark_charm_relic', defaultPalette: 'item_bookmark_charm_relic' },
+  forest_bat: { id: 'forest_bat', matrixId: 'forest_bat', defaultPalette: 'forest_bat' },
+  spore_fungus: { id: 'spore_fungus', matrixId: 'spore_fungus', defaultPalette: 'spore_fungus' },
+  amber_beetle: { id: 'amber_beetle', matrixId: 'amber_beetle', defaultPalette: 'amber_beetle' },
+  woodland_viper: { id: 'woodland_viper', matrixId: 'woodland_viper', defaultPalette: 'woodland_viper' },
+  forest_dryad: { id: 'forest_dryad', matrixId: 'forest_dryad', defaultPalette: 'forest_dryad' },
+  bramble_boar: { id: 'bramble_boar', matrixId: 'bramble_boar', defaultPalette: 'bramble_boar' },
+  thorn_queen_vespa: { id: 'thorn_queen_vespa', matrixId: 'thorn_queen_vespa', defaultPalette: 'thorn_queen_vespa' },
+  ancient_ursus: { id: 'ancient_ursus', matrixId: 'ancient_ursus', defaultPalette: 'ancient_ursus' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
