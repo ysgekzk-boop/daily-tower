@@ -11,7 +11,7 @@ export type ResolvedEncounter =
       encounterIndex: number;
       totalEncounters: number;
       encounterType: 'battle' | 'miniboss' | 'apex_boss';
-      enemyDef: EnemyDefinition;
+      enemyDefs: EnemyDefinition[];
       statScale: number;
     }
   | {
@@ -41,15 +41,22 @@ export class FloorRunner {
       };
     }
 
-    const enemyDef =
-      (enc.enemyId && ENEMY_REGISTRY[enc.enemyId]) || ENEMY_REGISTRY.moss_slime;
+    // Multi-enemy battles list enemyIds (max 3); solo battles use enemyId.
+    const requestedIds =
+      enc.enemyIds && enc.enemyIds.length > 0
+        ? enc.enemyIds.slice(0, 3)
+        : [enc.enemyId ?? 'moss_slime'];
+    const enemyDefs = requestedIds
+      .map((id) => ENEMY_REGISTRY[id])
+      .filter((d): d is EnemyDefinition => Boolean(d));
+    if (enemyDefs.length === 0) enemyDefs.push(ENEMY_REGISTRY.moss_slime);
 
     return {
       kind: 'combat',
       encounterIndex: safeIndex,
       totalEncounters: floorDef.encounters.length,
       encounterType: enc.type,
-      enemyDef,
+      enemyDefs,
       statScale: enc.enemyStatScale ?? 1.0,
     };
   }

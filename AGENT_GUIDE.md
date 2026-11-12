@@ -69,6 +69,11 @@ my_golem: {
 - Skills must declare `maxChargesPerBattle: number` (1 to 3 uses per combat).
 - Relics must declare an `effectId` matching an entry in `src/extensible/effects/effectRegistry.ts`.
 
+### 2.5 Multi-Enemy Battles & AoE Skills
+- A battle encounter may list `enemyIds: string[]` (1–3 enemies) instead of a single `enemyId`. The player selects a target for single-target attacks/skills; each enemy keeps its own HP, statuses and AI phases and acts in encounter order. Victory requires defeating **all** enemies; gold rewards are summed. Miniboss and Apex encounters stay solo.
+- A skill may declare `targetScope: 'all_enemies'` so its damage and enemy-targeted status hit every living enemy (default: `'single'`). Keep AoE multipliers below single-target equivalents.
+- `CombatEngine.createBattleSession` accepts `EnemyDefinition | EnemyDefinition[]`; sessions expose `enemies[]` / `enemyDefs[]` / `totalGoldReward`.
+
 ---
 
 ## 3. Mandatory Quality Gate Verification

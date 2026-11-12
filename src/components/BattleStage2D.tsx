@@ -33,6 +33,9 @@ interface BattleStage2DProps {
   activeEvent: GameEventDefinition | null;
   motionState?: CombatMotionState;
   activeSkillName?: string | null;
+  /** Index of the enemy the player is targeting (multi-enemy battles). */
+  selectedTargetIndex?: number;
+  onSelectTarget?: (index: number) => void;
 }
 
 function StatusRow({ statuses }: { statuses: ActiveStatusInstance[] }) {
@@ -78,6 +81,8 @@ export function BattleStage2D({
   activeEvent,
   motionState = 'idle',
   activeSkillName = null,
+  selectedTargetIndex = 0,
+  onSelectTarget,
 }: BattleStage2DProps) {
   const isVolcano = realm >= 2;
 
@@ -85,15 +90,29 @@ export function BattleStage2D({
   const maxHpShown = battleSession ? battleSession.player.maxHp : playerMaxHp;
   const playerStatuses = battleSession ? battleSession.player.statuses : [];
 
-  // Determine enemy enraged phase name if in combat
-  let enemyPhaseBadge: string | undefined;
-  if (battleSession) {
-    const hpPct = (battleSession.enemy.currentHp / battleSession.enemy.maxHp) * 100;
-    const activePhase = [...battleSession.enemyDef.phases]
+  // Enraged phase badge for one enemy, from its current HP threshold
+  const phaseBadgeFor = (enemyIdx: number): string | undefined => {
+    if (!battleSession) return undefined;
+    const enemy = battleSession.enemies[enemyIdx];
+    const def = battleSession.enemyDefs[enemyIdx];
+    if (!enemy || !def || enemy.currentHp <= 0) return undefined;
+    const hpPct = (enemy.currentHp / enemy.maxHp) * 100;
+    const activePhase = [...def.phases]
       .filter((p) => hpPct <= p.hpThresholdPercent)
       .sort((a, b) => a.hpThresholdPercent - b.hpThresholdPercent)[0];
-    enemyPhaseBadge = activePhase?.phaseName;
-  }
+    return activePhase?.phaseName;
+  };
+
+  // Target shown as selected in the UI: the chosen enemy, or the first
+  // living one when the chosen enemy has already fallen.
+  const effectiveTargetIndex = battleSession
+    ? battleSession.enemies[selectedTargetIndex]?.currentHp > 0
+      ? selectedTargetIndex
+      : Math.max(
+          0,
+          battleSession.enemies.findIndex((e) => e.currentHp > 0)
+        )
+    : 0;
 
   // Determine active motion CSS class for player
   let playerMotionClass = '';
@@ -248,11 +267,11 @@ export function BattleStage2D({
       )}
 
       {/* 2D STAGE ACTORS: PLAYER (LEFT) FACING ENEMY/EVENT (RIGHT) */}
-      <div className="relative z-10 flex h-[calc(100%-3rem)] items-end justify-between px-4 pb-6 sm:px-12 sm:pb-8">
+      <div className="relative z-10 flex h-[calc(100%-3rem)] items-end justify-between px-2 pb-6 sm:px-12 sm:pb-8">
         {/* LEFT ACTOR: PLAYER */}
         <div className="flex flex-col items-center">
           {/* Player Floating HUD */}
-          <div className="mb-2 w-36 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 shadow-xl backdrop-blur-xs">
+          <div className="mb-2 w-28 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 shadow-xl backdrop-blur-xs">
             <div className="flex items-center justify-between gap-1">
               <span className="truncate text-[11px] sm:text-xs font-extrabold text-amber-300">
                 {playerTitle}
@@ -316,68 +335,102 @@ export function BattleStage2D({
 
         {/* RIGHT ACTOR: ENEMY OR EVENT OBJECT */}
         {battleSession ? (
-          <div className="flex flex-col items-center">
-            {/* Enemy Floating HUD */}
-            <div className="mb-2 w-40 sm:w-52 md:w-56 rounded-xl border border-rose-800/80 bg-slate-950/85 p-2 sm:p-2.5 shadow-xl backdrop-blur-xs">
-              <div className="flex flex-wrap items-center justify-between gap-1">
-                <span className="truncate text-[11px] sm:text-xs font-extrabold text-rose-300">
-                  {battleSession.enemy.name}
-                </span>
-                {enemyPhaseBadge && (
-                  <span className="rounded bg-rose-500/25 px-1 py-0.5 text-[9px] sm:text-[10px] font-bold text-rose-200 animate-pulse">
-                    🔥 {enemyPhaseBadge}
-                  </span>
-                )}
-              </div>
+          <div className="flex items-end gap-2 sm:gap-4">
+            {battleSession.enemies.map((enemy, idx) => {
+              const def = battleSession.enemyDefs[idx];
+              const isDead = enemy.currentHp <= 0;
+              const isMulti = battleSession.enemies.length > 1;
+              const isTarget =
+                isMulti && !isDead && battleSession.status === 'ongoing' && idx === effectiveTargetIndex;
+              const phaseBadge = phaseBadgeFor(idx);
+              return (
+                <div
+                  key={idx}
+                  className={`flex flex-col items-center ${isDead ? 'opacity-40 grayscale' : ''}`}
+                  onClick={() => {
+                    if (!isDead && battleSession.status === 'ongoing') onSelectTarget?.(idx);
+                  }}
+                >
+                  {/* Enemy Floating HUD */}
+                  <div
+                    className={`mb-2 ${
+                      isMulti ? 'w-24 sm:w-36' : 'w-40 sm:w-52 md:w-56'
+                    } rounded-xl border ${
+                      isTarget
+                        ? 'border-amber-400 ring-2 ring-amber-400/60'
+                        : 'border-rose-800/80'
+                    } bg-slate-950/85 p-2 sm:p-2.5 shadow-xl backdrop-blur-xs ${
+                      isMulti && !isDead ? 'cursor-pointer' : ''
+                    }`}
+                  >
+                    <div className="flex flex-wrap items-center justify-between gap-1">
+                      <span className="truncate text-[11px] sm:text-xs font-extrabold text-rose-300">
+                        {isDead ? '💀 ' : ''}
+                        {enemy.name}
+                      </span>
+                      {phaseBadge && (
+                        <span className="rounded bg-rose-500/25 px-1 py-0.5 text-[9px] sm:text-[10px] font-bold text-rose-200 animate-pulse">
+                          🔥 {phaseBadge}
+                        </span>
+                      )}
+                    </div>
 
-              <div className="mt-1">
-                <div className="flex justify-between text-[10px] sm:text-[11px] font-bold">
-                  <span className="text-rose-400">HP</span>
-                  <span className="font-mono text-slate-100">
-                    {battleSession.enemy.currentHp} / {battleSession.enemy.maxHp}
-                  </span>
+                    <div className="mt-1">
+                      <div className="flex justify-between text-[10px] sm:text-[11px] font-bold">
+                        <span className="text-rose-400">HP</span>
+                        <span className="font-mono text-slate-100">
+                          {enemy.currentHp} / {enemy.maxHp}
+                        </span>
+                      </div>
+                      <progress
+                        aria-label={`${enemy.name}のHP`}
+                        className="rpg-hp-bar mt-1 block h-2 sm:h-2.5 w-full"
+                        value={enemy.currentHp}
+                        max={enemy.maxHp}
+                        style={
+                          {
+                            '--progress-bar-fill': '#f43f5e',
+                            '--progress-bar-track': '#1e293b',
+                          } as React.CSSProperties
+                        }
+                      />
+                    </div>
+
+                    {enemy.statuses.length > 0 && (
+                      <div className="mt-1.5">
+                        <StatusRow statuses={enemy.statuses} />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Enemy Sprite on Floor Platform (facing left towards player) */}
+                  <div className="relative flex flex-col items-center">
+                    <div
+                      className={`${
+                        def.isBoss ? 'rpg-actor-boss' : 'rpg-actor'
+                      } ${isDead ? '' : enemyMotionClass}`}
+                    >
+                      <PixelSpriteCanvas
+                        spriteId={def.spriteId}
+                        paletteId={def.palette}
+                        scale={def.isBoss ? 12 : isMulti ? 8 : 10}
+                        flipHorizontal={def.spriteId === 'goblin'}
+                      />
+                    </div>
+                    <div
+                      className={`-mt-1.5 h-3 rounded-full bg-black/55 blur-[1px] ${
+                        def.isBoss ? 'w-28 sm:w-32' : 'w-20 sm:w-24'
+                      }`}
+                    />
+                  </div>
+                  {isTarget && (
+                    <span className="mt-1 text-[10px] font-extrabold text-amber-300">
+                      ▼ ターゲット
+                    </span>
+                  )}
                 </div>
-                <progress
-                  aria-label={`${battleSession.enemy.name}のHP`}
-                  className="rpg-hp-bar mt-1 block h-2 sm:h-2.5 w-full"
-                  value={battleSession.enemy.currentHp}
-                  max={battleSession.enemy.maxHp}
-                  style={
-                    {
-                      '--progress-bar-fill': '#f43f5e',
-                      '--progress-bar-track': '#1e293b',
-                    } as React.CSSProperties
-                  }
-                />
-              </div>
-
-              {battleSession.enemy.statuses.length > 0 && (
-                <div className="mt-1.5">
-                  <StatusRow statuses={battleSession.enemy.statuses} />
-                </div>
-              )}
-            </div>
-
-            {/* Enemy Sprite on Floor Platform (facing left towards player) */}
-            <div className="relative flex flex-col items-center">
-              <div
-                className={`${
-                  battleSession.enemyDef.isBoss ? 'rpg-actor-boss' : 'rpg-actor'
-                } ${enemyMotionClass}`}
-              >
-                <PixelSpriteCanvas
-                  spriteId={battleSession.enemyDef.spriteId}
-                  paletteId={battleSession.enemyDef.palette}
-                  scale={battleSession.enemyDef.isBoss ? 12 : 10}
-                  flipHorizontal={battleSession.enemyDef.spriteId === 'goblin'}
-                />
-              </div>
-              <div
-                className={`-mt-1.5 h-3 rounded-full bg-black/55 blur-[1px] ${
-                  battleSession.enemyDef.isBoss ? 'w-28 sm:w-32' : 'w-20 sm:w-24'
-                }`}
-              />
-            </div>
+              );
+            })}
           </div>
         ) : activeEvent ? (
           <div className="flex flex-col items-center">

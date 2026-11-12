@@ -3,6 +3,12 @@ export type EncounterType = 'battle' | 'event' | 'miniboss' | 'apex_boss';
 export interface Encounter {
   type: EncounterType;
   enemyId?: string;
+  /**
+   * Multi-enemy battle (1-3 enemies). When present, takes precedence over
+   * enemyId: the player fights all listed enemies at once, selecting a
+   * target for single-target attacks/skills. Boss encounters stay solo.
+   */
+  enemyIds?: string[];
   eventId?: string;
   enemyStatScale?: number; // Multiplier for enemy HP/ATK/DEF on higher floors within the realm
 }

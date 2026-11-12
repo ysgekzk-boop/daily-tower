@@ -34,6 +34,11 @@ export interface SkillItem {
   kind: 'skill';
   category: SkillCategory;
   maxChargesPerBattle: number; // 1 to 3 uses per battle
+  /**
+   * 'single' (default): damage / enemy status hits the selected target only.
+   * 'all_enemies': damage / enemy status hits every living enemy.
+   */
+  targetScope?: 'single' | 'all_enemies';
   damageMultiplier?: number;
   healPercent?: number;
   healFlat?: number;
@@ -183,6 +188,17 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     },
     salvageGold: 25,
     description: '1.4倍ダメージ＋敵に火傷(最大HP10%/3T)を付与（1戦2回）。',
+  },
+  flame_wave: {
+    id: 'flame_wave',
+    name: '炎の波動',
+    kind: 'skill',
+    category: 'attack',
+    maxChargesPerBattle: 2,
+    targetScope: 'all_enemies',
+    damageMultiplier: 0.8,
+    salvageGold: 30,
+    description: '敵全体に0.8倍ダメージを与える全体攻撃（1戦2回）。',
   },
   frost_lance: {
     id: 'frost_lance',

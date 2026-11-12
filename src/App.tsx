@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AreaEngine } from './core/AreaEngine';
 import { EventEngine } from './core/EventEngine';
 import { BattleStage2D, CombatMotionState } from './components/BattleStage2D';
@@ -31,6 +31,12 @@ export function App() {
   const [motionState, setMotionState] = useState<CombatMotionState>('idle');
   const [activeSkillCallout, setActiveSkillCallout] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [targetIndex, setTargetIndex] = useState<number>(0);
+
+  // Reset target selection whenever a new encounter begins
+  useEffect(() => {
+    setTargetIndex(0);
+  }, [saveData.midFloor.currentFloor, saveData.midFloor.currentEncounterIndex]);
 
   const currentHp =
     stage === 'combat' && battleSession
@@ -49,8 +55,7 @@ export function App() {
       | { type: 'attack' }
       | { type: 'skill'; slotIndex: 0 | 1 | 2 }
       | { type: 'consumable' }
-  ) => {
-    if (isAnimating || !battleSession || battleSession.status !== 'ongoing') return;
+  ) => {    if (isAnimating || !battleSession || battleSession.status !== 'ongoing') return;
 
     setIsAnimating(true);
 
@@ -90,8 +95,10 @@ export function App() {
         setMotionState('enemy_hit');
       }
 
-      // Execute actual combat calculations
-      performCombatCommand(cmd);
+      // Execute actual combat calculations (with the selected target)
+      performCombatCommand(
+        cmd.type === 'consumable' ? cmd : { ...cmd, targetIndex }
+      );
 
       setTimeout(() => {
         // Step 3: Enemy retaliate motion if combat is still ongoing
@@ -168,6 +175,8 @@ export function App() {
           activeEvent={activeEvent}
           motionState={motionState}
           activeSkillName={activeSkillCallout}
+          selectedTargetIndex={targetIndex}
+          onSelectTarget={setTargetIndex}
         />
 
         {/* Notification Toast Bar */}
@@ -194,10 +203,10 @@ export function App() {
                 {battleSession.status === 'victory' ? (
                   <div className="flex flex-1 flex-col items-center justify-center py-6 text-center">
                     <p className="text-base font-extrabold text-emerald-300">
-                      🏆 {battleSession.enemy.name} を倒した！
+                      🏆 {battleSession.enemyDefs.map((d) => d.name).join(' と ')} を倒した！
                     </p>
                     <p className="mt-1 text-xs text-amber-300">
-                      +{battleSession.enemyDef.goldReward} G を手に入れた
+                      +{battleSession.totalGoldReward} G を手に入れた
                     </p>
                     <button
                       type="button"
@@ -259,6 +268,11 @@ export function App() {
                               <span className="font-bold text-xs text-slate-100">
                                 {skill ? `✨ ${skill.name}` : '―'}
                               </span>
+                              {skill?.targetScope === 'all_enemies' && (
+                                <span className="shrink-0 rounded bg-rose-500/30 px-1.5 py-0.5 text-[10px] font-bold text-rose-200">
+                                  全体
+                                </span>
+                              )}
                               {skill && (
                                 <span
                                   className={`shrink-0 rounded px-1.5 py-0.5 font-mono text-[10px] font-bold ${

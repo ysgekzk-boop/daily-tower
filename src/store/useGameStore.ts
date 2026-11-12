@@ -79,7 +79,7 @@ export function useGameStore() {
           maxHp,
           currentSave.midFloor.consumableCharges,
           currentSave.inventory,
-          enc.enemyDef,
+          enc.enemyDefs,
           enc.statScale
         );
         setBattleSession(session);
@@ -96,7 +96,10 @@ export function useGameStore() {
   }, []);
 
   const performCombatCommand = (
-    cmd: { type: 'attack' } | { type: 'skill'; slotIndex: 0 | 1 | 2 } | { type: 'consumable' }
+    cmd:
+      | { type: 'attack'; targetIndex?: number }
+      | { type: 'skill'; slotIndex: 0 | 1 | 2; targetIndex?: number }
+      | { type: 'consumable' }
   ) => {
     if (!battleSession || battleSession.status !== 'ongoing') return;
     const nextSession = CombatEngine.executeTurn(
@@ -328,7 +331,7 @@ export function useGameStore() {
   const proceedAfterCombatVictory = () => {
     if (!battleSession || battleSession.status !== 'victory') return;
 
-    let bonusGold = battleSession.enemyDef.goldReward;
+    let bonusGold = battleSession.totalGoldReward;
     if (saveData.inventory.relic) {
       const eff = EFFECT_REGISTRY[saveData.inventory.relic.effectId];
       if (eff && eff.trigger === 'battle_victory') {
@@ -338,7 +341,7 @@ export function useGameStore() {
           playerAtk: battleSession.player.baseAtk,
           playerDef: battleSession.player.baseDef,
           enemyCurrentHp: 0,
-          enemyMaxHp: battleSession.enemy.maxHp,
+          enemyMaxHp: battleSession.enemies[0]?.maxHp ?? 0,
           turnNumber: battleSession.turn,
         });
         if (res.grantGold) bonusGold += res.grantGold;

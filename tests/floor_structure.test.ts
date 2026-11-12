@@ -23,6 +23,15 @@ describe('Floor Structure & Pacing Quality Gate (Spec §3.1, §5.2)', () => {
         if (e.type === 'event') {
           expect(e.eventId).toBeDefined();
           expect(EVENT_REGISTRY[e.eventId!]).toBeDefined();
+        } else if (e.enemyIds && e.enemyIds.length > 0) {
+          // Multi-enemy battle: 1-3 enemies, all must exist; bosses stay solo
+          expect(e.enemyIds.length).toBeLessThanOrEqual(3);
+          for (const id of e.enemyIds) {
+            expect(ENEMY_REGISTRY[id]).toBeDefined();
+          }
+          if (e.type === 'miniboss' || e.type === 'apex_boss') {
+            expect(e.enemyIds.length).toBe(1);
+          }
         } else {
           expect(e.enemyId).toBeDefined();
           expect(ENEMY_REGISTRY[e.enemyId!]).toBeDefined();
