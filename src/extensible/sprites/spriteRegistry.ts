@@ -267,6 +267,56 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '古森の巨熊・アーサ',
     colors: ['transparent', '#1c1917', '#78350f', '#f59e0b'],
   },
+  moss_owl: {
+    id: 'moss_owl',
+    name: 'モス・オウル',
+    colors: ['transparent', '#1c2826', '#4d7c0f', '#facc15'],
+  },
+  canopy_spider: {
+    id: 'canopy_spider',
+    name: 'キャノピー・スパイダー',
+    colors: ['transparent', '#18181b', '#047857', '#ef4444'],
+  },
+  thorn_trapper: {
+    id: 'thorn_trapper',
+    name: 'ソーン・トラッパー',
+    colors: ['transparent', '#14532d', '#15803d', '#f43f5e'],
+  },
+  moss_crab: {
+    id: 'moss_crab',
+    name: 'モス・クラブ',
+    colors: ['transparent', '#1e293b', '#0f766e', '#38bdf8'],
+  },
+  ivy_creeper: {
+    id: 'ivy_creeper',
+    name: 'アイビー・クリーパー',
+    colors: ['transparent', '#052e16', '#16a34a', '#86efac'],
+  },
+  glen_elk: {
+    id: 'glen_elk',
+    name: 'グレン・エルク',
+    colors: ['transparent', '#271c19', '#7c2d12', '#fde047'],
+  },
+  bark_chameleon: {
+    id: 'bark_chameleon',
+    name: 'バーク・カメレオン',
+    colors: ['transparent', '#1c1917', '#57534e', '#a8a29e'],
+  },
+  amber_wisp: {
+    id: 'amber_wisp',
+    name: 'アンバー・ウィスプ',
+    colors: ['transparent', '#451a03', '#d97706', '#fbbf24'],
+  },
+  shadow_panther: {
+    id: 'shadow_panther',
+    name: '漆黒の森豹・パンテーラ',
+    colors: ['transparent', '#0f172a', '#334155', '#fbbf24'],
+  },
+  ironwood_colossus: {
+    id: 'ironwood_colossus',
+    name: '鉄樹の守護巨兵・ロブール',
+    colors: ['transparent', '#142017', '#2e4c34', '#4ade80'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -325,6 +375,16 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   bramble_boar: { id: 'bramble_boar', matrixId: 'bramble_boar', defaultPalette: 'bramble_boar' },
   thorn_queen_vespa: { id: 'thorn_queen_vespa', matrixId: 'thorn_queen_vespa', defaultPalette: 'thorn_queen_vespa' },
   ancient_ursus: { id: 'ancient_ursus', matrixId: 'ancient_ursus', defaultPalette: 'ancient_ursus' },
+  moss_owl: { id: 'moss_owl', matrixId: 'moss_owl', defaultPalette: 'moss_owl' },
+  canopy_spider: { id: 'canopy_spider', matrixId: 'canopy_spider', defaultPalette: 'canopy_spider' },
+  thorn_trapper: { id: 'thorn_trapper', matrixId: 'thorn_trapper', defaultPalette: 'thorn_trapper' },
+  moss_crab: { id: 'moss_crab', matrixId: 'moss_crab', defaultPalette: 'moss_crab' },
+  ivy_creeper: { id: 'ivy_creeper', matrixId: 'ivy_creeper', defaultPalette: 'ivy_creeper' },
+  glen_elk: { id: 'glen_elk', matrixId: 'glen_elk', defaultPalette: 'glen_elk' },
+  bark_chameleon: { id: 'bark_chameleon', matrixId: 'bark_chameleon', defaultPalette: 'bark_chameleon' },
+  amber_wisp: { id: 'amber_wisp', matrixId: 'amber_wisp', defaultPalette: 'amber_wisp' },
+  shadow_panther: { id: 'shadow_panther', matrixId: 'shadow_panther', defaultPalette: 'shadow_panther' },
+  ironwood_colossus: { id: 'ironwood_colossus', matrixId: 'ironwood_colossus', defaultPalette: 'ironwood_colossus' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
