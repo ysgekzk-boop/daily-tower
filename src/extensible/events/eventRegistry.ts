@@ -767,6 +767,81 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  molten_pact_crucible: {
+    id: 'molten_pact_crucible',
+    title: '溶鉄の契約坩堝',
+    category: 'shrine',
+    description:
+      '溶岩流が注ぎ込む鋳造ラインの傍らに、赤熱した巨大な坩堝が鎮座している。「血か黄金を炉に投じよ。さすれば鋳造の秘宝か戦技を授けん」と炉壁に刻まれている。',
+    speakerSpriteId: 'shrine',
+    palette: 'crimson_knight',
+    options: [
+      {
+        id: 'blood_for_crucible_relic',
+        label: '生命力を捧げる（HP 20%消費 ➔ レリック獲得）',
+        description: '最大HPの20%を代償に、坩堝の底に眠る古代のレリックを授かる。',
+        cost: {
+          hpPercent: 20,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '溶鉄の坩堝に生命力を捧げ、灼熱の鍛造レリックを授かった！',
+        },
+      },
+      {
+        id: 'gold_for_crucible_skill',
+        label: '黄金を投じる（40 G消費 ➔ スキル習得）',
+        description: '40 Gを坩堝に投じ、鋳造ラインの秘伝スキルを得る。',
+        cost: {
+          gold: 40,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '溶けた黄金が蒸気の閃光となり、新たなスキルの知識が脳裏に刻まれた！',
+        },
+      },
+      {
+        id: 'respectful_crucible_bow',
+        label: '静かに一礼して立ち去る（HP 15%回復）',
+        description: '代償を払わず敬意を示し、炉の穏やかな温もりで傷を癒やす。',
+        outcome: {
+          healHpPercent: 15,
+          logMessage: '坩堝に敬意を表し、穏やかな炉の祝福でHPが15%回復した。',
+        },
+      },
+    ],
+  },
+
+  steam_condenser_basin: {
+    id: 'steam_condenser_basin',
+    title: '蒸気凝縮の冷却泉',
+    category: 'shrine',
+    description:
+      '鋳造ラインの配管から立ち昇る蒸気が、冷たい岩盤に触れて澄んだ水盤を作っている。水底にはかつて炉を守った鍛冶師たちの金貨が沈んでいる。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_condenser_water',
+        label: '凝縮水を飲む（HP 35%回復）',
+        description: '清涼な蒸留水で喉を潤し、傷を癒やす。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '冷却泉の清らかな水を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_basin_coins',
+        label: '水底の金貨を拾う（+35 G）',
+        description: '水盤の底に沈んだ金貨を素早く回収する。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '水盤の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
 };
 
 

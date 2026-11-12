@@ -1152,6 +1152,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '熾火の吸魂石',
     colors: ['transparent', '#450a0a', '#b91c1c', '#fb923c'],
   },
+  item_molten_mold_greatsword: {
+    id: 'item_molten_mold_greatsword',
+    name: '溶鉄鋳型の大剣',
+    colors: ['transparent', '#431407', '#ea580c', '#fef08a'],
+  },
+  item_steam_piston_lance: {
+    id: 'item_steam_piston_lance',
+    name: '蒸気圧の穿槍',
+    colors: ['transparent', '#1e293b', '#64748b', '#e0f2fe'],
+  },
+  item_slag_mold_cuirass: {
+    id: 'item_slag_mold_cuirass',
+    name: '鋳型鋼の胸甲',
+    colors: ['transparent', '#292524', '#78716c', '#fb923c'],
+  },
+  item_steam_boiler_plate: {
+    id: 'item_steam_boiler_plate',
+    name: '蒸気炉の重鎧',
+    colors: ['transparent', '#1e293b', '#475569', '#38bdf8'],
+  },
+  item_lava_pour_slash: {
+    id: 'item_lava_pour_slash',
+    name: '溶岩流の斬撃',
+    colors: ['transparent', '#7c2d12', '#f97316', '#fde047'],
+  },
+  item_molten_cast_impact: {
+    id: 'item_molten_cast_impact',
+    name: '溶鉄鋳造の破砕撃',
+    colors: ['transparent', '#451a03', '#b45309', '#fbbf24'],
+  },
+  item_steam_vent_thrust: {
+    id: 'item_steam_vent_thrust',
+    name: '蒸気噴射の突撃',
+    colors: ['transparent', '#0f766e', '#5eead4', '#f8fafc'],
+  },
+  item_cooling_steam_mist: {
+    id: 'item_cooling_steam_mist',
+    name: '冷却蒸気の癒霧',
+    colors: ['transparent', '#155e75', '#22d3ee', '#f0f9ff'],
+  },
+  item_forge_pressure_surge: {
+    id: 'item_forge_pressure_surge',
+    name: '蒸気圧の鼓舞',
+    colors: ['transparent', '#7f1d1d', '#ef4444', '#fef08a'],
+  },
+  item_molten_slag_break: {
+    id: 'item_molten_slag_break',
+    name: '溶滓の破甲撃',
+    colors: ['transparent', '#3f3f46', '#a1a1aa', '#f97316'],
+  },
+  item_slag_mold_barrier: {
+    id: 'item_slag_mold_barrier',
+    name: '鋳型鋼の障壁',
+    colors: ['transparent', '#1e3a8a', '#3b82f6', '#bae6fd'],
+  },
+  item_steam_condensate_flask: {
+    id: 'item_steam_condensate_flask',
+    name: '凝縮蒸気の霊水',
+    colors: ['transparent', '#0e7490', '#06b6d4', '#e0f2fe'],
+  },
+  item_molten_core_draught: {
+    id: 'item_molten_core_draught',
+    name: '溶岩核の活性薬',
+    colors: ['transparent', '#7f1d1d', '#dc2626', '#fde047'],
+  },
+  item_steam_pressure_valve_relic: {
+    id: 'item_steam_pressure_valve_relic',
+    name: '蒸気圧の安全弁',
+    colors: ['transparent', '#78350f', '#d97706', '#e0f2fe'],
+  },
+  item_molten_slag_seal_relic: {
+    id: 'item_molten_slag_seal_relic',
+    name: '溶滓の刻印',
+    colors: ['transparent', '#3b0764', '#9333ea', '#a3e635'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1387,6 +1462,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_cinder_slag_elixir: { id: 'item_cinder_slag_elixir', matrixId: 'item_cinder_slag_elixir', defaultPalette: 'item_cinder_slag_elixir' },
   item_forge_cinder_talisman_relic: { id: 'item_forge_cinder_talisman_relic', matrixId: 'item_forge_cinder_talisman_relic', defaultPalette: 'item_forge_cinder_talisman_relic' },
   item_ember_leech_stone_relic: { id: 'item_ember_leech_stone_relic', matrixId: 'item_ember_leech_stone_relic', defaultPalette: 'item_ember_leech_stone_relic' },
+  item_molten_mold_greatsword: { id: 'item_molten_mold_greatsword', matrixId: 'item_molten_mold_greatsword', defaultPalette: 'item_molten_mold_greatsword' },
+  item_steam_piston_lance: { id: 'item_steam_piston_lance', matrixId: 'item_steam_piston_lance', defaultPalette: 'item_steam_piston_lance' },
+  item_slag_mold_cuirass: { id: 'item_slag_mold_cuirass', matrixId: 'item_slag_mold_cuirass', defaultPalette: 'item_slag_mold_cuirass' },
+  item_steam_boiler_plate: { id: 'item_steam_boiler_plate', matrixId: 'item_steam_boiler_plate', defaultPalette: 'item_steam_boiler_plate' },
+  item_lava_pour_slash: { id: 'item_lava_pour_slash', matrixId: 'item_lava_pour_slash', defaultPalette: 'item_lava_pour_slash' },
+  item_molten_cast_impact: { id: 'item_molten_cast_impact', matrixId: 'item_molten_cast_impact', defaultPalette: 'item_molten_cast_impact' },
+  item_steam_vent_thrust: { id: 'item_steam_vent_thrust', matrixId: 'item_steam_vent_thrust', defaultPalette: 'item_steam_vent_thrust' },
+  item_cooling_steam_mist: { id: 'item_cooling_steam_mist', matrixId: 'item_cooling_steam_mist', defaultPalette: 'item_cooling_steam_mist' },
+  item_forge_pressure_surge: { id: 'item_forge_pressure_surge', matrixId: 'item_forge_pressure_surge', defaultPalette: 'item_forge_pressure_surge' },
+  item_molten_slag_break: { id: 'item_molten_slag_break', matrixId: 'item_molten_slag_break', defaultPalette: 'item_molten_slag_break' },
+  item_slag_mold_barrier: { id: 'item_slag_mold_barrier', matrixId: 'item_slag_mold_barrier', defaultPalette: 'item_slag_mold_barrier' },
+  item_steam_condensate_flask: { id: 'item_steam_condensate_flask', matrixId: 'item_steam_condensate_flask', defaultPalette: 'item_steam_condensate_flask' },
+  item_molten_core_draught: { id: 'item_molten_core_draught', matrixId: 'item_molten_core_draught', defaultPalette: 'item_molten_core_draught' },
+  item_steam_pressure_valve_relic: { id: 'item_steam_pressure_valve_relic', matrixId: 'item_steam_pressure_valve_relic', defaultPalette: 'item_steam_pressure_valve_relic' },
+  item_molten_slag_seal_relic: { id: 'item_molten_slag_seal_relic', matrixId: 'item_molten_slag_seal_relic', defaultPalette: 'item_molten_slag_seal_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

@@ -233,6 +233,32 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       };
     },
   },
+  steam_pressure_valve: {
+    id: 'steam_pressure_valve',
+    name: '蒸気圧の安全弁',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'flat_atk_up',
+        value: 8,
+        duration: 3,
+      },
+      logMessage: `[レリック:蒸気圧の安全弁] 高圧蒸気が脈動し、3ターンの間攻撃力が +8 上昇した！`,
+    }),
+  },
+  molten_slag_seal: {
+    id: 'molten_slag_seal',
+    name: '溶滓の刻印',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'poison',
+        value: 10,
+        duration: 3,
+      },
+      logMessage: `[レリック:溶滓の刻印] 溶滓の毒気が立ち昇り、敵に3ターンの間猛毒(10)を付与した！`,
+    }),
+  },
 };
 
 

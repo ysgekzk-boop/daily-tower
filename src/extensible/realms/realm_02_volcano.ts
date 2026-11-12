@@ -203,15 +203,16 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'scrap_automaton', enemyStatScale: 0.91 },
       { type: 'battle', enemyId: 'lava_diver', enemyStatScale: 0.91 },
-      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'event', eventId: 'steam_condenser_basin' },
       { type: 'battle', enemyId: 'steam_venter', enemyStatScale: 0.91 },
       { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.91 },
       { type: 'battle', enemyId: 'scorch_scorpion', enemyStatScale: 0.91 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
@@ -221,14 +222,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     subtitle: '熱風と火花が舞う3連戦エリア',
     encounters: [
       { type: 'battle', enemyId: 'furnace_sprite', enemyStatScale: 0.92 },
-      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'event', eventId: 'molten_pact_crucible' },
       { type: 'battle', enemyId: 'crucible_mimic', enemyStatScale: 0.92 },
       { type: 'battle', enemyId: 'soot_wraith', enemyStatScale: 0.92 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
@@ -244,9 +246,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'obsidian_wasp', enemyStatScale: 0.94 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
@@ -263,9 +266,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'crucible_mimic', enemyStatScale: 0.95 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
@@ -280,9 +284,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'molten_core_sentinel', enemyStatScale: 0.96 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
@@ -293,14 +298,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'furnace_gargoyle', enemyStatScale: 0.97 },
       { type: 'battle', enemyId: 'lava_diver', enemyStatScale: 0.97 },
-      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'event', eventId: 'molten_pact_crucible' },
       { type: 'battle', enemyId: 'steam_venter', enemyStatScale: 0.97 },
       { type: 'battle', enemyId: 'crucible_mimic', enemyStatScale: 0.97 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
@@ -317,9 +323,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'obsidian_wasp', enemyStatScale: 0.99 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
@@ -334,9 +341,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'quarry_troll', enemyStatScale: 1 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
@@ -347,14 +355,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'furnace_gargoyle', enemyStatScale: 1.01 },
       { type: 'battle', enemyId: 'soot_wraith', enemyStatScale: 1.01 },
-      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'event', eventId: 'steam_condenser_basin' },
       { type: 'battle', enemyId: 'obsidian_wasp', enemyStatScale: 1.01 },
       { type: 'battle', enemyId: 'crucible_mimic', enemyStatScale: 1.01 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
@@ -369,9 +378,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'molten_iron_centurion', enemyStatScale: 1.03 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['soot_iron_blade', 'twilight_forge_hammer', 'anvil_guard_plate', 'soot_apron_cuirass', 'molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate'],
+      skillIds: ['anvil_breaker_blow', 'bellows_surge_slash', 'cinder_spark_strike', 'quench_steam_breath', 'slag_shower_sweep', 'soot_cloud_veil', 'tempered_iron_stance', 'lava_pour_slash', 'molten_cast_impact', 'steam_vent_thrust', 'cooling_steam_mist', 'forge_pressure_surge', 'molten_slag_break', 'slag_mold_barrier'],
+      utilityIds: ['ember_leech_stone_relic', 'forge_cinder_talisman_relic', 'steam_pressure_valve_relic', 'molten_slag_seal_relic'],
+      consumableIds: ['cinder_slag_elixir', 'forge_quench_tonic', 'steam_condensate_flask', 'molten_core_draught'],
     },
   },
   {
