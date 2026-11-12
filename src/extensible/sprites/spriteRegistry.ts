@@ -607,6 +607,56 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: 'クルーシブルゴライアス',
     colors: ['transparent', '#18181b', '#b91c1c', '#fbbf24'],
   },
+  heatwave_spirit: {
+    id: 'heatwave_spirit',
+    name: 'ヒートウェーブ・スピリット',
+    colors: ['transparent', '#451a03', '#ea580c', '#fef08a'],
+  },
+  black_fume_demon: {
+    id: 'black_fume_demon',
+    name: 'ブラックヒューム・デーモン',
+    colors: ['transparent', '#09090b', '#27272a', '#ef4444'],
+  },
+  molten_stream_elemental: {
+    id: 'molten_stream_elemental',
+    name: 'モルテンストリーム・エレメンタル',
+    colors: ['transparent', '#7c2d12', '#c2410c', '#fed7aa'],
+  },
+  foundry_colossus: {
+    id: 'foundry_colossus',
+    name: 'ファウンドリー・コロッサス',
+    colors: ['transparent', '#1c1917', '#57534e', '#fb923c'],
+  },
+  core_flux_sentinel: {
+    id: 'core_flux_sentinel',
+    name: 'コアフラックス・センチネル',
+    colors: ['transparent', '#0f172a', '#334155', '#38bdf8'],
+  },
+  steam_press_hound: {
+    id: 'steam_press_hound',
+    name: 'スチームプレス・ハウンド',
+    colors: ['transparent', '#1c1917', '#78350f', '#f59e0b'],
+  },
+  sinter_slag_beetle: {
+    id: 'sinter_slag_beetle',
+    name: 'シンタースラグ・ビートル',
+    colors: ['transparent', '#18181b', '#52525b', '#eab308'],
+  },
+  core_magma_weaver: {
+    id: 'core_magma_weaver',
+    name: 'コアマグマ・ウィーバー',
+    colors: ['transparent', '#3b0764', '#701a75', '#f43f5e'],
+  },
+  core_reactor_guardian: {
+    id: 'core_reactor_guardian',
+    name: 'コアリアクター・ガーディアン',
+    colors: ['transparent', '#022c22', '#065f46', '#34d399'],
+  },
+  core_foundry_overlord: {
+    id: 'core_foundry_overlord',
+    name: 'コアフォージ・オーバーロード',
+    colors: ['transparent', '#111827', '#991b1b', '#f59e0b'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -733,6 +783,16 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   hearth_custodian: { id: 'hearth_custodian', matrixId: 'hearth_custodian', defaultPalette: 'hearth_custodian' },
   obsidian_core_guardian: { id: 'obsidian_core_guardian', matrixId: 'obsidian_core_guardian', defaultPalette: 'obsidian_core_guardian' },
   crucible_iron_goliath: { id: 'crucible_iron_goliath', matrixId: 'crucible_iron_goliath', defaultPalette: 'crucible_iron_goliath' },
+  heatwave_spirit: { id: 'heatwave_spirit', matrixId: 'heatwave_spirit', defaultPalette: 'heatwave_spirit' },
+  black_fume_demon: { id: 'black_fume_demon', matrixId: 'black_fume_demon', defaultPalette: 'black_fume_demon' },
+  molten_stream_elemental: { id: 'molten_stream_elemental', matrixId: 'molten_stream_elemental', defaultPalette: 'molten_stream_elemental' },
+  foundry_colossus: { id: 'foundry_colossus', matrixId: 'foundry_colossus', defaultPalette: 'foundry_colossus' },
+  core_flux_sentinel: { id: 'core_flux_sentinel', matrixId: 'core_flux_sentinel', defaultPalette: 'core_flux_sentinel' },
+  steam_press_hound: { id: 'steam_press_hound', matrixId: 'steam_press_hound', defaultPalette: 'steam_press_hound' },
+  sinter_slag_beetle: { id: 'sinter_slag_beetle', matrixId: 'sinter_slag_beetle', defaultPalette: 'sinter_slag_beetle' },
+  core_magma_weaver: { id: 'core_magma_weaver', matrixId: 'core_magma_weaver', defaultPalette: 'core_magma_weaver' },
+  core_reactor_guardian: { id: 'core_reactor_guardian', matrixId: 'core_reactor_guardian', defaultPalette: 'core_reactor_guardian' },
+  core_foundry_overlord: { id: 'core_foundry_overlord', matrixId: 'core_foundry_overlord', defaultPalette: 'core_foundry_overlord' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
