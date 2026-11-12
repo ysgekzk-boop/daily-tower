@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { PixelSpriteCanvas } from './PixelSpriteCanvas';
 import { playSfx } from '../utils/sound';
 
@@ -13,6 +13,8 @@ interface TitleScreenProps {
   playerPaletteId: string;
   onContinue: () => void;
   onReset: () => void;
+  /** Non-combat menus (bestiary / wardrobe & records / glossary / sound) rendered under the main buttons. */
+  metaMenu?: ReactNode;
 }
 
 const HOW_TO_PLAY: { icon: string; text: string }[] = [
@@ -34,6 +36,7 @@ export function TitleScreen({
   playerPaletteId,
   onContinue,
   onReset,
+  metaMenu,
 }: TitleScreenProps) {
   const [confirmingReset, setConfirmingReset] = useState(false);
 
@@ -133,6 +136,10 @@ export function TitleScreen({
               </button>
             ))}
         </div>
+
+        {metaMenu && (
+          <div className="mt-2.5 grid w-full max-w-sm grid-cols-2 gap-2.5">{metaMenu}</div>
+        )}
 
         <div className="mt-8 w-full rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-left backdrop-blur">
           <h2 className="text-xs font-extrabold tracking-wider text-amber-300">遊び方</h2>

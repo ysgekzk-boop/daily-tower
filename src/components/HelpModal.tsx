@@ -36,7 +36,7 @@ const BASICS: { title: string; body: string }[] = [
   },
 ];
 
-export function HelpModal() {
+export function HelpModal({ variant = 'header' }: { variant?: 'header' | 'title' }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
 
@@ -51,7 +51,11 @@ export function HelpModal() {
       <button
         type="button"
         onClick={openModal}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-sky-500/40 bg-sky-950/50 px-3 py-1.5 text-xs font-semibold text-sky-200 transition hover:bg-sky-900/60 cursor-pointer"
+        className={
+          variant === 'title'
+            ? 'flex w-full items-center justify-center gap-1.5 rounded-2xl border border-sky-500/40 bg-sky-950/50 px-4 py-2.5 text-sm font-bold text-sky-200 transition hover:bg-sky-900/60 cursor-pointer'
+            : 'inline-flex items-center gap-1.5 rounded-lg border border-sky-500/40 bg-sky-950/50 px-3 py-1.5 text-xs font-semibold text-sky-200 transition hover:bg-sky-900/60 cursor-pointer'
+        }
       >
         <span>📖 用語集</span>
       </button>

@@ -11,6 +11,7 @@ interface WardrobeArchiveModalProps {
   cosmeticCatalog: CosmeticItem[];
   archive: RunArchiveRecord[];
   onSelectCosmetic: (item: CosmeticItem) => void;
+  variant?: 'header' | 'title';
 }
 
 export function WardrobeArchiveModal({
@@ -22,6 +23,7 @@ export function WardrobeArchiveModal({
   cosmeticCatalog,
   archive,
   onSelectCosmetic,
+  variant = 'header',
 }: WardrobeArchiveModalProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const titleId = useId();
@@ -76,7 +78,11 @@ export function WardrobeArchiveModal({
       <button
         type="button"
         onClick={openModal}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-fuchsia-500/40 bg-fuchsia-950/50 px-3 py-1.5 text-xs font-semibold text-fuchsia-200 transition hover:bg-fuchsia-900/60 cursor-pointer"
+        className={
+          variant === 'title'
+            ? 'flex w-full items-center justify-center gap-1.5 rounded-2xl border border-fuchsia-500/40 bg-fuchsia-950/50 px-4 py-2.5 text-sm font-bold text-fuchsia-200 transition hover:bg-fuchsia-900/60 cursor-pointer'
+            : 'inline-flex items-center gap-1.5 rounded-lg border border-fuchsia-500/40 bg-fuchsia-950/50 px-3 py-1.5 text-xs font-semibold text-fuchsia-200 transition hover:bg-fuchsia-900/60 cursor-pointer'
+        }
       >
         <span>💎 聖堂・記録</span>
       </button>

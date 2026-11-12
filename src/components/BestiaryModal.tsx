@@ -7,9 +7,10 @@ import { PixelSpriteCanvas } from './PixelSpriteCanvas';
 interface BestiaryModalProps {
   bestiary?: Record<string, { seen: number; defeated: number }>;
   achievements?: Record<string, true>;
+  variant?: 'header' | 'title';
 }
 
-export function BestiaryModal({ bestiary = {}, achievements = {} }: BestiaryModalProps) {
+export function BestiaryModal({ bestiary = {}, achievements = {}, variant = 'header' }: BestiaryModalProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const titleId = useId();
   const [activeTab, setActiveTab] = useState<'bestiary' | 'achievements'>('bestiary');
@@ -66,7 +67,11 @@ export function BestiaryModal({ bestiary = {}, achievements = {} }: BestiaryModa
       <button
         type="button"
         onClick={openModal}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-950/50 px-3 py-1.5 text-xs font-semibold text-amber-200 transition hover:bg-amber-900/60 cursor-pointer"
+        className={
+          variant === 'title'
+            ? 'flex w-full items-center justify-center gap-1.5 rounded-2xl border border-amber-500/40 bg-amber-950/50 px-4 py-2.5 text-sm font-bold text-amber-200 transition hover:bg-amber-900/60 cursor-pointer'
+            : 'inline-flex items-center gap-1.5 rounded-lg border border-amber-500/40 bg-amber-950/50 px-3 py-1.5 text-xs font-semibold text-amber-200 transition hover:bg-amber-900/60 cursor-pointer'
+        }
       >
         <span>📕 図鑑・実績</span>
       </button>

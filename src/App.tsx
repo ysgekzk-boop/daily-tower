@@ -375,6 +375,37 @@ export function App() {
           resetSave();
           setShowTitle(false);
         }}
+        metaMenu={
+          <>
+            <BestiaryModal
+              variant="title"
+              bestiary={saveData.bestiary}
+              achievements={saveData.achievements}
+            />
+            <WardrobeArchiveModal
+              variant="title"
+              cosmeticGems={saveData.cosmeticGems}
+              unlockedCosmetics={saveData.unlockedCosmetics}
+              activeSkinSpriteId={saveData.activeSkinSpriteId}
+              activeSkinPaletteId={saveData.activeSkinPaletteId}
+              activeTitle={saveData.activeTitle}
+              cosmeticCatalog={cosmeticCatalog}
+              archive={saveData.archive}
+              onSelectCosmetic={unlockOrEquipCosmetic}
+            />
+            <HelpModal variant="title" />
+            <button
+              type="button"
+              onClick={toggleMute}
+              aria-label={isMuted ? '効果音をONにする' : '効果音をミュートにする'}
+              title={isMuted ? '効果音をONにする' : '効果音をミュートにする'}
+              className="flex w-full items-center justify-center gap-1.5 rounded-2xl border border-slate-600/60 bg-slate-800/60 px-4 py-2.5 text-sm font-bold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer"
+            >
+              <span aria-hidden="true">{isMuted ? '🔇' : '🔊'}</span>
+              効果音{isMuted ? ' OFF' : ' ON'}
+            </button>
+          </>
+        }
       />
     );
   }
