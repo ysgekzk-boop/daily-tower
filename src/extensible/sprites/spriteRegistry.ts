@@ -1077,6 +1077,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '樹冠の聖環',
     colors: ['transparent', '#78350f', '#fbbf24', '#4ade80'],
   },
+  item_twilight_forge_hammer: {
+    id: 'item_twilight_forge_hammer',
+    name: '黄昏鍛冶の戦鎚',
+    colors: ['transparent', '#451a03', '#b45309', '#fb923c'],
+  },
+  item_soot_iron_blade: {
+    id: 'item_soot_iron_blade',
+    name: '煤鉄の黒刀',
+    colors: ['transparent', '#0f172a', '#334155', '#a855f7'],
+  },
+  item_anvil_guard_plate: {
+    id: 'item_anvil_guard_plate',
+    name: '金床守りの重鎧',
+    colors: ['transparent', '#1e293b', '#475569', '#f59e0b'],
+  },
+  item_soot_apron_cuirass: {
+    id: 'item_soot_apron_cuirass',
+    name: '煤纏いの炉鎧',
+    colors: ['transparent', '#1c1917', '#57534e', '#ef4444'],
+  },
+  item_cinder_spark_strike: {
+    id: 'item_cinder_spark_strike',
+    name: '炉火の粉斬り',
+    colors: ['transparent', '#7c2d12', '#ea580c', '#fde047'],
+  },
+  item_anvil_breaker_blow: {
+    id: 'item_anvil_breaker_blow',
+    name: '金床砕きの重撃',
+    colors: ['transparent', '#1e293b', '#64748b', '#fb923c'],
+  },
+  item_bellows_surge_slash: {
+    id: 'item_bellows_surge_slash',
+    name: 'ふいごの疾風斬',
+    colors: ['transparent', '#7f1d1d', '#dc2626', '#fef08a'],
+  },
+  item_quench_steam_breath: {
+    id: 'item_quench_steam_breath',
+    name: '焼き入れの蒸気',
+    colors: ['transparent', '#0f766e', '#2dd4bf', '#f0fdfa'],
+  },
+  item_tempered_iron_stance: {
+    id: 'item_tempered_iron_stance',
+    name: '鍛鋼の構え',
+    colors: ['transparent', '#334155', '#94a3b8', '#fde047'],
+  },
+  item_soot_cloud_veil: {
+    id: 'item_soot_cloud_veil',
+    name: '煤煙の目晦まし',
+    colors: ['transparent', '#18181b', '#52525b', '#f97316'],
+  },
+  item_slag_shower_sweep: {
+    id: 'item_slag_shower_sweep',
+    name: '灼熱鉱滓の乱舞',
+    colors: ['transparent', '#7c2d12', '#f97316', '#fef08a'],
+  },
+  item_forge_quench_tonic: {
+    id: 'item_forge_quench_tonic',
+    name: '焼き入れの霊薬',
+    colors: ['transparent', '#115e59', '#14b8a6', '#e0f2fe'],
+  },
+  item_cinder_slag_elixir: {
+    id: 'item_cinder_slag_elixir',
+    name: '炉心の灰汁薬',
+    colors: ['transparent', '#7f1d1d', '#ef4444', '#fde047'],
+  },
+  item_forge_cinder_talisman_relic: {
+    id: 'item_forge_cinder_talisman_relic',
+    name: '炉火の護符',
+    colors: ['transparent', '#7c2d12', '#ea580c', '#fef08a'],
+  },
+  item_ember_leech_stone_relic: {
+    id: 'item_ember_leech_stone_relic',
+    name: '熾火の吸魂石',
+    colors: ['transparent', '#450a0a', '#b91c1c', '#fb923c'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1297,6 +1372,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_canopy_seed_balm: { id: 'item_canopy_seed_balm', matrixId: 'item_canopy_seed_balm', defaultPalette: 'item_canopy_seed_balm' },
   item_worldtree_seed_heart_relic: { id: 'item_worldtree_seed_heart_relic', matrixId: 'item_worldtree_seed_heart_relic', defaultPalette: 'item_worldtree_seed_heart_relic' },
   item_canopy_crown_relic: { id: 'item_canopy_crown_relic', matrixId: 'item_canopy_crown_relic', defaultPalette: 'item_canopy_crown_relic' },
+  item_twilight_forge_hammer: { id: 'item_twilight_forge_hammer', matrixId: 'item_twilight_forge_hammer', defaultPalette: 'item_twilight_forge_hammer' },
+  item_soot_iron_blade: { id: 'item_soot_iron_blade', matrixId: 'item_soot_iron_blade', defaultPalette: 'item_soot_iron_blade' },
+  item_anvil_guard_plate: { id: 'item_anvil_guard_plate', matrixId: 'item_anvil_guard_plate', defaultPalette: 'item_anvil_guard_plate' },
+  item_soot_apron_cuirass: { id: 'item_soot_apron_cuirass', matrixId: 'item_soot_apron_cuirass', defaultPalette: 'item_soot_apron_cuirass' },
+  item_cinder_spark_strike: { id: 'item_cinder_spark_strike', matrixId: 'item_cinder_spark_strike', defaultPalette: 'item_cinder_spark_strike' },
+  item_anvil_breaker_blow: { id: 'item_anvil_breaker_blow', matrixId: 'item_anvil_breaker_blow', defaultPalette: 'item_anvil_breaker_blow' },
+  item_bellows_surge_slash: { id: 'item_bellows_surge_slash', matrixId: 'item_bellows_surge_slash', defaultPalette: 'item_bellows_surge_slash' },
+  item_quench_steam_breath: { id: 'item_quench_steam_breath', matrixId: 'item_quench_steam_breath', defaultPalette: 'item_quench_steam_breath' },
+  item_tempered_iron_stance: { id: 'item_tempered_iron_stance', matrixId: 'item_tempered_iron_stance', defaultPalette: 'item_tempered_iron_stance' },
+  item_soot_cloud_veil: { id: 'item_soot_cloud_veil', matrixId: 'item_soot_cloud_veil', defaultPalette: 'item_soot_cloud_veil' },
+  item_slag_shower_sweep: { id: 'item_slag_shower_sweep', matrixId: 'item_slag_shower_sweep', defaultPalette: 'item_slag_shower_sweep' },
+  item_forge_quench_tonic: { id: 'item_forge_quench_tonic', matrixId: 'item_forge_quench_tonic', defaultPalette: 'item_forge_quench_tonic' },
+  item_cinder_slag_elixir: { id: 'item_cinder_slag_elixir', matrixId: 'item_cinder_slag_elixir', defaultPalette: 'item_cinder_slag_elixir' },
+  item_forge_cinder_talisman_relic: { id: 'item_forge_cinder_talisman_relic', matrixId: 'item_forge_cinder_talisman_relic', defaultPalette: 'item_forge_cinder_talisman_relic' },
+  item_ember_leech_stone_relic: { id: 'item_ember_leech_stone_relic', matrixId: 'item_ember_leech_stone_relic', defaultPalette: 'item_ember_leech_stone_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

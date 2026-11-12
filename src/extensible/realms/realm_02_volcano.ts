@@ -16,14 +16,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'slag_crawler', enemyStatScale: 0.78 },
       { type: 'battle', enemyId: 'forge_imp', enemyStatScale: 0.78 },
-      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'event', eventId: 'twilight_anvil_forge' },
       { type: 'battle', enemyId: 'scrap_automaton', enemyStatScale: 0.78 },
       { type: 'battle', enemyId: 'cinder_golem', enemyStatScale: 0.78 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {
@@ -40,9 +41,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'iron_drill_beetle', enemyStatScale: 0.79 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {
@@ -52,14 +54,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     subtitle: '熱風と火花が舞う3連戦エリア',
     encounters: [
       { type: 'battle', enemyId: 'forge_imp', enemyStatScale: 0.81 },
-      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'event', eventId: 'twilight_slag_spring' },
       { type: 'battle', enemyId: 'cinder_hound', enemyStatScale: 0.81 },
       { type: 'battle', enemyId: 'magma_slime', enemyStatScale: 0.81 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {
@@ -75,9 +78,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['slag_crawler', 'forge_imp'], enemyStatScale: 0.82 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {
@@ -92,9 +96,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'barrier_sentry_golem', enemyStatScale: 0.83 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {
@@ -109,9 +114,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'cinder_hound', enemyStatScale: 0.84 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {
@@ -127,9 +133,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['cinder_hound', 'forge_imp'], enemyStatScale: 0.86 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {
@@ -146,9 +153,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'scrap_automaton', enemyStatScale: 0.87 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {
@@ -163,9 +171,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['forge_imp', 'slag_crawler', 'iron_drill_beetle'], enemyStatScale: 0.88 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {
@@ -180,9 +189,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'furnace_overseer', enemyStatScale: 0.9 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate', 'twilight_forge_hammer', 'soot_iron_blade', 'anvil_guard_plate', 'soot_apron_cuirass'],
+      skillIds: ['flame_wave', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'frost_lance', 'cinder_spark_strike', 'anvil_breaker_blow', 'bellows_surge_slash', 'quench_steam_breath', 'tempered_iron_stance', 'soot_cloud_veil', 'slag_shower_sweep'],
+      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'golden_compass_relic', 'venom_gland_relic', 'berserker_idol_relic', 'forge_cinder_talisman_relic', 'ember_leech_stone_relic'],
+      consumableIds: ['crimson_vial', 'ambrosia_flask', 'canopy_seed_balm', 'worldtree_nectar', 'forge_quench_tonic', 'cinder_slag_elixir'],
     },
   },
   {

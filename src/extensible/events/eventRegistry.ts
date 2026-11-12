@@ -692,6 +692,81 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  twilight_anvil_forge: {
+    id: 'twilight_anvil_forge',
+    title: '黄昏の金床鍛冶場',
+    category: 'forge',
+    description:
+      '製鉄所の入口に据えられた巨大な金床の前で、煤にまみれた鍛冶師が赤熱の鉄を打っている。「黄昏の炉は絶えぬ。金貨を出すなら、業物の武具を譲ってやろう」',
+    speakerSpriteId: 'hero_knight',
+    palette: 'steel_knight',
+    options: [
+      {
+        id: 'buy_forge_weapon',
+        label: '炉鍛えの武器を購入する（45 G ➔ 武器獲得）',
+        description: '45 Gを支払い、鍛冶場で打ち上げられた武器を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'weapon',
+          logMessage: '金床の鍛冶師から炉熱を帯びた業物の武器を受け取った！',
+        },
+      },
+      {
+        id: 'buy_forge_armor',
+        label: '厚鉄の防具を購入する（45 G ➔ 防具獲得）',
+        description: '45 Gを支払い、鍛冶場で叩き締めた堅牢な防具を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'armor',
+          logMessage: '金床の鍛冶師から煤鉄の重厚な防具を受け取った！',
+        },
+      },
+      {
+        id: 'assist_forge_bellows',
+        label: '炉のふいごを手伝う（+25 G）',
+        description: '炉に風を送り火力を保ち、手間賃を受け取る。',
+        outcome: {
+          grantGold: 25,
+          logMessage: '炉のふいご作業を手伝い、礼として 25 G を受け取った！',
+        },
+      },
+    ],
+  },
+
+  twilight_slag_spring: {
+    id: 'twilight_slag_spring',
+    title: '鍛冶場の冷却水槽',
+    category: 'shrine',
+    description:
+      '製鉄所の片隅に、焼き入れ用の澄んだ地下水が湛えられた石槽がある。冷気を含んだ水面は熱気を和らげ、底には古い金貨が沈んでいる。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_cooling_water',
+        label: '清涼な湧水を飲む（HP 35%回復）',
+        description: '冷たい水で渇きを癒やし、煤と疲労を洗い流す。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '冷却槽の澄んだ湧水を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_slag_coins',
+        label: '槽の底の金貨を拾う（+35 G）',
+        description: '底に沈んだ金貨を素早く掬い上げる。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '水槽の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
 };
 
 

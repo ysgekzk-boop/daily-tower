@@ -208,6 +208,31 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       };
     },
   },
+  forge_cinder_talisman: {
+    id: 'forge_cinder_talisman',
+    name: '炉火の護符',
+    trigger: 'on_skill_use',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'burn',
+        value: 10,
+        duration: 3,
+      },
+      logMessage: `[レリック:炉火の護符] スキル発動に呼応し、炉の火の粉が敵に火傷(最大HP10%/3T)を付与した！`,
+    }),
+  },
+  ember_leech_stone: {
+    id: 'ember_leech_stone',
+    name: '熾火の吸魂石',
+    trigger: 'on_attack',
+    handler: (ctx) => {
+      const heal = Math.max(3, Math.floor(ctx.playerMaxHp * 0.05));
+      return {
+        healPlayer: heal,
+        logMessage: `[レリック:熾火の吸魂石] 赤熱石が脈動し、攻撃時にHPを ${heal} 回復した！`,
+      };
+    },
+  },
 };
 
 
