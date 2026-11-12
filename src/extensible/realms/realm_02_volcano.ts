@@ -531,7 +531,7 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     title: '第80層：熔鉄の防衛隔壁',
     subtitle: '強固な装甲を持つ守護者が行く手を阻む',
     encounters: [
-      { type: 'battle', enemyId: 'obsidian_beast', enemyStatScale: 1.16 },
+      { type: 'battle', enemyId: 'ashfall_wraith', enemyStatScale: 1.16 },
       { type: 'battle', enemyId: 'crucible_knight', enemyStatScale: 1.16 },
       { type: 'event', eventId: 'sanctuary_campfire' },
       { type: 'miniboss', enemyId: 'crucible_iron_goliath', enemyStatScale: 1.16 },
