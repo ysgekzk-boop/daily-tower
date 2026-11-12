@@ -68,6 +68,13 @@ my_golem: {
 ### 2.4 Adding Skills, Weapons, Armors & Relics (`src/extensible/items/itemCatalog.ts`)
 - Skills must declare `maxChargesPerBattle: number` (1 to 3 uses per combat).
 - Relics must declare an `effectId` matching an entry in `src/extensible/effects/effectRegistry.ts`.
+- Every item must declare a `spriteId` of the form `item_<item id>` (see §2.7). `tests/item_sprites.test.ts` fails when an item has no registered sprite.
+
+### 2.7 Item Sprites (`src/extensible/sprites/`)
+- Items are drawn with the same pixel-sprite system as enemies: an 8×8 grid in `MATRIX_REGISTRY` (`src/extensible/sprites/matrixRegistry.ts`), a 4-color palette in `PALETTE_REGISTRY`, and an entry in `SPRITE_REGISTRY` (`src/extensible/sprites/spriteRegistry.ts`), all keyed `item_<item id>`.
+- Grid values: 0 = transparent, 1 = dark tone / outline, 2 = main fill, 3 = highlight / accent. Palette `colors` follow the same order (`['transparent', dark, main, accent]`).
+- Style rules for a consistent look: one centered silhouette per icon, readable at 24px; bladed weapons use a diagonal composition (tip top-right, handle bottom-left); armor uses a torso silhouette; keep the accent color (index 3) to small details — gems, glows, buckles, drops.
+- When adding an item, add its matrix + palette + sprite entry in the same change, and eyeball it next to the existing item sprites (a contact sheet) before committing.
 
 ### 2.5 Multi-Enemy Battles & AoE Skills
 - A battle encounter may list `enemyIds: string[]` (1–3 enemies) instead of a single `enemyId`. The player selects a target for single-target attacks/skills; each enemy keeps its own HP, statuses and AI phases and acts in encounter order. Victory requires defeating **all** enemies; gold rewards are summed. Miniboss and Apex encounters stay solo.

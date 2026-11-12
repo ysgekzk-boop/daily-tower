@@ -5,6 +5,7 @@ export interface WeaponItem {
   id: string;
   name: string;
   kind: 'weapon';
+  spriteId: string;
   atk: number;
   element: ElementType;
   salvageGold: number;
@@ -15,6 +16,7 @@ export interface ArmorItem {
   id: string;
   name: string;
   kind: 'armor';
+  spriteId: string;
   def: number;
   maxHpBonus: number;
   salvageGold: number;
@@ -32,6 +34,7 @@ export interface SkillItem {
   id: string;
   name: string;
   kind: 'skill';
+  spriteId: string;
   category: SkillCategory;
   maxChargesPerBattle: number; // 1 to 3 uses per battle
   /**
@@ -52,6 +55,7 @@ export interface ConsumableItem {
   id: string;
   name: string;
   kind: 'consumable';
+  spriteId: string;
   maxCharges: number; // 2 to 3 scarce charges
   healPercent?: number;
   cleanse?: boolean;
@@ -63,6 +67,7 @@ export interface RelicItem {
   id: string;
   name: string;
   kind: 'relic';
+  spriteId: string;
   effectId: string;
   salvageGold: number;
   description: string;
@@ -80,6 +85,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     id: 'rusty_shortsword',
     name: '旅立ちの短剣',
     kind: 'weapon',
+    spriteId: 'item_rusty_shortsword',
     atk: 12,
     element: 'physical',
     salvageGold: 10,
@@ -89,6 +95,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     id: 'verdant_blade',
     name: '翠樹の長剣',
     kind: 'weapon',
+    spriteId: 'item_verdant_blade',
     atk: 18,
     element: 'nature',
     salvageGold: 25,
@@ -98,6 +105,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     id: 'thorn_halberd',
     name: '茨のハルバード',
     kind: 'weapon',
+    spriteId: 'item_thorn_halberd',
     atk: 25,
     element: 'nature',
     salvageGold: 40,
@@ -107,6 +115,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     id: 'ember_greatsword',
     name: '熾火の大剣',
     kind: 'weapon',
+    spriteId: 'item_ember_greatsword',
     atk: 34,
     element: 'fire',
     salvageGold: 60,
@@ -116,6 +125,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     id: 'obsidian_reaver',
     name: '黒曜の断罪刃',
     kind: 'weapon',
+    spriteId: 'item_obsidian_reaver',
     atk: 46,
     element: 'void',
     salvageGold: 90,
@@ -125,6 +135,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     id: 'stargazer_silver_sword',
     name: '星見の銀剣',
     kind: 'weapon',
+    spriteId: 'item_stargazer_silver_sword',
     atk: 14,
     element: 'void',
     salvageGold: 20,
@@ -137,6 +148,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     id: 'leather_tunic',
     name: '冒険者の革鎧',
     kind: 'armor',
+    spriteId: 'item_leather_tunic',
     def: 4,
     maxHpBonus: 0,
     salvageGold: 10,
@@ -146,6 +158,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     id: 'bark_cuirass',
     name: '古樹の胸甲',
     kind: 'armor',
+    spriteId: 'item_bark_cuirass',
     def: 7,
     maxHpBonus: 25,
     salvageGold: 25,
@@ -155,6 +168,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     id: 'ironwood_plate',
     name: '鉄木の重装鎧',
     kind: 'armor',
+    spriteId: 'item_ironwood_plate',
     def: 11,
     maxHpBonus: 55,
     salvageGold: 45,
@@ -164,6 +178,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     id: 'cinder_mail',
     name: '灰燼の鎖帷子',
     kind: 'armor',
+    spriteId: 'item_cinder_mail',
     def: 16,
     maxHpBonus: 90,
     salvageGold: 65,
@@ -173,6 +188,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     id: 'librarian_robe',
     name: '司書の法衣',
     kind: 'armor',
+    spriteId: 'item_librarian_robe',
     def: 5,
     maxHpBonus: 15,
     salvageGold: 20,
@@ -185,6 +201,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'power_slash',
     name: '渾身斬り',
     kind: 'skill',
+    spriteId: 'item_power_slash',
     category: 'attack',
     maxChargesPerBattle: 2,
     damageMultiplier: 1.75,
@@ -195,6 +212,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'flame_burst',
     name: '紅蓮撃',
     kind: 'skill',
+    spriteId: 'item_flame_burst',
     category: 'attack',
     maxChargesPerBattle: 2,
     damageMultiplier: 1.4,
@@ -211,6 +229,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'flame_wave',
     name: '炎の波動',
     kind: 'skill',
+    spriteId: 'item_flame_wave',
     category: 'attack',
     maxChargesPerBattle: 2,
     targetScope: 'all_enemies',
@@ -222,6 +241,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'frost_lance',
     name: '氷結の槍',
     kind: 'skill',
+    spriteId: 'item_frost_lance',
     category: 'debuff',
     maxChargesPerBattle: 1,
     damageMultiplier: 1.2,
@@ -238,6 +258,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'armor_crush',
     name: '破甲撃',
     kind: 'skill',
+    spriteId: 'item_armor_crush',
     category: 'debuff',
     maxChargesPerBattle: 2,
     damageMultiplier: 1.25,
@@ -254,6 +275,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'venom_strike',
     name: '蛇毒の牙',
     kind: 'skill',
+    spriteId: 'item_venom_strike',
     category: 'debuff',
     maxChargesPerBattle: 3,
     damageMultiplier: 1.1,
@@ -270,6 +292,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'aegis_stance',
     name: 'イージス障壁',
     kind: 'skill',
+    spriteId: 'item_aegis_stance',
     category: 'buff',
     maxChargesPerBattle: 2,
     applyStatus: {
@@ -285,6 +308,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'war_cry',
     name: '戦いの咆哮',
     kind: 'skill',
+    spriteId: 'item_war_cry',
     category: 'buff',
     maxChargesPerBattle: 2,
     applyStatus: {
@@ -300,6 +324,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'purifying_light',
     name: '浄化の祈り',
     kind: 'skill',
+    spriteId: 'item_purifying_light',
     category: 'heal',
     maxChargesPerBattle: 1,
     healPercent: 32,
@@ -311,6 +336,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     id: 'chrono_flip',
     name: 'ページめくり',
     kind: 'skill',
+    spriteId: 'item_chrono_flip',
     category: 'debuff',
     maxChargesPerBattle: 2,
     damageMultiplier: 1.5,
@@ -330,6 +356,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     id: 'crimson_vial',
     name: '紅玉の霊薬',
     kind: 'consumable',
+    spriteId: 'item_crimson_vial',
     maxCharges: 2,
     healPercent: 50,
     cleanse: true,
@@ -339,6 +366,7 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     id: 'ambrosia_flask',
     name: '神樹の雫',
     kind: 'consumable',
+    spriteId: 'item_ambrosia_flask',
     maxCharges: 3,
     healPercent: 45,
     applyStatus: {
@@ -356,6 +384,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     id: 'vampiric_fang_relic',
     name: '吸血の牙',
     kind: 'relic',
+    spriteId: 'item_vampiric_fang_relic',
     effectId: 'vampiric_fang',
     salvageGold: 40,
     description: '通常攻撃を行うたび、最大HPの4%を回復する。',
@@ -364,6 +393,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     id: 'guardian_crest_relic',
     name: '守護者の紋章',
     kind: 'relic',
+    spriteId: 'item_guardian_crest_relic',
     effectId: 'guardian_crest',
     salvageGold: 40,
     description: '各バトルの開始時、最大HPの15%分の障壁を自動的に展開する。',
@@ -372,6 +402,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     id: 'berserker_idol_relic',
     name: '狂戦士の彫像',
     kind: 'relic',
+    spriteId: 'item_berserker_idol_relic',
     effectId: 'berserker_idol',
     salvageGold: 45,
     description: '各バトルの開始時、3ターンの間攻撃力+25%を得る。',
@@ -380,6 +411,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     id: 'venom_gland_relic',
     name: '猛毒腺の護符',
     kind: 'relic',
+    spriteId: 'item_venom_gland_relic',
     effectId: 'venom_gland',
     salvageGold: 45,
     description: 'スキルを使用するたび、敵に猛毒(8)を追加付与する。',
@@ -388,6 +420,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     id: 'golden_compass_relic',
     name: '黄金の羅針盤',
     kind: 'relic',
+    spriteId: 'item_golden_compass_relic',
     effectId: 'golden_compass',
     salvageGold: 35,
     description: 'バトル勝利時に獲得するゴールドが +15 増加する。',
@@ -396,6 +429,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     id: 'bookmark_charm_relic',
     name: '栞の護符',
     kind: 'relic',
+    spriteId: 'item_bookmark_charm_relic',
     effectId: 'bookmark_charm',
     salvageGold: 40,
     description: '各バトルの1ターン目の攻撃時、+15%相当の追加ダメージを与える。',

@@ -6,6 +6,7 @@ import { BestiaryModal } from './components/BestiaryModal';
 import { HelpModal } from './components/HelpModal';
 import { TitleScreen } from './components/TitleScreen';
 import { WardrobeArchiveModal } from './components/WardrobeArchiveModal';
+import { PixelSpriteCanvas } from './components/PixelSpriteCanvas';
 import { ACHIEVEMENTS } from './extensible/achievements/achievements';
 import { useGameStore } from './store/useGameStore';
 import { isSfxMuted, playSfx, setSfxMuted, SfxName, unlockAudio } from './utils/sound';
@@ -571,13 +572,20 @@ export function App() {
                         onClick={() => handleCombatAction({ type: 'attack' })}
                         className="col-span-2 flex items-center justify-between rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-left transition hover:border-amber-400 hover:bg-slate-800/90 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer sm:col-span-1"
                       >
-                        <div className="min-w-0">
-                          <span className="block truncate font-extrabold text-sm text-amber-300">
-                            🗡️ たたかう（{saveData.inventory.weapon.name}）
-                          </span>
-                          <p className="text-[11px] text-slate-400">
-                            通常攻撃（ATK {saveData.inventory.weapon.atk}）
-                          </p>
+                        <div className="flex min-w-0 items-center gap-2">
+                          <PixelSpriteCanvas
+                            spriteId={saveData.inventory.weapon.spriteId}
+                            scale={3}
+                            className="shrink-0"
+                          />
+                          <div className="min-w-0">
+                            <span className="block font-extrabold text-sm text-amber-300">
+                              たたかう
+                            </span>
+                            <p className="truncate text-[11px] text-slate-400">
+                              {saveData.inventory.weapon.name}（ATK {saveData.inventory.weapon.atk}）
+                            </p>
+                          </div>
                         </div>
                         <span className="ml-2 shrink-0 whitespace-nowrap rounded bg-slate-800 px-2 py-0.5 text-[11px] font-bold text-slate-300">
                           回数無制限
@@ -601,8 +609,15 @@ export function App() {
                             className="flex flex-col justify-between rounded-xl border border-indigo-500/35 bg-indigo-950/35 px-3.5 py-2 text-left transition hover:border-indigo-400 hover:bg-indigo-900/45 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
                           >
                             <div className="flex items-center justify-between gap-1">
-                              <span className="font-bold text-xs text-slate-100">
-                                {skill ? `✨ ${skill.name}` : '―'}
+                              <span className="flex min-w-0 items-center gap-1.5 font-bold text-xs text-slate-100">
+                                {skill && (
+                                  <PixelSpriteCanvas
+                                    spriteId={skill.spriteId}
+                                    scale={3}
+                                    className="shrink-0"
+                                  />
+                                )}
+                                <span className="truncate">{skill ? skill.name : '―'}</span>
                               </span>
                               {skill?.targetScope === 'all_enemies' && (
                                 <span className="shrink-0 rounded bg-rose-500/30 px-1.5 py-0.5 text-[10px] font-bold text-rose-200">
@@ -640,8 +655,17 @@ export function App() {
                         className="flex flex-col justify-between rounded-xl border border-emerald-500/35 bg-emerald-950/30 px-3.5 py-2 text-left transition hover:border-emerald-400 hover:bg-emerald-900/40 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
                       >
                         <div className="flex items-center justify-between gap-1">
-                          <span className="font-bold text-xs text-emerald-200">
-                            🧪 {saveData.inventory.consumable?.name ?? '秘薬なし'}
+                          <span className="flex min-w-0 items-center gap-1.5 font-bold text-xs text-emerald-200">
+                            {saveData.inventory.consumable && (
+                              <PixelSpriteCanvas
+                                spriteId={saveData.inventory.consumable.spriteId}
+                                scale={3}
+                                className="shrink-0"
+                              />
+                            )}
+                            <span className="truncate">
+                              {saveData.inventory.consumable?.name ?? '秘薬なし'}
+                            </span>
                           </span>
                           <span className="shrink-0 rounded bg-emerald-500/30 px-1.5 py-0.5 font-mono text-[10px] font-bold text-emerald-200">
                             {battleSession.consumableCharges}/{maxConsCharges}
@@ -725,7 +749,12 @@ export function App() {
                       className="flex flex-col justify-between rounded-xl border border-slate-700 bg-slate-950 p-3"
                     >
                       <div>
-                        <h3 className="text-xs font-extrabold text-slate-100">
+                        {card.item && (
+                          <div className="mb-2 flex justify-center">
+                            <PixelSpriteCanvas spriteId={card.item.spriteId} scale={6} />
+                          </div>
+                        )}
+                        <h3 className="text-center text-xs font-extrabold text-slate-100">
                           {card.title}
                         </h3>
                         <p className="mt-0.5 text-[11px] font-semibold text-indigo-300">
@@ -775,8 +804,15 @@ export function App() {
                   <h2 className="text-sm font-bold text-indigo-300">
                     入れ替えるスキルを選択してください
                   </h2>
-                  <p className="mt-0.5 text-xs text-slate-300">
-                    新スキル：<strong className="text-amber-300">{pendingSkillToEquip.name}</strong>（{pendingSkillToEquip.description}）
+                  <p className="mt-0.5 flex items-center gap-2 text-xs text-slate-300">
+                    <PixelSpriteCanvas
+                      spriteId={pendingSkillToEquip.spriteId}
+                      scale={3}
+                      className="shrink-0"
+                    />
+                    <span>
+                      新スキル：<strong className="text-amber-300">{pendingSkillToEquip.name}</strong>（{pendingSkillToEquip.description}）
+                    </span>
                   </p>
                 </div>
 
@@ -793,12 +829,23 @@ export function App() {
                         }}
                         className="rounded-xl border border-slate-700 bg-slate-950 p-3 text-left transition hover:border-indigo-400 cursor-pointer"
                       >
-                        <p className="font-bold text-xs text-slate-100">
-                          {existing?.name ?? '空き'}
-                        </p>
-                        <p className="mt-1 text-[11px] text-slate-400">
-                          {existing?.description}
-                        </p>
+                        <div className="flex items-start gap-2">
+                          {existing && (
+                            <PixelSpriteCanvas
+                              spriteId={existing.spriteId}
+                              scale={3}
+                              className="mt-0.5 shrink-0"
+                            />
+                          )}
+                          <div className="min-w-0">
+                            <p className="font-bold text-xs text-slate-100">
+                              {existing?.name ?? '空き'}
+                            </p>
+                            <p className="mt-1 text-[11px] text-slate-400">
+                              {existing?.description}
+                            </p>
+                          </div>
+                        </div>
                       </button>
                     );
                   })}
@@ -912,8 +959,13 @@ export function App() {
               <div className="mt-2 flex flex-col gap-2 text-xs">
                 <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
                   <span className="block text-[10px] text-slate-400">武器</span>
-                  <span className="min-w-0 flex-1 truncate font-bold text-slate-100">
-                    🗡️ {saveData.inventory.weapon.name}
+                  <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
+                    <PixelSpriteCanvas
+                      spriteId={saveData.inventory.weapon.spriteId}
+                      scale={3}
+                      className="shrink-0"
+                    />
+                    <span className="truncate">{saveData.inventory.weapon.name}</span>
                   </span>
                   <span className="shrink-0 text-[10px] font-bold text-amber-300">
                     ATK +{saveData.inventory.weapon.atk}
@@ -922,8 +974,13 @@ export function App() {
 
                 <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
                   <span className="block text-[10px] text-slate-400">防具</span>
-                  <span className="min-w-0 flex-1 truncate font-bold text-slate-100">
-                    🛡️ {saveData.inventory.armor.name}
+                  <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
+                    <PixelSpriteCanvas
+                      spriteId={saveData.inventory.armor.spriteId}
+                      scale={3}
+                      className="shrink-0"
+                    />
+                    <span className="truncate">{saveData.inventory.armor.name}</span>
                   </span>
                   <span className="shrink-0 text-[10px] font-bold text-sky-300">
                     DEF +{saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}
@@ -932,8 +989,15 @@ export function App() {
 
                 <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
                   <span className="block text-[10px] text-slate-400">レリック</span>
-                  <span className="min-w-0 flex-1 truncate font-bold text-slate-100">
-                    🔮 {saveData.inventory.relic?.name ?? 'なし'}
+                  <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
+                    {saveData.inventory.relic && (
+                      <PixelSpriteCanvas
+                        spriteId={saveData.inventory.relic.spriteId}
+                        scale={3}
+                        className="shrink-0"
+                      />
+                    )}
+                    <span className="truncate">{saveData.inventory.relic?.name ?? 'なし'}</span>
                   </span>
                   <span className="max-w-40 truncate text-[10px] font-bold text-fuchsia-300" title={saveData.inventory.relic?.description ?? undefined}>
                     {saveData.inventory.relic?.description ?? '―'}
