@@ -37,6 +37,16 @@ export function App() {
   const [targetIndex, setTargetIndex] = useState<number>(0);
   const [showTitle, setShowTitle] = useState<boolean>(true);
 
+  // Black fade flash whenever the floor changes (stairs, leaps, respawns)
+  const [floorFade, setFloorFade] = useState(0);
+  const prevFloorRef = useRef(saveData.midFloor.currentFloor);
+  useEffect(() => {
+    if (prevFloorRef.current !== saveData.midFloor.currentFloor) {
+      prevFloorRef.current = saveData.midFloor.currentFloor;
+      setFloorFade((n) => n + 1);
+    }
+  }, [saveData.midFloor.currentFloor]);
+
   const hasProgress =
     saveData.midFloor.currentFloor > 1 ||
     saveData.midFloor.currentEncounterIndex > 0 ||
@@ -61,6 +71,7 @@ export function App() {
     const prev = prevSessionRef.current;
     const next = battleSession;
     if (!next || !prev || prev === next || prevBattleKeyRef.current !== battleKey) {
+      if (prevBattleKeyRef.current !== battleKey) setHitFx([]);
       prevSessionRef.current = next;
       prevBattleKeyRef.current = battleKey;
       return;
@@ -197,7 +208,7 @@ export function App() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col bg-slate-950 text-slate-100">
+    <div className="anim-fade-in min-h-dvh flex flex-col bg-slate-950 text-slate-100">
       {/* Compact RPG Header */}
       <header className="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-[1760px] flex-wrap items-center justify-between gap-3 px-3 py-2.5 sm:px-5">
@@ -690,6 +701,12 @@ export function App() {
           </div>
         </div>
       </main>
+      {floorFade > 0 && (
+        <div
+          key={floorFade}
+          className="anim-floor-fade pointer-events-none fixed inset-0 z-[80] bg-slate-950"
+        />
+      )}
     </div>
   );
 }

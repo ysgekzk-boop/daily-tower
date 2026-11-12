@@ -233,6 +233,19 @@ export function BattleStage2D({
   }, [encounterKey, bossKind, battleSession === null]);
   const showBossIntro = introKey === encounterKey && battleSession?.status === 'ongoing';
 
+  // Scene intro card: brief title card for standard battles and events
+  // (boss encounters use the boss intro above instead).
+  const [sceneCardKey, setSceneCardKey] = useState<string | null>(null);
+  useEffect(() => {
+    if (bossKind) return;
+    if (!battleSession && !activeEvent) return;
+    setSceneCardKey(encounterKey);
+    const t = setTimeout(() => setSceneCardKey(null), 1200);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [encounterKey, bossKind, battleSession === null, activeEvent?.id]);
+  const showSceneCard = sceneCardKey === encounterKey && !showBossIntro;
+
   // Event category accent for the event actor chip
   const eventChipClass = activeEvent
     ? {
@@ -246,7 +259,8 @@ export function BattleStage2D({
 
   return (
     <div
-      className={`relative w-full h-72 sm:h-84 md:h-96 lg:h-[clamp(26rem,52dvh,36rem)] rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
+      key={encounterKey}
+      className={`anim-stage-enter relative w-full h-72 sm:h-84 md:h-96 lg:h-[clamp(26rem,52dvh,36rem)] rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
         hitFx?.some((f) => f.side === 'player' && f.kind === 'damage') ? 'fx-stage-shake' : ''
       } ${
         isVolcano
@@ -380,6 +394,25 @@ export function BattleStage2D({
         </div>
       )}
 
+      {/* Scene Intro Card (standard battles & events) */}
+      {showSceneCard && (battleSession || activeEvent) && (
+        <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center bg-slate-950/45">
+          <div className="anim-intro-card px-4 text-center">
+            <p className="text-[11px] font-black tracking-[0.35em] text-sky-300">
+              {activeEvent ? '📜 イベント' : `⚔️ ${floorTitle}`}
+            </p>
+            <p className="mt-2 text-2xl font-black tracking-wider text-slate-50 sm:text-3xl">
+              {activeEvent
+                ? activeEvent.title
+                : battleSession?.enemyDefs.map((d) => d.name).join(' と ')}
+            </p>
+            {!activeEvent && battleSession && (
+              <p className="mt-1 text-xs font-bold text-slate-300">が あらわれた！</p>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Victory Overlay */}
       {battleSession?.status === 'victory' && (
         <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
@@ -426,7 +459,7 @@ export function BattleStage2D({
       {/* 2D STAGE ACTORS: PLAYER (LEFT) FACING ENEMY/EVENT (RIGHT) */}
       <div className="relative z-10 flex h-[calc(100%-3rem)] items-end justify-between px-2 pb-6 sm:pb-8 sm:px-[max(3rem,calc((100%-64rem)/2))]">
         {/* LEFT ACTOR: PLAYER */}
-        <div className="flex flex-col items-center">
+        <div className="anim-actor-enter-left flex flex-col items-center">
           {/* Player Floating HUD */}
           <div className="mb-2 w-28 sm:w-48 md:w-52 rounded-xl border border-slate-700/90 bg-slate-950/85 p-2 sm:p-2.5 shadow-xl backdrop-blur-xs">
             <div className="flex items-center justify-between gap-1">
@@ -497,7 +530,7 @@ export function BattleStage2D({
               return (
                 <div
                   key={idx}
-                  className={`flex flex-col items-center ${isDead ? 'opacity-40 grayscale' : ''}`}
+                  className={`anim-actor-enter-right flex flex-col items-center ${isDead ? 'opacity-40 grayscale' : ''}`}
                   onClick={() => {
                     if (!isDead && battleSession.status === 'ongoing') onSelectTarget?.(idx);
                   }}
@@ -577,7 +610,7 @@ export function BattleStage2D({
             })}
           </div>
         ) : activeEvent ? (
-          <div key={activeEvent.id} className="anim-rise-in flex flex-col items-center">
+          <div key={activeEvent.id} className="anim-actor-enter-right flex flex-col items-center">
             <div
               className={`mb-2 rounded-xl border bg-slate-950/85 px-3 py-1.5 text-center shadow-xl backdrop-blur-xs ${eventChipClass}`}
             >

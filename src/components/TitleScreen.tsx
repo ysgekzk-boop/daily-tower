@@ -37,7 +37,7 @@ export function TitleScreen({
   const [confirmingReset, setConfirmingReset] = useState(false);
 
   return (
-    <div className="relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-slate-950 px-4 py-10 text-slate-100">
+    <div className="anim-fade-in relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-slate-950 px-4 py-10 text-slate-100">
       {/* Backdrop: night-sky gradient and floating motes */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950 via-indigo-950/70 to-slate-950" />
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
