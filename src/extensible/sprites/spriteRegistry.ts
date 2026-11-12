@@ -317,6 +317,51 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '鉄樹の守護巨兵・ロブール',
     colors: ['transparent', '#142017', '#2e4c34', '#4ade80'],
   },
+  needle_porcupine: {
+    id: 'needle_porcupine',
+    name: 'トゲ・ポーキュパイン',
+    colors: ['transparent', '#3f2b1d', '#926c48', '#f59e0b'],
+  },
+  mist_moth: {
+    id: 'mist_moth',
+    name: 'ミスト・モス',
+    colors: ['transparent', '#1e1b4b', '#6366f1', '#a5f3fc'],
+  },
+  swamp_croc: {
+    id: 'swamp_croc',
+    name: 'スワンプ・クロック',
+    colors: ['transparent', '#143823', '#2d6a4f', '#d8f3dc'],
+  },
+  thorn_mantis: {
+    id: 'thorn_mantis',
+    name: 'ソーン・マンティス',
+    colors: ['transparent', '#14421b', '#38a169', '#fef08a'],
+  },
+  bloom_mandragora: {
+    id: 'bloom_mandragora',
+    name: 'ブルーム・マンドラゴラ',
+    colors: ['transparent', '#3b0764', '#9333ea', '#f43f5e'],
+  },
+  moss_tortoise: {
+    id: 'moss_tortoise',
+    name: 'モス・トータス',
+    colors: ['transparent', '#1b382b', '#407958', '#a7f3d0'],
+  },
+  verdant_falcon: {
+    id: 'verdant_falcon',
+    name: 'ヴァーダント・ファルコン',
+    colors: ['transparent', '#064e3b', '#059669', '#fde047'],
+  },
+  spirit_fox: {
+    id: 'spirit_fox',
+    name: 'スピリット・フォックス',
+    colors: ['transparent', '#1e293b', '#cbd5e1', '#38bdf8'],
+  },
+  verdant_gryphon: {
+    id: 'verdant_gryphon',
+    name: '翠翼の守護獣・グリフォン',
+    colors: ['transparent', '#132e1b', '#256338', '#f59e0b'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -385,6 +430,15 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   amber_wisp: { id: 'amber_wisp', matrixId: 'amber_wisp', defaultPalette: 'amber_wisp' },
   shadow_panther: { id: 'shadow_panther', matrixId: 'shadow_panther', defaultPalette: 'shadow_panther' },
   ironwood_colossus: { id: 'ironwood_colossus', matrixId: 'ironwood_colossus', defaultPalette: 'ironwood_colossus' },
+  needle_porcupine: { id: 'needle_porcupine', matrixId: 'needle_porcupine', defaultPalette: 'needle_porcupine' },
+  mist_moth: { id: 'mist_moth', matrixId: 'mist_moth', defaultPalette: 'mist_moth' },
+  swamp_croc: { id: 'swamp_croc', matrixId: 'swamp_croc', defaultPalette: 'swamp_croc' },
+  thorn_mantis: { id: 'thorn_mantis', matrixId: 'thorn_mantis', defaultPalette: 'thorn_mantis' },
+  bloom_mandragora: { id: 'bloom_mandragora', matrixId: 'bloom_mandragora', defaultPalette: 'bloom_mandragora' },
+  moss_tortoise: { id: 'moss_tortoise', matrixId: 'moss_tortoise', defaultPalette: 'moss_tortoise' },
+  verdant_falcon: { id: 'verdant_falcon', matrixId: 'verdant_falcon', defaultPalette: 'verdant_falcon' },
+  spirit_fox: { id: 'spirit_fox', matrixId: 'spirit_fox', defaultPalette: 'spirit_fox' },
+  verdant_gryphon: { id: 'verdant_gryphon', matrixId: 'verdant_gryphon', defaultPalette: 'verdant_gryphon' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
