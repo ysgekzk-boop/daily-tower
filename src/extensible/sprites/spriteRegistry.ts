@@ -557,6 +557,56 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: 'アイアン・センチュリオン',
     colors: ['transparent', '#262626', '#b91c1c', '#fbbf24'],
   },
+  ashfall_wraith: {
+    id: 'ashfall_wraith',
+    name: 'アッシュフォール・レイス',
+    colors: ['transparent', '#18181b', '#52525b', '#f43f5e'],
+  },
+  mold_automaton: {
+    id: 'mold_automaton',
+    name: 'モールド・オートマトン',
+    colors: ['transparent', '#27272a', '#71717a', '#fb923c'],
+  },
+  molten_tusk_boar: {
+    id: 'molten_tusk_boar',
+    name: 'モルテン・タスクボア',
+    colors: ['transparent', '#3f1d0b', '#9a3412', '#facc15'],
+  },
+  obsidian_beast: {
+    id: 'obsidian_beast',
+    name: 'オブシディアン・ビースト',
+    colors: ['transparent', '#09090b', '#334155', '#c084fc'],
+  },
+  slag_pyro_viper: {
+    id: 'slag_pyro_viper',
+    name: 'スラグ・ヴァイパー',
+    colors: ['transparent', '#1e293b', '#047857', '#a3e635'],
+  },
+  crucible_knight: {
+    id: 'crucible_knight',
+    name: 'クルーシブル・ナイト',
+    colors: ['transparent', '#1c1917', '#78350f', '#f97316'],
+  },
+  blast_furnace_sprite: {
+    id: 'blast_furnace_sprite',
+    name: 'ブラスト・スプライト',
+    colors: ['transparent', '#450a0a', '#ea580c', '#fef08a'],
+  },
+  hearth_custodian: {
+    id: 'hearth_custodian',
+    name: 'ハース・カストディアン',
+    colors: ['transparent', '#1e1e24', '#475569', '#38bdf8'],
+  },
+  obsidian_core_guardian: {
+    id: 'obsidian_core_guardian',
+    name: 'オブシディアンガーディアン',
+    colors: ['transparent', '#030712', '#4b5563', '#ef4444'],
+  },
+  crucible_iron_goliath: {
+    id: 'crucible_iron_goliath',
+    name: 'クルーシブルゴライアス',
+    colors: ['transparent', '#18181b', '#b91c1c', '#fbbf24'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -673,6 +723,16 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   obsidian_wasp: { id: 'obsidian_wasp', matrixId: 'obsidian_wasp', defaultPalette: 'obsidian_wasp' },
   molten_core_sentinel: { id: 'molten_core_sentinel', matrixId: 'molten_core_sentinel', defaultPalette: 'molten_core_sentinel' },
   molten_iron_centurion: { id: 'molten_iron_centurion', matrixId: 'molten_iron_centurion', defaultPalette: 'molten_iron_centurion' },
+  ashfall_wraith: { id: 'ashfall_wraith', matrixId: 'ashfall_wraith', defaultPalette: 'ashfall_wraith' },
+  mold_automaton: { id: 'mold_automaton', matrixId: 'mold_automaton', defaultPalette: 'mold_automaton' },
+  molten_tusk_boar: { id: 'molten_tusk_boar', matrixId: 'molten_tusk_boar', defaultPalette: 'molten_tusk_boar' },
+  obsidian_beast: { id: 'obsidian_beast', matrixId: 'obsidian_beast', defaultPalette: 'obsidian_beast' },
+  slag_pyro_viper: { id: 'slag_pyro_viper', matrixId: 'slag_pyro_viper', defaultPalette: 'slag_pyro_viper' },
+  crucible_knight: { id: 'crucible_knight', matrixId: 'crucible_knight', defaultPalette: 'crucible_knight' },
+  blast_furnace_sprite: { id: 'blast_furnace_sprite', matrixId: 'blast_furnace_sprite', defaultPalette: 'blast_furnace_sprite' },
+  hearth_custodian: { id: 'hearth_custodian', matrixId: 'hearth_custodian', defaultPalette: 'hearth_custodian' },
+  obsidian_core_guardian: { id: 'obsidian_core_guardian', matrixId: 'obsidian_core_guardian', defaultPalette: 'obsidian_core_guardian' },
+  crucible_iron_goliath: { id: 'crucible_iron_goliath', matrixId: 'crucible_iron_goliath', defaultPalette: 'crucible_iron_goliath' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
