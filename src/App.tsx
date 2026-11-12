@@ -153,12 +153,12 @@ export function App() {
 
   const playHitFxSound = (fx: Omit<HitFx, 'key'>) => {
     const kindStr = fx.kind as string;
-    // Prefer preset matching the kind name if available (e.g. future 'critical' / 'weak')
+    // Prefer preset matching the kind name if available (e.g. 'critical' / 'weak')
     if (kindStr !== 'damage' && SFX_KNOWN_PRESETS.has(kindStr)) {
       playSfx(kindStr as SfxName);
       return;
     }
-    if (fx.kind === 'damage') {
+    if (fx.kind === 'damage' || fx.kind === 'resist') {
       if (fx.side === 'enemy') {
         playSfx('hit');
       }
@@ -199,12 +199,26 @@ export function App() {
       const before = prev.enemies[i];
       if (!before) return;
       const dmg = before.currentHp - enemy.currentHp;
-      if (dmg > 0) spawn({ side: 'enemy', index: i, amount: dmg, kind: 'damage' }, 0);
+      if (dmg > 0) {
+        let kind: HitFx['kind'] = 'damage';
+        const fxMeta = next.lastActionFx;
+        if (fxMeta?.critTargets.includes(i)) {
+          kind = 'critical';
+        } else if (fxMeta?.weakTargets.includes(i)) {
+          kind = 'weak';
+        } else if (fxMeta?.resistTargets.includes(i)) {
+          kind = 'resist';
+        }
+        spawn({ side: 'enemy', index: i, amount: dmg, kind }, 0);
+      }
       const absorbed = shieldOf(before) - shieldOf(enemy);
       if (absorbed > 0) spawn({ side: 'enemy', index: i, amount: absorbed, kind: 'shield' }, 0);
     });
     const pDmg = prev.player.currentHp - next.player.currentHp;
-    if (pDmg > 0) spawn({ side: 'player', index: 0, amount: pDmg, kind: 'damage' }, 700);
+    if (pDmg > 0) {
+      const kind: HitFx['kind'] = next.lastActionFx?.playerCrit ? 'critical' : 'damage';
+      spawn({ side: 'player', index: 0, amount: pDmg, kind }, 700);
+    }
     if (pDmg < 0) spawn({ side: 'player', index: 0, amount: -pDmg, kind: 'heal' }, 0);
     const pAbsorbed = shieldOf(prev.player) - shieldOf(next.player);
     if (pAbsorbed > 0) spawn({ side: 'player', index: 0, amount: pAbsorbed, kind: 'shield' }, 700);

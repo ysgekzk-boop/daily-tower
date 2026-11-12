@@ -65,7 +65,7 @@ describe('Multi-enemy battles (enemyIds / target selection / AoE skills)', () =>
       { type: 'skill', slotIndex: 0 },
       loadout,
       undefined,
-      () => 0
+      () => 0.5
     );
     expect(session.enemies[0].currentHp).toBe(session.enemies[0].maxHp - 8);
     expect(session.enemies[1].currentHp).toBe(session.enemies[1].maxHp - 8);
@@ -78,7 +78,7 @@ describe('Multi-enemy battles (enemyIds / target selection / AoE skills)', () =>
       { type: 'skill', slotIndex: 1, targetIndex: 1 }, // armor_crush
       strongLoadout,
       undefined,
-      () => 0
+      () => 0.5
     );
     expect(
       session.enemies[1].statuses.some((s) => s.statusId === 'def_debuff')
@@ -90,7 +90,7 @@ describe('Multi-enemy battles (enemyIds / target selection / AoE skills)', () =>
 
   it('victory requires every enemy to fall', () => {
     let session = CombatEngine.createBattleSession(100, 100, 0, strongLoadout, duo);
-    const rng = () => 0;
+    const rng = () => 0.5;
 
     session = CombatEngine.executeTurn(session, { type: 'attack', targetIndex: 0 }, strongLoadout, undefined, rng);
     session = CombatEngine.executeTurn(session, { type: 'attack', targetIndex: 0 }, strongLoadout, undefined, rng);
@@ -111,7 +111,7 @@ describe('Multi-enemy battles (enemyIds / target selection / AoE skills)', () =>
       { type: 'consumable' },
       strongLoadout,
       { everyNTurns: 1, statusId: 'burn', value: 5, duration: 2 },
-      () => 0
+      () => 0.5
     );
     for (const enemy of session.enemies) {
       expect(enemy.statuses.some((s) => s.statusId === 'burn')).toBe(true);

@@ -7,6 +7,7 @@ import { ActiveStatusInstance } from '../extensible/statusEffects/types';
 import { PixelSpriteCanvas } from './PixelSpriteCanvas';
 import { InfoTip } from './InfoTip';
 import { EnemyPhase } from '../extensible/enemies/types';
+import { ELEMENT_META } from '../utils/elements';
 
 export type CombatMotionState =
   | 'idle'
@@ -24,7 +25,7 @@ export interface HitFx {
   side: 'player' | 'enemy';
   index: number; // enemy index (0 for the player)
   amount: number;
-  kind: 'damage' | 'heal' | 'shield';
+  kind: 'damage' | 'heal' | 'shield' | 'critical' | 'weak' | 'resist';
 }
 
 interface BattleStage2DProps {
@@ -135,32 +136,53 @@ function HpBar({ value, max, color, label }: { value: number; max: number; color
 
 function FxLayer({ fx, align }: { fx: HitFx[]; align: 'player' | 'enemy' }) {
   if (fx.length === 0) return null;
+  const isFlash = (kind: HitFx['kind']) =>
+    kind === 'damage' || kind === 'critical' || kind === 'weak' || kind === 'resist';
+
   return (
     <>
       {fx
-        .filter((f) => f.kind === 'damage')
+        .filter((f) => isFlash(f.kind))
         .map((f) => (
           <div
             key={`flash-${f.key}`}
             className="fx-hit-flash pointer-events-none absolute inset-x-2 top-6 bottom-4 z-20 rounded-full bg-white/80 blur-[3px]"
           />
         ))}
-      {fx.map((f) => (
-        <span
-          key={f.key}
-          className={`fx-float-damage pointer-events-none absolute -top-6 right-0 left-0 z-30 text-center font-mono text-lg font-extrabold whitespace-nowrap sm:text-2xl ${
-            f.kind === 'heal'
-              ? 'text-emerald-300'
-              : f.kind === 'shield'
-                ? 'text-sky-300'
-                : align === 'player'
-                  ? 'text-rose-300'
-                  : 'text-amber-200'
-          }`}
-        >
-          {f.kind === 'heal' ? `+${f.amount}` : f.kind === 'shield' ? `🛡️${f.amount}` : `-${f.amount}`}
-        </span>
-      ))}
+      {fx.map((f) => {
+        let label = `-${f.amount}`;
+        let colorClass = align === 'player' ? 'text-rose-300' : 'text-amber-200';
+        let sizeClass = 'text-lg sm:text-2xl font-extrabold';
+
+        if (f.kind === 'heal') {
+          label = `+${f.amount}`;
+          colorClass = 'text-emerald-300';
+        } else if (f.kind === 'shield') {
+          label = `🛡️${f.amount}`;
+          colorClass = 'text-sky-300';
+        } else if (f.kind === 'critical') {
+          label = `会心！ -${f.amount}`;
+          colorClass = 'text-rose-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]';
+          sizeClass = 'text-xl sm:text-3xl font-black scale-110';
+        } else if (f.kind === 'weak') {
+          label = `弱点！ -${f.amount}`;
+          colorClass = 'text-amber-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]';
+          sizeClass = 'text-xl sm:text-2xl font-black scale-105';
+        } else if (f.kind === 'resist') {
+          label = `-${f.amount}（耐性）`;
+          colorClass = 'text-slate-400';
+          sizeClass = 'text-base sm:text-lg font-medium';
+        }
+
+        return (
+          <span
+            key={f.key}
+            className={`fx-float-damage pointer-events-none absolute -top-6 right-0 left-0 z-30 text-center font-mono whitespace-nowrap ${colorClass} ${sizeClass}`}
+          >
+            {label}
+          </span>
+        );
+      })}
     </>
   );
 }
@@ -604,6 +626,30 @@ export function BattleStage2D({
                       <div className="mt-1 text-right text-[9px] font-bold text-slate-400 sm:text-[10px]">
                         ATK {enemy.baseAtk} / DEF {enemy.baseDef}
                       </div>
+                      {(def.weakness || def.resistance) && (
+                        <div className="mt-1 flex flex-wrap items-center justify-end gap-1">
+                          {def.weakness && (
+                            <InfoTip
+                              align="right"
+                              title={`弱点：${ELEMENT_META[def.weakness].icon}${ELEMENT_META[def.weakness].name}`}
+                              body={`${ELEMENT_META[def.weakness].name}属性の武器で攻撃すると、与えるダメージが1.3倍に増加します。`}
+                              triggerClassName="cursor-help rounded bg-amber-500/20 border border-amber-500/40 px-1 py-0.5 text-[9px] font-bold text-amber-200"
+                            >
+                              <span>弱点 {ELEMENT_META[def.weakness].icon}{ELEMENT_META[def.weakness].name}</span>
+                            </InfoTip>
+                          )}
+                          {def.resistance && (
+                            <InfoTip
+                              align="right"
+                              title={`耐性：${ELEMENT_META[def.resistance].icon}${ELEMENT_META[def.resistance].name}`}
+                              body={`${ELEMENT_META[def.resistance].name}属性の武器で攻撃すると、与えるダメージが0.7倍に軽減されます。`}
+                              triggerClassName="cursor-help rounded bg-slate-700/50 border border-slate-600/40 px-1 py-0.5 text-[9px] font-bold text-slate-300"
+                            >
+                              <span>耐性 {ELEMENT_META[def.resistance].icon}{ELEMENT_META[def.resistance].name}</span>
+                            </InfoTip>
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     {enemy.statuses.length > 0 && (

@@ -1,50 +1,76 @@
-import { EFFECT_REGISTRY} from '../extensible/effects/effectRegistry';
-import { EnemyAction, EnemyDefinition, EnemyPhase} from '../extensible/enemies/types';
+import { EFFECT_REGISTRY } from '../extensible/effects/effectRegistry';
+import { EnemyAction, EnemyDefinition, EnemyPhase } from '../extensible/enemies/types';
 import {
-ArmorItem,
-ConsumableItem,
-RelicItem,
-SkillItem,
-WeaponItem,
+  ArmorItem,
+  ConsumableItem,
+  ElementType,
+  RelicItem,
+  SkillItem,
+  WeaponItem,
 } from '../extensible/items/itemCatalog';
-import { ActiveStatusInstance} from '../extensible/statusEffects/types';
-import { StatusEngine} from './StatusEngine';
+import { ActiveStatusInstance } from '../extensible/statusEffects/types';
+import { StatusEngine } from './StatusEngine';
 
 export interface CombatantState {
-name: string;
-currentHp: number;
-maxHp: number;
-baseAtk: number;
-baseDef: number;
-statuses: ActiveStatusInstance[];
+  name: string;
+  currentHp: number;
+  maxHp: number;
+  baseAtk: number;
+  baseDef: number;
+  statuses: ActiveStatusInstance[];
+}
+
+export interface BattleSessionLastActionFx {
+  critTargets: number[];
+  weakTargets: number[];
+  resistTargets: number[];
+  playerCrit: boolean;
 }
 
 export interface BattleSessionState {
-turn: number;
-player: CombatantState;
-/** Enemies in encounter order; index = target selection index. Max 3. */
-enemies: CombatantState[];
-enemyDefs: EnemyDefinition[];
-/** Sum of every enemy's goldReward; paid out once on victory. */
-totalGoldReward: number;
-skillCharges: [number, number, number]; // Remaining uses in this battle for slots 0, 1, 2
-consumableCharges: number;
-logs: string[];
-status: 'ongoing' | 'victory' | 'defeat';
+  turn: number;
+  player: CombatantState;
+  /** Enemies in encounter order; index = target selection index. Max 3. */
+  enemies: CombatantState[];
+  enemyDefs: EnemyDefinition[];
+  /** Sum of every enemy's goldReward; paid out once on victory. */
+  totalGoldReward: number;
+  skillCharges: [number, number, number]; // Remaining uses in this battle for slots 0, 1, 2
+  consumableCharges: number;
+  logs: string[];
+  status: 'ongoing' | 'victory' | 'defeat';
+  lastActionFx?: BattleSessionLastActionFx;
+}
+
+export interface DamageCalculationOptions {
+  rng?: () => number;
+  critChance?: number;
+  attackElement?: ElementType;
+  weakness?: ElementType;
+  resistance?: ElementType;
+}
+
+export interface DamageResult {
+  finalHpDamage: number;
+  shieldAbsorbed: number;
+  nextDefenderStatuses: ActiveStatusInstance[];
+  isCrit: boolean;
+  isWeak: boolean;
+  isResist: boolean;
 }
 
 export interface PlayerLoadout {
-weapon: WeaponItem;
-armor: ArmorItem;
-skills: [SkillItem | null, SkillItem | null, SkillItem | null];
-consumable: ConsumableItem | null;
-relic: RelicItem | null;
+  weapon: WeaponItem;
+  armor: ArmorItem;
+  skills: [SkillItem | null, SkillItem | null, SkillItem | null];
+  consumable: ConsumableItem | null;
+  relic: RelicItem | null;
 }
 
 export type PlayerCommand =
-| { type: 'attack'; targetIndex?: number}
-| { type: 'skill'; slotIndex: 0 | 1 | 2; targetIndex?: number}
-| { type: 'consumable'};
+  | { type: 'attack'; targetIndex?: number }
+  | { type: 'skill'; slotIndex: 0 | 1 | 2; targetIndex?: number }
+  | { type: 'consumable' };
 
 export const MAX_ENEMIES_PER_BATTLE = 3;
 
@@ -126,75 +152,126 @@ baseAtk: scaled[i].atk,
 baseDef: scaled[i].def,
 statuses: enemyStatusesList[i],
 })),
-enemyDefs: defs,
-totalGoldReward: defs.reduce((sum, d) => sum + d.goldReward, 0),
-skillCharges,
-consumableCharges,
-logs,
-status: 'ongoing',
-};
+    enemyDefs: defs,
+    totalGoldReward: defs.reduce((sum, d) => sum + d.goldReward, 0),
+    skillCharges,
+    consumableCharges,
+    logs,
+    status: 'ongoing',
+    lastActionFx: {
+      critTargets: [],
+      weakTargets: [],
+      resistTargets: [],
+      playerCrit: false,
+    },
+  };
 }
 
-/**
-* Computes damage using Spec §4.3:
-* 1. Flat modifiers on Base ATK & DEF
-* 2. Paired Rate modifiers (1.0 + sum(BuffRate) - sum(DebuffRate))
-* 3. Effective ATK - Effective DEF, multiplied by skillMultiplier
-* 4. Shield absorption
-*/
-static calculateDamage(
-attacker: CombatantState,
-defender: CombatantState,
-skillMultiplier: number,
-turnNumber: number
-): {
-finalHpDamage: number;
-shieldAbsorbed: number;
-nextDefenderStatuses: ActiveStatusInstance[];
-} {
-const atkSummary = StatusEngine.runPhase('action_resolution', attacker.statuses, {
-ownerCurrentHp: attacker.currentHp,
-ownerMaxHp: attacker.maxHp,
-opponentCurrentHp: defender.currentHp,
-opponentMaxHp: defender.maxHp,
-turnNumber,
-});
+  /**
+   * Computes damage using Spec §4.3:
+   * 1. Flat modifiers on Base ATK & DEF
+   * 2. Paired Rate modifiers (1.0 + sum(BuffRate) - sum(DebuffRate))
+   * 3. Effective ATK - Effective DEF, multiplied by skillMultiplier
+   * 4. Optional elemental affinity & critical hit modifiers (when rng is supplied)
+   * 5. Shield absorption
+   */
+  static calculateDamage(
+    attacker: CombatantState,
+    defender: CombatantState,
+    skillMultiplier: number,
+    turnNumber: number,
+    rngOrOptions?: (() => number) | DamageCalculationOptions,
+    attackElement?: ElementType,
+    weakness?: ElementType,
+    resistance?: ElementType,
+    critChance?: number
+  ): DamageResult {
+    let rng: (() => number) | undefined;
+    let optAttackElement = attackElement;
+    let optWeakness = weakness;
+    let optResistance = resistance;
+    let optCritChance = critChance;
 
-const defSummary = StatusEngine.runPhase('action_resolution', defender.statuses, {
-ownerCurrentHp: defender.currentHp,
-ownerMaxHp: defender.maxHp,
-opponentCurrentHp: attacker.currentHp,
-opponentMaxHp: attacker.maxHp,
-turnNumber,
-});
+    if (typeof rngOrOptions === 'function') {
+      rng = rngOrOptions;
+    } else if (rngOrOptions && typeof rngOrOptions === 'object') {
+      rng = rngOrOptions.rng;
+      optAttackElement = rngOrOptions.attackElement;
+      optWeakness = rngOrOptions.weakness;
+      optResistance = rngOrOptions.resistance;
+      optCritChance = rngOrOptions.critChance;
+    }
 
-// 1. Flat Base
-const rawAtk = Math.max(1, attacker.baseAtk + atkSummary.flatAtkBonus);
-const rawDef = Math.max(0, defender.baseDef + defSummary.flatDefBonus);
+    const atkSummary = StatusEngine.runPhase('action_resolution', attacker.statuses, {
+      ownerCurrentHp: attacker.currentHp,
+      ownerMaxHp: attacker.maxHp,
+      opponentCurrentHp: defender.currentHp,
+      opponentMaxHp: defender.maxHp,
+      turnNumber,
+    });
 
-// 2. Paired Multiplier Resolution
-const atkMult = Math.max(0.1, 1.0 + atkSummary.atkRateBonus);
-const defMult = Math.max(0.1, 1.0 + defSummary.defRateBonus);
+    const defSummary = StatusEngine.runPhase('action_resolution', defender.statuses, {
+      ownerCurrentHp: defender.currentHp,
+      ownerMaxHp: defender.maxHp,
+      opponentCurrentHp: attacker.currentHp,
+      opponentMaxHp: attacker.maxHp,
+      turnNumber,
+    });
 
-// 3. Effective Stats
-const effAtk = rawAtk * atkMult;
-const effDef = rawDef * defMult;
+    // 1. Flat Base
+    const rawAtk = Math.max(1, attacker.baseAtk + atkSummary.flatAtkBonus);
+    const rawDef = Math.max(0, defender.baseDef + defSummary.flatDefBonus);
 
-const baseMitigated = Math.max(1, Math.floor(effAtk - effDef * 0.65));
-const rawDamage = Math.max(
-1,
-Math.round(baseMitigated * skillMultiplier * defSummary.incomingMultiplier)
-);
+    // 2. Paired Multiplier Resolution
+    const atkMult = Math.max(0.1, 1.0 + atkSummary.atkRateBonus);
+    const defMult = Math.max(0.1, 1.0 + defSummary.defRateBonus);
 
-// 4. Shield Absorption
-const shieldRes = StatusEngine.consumeShield(defender.statuses, rawDamage);
+    // 3. Effective Stats
+    const effAtk = rawAtk * atkMult;
+    const effDef = rawDef * defMult;
 
-return {
-finalHpDamage: shieldRes.remainingDamage,
-shieldAbsorbed: shieldRes.absorbed,
-nextDefenderStatuses: shieldRes.nextStatuses,
-};
-}
+    const baseMitigated = Math.max(1, Math.floor(effAtk - effDef * 0.65));
+    let rawDamage = Math.max(
+      1,
+      Math.round(baseMitigated * skillMultiplier * defSummary.incomingMultiplier)
+    );
+
+    let isCrit = false;
+    let isWeak = false;
+    let isResist = false;
+
+    // Only apply critical / elemental modifier if rng is supplied
+    if (rng) {
+      let elementMult = 1.0;
+      if (optAttackElement && optWeakness && optAttackElement === optWeakness) {
+        elementMult = 1.3;
+        isWeak = true;
+      } else if (optAttackElement && optResistance && optAttackElement === optResistance) {
+        elementMult = 0.7;
+        isResist = true;
+      }
+
+      const chance = optCritChance ?? 0;
+      if (chance > 0 && rng() < chance) {
+        isCrit = true;
+      }
+      const critMult = isCrit ? 1.6 : 1.0;
+
+      rawDamage = Math.max(1, Math.round(rawDamage * elementMult * critMult));
+    }
+
+    // 4. Shield Absorption
+    const shieldRes = StatusEngine.consumeShield(defender.statuses, rawDamage);
+
+    return {
+      finalHpDamage: shieldRes.remainingDamage,
+      shieldAbsorbed: shieldRes.absorbed,
+      nextDefenderStatuses: shieldRes.nextStatuses,
+      isCrit,
+      isWeak,
+      isResist,
+    };
+  }
 
 /**
 * Selects active enemy phase and picks an action by weight.
@@ -283,332 +360,378 @@ skillCharges: [...session.skillCharges] as [number, number, number],
 logs: [...session.logs],
 };
 
-next.logs.push(`── ${next.turn}ターン目 ──`);
+    const lastActionFx: BattleSessionLastActionFx = {
+      critTargets: [],
+      weakTargets: [],
+      resistTargets: [],
+      playerCrit: false,
+    };
+    next.lastActionFx = lastActionFx;
 
-// Environmental realm condition (e.g. Realm 2 Sunken Foundry burn every 3 turns)
-if (environmentalRule && next.turn % environmentalRule.everyNTurns === 0) {
-const envInstance: ActiveStatusInstance = {
-statusId: environmentalRule.statusId,
-value: environmentalRule.value,
-duration: environmentalRule.duration,
-};
-next.player.statuses = StatusEngine.applyStatus(next.player.statuses, envInstance).nextList;
-for (const enemy of next.enemies) {
-if (enemy.currentHp > 0) {
-enemy.statuses = StatusEngine.applyStatus(enemy.statuses, envInstance).nextList;
-}
-}
-next.logs.push(`🌋 周囲の熱波により双方に状態異常が付与された！`);
-}
+    next.logs.push(`── ${next.turn}ターン目 ──`);
 
-const primaryIdx = CombatEngine.resolveTargetIndex(
-next,
-playerCommand.type === 'consumable'? undefined: playerCommand.targetIndex
-);
-const primary = next.enemies[primaryIdx];
+    // Environmental realm condition (e.g. Realm 2 Sunken Foundry burn every 3 turns)
+    if (environmentalRule && next.turn % environmentalRule.everyNTurns === 0) {
+      const envInstance: ActiveStatusInstance = {
+        statusId: environmentalRule.statusId,
+        value: environmentalRule.value,
+        duration: environmentalRule.duration,
+      };
+      next.player.statuses = StatusEngine.applyStatus(next.player.statuses, envInstance).nextList;
+      for (const enemy of next.enemies) {
+        if (enemy.currentHp > 0) {
+          enemy.statuses = StatusEngine.applyStatus(enemy.statuses, envInstance).nextList;
+        }
+      }
+      next.logs.push(`🌋 周囲の熱波により双方に状態異常が付与された！`);
+    }
 
-// 1. Player turn_start
-const pTurnStart = StatusEngine.runPhase('turn_start', next.player.statuses, {
-ownerCurrentHp: next.player.currentHp,
-ownerMaxHp: next.player.maxHp,
-opponentCurrentHp: primary.currentHp,
-opponentMaxHp: primary.maxHp,
-turnNumber: next.turn,
-});
-next.logs.push(...pTurnStart.logs);
-if (pTurnStart.totalDamage > 0) {
-next.player.currentHp = Math.max(0, next.player.currentHp - pTurnStart.totalDamage);
-}
-if (pTurnStart.totalHeal > 0) {
-next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + pTurnStart.totalHeal);
-}
-if (next.player.currentHp <= 0) {
-next.status = 'defeat';
-next.logs.push('💀 力尽きた…');
-return next;
-}
+    const primaryIdx = CombatEngine.resolveTargetIndex(
+      next,
+      playerCommand.type === 'consumable' ? undefined : playerCommand.targetIndex
+    );
+    const primary = next.enemies[primaryIdx];
 
-// 2. Player pre_action
-const pPreAction = StatusEngine.runPhase('pre_action', next.player.statuses, {
-ownerCurrentHp: next.player.currentHp,
-ownerMaxHp: next.player.maxHp,
-opponentCurrentHp: primary.currentHp,
-opponentMaxHp: primary.maxHp,
-turnNumber: next.turn,
-});
-next.logs.push(...pPreAction.logs);
+    // 1. Player turn_start
+    const pTurnStart = StatusEngine.runPhase('turn_start', next.player.statuses, {
+      ownerCurrentHp: next.player.currentHp,
+      ownerMaxHp: next.player.maxHp,
+      opponentCurrentHp: primary.currentHp,
+      opponentMaxHp: primary.maxHp,
+      turnNumber: next.turn,
+    });
+    next.logs.push(...pTurnStart.logs);
+    if (pTurnStart.totalDamage > 0) {
+      next.player.currentHp = Math.max(0, next.player.currentHp - pTurnStart.totalDamage);
+    }
+    if (pTurnStart.totalHeal > 0) {
+      next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + pTurnStart.totalHeal);
+    }
+    if (next.player.currentHp <= 0) {
+      next.status = 'defeat';
+      next.logs.push('💀 力尽きた…');
+      return next;
+    }
 
-/** Logs a defeat line for every enemy that dropped to 0 since `beforeHp`. */
-const logNewDefeats = (beforeHp: number[]) => {
-next.enemies.forEach((enemy, i) => {
-if (beforeHp[i] > 0 && enemy.currentHp <= 0) {
-next.logs.push(`🏆 ${enemy.name} を撃破した！`);
-}
-});
-};
-const allEnemiesDown = () => next.enemies.every((e) => e.currentHp <= 0);
+    // 2. Player pre_action
+    const pPreAction = StatusEngine.runPhase('pre_action', next.player.statuses, {
+      ownerCurrentHp: next.player.currentHp,
+      ownerMaxHp: next.player.maxHp,
+      opponentCurrentHp: primary.currentHp,
+      opponentMaxHp: primary.maxHp,
+      turnNumber: next.turn,
+    });
+    next.logs.push(...pPreAction.logs);
 
-if (!pPreAction.skipAction) {
-if (playerCommand.type === 'attack') {
-const target = next.enemies[primaryIdx];
-const beforeHp = next.enemies.map((e) => e.currentHp);
-const dmgRes = CombatEngine.calculateDamage(next.player, target, 1.0, next.turn);
-target.statuses = dmgRes.nextDefenderStatuses;
-target.currentHp = Math.max(0, target.currentHp - dmgRes.finalHpDamage);
-const absorbNote = dmgRes.shieldAbsorbed > 0? ` (障壁が${dmgRes.shieldAbsorbed}吸収)`: '';
-next.logs.push(
-`🗡️ ${loadout.weapon.name}で攻撃！ ${target.name}に ${dmgRes.finalHpDamage} ダメージ！${absorbNote}`
-);
+    /** Logs a defeat line for every enemy that dropped to 0 since `beforeHp`. */
+    const logNewDefeats = (beforeHp: number[]) => {
+      next.enemies.forEach((enemy, i) => {
+        if (beforeHp[i] > 0 && enemy.currentHp <= 0) {
+          next.logs.push(`🏆 ${enemy.name} を撃破した！`);
+        }
+      });
+    };
+    const allEnemiesDown = () => next.enemies.every((e) => e.currentHp <= 0);
 
-// Relic on_attack trigger
-if (loadout.relic) {
-const eff = EFFECT_REGISTRY[loadout.relic.effectId];
-if (eff && eff.trigger === 'on_attack') {
-const rRes = eff.handler({
-playerCurrentHp: next.player.currentHp,
-playerMaxHp: next.player.maxHp,
-playerAtk: next.player.baseAtk,
-playerDef: next.player.baseDef,
-enemyCurrentHp: target.currentHp,
-enemyMaxHp: target.maxHp,
-turnNumber: next.turn,
-});
-if (rRes.healPlayer) {
-next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + rRes.healPlayer);
-}
-if (rRes.logMessage) next.logs.push(rRes.logMessage);
-}
-}
-logNewDefeats(beforeHp);
-} else if (playerCommand.type === 'skill') {
-const idx = playerCommand.slotIndex;
-const skill = loadout.skills[idx];
-if (skill && next.skillCharges[idx] > 0) {
-next.skillCharges[idx] -= 1;
-next.logs.push(
-`✨ スキル発動(残り${next.skillCharges[idx]}/${skill.maxChargesPerBattle}回)`
-);
+    if (!pPreAction.skipAction) {
+      if (playerCommand.type === 'attack') {
+        const target = next.enemies[primaryIdx];
+        const targetDef = next.enemyDefs[primaryIdx];
+        const beforeHp = next.enemies.map((e) => e.currentHp);
+        const dmgRes = CombatEngine.calculateDamage(next.player, target, 1.0, next.turn, {
+          rng,
+          critChance: 0.1,
+          attackElement: loadout.weapon.element,
+          weakness: targetDef?.weakness,
+          resistance: targetDef?.resistance,
+        });
+        target.statuses = dmgRes.nextDefenderStatuses;
+        target.currentHp = Math.max(0, target.currentHp - dmgRes.finalHpDamage);
+        const absorbNote = dmgRes.shieldAbsorbed > 0 ? ` (障壁が${dmgRes.shieldAbsorbed}吸収)` : '';
+        next.logs.push(
+          `🗡️ ${loadout.weapon.name}で攻撃！ ${target.name}に ${dmgRes.finalHpDamage} ダメージ！${absorbNote}`
+        );
+        if (dmgRes.isWeak) next.logs.push('🎯 弱点を突いた！');
+        if (dmgRes.isResist) next.logs.push('🛡️ 敵の耐性により軽減された！');
+        if (dmgRes.isCrit) next.logs.push('⚡ 会心の一撃！');
 
-const hitsAll = skill.targetScope === 'all_enemies';
-const damageTargets = hitsAll
-? CombatEngine.aliveIndices(next)
-: [primaryIdx];
+        if (dmgRes.isCrit) lastActionFx.critTargets.push(primaryIdx);
+        if (dmgRes.isWeak) lastActionFx.weakTargets.push(primaryIdx);
+        if (dmgRes.isResist) lastActionFx.resistTargets.push(primaryIdx);
 
-if (skill.damageMultiplier && skill.damageMultiplier > 0) {
-const beforeHp = next.enemies.map((e) => e.currentHp);
-for (const ti of damageTargets) {
-const target = next.enemies[ti];
-const dmgRes = CombatEngine.calculateDamage(
-next.player,
-target,
-skill.damageMultiplier,
-next.turn
-);
-target.statuses = dmgRes.nextDefenderStatuses;
-target.currentHp = Math.max(0, target.currentHp - dmgRes.finalHpDamage);
-const absorbNote =
-dmgRes.shieldAbsorbed > 0? ` (障壁が${dmgRes.shieldAbsorbed}吸収)`: '';
-next.logs.push(`💥 ${target.name}に ${dmgRes.finalHpDamage} ダメージ！${absorbNote}`);
-}
-logNewDefeats(beforeHp);
-}
+        // Relic on_attack trigger
+        if (loadout.relic) {
+          const eff = EFFECT_REGISTRY[loadout.relic.effectId];
+          if (eff && eff.trigger === 'on_attack') {
+            const rRes = eff.handler({
+              playerCurrentHp: next.player.currentHp,
+              playerMaxHp: next.player.maxHp,
+              playerAtk: next.player.baseAtk,
+              playerDef: next.player.baseDef,
+              enemyCurrentHp: target.currentHp,
+              enemyMaxHp: target.maxHp,
+              turnNumber: next.turn,
+            });
+            if (rRes.healPlayer) {
+              next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + rRes.healPlayer);
+            }
+            if (rRes.logMessage) next.logs.push(rRes.logMessage);
+          }
+        }
+        logNewDefeats(beforeHp);
+      } else if (playerCommand.type === 'skill') {
+        const idx = playerCommand.slotIndex;
+        const skill = loadout.skills[idx];
+        if (skill && next.skillCharges[idx] > 0) {
+          next.skillCharges[idx] -= 1;
+          next.logs.push(
+            `✨ スキル発動(残り${next.skillCharges[idx]}/${skill.maxChargesPerBattle}回)`
+          );
 
-if (skill.healPercent || skill.healFlat) {
-const healAmt =
-(skill.healFlat?? 0) +
-Math.floor((next.player.maxHp * (skill.healPercent?? 0)) / 100);
-next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + healAmt);
-next.logs.push(`💚 HPを ${healAmt} 回復した！`);
-}
+          const hitsAll = skill.targetScope === 'all_enemies';
+          const damageTargets = hitsAll
+            ? CombatEngine.aliveIndices(next)
+            : [primaryIdx];
 
-if (skill.cleanse) {
-const cRes = StatusEngine.cleanseDebuffs(next.player.statuses);
-next.player.statuses = cRes.nextList;
-if (cRes.removedCount > 0) {
-next.logs.push(`✨ 状態異常を ${cRes.removedCount} 個浄化した！`);
-}
-}
+          if (skill.damageMultiplier && skill.damageMultiplier > 0) {
+            const beforeHp = next.enemies.map((e) => e.currentHp);
+            const isAttackCategory = skill.category === 'attack' || skill.damageMultiplier > 0;
+            for (const ti of damageTargets) {
+              const target = next.enemies[ti];
+              const targetDef = next.enemyDefs[ti];
+              const dmgRes = CombatEngine.calculateDamage(
+                next.player,
+                target,
+                skill.damageMultiplier,
+                next.turn,
+                {
+                  rng,
+                  critChance: isAttackCategory ? 0.1 : 0,
+                  attackElement: loadout.weapon.element,
+                  weakness: targetDef?.weakness,
+                  resistance: targetDef?.resistance,
+                }
+              );
+              target.statuses = dmgRes.nextDefenderStatuses;
+              target.currentHp = Math.max(0, target.currentHp - dmgRes.finalHpDamage);
+              const absorbNote =
+                dmgRes.shieldAbsorbed > 0 ? ` (障壁が${dmgRes.shieldAbsorbed}吸収)` : '';
+              next.logs.push(`💥 ${target.name}に ${dmgRes.finalHpDamage} ダメージ！${absorbNote}`);
+              if (dmgRes.isWeak) next.logs.push('🎯 弱点を突いた！');
+              if (dmgRes.isResist) next.logs.push('🛡️ 敵の耐性により軽減された！');
+              if (dmgRes.isCrit) next.logs.push('⚡ 会心の一撃！');
 
-if (skill.applyStatus) {
-const instance: ActiveStatusInstance = {
-statusId: skill.applyStatus.statusId,
-value: skill.applyStatus.value,
-duration: skill.applyStatus.duration,
-};
-if (skill.applyStatus.target === 'self') {
-const app = StatusEngine.applyStatus(next.player.statuses, instance);
-next.player.statuses = app.nextList;
-if (app.log) next.logs.push(app.log);
-} else {
-const statusTargets = hitsAll
-? CombatEngine.aliveIndices(next)
-: [primaryIdx];
-for (const ti of statusTargets) {
-const target = next.enemies[ti];
-const app = StatusEngine.applyStatus(target.statuses, instance);
-target.statuses = app.nextList;
-if (app.log) next.logs.push(`${target.name}に ${app.log}`);
-}
-}
-}
+              if (dmgRes.isCrit) lastActionFx.critTargets.push(ti);
+              if (dmgRes.isWeak) lastActionFx.weakTargets.push(ti);
+              if (dmgRes.isResist) lastActionFx.resistTargets.push(ti);
+            }
+            logNewDefeats(beforeHp);
+          }
 
-// Relic on_skill_use trigger (context: primary target)
-if (loadout.relic) {
-const eff = EFFECT_REGISTRY[loadout.relic.effectId];
-if (eff && eff.trigger === 'on_skill_use') {
-const target = next.enemies[primaryIdx];
-const rRes = eff.handler({
-playerCurrentHp: next.player.currentHp,
-playerMaxHp: next.player.maxHp,
-playerAtk: next.player.baseAtk,
-playerDef: next.player.baseDef,
-enemyCurrentHp: target.currentHp,
-enemyMaxHp: target.maxHp,
-turnNumber: next.turn,
-});
-if (rRes.applyStatusToEnemy) {
-const app = StatusEngine.applyStatus(target.statuses, rRes.applyStatusToEnemy);
-target.statuses = app.nextList;
-}
-if (rRes.logMessage) next.logs.push(rRes.logMessage);
-}
-}
-}
-} else if (playerCommand.type === 'consumable') {
-const cons = loadout.consumable;
-if (cons && next.consumableCharges > 0) {
-next.consumableCharges -= 1;
-next.logs.push(`🧪 消耗品を使用！(残り${next.consumableCharges}チャージ)`);
-if (cons.healPercent) {
-const healAmt = Math.floor((next.player.maxHp * cons.healPercent) / 100);
-next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + healAmt);
-next.logs.push(`💚 HPが ${healAmt} 回復した！`);
-}
-if (cons.cleanse) {
-const cRes = StatusEngine.cleanseDebuffs(next.player.statuses);
-next.player.statuses = cRes.nextList;
-if (cRes.removedCount > 0) {
-next.logs.push(`✨ デバフをすべて浄化した！`);
-}
-}
-if (cons.applyStatus) {
-const app = StatusEngine.applyStatus(next.player.statuses, {
-statusId: cons.applyStatus.statusId,
-value: cons.applyStatus.value,
-duration: cons.applyStatus.duration,
-});
-next.player.statuses = app.nextList;
-if (app.log) next.logs.push(app.log);
-}
-}
-}
-}
+          if (skill.healPercent || skill.healFlat) {
+            const healAmt =
+              (skill.healFlat ?? 0) +
+              Math.floor((next.player.maxHp * (skill.healPercent ?? 0)) / 100);
+            next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + healAmt);
+            next.logs.push(`💚 HPを ${healAmt} 回復した！`);
+          }
 
-// Victory only once every enemy is down
-if (allEnemiesDown()) {
-next.status = 'victory';
-return next;
-}
+          if (skill.cleanse) {
+            const cRes = StatusEngine.cleanseDebuffs(next.player.statuses);
+            next.player.statuses = cRes.nextList;
+            if (cRes.removedCount > 0) {
+              next.logs.push(`✨ 状態異常を ${cRes.removedCount} 個浄化した！`);
+            }
+          }
 
-// 3. Enemy phase: each living enemy acts in encounter order
-for (let ei = 0; ei < next.enemies.length; ei++) {
-const enemy = next.enemies[ei];
-if (enemy.currentHp <= 0) continue;
-const enemyDef = next.enemyDefs[ei];
+          if (skill.applyStatus) {
+            const instance: ActiveStatusInstance = {
+              statusId: skill.applyStatus.statusId,
+              value: skill.applyStatus.value,
+              duration: skill.applyStatus.duration,
+            };
+            if (skill.applyStatus.target === 'self') {
+              const app = StatusEngine.applyStatus(next.player.statuses, instance);
+              next.player.statuses = app.nextList;
+              if (app.log) next.logs.push(app.log);
+            } else {
+              const statusTargets = hitsAll
+                ? CombatEngine.aliveIndices(next)
+                : [primaryIdx];
+              for (const ti of statusTargets) {
+                const target = next.enemies[ti];
+                const app = StatusEngine.applyStatus(target.statuses, instance);
+                target.statuses = app.nextList;
+                if (app.log) next.logs.push(`${target.name}に ${app.log}`);
+              }
+            }
+          }
 
-// Enemy turn_start (damage-over-time can finish it before it acts)
-const eTurnStart = StatusEngine.runPhase('turn_start', enemy.statuses, {
-ownerCurrentHp: enemy.currentHp,
-ownerMaxHp: enemy.maxHp,
-opponentCurrentHp: next.player.currentHp,
-opponentMaxHp: next.player.maxHp,
-turnNumber: next.turn,
-});
-for (const l of eTurnStart.logs) {
-next.logs.push(`[${enemy.name}] ${l}`);
-}
-if (eTurnStart.totalDamage > 0) {
-enemy.currentHp = Math.max(0, enemy.currentHp - eTurnStart.totalDamage);
-}
-if (eTurnStart.totalHeal > 0) {
-enemy.currentHp = Math.min(enemy.maxHp, enemy.currentHp + eTurnStart.totalHeal);
-}
-if (enemy.currentHp <= 0) {
-next.logs.push(`🏆 状態異常ダメージにより ${enemy.name} を撃破した！`);
-if (allEnemiesDown()) {
-next.status = 'victory';
-return next;
-}
-continue;
-}
+          // Relic on_skill_use trigger (context: primary target)
+          if (loadout.relic) {
+            const eff = EFFECT_REGISTRY[loadout.relic.effectId];
+            if (eff && eff.trigger === 'on_skill_use') {
+              const target = next.enemies[primaryIdx];
+              const rRes = eff.handler({
+                playerCurrentHp: next.player.currentHp,
+                playerMaxHp: next.player.maxHp,
+                playerAtk: next.player.baseAtk,
+                playerDef: next.player.baseDef,
+                enemyCurrentHp: target.currentHp,
+                enemyMaxHp: target.maxHp,
+                turnNumber: next.turn,
+              });
+              if (rRes.applyStatusToEnemy) {
+                const app = StatusEngine.applyStatus(target.statuses, rRes.applyStatusToEnemy);
+                target.statuses = app.nextList;
+              }
+              if (rRes.logMessage) next.logs.push(rRes.logMessage);
+            }
+          }
+        }
+      } else if (playerCommand.type === 'consumable') {
+        const cons = loadout.consumable;
+        if (cons && next.consumableCharges > 0) {
+          next.consumableCharges -= 1;
+          next.logs.push(`🧪 消耗品を使用！(残り${next.consumableCharges}チャージ)`);
+          if (cons.healPercent) {
+            const healAmt = Math.floor((next.player.maxHp * cons.healPercent) / 100);
+            next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + healAmt);
+            next.logs.push(`💚 HPが ${healAmt} 回復した！`);
+          }
+          if (cons.cleanse) {
+            const cRes = StatusEngine.cleanseDebuffs(next.player.statuses);
+            next.player.statuses = cRes.nextList;
+            if (cRes.removedCount > 0) {
+              next.logs.push(`✨ デバフをすべて浄化した！`);
+            }
+          }
+          if (cons.applyStatus) {
+            const app = StatusEngine.applyStatus(next.player.statuses, {
+              statusId: cons.applyStatus.statusId,
+              value: cons.applyStatus.value,
+              duration: cons.applyStatus.duration,
+            });
+            next.player.statuses = app.nextList;
+            if (app.log) next.logs.push(app.log);
+          }
+        }
+      }
+    }
 
-// Enemy pre_action
-const ePreAction = StatusEngine.runPhase('pre_action', enemy.statuses, {
-ownerCurrentHp: enemy.currentHp,
-ownerMaxHp: enemy.maxHp,
-opponentCurrentHp: next.player.currentHp,
-opponentMaxHp: next.player.maxHp,
-turnNumber: next.turn,
-});
-for (const l of ePreAction.logs) {
-next.logs.push(`[${enemy.name}] ${l}`);
-}
+    // Victory only once every enemy is down
+    if (allEnemiesDown()) {
+      next.status = 'victory';
+      return next;
+    }
 
-if (!ePreAction.skipAction) {
-const { action} = CombatEngine.selectEnemyAction(enemy, enemyDef, rng);
-next.logs.push(`👾 ${action.logMessage}`);
+    // 3. Enemy phase: each living enemy acts in encounter order
+    for (let ei = 0; ei < next.enemies.length; ei++) {
+      const enemy = next.enemies[ei];
+      if (enemy.currentHp <= 0) continue;
+      const enemyDef = next.enemyDefs[ei];
 
-if (action.damageMultiplier && action.damageMultiplier > 0) {
-const dmgRes = CombatEngine.calculateDamage(
-enemy,
-next.player,
-action.damageMultiplier,
-next.turn
-);
-next.player.statuses = dmgRes.nextDefenderStatuses;
-next.player.currentHp = Math.max(0, next.player.currentHp - dmgRes.finalHpDamage);
-const absorbNote =
-dmgRes.shieldAbsorbed > 0? ` (障壁が${dmgRes.shieldAbsorbed}吸収)`: '';
-next.logs.push(
-`🩸 ${enemy.name}の攻撃！ プレイヤーに ${dmgRes.finalHpDamage} ダメージ！${absorbNote}`
-);
-}
+      // Enemy turn_start (damage-over-time can finish it before it acts)
+      const eTurnStart = StatusEngine.runPhase('turn_start', enemy.statuses, {
+        ownerCurrentHp: enemy.currentHp,
+        ownerMaxHp: enemy.maxHp,
+        opponentCurrentHp: next.player.currentHp,
+        opponentMaxHp: next.player.maxHp,
+        turnNumber: next.turn,
+      });
+      for (const l of eTurnStart.logs) {
+        next.logs.push(`[${enemy.name}] ${l}`);
+      }
+      if (eTurnStart.totalDamage > 0) {
+        enemy.currentHp = Math.max(0, enemy.currentHp - eTurnStart.totalDamage);
+      }
+      if (eTurnStart.totalHeal > 0) {
+        enemy.currentHp = Math.min(enemy.maxHp, enemy.currentHp + eTurnStart.totalHeal);
+      }
+      if (enemy.currentHp <= 0) {
+        next.logs.push(`🏆 状態異常ダメージにより ${enemy.name} を撃破した！`);
+        if (allEnemiesDown()) {
+          next.status = 'victory';
+          return next;
+        }
+        continue;
+      }
 
-if (action.statusId && action.statusDuration) {
-const instance: ActiveStatusInstance = {
-statusId: action.statusId,
-value: action.statusValue?? 20,
-duration: action.statusDuration,
-};
-if (action.type === 'buff') {
-const app = StatusEngine.applyStatus(enemy.statuses, instance);
-enemy.statuses = app.nextList;
-if (app.log) next.logs.push(`[${enemy.name}] ${app.log}`);
-} else if (action.type === 'debuff') {
-const app = StatusEngine.applyStatus(next.player.statuses, instance);
-next.player.statuses = app.nextList;
-if (app.log) next.logs.push(`[プレイヤー] ${app.log}`);
-}
-}
-}
+      // Enemy pre_action
+      const ePreAction = StatusEngine.runPhase('pre_action', enemy.statuses, {
+        ownerCurrentHp: enemy.currentHp,
+        ownerMaxHp: enemy.maxHp,
+        opponentCurrentHp: next.player.currentHp,
+        opponentMaxHp: next.player.maxHp,
+        turnNumber: next.turn,
+      });
+      for (const l of ePreAction.logs) {
+        next.logs.push(`[${enemy.name}] ${l}`);
+      }
 
-if (next.player.currentHp <= 0) {
-next.status = 'defeat';
-next.logs.push('💀 力尽きた…');
-return next;
-}
-}
+      if (!ePreAction.skipAction) {
+        const { action } = CombatEngine.selectEnemyAction(enemy, enemyDef, rng);
+        next.logs.push(`👾 ${action.logMessage}`);
 
-// 4. Turn End duration decay
-const pEnd = StatusEngine.tickTurnEnd(next.player.statuses);
-next.player.statuses = pEnd.nextStatuses;
+        if (action.damageMultiplier && action.damageMultiplier > 0) {
+          const dmgRes = CombatEngine.calculateDamage(
+            enemy,
+            next.player,
+            action.damageMultiplier,
+            next.turn,
+            {
+              rng,
+              critChance: 0.05,
+            }
+          );
+          next.player.statuses = dmgRes.nextDefenderStatuses;
+          next.player.currentHp = Math.max(0, next.player.currentHp - dmgRes.finalHpDamage);
+          const absorbNote =
+            dmgRes.shieldAbsorbed > 0 ? ` (障壁が${dmgRes.shieldAbsorbed}吸収)` : '';
+          next.logs.push(
+            `🩸 ${enemy.name}の攻撃！ プレイヤーに ${dmgRes.finalHpDamage} ダメージ！${absorbNote}`
+          );
+          if (dmgRes.isCrit) {
+            next.logs.push('⚡ 会心の一撃を受けた！');
+            lastActionFx.playerCrit = true;
+          }
+        }
 
-for (const enemy of next.enemies) {
-const eEnd = StatusEngine.tickTurnEnd(enemy.statuses);
-enemy.statuses = eEnd.nextStatuses;
-}
+        if (action.statusId && action.statusDuration) {
+          const instance: ActiveStatusInstance = {
+            statusId: action.statusId,
+            value: action.statusValue ?? 20,
+            duration: action.statusDuration,
+          };
+          if (action.type === 'buff') {
+            const app = StatusEngine.applyStatus(enemy.statuses, instance);
+            enemy.statuses = app.nextList;
+            if (app.log) next.logs.push(`[${enemy.name}] ${app.log}`);
+          } else if (action.type === 'debuff') {
+            const app = StatusEngine.applyStatus(next.player.statuses, instance);
+            next.player.statuses = app.nextList;
+            if (app.log) next.logs.push(`[プレイヤー] ${app.log}`);
+          }
+        }
+      }
 
-next.turn += 1;
-return next;
-}
+      if (next.player.currentHp <= 0) {
+        next.status = 'defeat';
+        next.logs.push('💀 力尽きた…');
+        return next;
+      }
+    }
+
+    // 4. Turn End duration decay
+    const pEnd = StatusEngine.tickTurnEnd(next.player.statuses);
+    next.player.statuses = pEnd.nextStatuses;
+
+    for (const enemy of next.enemies) {
+      const eEnd = StatusEngine.tickTurnEnd(enemy.statuses);
+      enemy.statuses = eEnd.nextStatuses;
+    }
+
+    next.turn += 1;
+    return next;
+  }
 }

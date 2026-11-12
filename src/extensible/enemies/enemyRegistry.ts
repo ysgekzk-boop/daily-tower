@@ -10,6 +10,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     atk: 11,
     def: 2,
     goldReward: 12,
+    weakness: 'fire',
+    resistance: 'nature',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -68,6 +70,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     atk: 13,
     def: 3,
     goldReward: 16,
+    weakness: 'fire',
+    resistance: 'nature',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -128,6 +132,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     atk: 15,
     def: 4,
     goldReward: 18,
+    weakness: 'fire',
+    resistance: 'nature',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -185,6 +191,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     atk: 18,
     def: 5,
     goldReward: 24,
+    weakness: 'fire',
+    resistance: 'ice',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -244,6 +252,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     def: 4,
     goldReward: 55,
     isBoss: true,
+    weakness: 'fire',
+    resistance: 'nature',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -336,6 +346,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     def: 12,
     goldReward: 200,
     isBoss: true,
+    weakness: 'fire',
+    resistance: 'nature',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -425,6 +437,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     atk: 20,
     def: 7,
     goldReward: 28,
+    weakness: 'ice',
+    resistance: 'fire',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -485,6 +499,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     def: 14,
     goldReward: 300,
     isBoss: true,
+    weakness: 'ice',
+    resistance: 'fire',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -552,6 +568,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     atk: 11,
     def: 4,
     goldReward: 18,
+    weakness: 'fire',
+    resistance: 'void',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -608,6 +626,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     atk: 13,
     def: 2,
     goldReward: 16,
+    weakness: 'void',
+    resistance: 'physical',
     phases: [
       {
         hpThresholdPercent: 100,
@@ -665,6 +685,8 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     atk: 10,
     def: 6,
     goldReward: 22,
+    weakness: 'fire',
+    resistance: 'physical',
     phases: [
       {
         hpThresholdPercent: 100,

@@ -1,3 +1,5 @@
+import { ElementType } from '../items/itemCatalog';
+
 export type EnemyActionType = 'attack' | 'buff' | 'debuff';
 
 export interface EnemyAction {
@@ -28,5 +30,8 @@ export interface EnemyDefinition {
   def: number;
   goldReward: number;
   isBoss?: boolean;
+  weakness?: ElementType;
+  resistance?: ElementType;
   phases: EnemyPhase[];          // Sorted descending by hpThresholdPercent (e.g. 100 -> 50 -> 25)
 }
+
