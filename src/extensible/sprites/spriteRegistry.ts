@@ -412,6 +412,51 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: 'ヴァーダント・バジリスク',
     colors: ['transparent', '#132a13', '#31572c', '#facc15'],
   },
+  ancient_mask_spirit: {
+    id: 'ancient_mask_spirit',
+    name: 'エンシェント・マスクスピリット',
+    colors: ['transparent', '#1e1b18', '#854d0e', '#38bdf8'],
+  },
+  abyssal_mycelium: {
+    id: 'abyssal_mycelium',
+    name: 'アビサル・マイセリウム',
+    colors: ['transparent', '#140d21', '#581c87', '#c084fc'],
+  },
+  silicified_wraith: {
+    id: 'silicified_wraith',
+    name: 'シリシファイド・レイス',
+    colors: ['transparent', '#1f2937', '#0d9488', '#2dd4bf'],
+  },
+  worldtree_sprout: {
+    id: 'worldtree_sprout',
+    name: 'ワールドツリー・スプラウト',
+    colors: ['transparent', '#064e3b', '#10b981', '#fde047'],
+  },
+  runic_hollow: {
+    id: 'runic_hollow',
+    name: 'ルーニック・ホロウ',
+    colors: ['transparent', '#1c1917', '#78350f', '#f97316'],
+  },
+  rootbound_armor: {
+    id: 'rootbound_armor',
+    name: 'ルートバウンド・アーマー',
+    colors: ['transparent', '#1e293b', '#475569', '#4ade80'],
+  },
+  chasm_moss_core: {
+    id: 'chasm_moss_core',
+    name: 'キャズム・モスコア',
+    colors: ['transparent', '#064e3b', '#059669', '#67e8f9'],
+  },
+  amber_crystal_idol: {
+    id: 'amber_crystal_idol',
+    name: 'アンバー・クリスタルアイドル',
+    colors: ['transparent', '#451a03', '#d97706', '#fef08a'],
+  },
+  verdant_archon: {
+    id: 'verdant_archon',
+    name: 'ヴァーダント・アルコン',
+    colors: ['transparent', '#132a13', '#2d6a4f', '#52b788'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -499,6 +544,15 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   moss_gargoyle: { id: 'moss_gargoyle', matrixId: 'moss_gargoyle', defaultPalette: 'moss_gargoyle' },
   sylvan_hydra: { id: 'sylvan_hydra', matrixId: 'sylvan_hydra', defaultPalette: 'sylvan_hydra' },
   verdant_basilisk: { id: 'verdant_basilisk', matrixId: 'verdant_basilisk', defaultPalette: 'verdant_basilisk' },
+  ancient_mask_spirit: { id: 'ancient_mask_spirit', matrixId: 'ancient_mask_spirit', defaultPalette: 'ancient_mask_spirit' },
+  abyssal_mycelium: { id: 'abyssal_mycelium', matrixId: 'abyssal_mycelium', defaultPalette: 'abyssal_mycelium' },
+  silicified_wraith: { id: 'silicified_wraith', matrixId: 'silicified_wraith', defaultPalette: 'silicified_wraith' },
+  worldtree_sprout: { id: 'worldtree_sprout', matrixId: 'worldtree_sprout', defaultPalette: 'worldtree_sprout' },
+  runic_hollow: { id: 'runic_hollow', matrixId: 'runic_hollow', defaultPalette: 'runic_hollow' },
+  rootbound_armor: { id: 'rootbound_armor', matrixId: 'rootbound_armor', defaultPalette: 'rootbound_armor' },
+  chasm_moss_core: { id: 'chasm_moss_core', matrixId: 'chasm_moss_core', defaultPalette: 'chasm_moss_core' },
+  amber_crystal_idol: { id: 'amber_crystal_idol', matrixId: 'amber_crystal_idol', defaultPalette: 'amber_crystal_idol' },
+  verdant_archon: { id: 'verdant_archon', matrixId: 'verdant_archon', defaultPalette: 'verdant_archon' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {
