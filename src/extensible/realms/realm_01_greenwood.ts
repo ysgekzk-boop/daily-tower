@@ -686,7 +686,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'vine_stalker', enemyStatScale: 1.22 },
       { type: 'event', eventId: 'crimson_pact_altar' },
       { type: 'battle', enemyId: 'fungal_strider', enemyStatScale: 1.22 },
-      { type: 'battle', enemyIds: ['thorn_centipede', 'lichen_ape'], enemyStatScale: 1.22 },
+      { type: 'battle', enemyId: 'thorn_centipede', enemyStatScale: 1.22 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -705,7 +705,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'event', eventId: 'sanctuary_campfire' },
       { type: 'battle', enemyId: 'ancient_scarab', enemyStatScale: 1.24 },
       { type: 'battle', enemyId: 'vine_stalker', enemyStatScale: 1.24 },
-      { type: 'battle', enemyIds: ['moss_gargoyle', 'lichen_ape'], enemyStatScale: 1.24 },
+      { type: 'battle', enemyId: 'moss_gargoyle', enemyStatScale: 1.24 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -722,7 +722,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'fungal_strider', enemyStatScale: 1.25 },
       { type: 'event', eventId: 'starlight_archive' },
       { type: 'battle', enemyId: 'thorn_centipede', enemyStatScale: 1.25 },
-      { type: 'battle', enemyIds: ['dusk_crow', 'moss_gargoyle'], enemyStatScale: 1.25 },
+      { type: 'battle', enemyId: 'moss_gargoyle', enemyStatScale: 1.25 },
     ],
     rewardPool: {
       equipmentIds: ['thorn_halberd', 'ironwood_plate', 'verdant_blade'],
@@ -737,7 +737,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     subtitle: 'フロア最奥に領域の守護ミニボスが立ち塞がる',
     encounters: [
       { type: 'battle', enemyId: 'moss_gargoyle', enemyStatScale: 1.27 },
-      { type: 'battle', enemyIds: ['vine_stalker', 'ancient_scarab'], enemyStatScale: 1.27 },
+      { type: 'battle', enemyId: 'vine_stalker', enemyStatScale: 1.27 },
       { type: 'event', eventId: 'sanctuary_campfire' },
       { type: 'miniboss', enemyId: 'verdant_basilisk', enemyStatScale: 1.27 },
     ],
