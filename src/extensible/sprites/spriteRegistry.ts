@@ -1377,6 +1377,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '圧力外殻の装甲板',
     colors: ['transparent', '#1e293b', '#64748b', '#fb923c'],
   },
+  item_core_crucible_greatsword: {
+    id: 'item_core_crucible_greatsword',
+    name: '炉心坩堝の終焉剣',
+    colors: ['transparent', '#450a0a', '#dc2626', '#fef08a'],
+  },
+  item_doomsday_anvil_halberd: {
+    id: 'item_doomsday_anvil_halberd',
+    name: '終焉金床の虚空戟',
+    colors: ['transparent', '#0f172a', '#475569', '#c084fc'],
+  },
+  item_core_hearth_plate: {
+    id: 'item_core_hearth_plate',
+    name: '炉心神殿の重鎧',
+    colors: ['transparent', '#431407', '#c2410c', '#fde047'],
+  },
+  item_doomsday_forge_cuirass: {
+    id: 'item_doomsday_forge_cuirass',
+    name: '終焉鍛造の黒鉄甲',
+    colors: ['transparent', '#18181b', '#52525b', '#f97316'],
+  },
+  item_core_ember_brand: {
+    id: 'item_core_ember_brand',
+    name: '炉心烙印の斬撃',
+    colors: ['transparent', '#7c2d12', '#f97316', '#fef08a'],
+  },
+  item_final_forge_obliteration: {
+    id: 'item_final_forge_obliteration',
+    name: '終焉鍛造の一閃',
+    colors: ['transparent', '#3b0764', '#9333ea', '#fef08a'],
+  },
+  item_crucible_drive_cleave: {
+    id: 'item_crucible_drive_cleave',
+    name: '炉心駆動の剛撃',
+    colors: ['transparent', '#7f1d1d', '#ef4444', '#fde047'],
+  },
+  item_core_quench_renewal: {
+    id: 'item_core_quench_renewal',
+    name: '炉心冷却の再生',
+    colors: ['transparent', '#065f46', '#10b981', '#e0f2fe'],
+  },
+  item_hearth_bastion_protocol: {
+    id: 'item_hearth_bastion_protocol',
+    name: '炉心防壁の構え',
+    colors: ['transparent', '#1e293b', '#64748b', '#38bdf8'],
+  },
+  item_doomsday_soot_shackle: {
+    id: 'item_doomsday_soot_shackle',
+    name: '終焉煤煙の呪縛',
+    colors: ['transparent', '#18181b', '#3f3f46', '#f43f5e'],
+  },
+  item_core_eruption_sweep: {
+    id: 'item_core_eruption_sweep',
+    name: '炉心噴火の薙ぎ払い',
+    colors: ['transparent', '#7c2d12', '#ea580c', '#fef9c3'],
+  },
+  item_core_forge_elixir: {
+    id: 'item_core_forge_elixir',
+    name: '炉心鍛造の霊薬',
+    colors: ['transparent', '#7f1d1d', '#dc2626', '#fde047'],
+  },
+  item_doomsday_quench_vial: {
+    id: 'item_doomsday_quench_vial',
+    name: '終焉炉の冷却水',
+    colors: ['transparent', '#0e7490', '#22d3ee', '#f0f9ff'],
+  },
+  item_core_furnace_brand_relic: {
+    id: 'item_core_furnace_brand_relic',
+    name: '炉心烙印の護符',
+    colors: ['transparent', '#450a0a', '#b91c1c', '#fb923c'],
+  },
+  item_doomsday_slag_core_relic: {
+    id: 'item_doomsday_slag_core_relic',
+    name: '終焉炉の破甲核',
+    colors: ['transparent', '#1e1b4b', '#6366f1', '#fb923c'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1657,6 +1732,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_boiler_pressure_elixir: { id: 'item_boiler_pressure_elixir', matrixId: 'item_boiler_pressure_elixir', defaultPalette: 'item_boiler_pressure_elixir' },
   item_steam_cog_regulator_relic: { id: 'item_steam_cog_regulator_relic', matrixId: 'item_steam_cog_regulator_relic', defaultPalette: 'item_steam_cog_regulator_relic' },
   item_boiler_shell_plating_relic: { id: 'item_boiler_shell_plating_relic', matrixId: 'item_boiler_shell_plating_relic', defaultPalette: 'item_boiler_shell_plating_relic' },
+  item_core_crucible_greatsword: { id: 'item_core_crucible_greatsword', matrixId: 'item_core_crucible_greatsword', defaultPalette: 'item_core_crucible_greatsword' },
+  item_doomsday_anvil_halberd: { id: 'item_doomsday_anvil_halberd', matrixId: 'item_doomsday_anvil_halberd', defaultPalette: 'item_doomsday_anvil_halberd' },
+  item_core_hearth_plate: { id: 'item_core_hearth_plate', matrixId: 'item_core_hearth_plate', defaultPalette: 'item_core_hearth_plate' },
+  item_doomsday_forge_cuirass: { id: 'item_doomsday_forge_cuirass', matrixId: 'item_doomsday_forge_cuirass', defaultPalette: 'item_doomsday_forge_cuirass' },
+  item_core_ember_brand: { id: 'item_core_ember_brand', matrixId: 'item_core_ember_brand', defaultPalette: 'item_core_ember_brand' },
+  item_final_forge_obliteration: { id: 'item_final_forge_obliteration', matrixId: 'item_final_forge_obliteration', defaultPalette: 'item_final_forge_obliteration' },
+  item_crucible_drive_cleave: { id: 'item_crucible_drive_cleave', matrixId: 'item_crucible_drive_cleave', defaultPalette: 'item_crucible_drive_cleave' },
+  item_core_quench_renewal: { id: 'item_core_quench_renewal', matrixId: 'item_core_quench_renewal', defaultPalette: 'item_core_quench_renewal' },
+  item_hearth_bastion_protocol: { id: 'item_hearth_bastion_protocol', matrixId: 'item_hearth_bastion_protocol', defaultPalette: 'item_hearth_bastion_protocol' },
+  item_doomsday_soot_shackle: { id: 'item_doomsday_soot_shackle', matrixId: 'item_doomsday_soot_shackle', defaultPalette: 'item_doomsday_soot_shackle' },
+  item_core_eruption_sweep: { id: 'item_core_eruption_sweep', matrixId: 'item_core_eruption_sweep', defaultPalette: 'item_core_eruption_sweep' },
+  item_core_forge_elixir: { id: 'item_core_forge_elixir', matrixId: 'item_core_forge_elixir', defaultPalette: 'item_core_forge_elixir' },
+  item_doomsday_quench_vial: { id: 'item_doomsday_quench_vial', matrixId: 'item_doomsday_quench_vial', defaultPalette: 'item_doomsday_quench_vial' },
+  item_core_furnace_brand_relic: { id: 'item_core_furnace_brand_relic', matrixId: 'item_core_furnace_brand_relic', defaultPalette: 'item_core_furnace_brand_relic' },
+  item_doomsday_slag_core_relic: { id: 'item_doomsday_slag_core_relic', matrixId: 'item_doomsday_slag_core_relic', defaultPalette: 'item_doomsday_slag_core_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

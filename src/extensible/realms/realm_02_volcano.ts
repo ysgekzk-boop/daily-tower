@@ -767,15 +767,16 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'heatwave_spirit', enemyStatScale: 1.3 },
       { type: 'battle', enemyIds: ['molten_gear_sentinel', 'steam_press_hound'], enemyStatScale: 1.3 },
-      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'event', eventId: 'core_crucible_forge' },
       { type: 'battle', enemyId: 'black_fume_demon', enemyStatScale: 1.3 },
       { type: 'battle', enemyId: 'core_blaze_chimera', enemyStatScale: 1.3 },
       { type: 'battle', enemyId: 'abyssal_soot_harpy', enemyStatScale: 1.3 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
   {
@@ -790,9 +791,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'crucible_iron_aegis', enemyStatScale: 1.31 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
   {
@@ -803,14 +805,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'core_magma_weaver', enemyStatScale: 1.33 },
       { type: 'battle', enemyIds: ['slag_dross_amalgam', 'molten_gear_sentinel'], enemyStatScale: 1.33 },
-      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'event', eventId: 'core_cooling_spring' },
       { type: 'battle', enemyId: 'foundry_colossus', enemyStatScale: 1.33 },
       { type: 'battle', enemyId: 'magma_core_hydra', enemyStatScale: 1.33 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
   {
@@ -821,15 +824,16 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'doomsday_press_forge', enemyStatScale: 1.34 },
       { type: 'battle', enemyId: 'abyssal_soot_harpy', enemyStatScale: 1.34 },
-      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'event', eventId: 'doomsday_pact_furnace' },
       { type: 'battle', enemyIds: ['slag_dross_amalgam', 'crucible_iron_aegis'], enemyStatScale: 1.34 },
       { type: 'battle', enemyId: 'void_cinder_reaper', enemyStatScale: 1.34 },
       { type: 'battle', enemyId: 'core_blaze_chimera', enemyStatScale: 1.34 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
   {
@@ -844,9 +848,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'grand_furnace_monarch', enemyStatScale: 1.35 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
   {
@@ -862,9 +867,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'abyssal_soot_harpy', enemyStatScale: 1.36 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
   {
@@ -875,15 +881,16 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'molten_gear_sentinel', enemyStatScale: 1.38 },
       { type: 'battle', enemyId: 'void_cinder_reaper', enemyStatScale: 1.38 },
-      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'event', eventId: 'core_cooling_spring' },
       { type: 'battle', enemyIds: ['slag_dross_amalgam', 'molten_gear_sentinel'], enemyStatScale: 1.38 },
       { type: 'battle', enemyId: 'core_blaze_chimera', enemyStatScale: 1.38 },
       { type: 'battle', enemyId: 'magma_core_hydra', enemyStatScale: 1.38 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
   {
@@ -893,14 +900,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     subtitle: '熱風と火花が舞う3連戦エリア',
     encounters: [
       { type: 'battle', enemyId: 'crucible_iron_aegis', enemyStatScale: 1.39 },
-      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'event', eventId: 'doomsday_pact_furnace' },
       { type: 'battle', enemyId: 'abyssal_soot_harpy', enemyStatScale: 1.39 },
       { type: 'battle', enemyId: 'doomsday_press_forge', enemyStatScale: 1.39 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
   {
@@ -911,14 +919,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'magma_core_hydra', enemyStatScale: 1.4 },
       { type: 'battle', enemyId: 'void_cinder_reaper', enemyStatScale: 1.4 },
-      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'event', eventId: 'core_crucible_forge' },
       { type: 'battle', enemyId: 'slag_dross_amalgam', enemyStatScale: 1.4 },
       { type: 'battle', enemyId: 'doomsday_press_forge', enemyStatScale: 1.4 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
   {
@@ -932,9 +941,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'apex_boss', enemyId: 'ashen_colossus', enemyStatScale: 0.85 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['boiler_core_greatsword', 'steam_gear_pike', 'gearwork_steam_cuirass', 'pressure_shell_plate', 'core_crucible_greatsword', 'doomsday_anvil_halberd', 'core_hearth_plate', 'doomsday_forge_cuirass'],
+      skillIds: ['boiler_overload_smash', 'boiler_vent_recovery', 'gear_drive_strike', 'iron_boiler_aegis', 'pressure_valve_rupture', 'steam_core_overdrive', 'steam_scald_jet', 'core_ember_brand', 'final_forge_obliteration', 'crucible_drive_cleave', 'core_quench_renewal', 'hearth_bastion_protocol', 'doomsday_soot_shackle', 'core_eruption_sweep'],
+      utilityIds: ['boiler_shell_plating_relic', 'steam_cog_regulator_relic', 'core_furnace_brand_relic', 'doomsday_slag_core_relic'],
+      consumableIds: ['boiler_pressure_elixir', 'steam_turbine_tonic', 'core_forge_elixir', 'doomsday_quench_vial'],
     },
   },
 ];

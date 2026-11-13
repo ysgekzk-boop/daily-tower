@@ -1082,6 +1082,126 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  core_crucible_forge: {
+    id: 'core_crucible_forge',
+    title: '終焉炉心の神鍛冶場',
+    category: 'forge',
+    description:
+      '領域の最深部に据えられた終焉の金床の前で、白熱する鋼を打つ神鍛冶師が待ち構えている。「ここが最後の鍛造場だ。金貨を積むなら、炉心鍛えの武具を譲ろう」',
+    speakerSpriteId: 'hero_knight',
+    palette: 'steel_knight',
+    options: [
+      {
+        id: 'buy_core_weapon',
+        label: '終焉鍛えの武器を購入する（45 G ➔ 武器獲得）',
+        description: '45 Gを支払い、炉心の業火で鍛え上げた武器を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'weapon',
+          logMessage: '神鍛冶師から終焉の炉熱を宿した業物の武器を受け取った！',
+        },
+      },
+      {
+        id: 'buy_core_armor',
+        label: '炉心鋼の重鎧を購入する（45 G ➔ 防具獲得）',
+        description: '45 Gを支払い、最終焼入れを施した堅牢な防具を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'armor',
+          logMessage: '神鍛冶師から終焉炉心の重厚な防具を受け取った！',
+        },
+      },
+      {
+        id: 'assist_core_bellows',
+        label: '炉心のふいごを手伝う（+25 G）',
+        description: '終焉炉に風を送り火力を保ち、手間賃を受け取る。',
+        outcome: {
+          grantGold: 25,
+          logMessage: '炉心のふいご作業を手伝い、礼として 25 G を受け取った！',
+        },
+      },
+    ],
+  },
+
+  core_cooling_spring: {
+    id: 'core_cooling_spring',
+    title: '終焉炉の焼入れ泉',
+    category: 'shrine',
+    description:
+      '炉心の岩盤から湧き出した清冽な地下水が、焼入れ用の澄んだ泉を作っている。水底にはかつて最深部へ挑んだ鍛冶師たちの金貨が輝いている。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_core_spring',
+        label: '焼入れ泉の水を飲む（HP 35%回復）',
+        description: '冷たく澄んだ泉水で渇きを癒やし、傷を癒やす。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '焼入れ泉の澄んだ水を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_core_coins',
+        label: '水底の金貨を拾う（+35 G）',
+        description: '泉の底に沈んだ金貨を素早く回収する。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '焼入れ泉の底から輝く金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
+
+  doomsday_pact_furnace: {
+    id: 'doomsday_pact_furnace',
+    title: '終焉炉心の契約壇',
+    category: 'shrine',
+    description:
+      '白熱する炉心の真上に、古代の鍛造紋様が刻まれた契約壇が鎮座している。「命の火か黄金を炉に捧げよ。さすれば終焉の秘宝か秘術を授けん」と刻まれている。',
+    speakerSpriteId: 'shrine',
+    palette: 'crimson_knight',
+    options: [
+      {
+        id: 'blood_for_doomsday_relic',
+        label: '生命力を捧げる（HP 20%消費 ➔ レリック獲得）',
+        description: '最大HPの20%を代償に、終焉炉心に眠る古代のレリックを授かる。',
+        cost: {
+          hpPercent: 20,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '終焉炉心の契約壇に生命力を捧げ、古代のレリックを授かった！',
+        },
+      },
+      {
+        id: 'gold_for_doomsday_skill',
+        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
+        description: '40 Gを炉心に投じ、最終決戦を生き抜く秘伝スキルを得る。',
+        cost: {
+          gold: 40,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '黄金が炉心の閃光へと変わり、新たなスキルの知識が脳裏に刻まれた！',
+        },
+      },
+      {
+        id: 'bow_to_doomsday_furnace',
+        label: '静かに一礼して立ち去る（HP 15%回復）',
+        description: '代償を払わず敬意を示し、炉心の穏やかな温もりで傷を癒やす。',
+        outcome: {
+          healHpPercent: 15,
+          logMessage: '終焉炉心の契約壇に敬意を表し、穏やかな祝福でHPが15%回復した。',
+        },
+      },
+    ],
+  },
 };
 
 

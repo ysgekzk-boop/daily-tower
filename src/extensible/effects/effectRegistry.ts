@@ -313,6 +313,32 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       };
     },
   },
+  core_furnace_brand: {
+    id: 'core_furnace_brand',
+    name: '炉心烙印の護符',
+    trigger: 'battle_start',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'flat_atk_down',
+        value: 12,
+        duration: 3,
+      },
+      logMessage: `[レリック:炉心烙印の護符] 炉心の烙印が敵を焼き、3ターンの間攻撃力を固定値 -12 低下させた！`,
+    }),
+  },
+  doomsday_slag_core: {
+    id: 'doomsday_slag_core',
+    name: '終焉炉の破甲核',
+    trigger: 'on_skill_use',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'def_debuff',
+        value: 25,
+        duration: 3,
+      },
+      logMessage: `[レリック:終焉炉の破甲核] スキル発動に呼応し、終焉の熱波が敵の防御力を3ターンの間25%低下させた！`,
+    }),
+  },
 };
 
 
