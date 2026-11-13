@@ -10,14 +10,29 @@ import { EventEngine } from '../core/EventEngine';
 import { FloorRunner, ResolvedEncounter } from '../core/FloorRunner';
 import {
   BASE_PLAYER_MAX_HP,
-  SAVE_STORAGE_KEY,
   SaveData,
   StorageValidator,
 } from '../core/StorageValidator';
+import {
+  SAVE_SLOT_IDS,
+  SaveSlotId,
+  SaveSlotSummary,
+  deleteSlotData,
+  getActiveSlotId,
+  hasSlotData,
+  listSlotSummaries,
+  loadSlotSave,
+  saveSlotData,
+  setActiveSlotId,
+} from '../core/SaveSlotManager';
 import { EFFECT_REGISTRY } from '../extensible/effects/effectRegistry';
 import { EventOption } from '../extensible/events/types';
 import { AnyCatalogItem, SkillItem } from '../extensible/items/itemCatalog';
-import { REALM_METADATA } from '../extensible/realms/realmIndex';
+import {
+  LATEST_AUTHORED_FLOOR,
+  REALM_METADATA,
+  isFloorAuthored,
+} from '../extensible/realms/realmIndex';
 import { evaluateAchievements } from '../extensible/achievements/achievements';
 
 export type GameStage =
@@ -26,19 +41,12 @@ export type GameStage =
   | 'floor_reward'
   | 'skill_replace_prompt'
   | 'dimensional_leap'
+  | 'frontier_reached'
   | 'defeat';
 
 export function useGameStore() {
-  const [saveData, setSaveData] = useState<SaveData>(() => {
-    try {
-      const rawStr = localStorage.getItem(SAVE_STORAGE_KEY);
-      const parsed = rawStr ? JSON.parse(rawStr) : null;
-      const { save } = StorageValidator.validateAndHeal(parsed);
-      return save;
-    } catch {
-      return StorageValidator.createDefaultSave();
-    }
-  });
+  const [activeSlotId, setActiveSlotIdState] = useState<SaveSlotId>(() => getActiveSlotId());
+  const [saveData, setSaveData] = useState<SaveData>(() => loadSlotSave(getActiveSlotId()));
 
   const [stage, setStage] = useState<GameStage>('combat');
   const [battleSession, setBattleSession] = useState<BattleSessionState | null>(null);
@@ -47,6 +55,7 @@ export function useGameStore() {
   const [stageAfterSkillPrompt, setStageAfterSkillPrompt] = useState<'next_encounter' | 'next_floor'>('next_floor');
   const [systemBanner, setSystemBanner] = useState<string | null>(null);
   const [storageError, setStorageError] = useState<string | null>(null);
+  const [slotRevision, setSlotRevision] = useState(0);
 
   const playerMaxHp = BASE_PLAYER_MAX_HP + saveData.inventory.armor.maxHpBonus;
   const floorDef = FloorRunner.getFloor(saveData.midFloor.currentFloor);
@@ -59,14 +68,15 @@ export function useGameStore() {
   // Persist saveData whenever it changes (encounter start / reward completion)
   useEffect(() => {
     try {
-      localStorage.setItem(SAVE_STORAGE_KEY, JSON.stringify(saveData));
+      saveSlotData(activeSlotId, saveData);
       setStorageError(null);
+      setSlotRevision((r) => r + 1);
     } catch {
       setStorageError(
         'ブラウザの保存領域に書き込めませんでした（シークレットモードや容量上限の可能性があります）。必要に応じてデータをエクスポートしてください。'
       );
     }
-  }, [saveData]);
+  }, [activeSlotId, saveData]);
 
 function syncAchievements(save: SaveData): SaveData {
   const unlockedIds = evaluateAchievements(save);
@@ -89,11 +99,17 @@ function syncAchievements(save: SaveData): SaveData {
   // Initialize encounter session when floor or encounterIndex changes
   const initCurrentEncounter = useCallback(
     (currentSave: SaveData) => {
-      const fDef = FloorRunner.getFloor(currentSave.midFloor.currentFloor);
+      const currentFloor = currentSave.midFloor.currentFloor;
+      if (!isFloorAuthored(currentFloor)) {
+        setBattleSession(null);
+        setStage('frontier_reached');
+        return;
+      }
+
+      const fDef = FloorRunner.getFloor(currentFloor);
       const enc = FloorRunner.resolveEncounter(fDef, currentSave.midFloor.currentEncounterIndex);
       const maxHp = BASE_PLAYER_MAX_HP + currentSave.inventory.armor.maxHpBonus;
 
-      const currentFloor = currentSave.midFloor.currentFloor;
       const prevStats = currentSave.playStats ?? {
         maxFloorReached: 1,
         battlesWon: 0,
@@ -444,6 +460,13 @@ function syncAchievements(save: SaveData): SaveData {
       },
     };
     setSaveData(nextSave);
+
+    if (clearedFloor === LATEST_AUTHORED_FLOOR && !isFloorAuthored(nextFloor)) {
+      setBattleSession(null);
+      setStage('frontier_reached');
+      return;
+    }
+
     initCurrentEncounter(nextSave);
   };
 
@@ -671,7 +694,63 @@ function syncAchievements(save: SaveData): SaveData {
     setStorageError(null);
   };
 
+  const switchSaveSlot = (slotId: SaveSlotId) => {
+    const loaded = loadSlotSave(slotId);
+    setActiveSlotId(slotId);
+    setActiveSlotIdState(slotId);
+    setRewardCards(null);
+    setPendingSkillToEquip(null);
+    setSaveData(loaded);
+    initCurrentEncounter(loaded);
+    setSystemBanner(`📁 スロット ${slotId}（第${loaded.midFloor.currentFloor}層）に切り替えました。`);
+  };
+
+  const createNewSaveInSlot = (slotId: SaveSlotId) => {
+    const fresh = StorageValidator.createDefaultSave();
+    setActiveSlotId(slotId);
+    setActiveSlotIdState(slotId);
+    setRewardCards(null);
+    setPendingSkillToEquip(null);
+    setSaveData(fresh);
+    initCurrentEncounter(fresh);
+    setSystemBanner(`✨ スロット ${slotId} に新しい冒険データを作成しました！`);
+  };
+
+  const deleteSaveSlot = (slotId: SaveSlotId) => {
+    deleteSlotData(slotId);
+    if (slotId === activeSlotId) {
+      const fallbackSlot = SAVE_SLOT_IDS.find((id) => id !== slotId && hasSlotData(id));
+      if (fallbackSlot) {
+        const loaded = loadSlotSave(fallbackSlot);
+        setActiveSlotId(fallbackSlot);
+        setActiveSlotIdState(fallbackSlot);
+        setRewardCards(null);
+        setPendingSkillToEquip(null);
+        setSaveData(loaded);
+        initCurrentEncounter(loaded);
+        setSystemBanner(`🗑️ スロット ${slotId} を削除し、スロット ${fallbackSlot} に切り替えました。`);
+      } else {
+        const fresh = StorageValidator.createDefaultSave();
+        setRewardCards(null);
+        setPendingSkillToEquip(null);
+        setSaveData(fresh);
+        initCurrentEncounter(fresh);
+        setSystemBanner(`🗑️ スロット ${slotId} を初期化しました。`);
+      }
+    } else {
+      setSlotRevision((r) => r + 1);
+      setSystemBanner(`🗑️ スロット ${slotId} のデータを削除しました。`);
+    }
+  };
+
+  const slotSummaries: SaveSlotSummary[] = (() => {
+    void slotRevision;
+    return listSlotSummaries(activeSlotId, saveData);
+  })();
+
   return {
+    activeSlotId,
+    slotSummaries,
     saveData,
     playerMaxHp,
     floorDef,
@@ -696,5 +775,8 @@ function syncAchievements(save: SaveData): SaveData {
     unlockOrEquipCosmetic,
     exportSaveJson,
     importSaveJson,
+    switchSaveSlot,
+    createNewSaveInSlot,
+    deleteSaveSlot,
   };
 }

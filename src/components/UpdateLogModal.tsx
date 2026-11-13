@@ -132,9 +132,9 @@ export function UpdateLogModal({ variant = 'title' }: { variant?: 'title' | 'hea
 
           {/* Unauthored floor notice */}
           <section className="rounded-xl border border-slate-800 bg-slate-950/70 p-3 text-xs leading-relaxed text-slate-300">
-            <p className="font-bold text-sky-300">未実装階層（第{LATEST_AUTHORED_FLOOR + 1}層以降）について</p>
+            <p className="font-bold text-sky-300">最新実装フロア（第{LATEST_AUTHORED_FLOOR}層）を踏破した後は？</p>
             <p className="mt-1 text-slate-400">
-              最新実装フロアより先に進んだ場合、ゲームを止めずに先行プレイ用の回廊（既存エリアをベースにした仮設フロア）として挑戦を続けられます。今後のアップデートで順次、固有の敵・イベント・装備に置き換わります。
+              最新フロアを踏破すると、次の階層（第{LATEST_AUTHORED_FLOOR + 1}層）の入口で進行が保存され、次回の更新をお待ちいただけます。もっと遊びたい場合は、タイトル画面の「セーブ切替」から空きスロットに新規セーブデータを作成して、別の冒険を並行して楽しめます。
             </p>
           </section>
         </div>

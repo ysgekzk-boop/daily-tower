@@ -1,5 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
-import { SAVE_STORAGE_KEY } from '../core/StorageValidator';
+import { getActiveSlotId, getSlotStorageKey } from '../core/SaveSlotManager';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -35,7 +35,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   private handleEmergencyExport = () => {
     try {
-      const raw = localStorage.getItem(SAVE_STORAGE_KEY);
+      const slotId = getActiveSlotId();
+      const raw = localStorage.getItem(getSlotStorageKey(slotId));
       if (!raw) {
         alert('保存されたセーブデータが見つかりませんでした。');
         return;
@@ -44,7 +45,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `daily-tower-emergency-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      a.download = `daily-tower-slot${slotId}-emergency-backup-${new Date().toISOString().slice(0, 10)}.json`;
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -56,7 +57,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   private handleResetAndReload = () => {
     try {
-      localStorage.removeItem(SAVE_STORAGE_KEY);
+      const slotId = getActiveSlotId();
+      localStorage.removeItem(getSlotStorageKey(slotId));
     } catch {
       // Ignore storage errors
     }

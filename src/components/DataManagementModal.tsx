@@ -1,12 +1,15 @@
 import { useId, useRef, useState, type ChangeEvent } from 'react';
+import type { SaveSlotId } from '../core/SaveSlotManager';
 import { playSfx } from '../utils/sound';
 
 interface DataManagementModalProps {
+  activeSlotId: SaveSlotId;
   onExportSave: () => string;
   onImportSave: (rawJson: string) => { ok: boolean; message: string };
 }
 
 export function DataManagementModal({
+  activeSlotId,
   onExportSave,
   onImportSave,
 }: DataManagementModalProps) {
@@ -30,12 +33,12 @@ export function DataManagementModal({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `daily-tower-save-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `daily-tower-slot${activeSlotId}-save-${new Date().toISOString().slice(0, 10)}.json`;
     document.body.appendChild(a);
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-    setFeedback({ ok: true, text: 'セーブデータをJSONファイルとして保存しました。' });
+    setFeedback({ ok: true, text: `スロット ${activeSlotId} のセーブデータをJSONファイルとして保存しました。` });
   };
 
   const handleCopy = async () => {
@@ -200,6 +203,17 @@ export function DataManagementModal({
               <li>• 本作はサーバー通信を行わないクライアント完結型のWebゲームです。</li>
               <li>• セーブデータはすべてお使いのブラウザの <code className="text-slate-200">localStorage</code> のみに保存され、外部へ送信されることはありません。</li>
               <li>• シークレットモードでのプレイやブラウザの履歴・サイトデータ削除を行うと進行状況が消去されます。</li>
+              <li>
+                • 不具合報告・ご意見：{' '}
+                <a
+                  href="https://github.com/ysgekzk-boop/daily-tower/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-sky-300 underline hover:text-sky-200"
+                >
+                  GitHub Issues
+                </a>
+              </li>
               <li>• ライセンス: MIT License / Daily Tower v4.0.0</li>
             </ul>
           </section>

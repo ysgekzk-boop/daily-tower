@@ -35,8 +35,15 @@ npm run build
 
 ## セーブデータについて
 
-セーブデータはすべてお使いのブラウザの `localStorage`（キー: `DAILY_TOWER_SAVE`）に保存され、外部サーバーには送信されません。  
+セーブデータはすべてお使いのブラウザの `localStorage`（スロット1: `DAILY_TOWER_SAVE`、スロット2/3: `DAILY_TOWER_SAVE_SLOT_2` / `_3`）に保存され、外部サーバーには送信されません。  
 ブラウザのキャッシュ削除や端末移行に備えて、タイトル画面の「データ管理」から JSON バックアップを保存できます。
+
+## デプロイ・運用（Cloudflare Pages）
+
+- **ビルドコマンド**: `npm run build` / **出力ディレクトリ**: `dist`
+- **キャッシュ・セキュリティ設定**: `public/_headers` により、`index.html` は `no-cache`（毎日更新が即反映されるよう再検証）、ハッシュ付き `/assets/*` は長期キャッシュに設定しています。
+- **CI**: `.github/workflows/ci.yml` で `main` プッシュ・PR 時にビルドと Vitest を自動実行します。
+- **アクセス解析**: Cloudflare Pages ダッシュボードの「Web Analytics」を有効化すると、Cookie 不使用・無料で閲覧状況を計測できます。
 
 ## ライセンス
 

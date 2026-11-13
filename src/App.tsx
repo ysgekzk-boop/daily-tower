@@ -5,6 +5,7 @@ import { BattleStage2D, CombatMotionState, HitFx } from './components/BattleStag
 import { BestiaryModal } from './components/BestiaryModal';
 import { DataManagementModal } from './components/DataManagementModal';
 import { HelpModal } from './components/HelpModal';
+import { SaveSlotModal } from './components/SaveSlotModal';
 import { TitleScreen } from './components/TitleScreen';
 import { UpdateLogModal } from './components/UpdateLogModal';
 import { WardrobeArchiveModal } from './components/WardrobeArchiveModal';
@@ -16,12 +17,15 @@ import { useGameStore } from './store/useGameStore';
 import {
   formatArchiveXShareText,
   formatDefeatXShareText,
+  formatFrontierXShareText,
   formatProgressXShareText,
 } from './utils/share';
 import { isSfxMuted, playSfx, setSfxMuted, SfxName, unlockAudio } from './utils/sound';
 
 export function App() {
   const {
+    activeSlotId,
+    slotSummaries,
     saveData,
     playerMaxHp,
     floorDef,
@@ -46,6 +50,9 @@ export function App() {
     unlockOrEquipCosmetic,
     exportSaveJson,
     importSaveJson,
+    switchSaveSlot,
+    createNewSaveInSlot,
+    deleteSaveSlot,
   } = useGameStore();
 
   const [motionState, setMotionState] = useState<CombatMotionState>('idle');
@@ -422,8 +429,19 @@ export function App() {
         }
         footerMenu={
           <>
+            <SaveSlotModal
+              activeSlotId={activeSlotId}
+              slotSummaries={slotSummaries}
+              onSwitchSlot={switchSaveSlot}
+              onCreateNewSlot={(slotId) => {
+                createNewSaveInSlot(slotId);
+                setShowTitle(false);
+              }}
+              onDeleteSlot={deleteSaveSlot}
+            />
             <UpdateLogModal variant="title" />
             <DataManagementModal
+              activeSlotId={activeSlotId}
               onExportSave={exportSaveJson}
               onImportSave={importSaveJson}
             />
@@ -454,16 +472,19 @@ export function App() {
             <h1 className="text-base font-extrabold tracking-wider text-amber-400">
               DAILY TOWER
             </h1>
+            <span className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] font-bold text-slate-300">
+              Slot {activeSlotId}
+            </span>
             <span className="text-slate-600">|</span>
             <span className="text-xs font-bold text-slate-200">
               {currentRealmMeta.name}（第{saveData.midFloor.currentFloor}層）
             </span>
             {!isCurrentFloorAuthored && (
               <span
-                title={`第${LATEST_AUTHORED_FLOOR}層まで固有フロアが実装されています。それ以降は先行プレイ用の仮設回廊です。`}
-                className="rounded-full border border-amber-500/40 bg-amber-950/60 px-2 py-0.5 text-[10px] font-bold text-amber-200"
+                title={`第${LATEST_AUTHORED_FLOOR}層まで固有フロアが実装されています。次回の更新をお待ちください。`}
+                className="rounded-full border border-emerald-500/40 bg-emerald-950/60 px-2 py-0.5 text-[10px] font-bold text-emerald-200"
               >
-                🚧 先行回廊
+                🏁 最前線待機中
               </span>
             )}
           </div>
@@ -954,6 +975,55 @@ export function App() {
                       className="rounded-xl border border-sky-500/40 bg-sky-950/60 px-4 py-2.5 text-sm font-bold text-sky-200 transition hover:bg-sky-900/70 cursor-pointer"
                     />
                   )}
+                </div>
+              </div>
+            )}
+
+            {/* FRONTIER REACHED (Latest Authored Floor Cleared) */}
+            {stage === 'frontier_reached' && (
+              <div className="anim-rise-in flex flex-1 flex-col items-center justify-center py-4 text-center">
+                <p className="text-[11px] font-extrabold tracking-widest text-emerald-300">
+                  FRONTIER REACHED
+                </p>
+                <h2 className="mt-1 text-lg font-extrabold text-amber-300">
+                  🚩 最新実装フロア（第{LATEST_AUTHORED_FLOOR}層）を踏破！
+                </h2>
+                <p className="mt-2 max-w-lg text-xs leading-relaxed text-slate-300">
+                  現時点で実装されている塔の最前線に到達しました。新しい階層は日々追加されていきます！
+                  <br />
+                  現在は <strong className="text-slate-100">スロット {activeSlotId}（第{saveData.midFloor.currentFloor}層）</strong> の入口で自動保存されています。
+                  このまま次の更新をお待ちいただくか、別スロットに新規セーブデータを作成して新しい冒険をお楽しみください。
+                </p>
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+                  <SaveSlotModal
+                    activeSlotId={activeSlotId}
+                    slotSummaries={slotSummaries}
+                    onSwitchSlot={switchSaveSlot}
+                    onCreateNewSlot={createNewSaveInSlot}
+                    onDeleteSlot={deleteSaveSlot}
+                    triggerLabel="📁 新規セーブ作成・切替"
+                    triggerClassName="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-extrabold text-slate-950 transition hover:bg-amber-400 cursor-pointer"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      playSfx('click');
+                      setShowTitle(true);
+                    }}
+                    className="rounded-xl border border-emerald-500/40 bg-emerald-950/60 px-5 py-2.5 text-sm font-extrabold text-emerald-200 transition hover:bg-emerald-900/70 cursor-pointer"
+                  >
+                    🏠 タイトルへ戻る
+                  </button>
+                  <XShareButton
+                    text={formatFrontierXShareText({
+                      clearedFloor: LATEST_AUTHORED_FLOOR,
+                      realmName: currentRealmMeta.name,
+                      weaponName: saveData.inventory.weapon.name,
+                      activeTitle: saveData.activeTitle,
+                    })}
+                    label="𝕏 最前線到達をポスト"
+                    className="rounded-xl border border-sky-500/40 bg-sky-950/60 px-4 py-2.5 text-sm font-bold text-sky-200 transition hover:bg-sky-900/70 cursor-pointer"
+                  />
                 </div>
               </div>
             )}

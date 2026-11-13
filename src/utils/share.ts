@@ -104,6 +104,20 @@ export function formatDefeatXShareText(params: {
   return fitLinesToXWeight(lines);
 }
 
+export function formatFrontierXShareText(params: {
+  clearedFloor: number;
+  realmName: string;
+  weaponName: string;
+  activeTitle?: string;
+}): string {
+  const titlePrefix = params.activeTitle ? `${params.activeTitle} ` : '';
+  const lines = [
+    `🚩 ${titlePrefix}Daily Tower 最新実装フロア（第${params.clearedFloor}層「${params.realmName}」）を踏破し、最前線に到達！`,
+    `⚔️ 装備: ${params.weaponName}`,
+  ];
+  return fitLinesToXWeight(lines);
+}
+
 export function buildXIntentUrl(text: string, shareUrl?: string): string {
   const url =
     shareUrl ??

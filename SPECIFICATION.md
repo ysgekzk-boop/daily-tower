@@ -51,6 +51,7 @@ src/
 │   ├── EventEngine.ts     # Event resolution & choice consequence handling
 │   ├── FloorRunner.ts     # Encounter sequence progression within a floor
 │   ├── StorageValidator.ts# Save data integrity & checkpoint fallback
+│   ├── SaveSlotManager.ts # 3-slot save persistence, switching & summaries
 │   ├── DropPacingEngine.ts# Enforces reward scarcity and consumable distribution
 │   └── AreaEngine.ts      # 50-Floor realm leap & normalization logic
 ├── extensible/            # [OPEN FOR DAILY AGENT UPDATES]
@@ -312,9 +313,21 @@ $$\text{RespawnFloor} = \max(\text{RealmStartFloor}, N - \min(30, \lfloor N \tim
 - Checkpoints never fall behind the current Realm starting floor (F1, F51, F101...).
 - Respawn floor starts clean from its first encounter. Gold and Cosmetic Gems are never lost.
 
+### 6.4 Frontier Reached & Daily Update Visibility
+- `src/extensible/realms/realmIndex.ts` dynamically computes `LATEST_AUTHORED_FLOOR`, `isFloorAuthored(floor)`, `getRecentAuthoredFloors()`, and `getRealmProgressSummary()` from `ALL_FLOORS`.
+- **No Unauthored Corridor Play:** Upon clearing `LATEST_AUTHORED_FLOOR` (and whenever `initCurrentEncounter` encounters `!isFloorAuthored(currentFloor)`), `currentFloor` is saved at `LATEST_AUTHORED_FLOOR + 1` and the game enters the `frontier_reached` stage rather than launching a template fallback encounter.
+  - When a new daily floor is later published, reloading or continuing automatically resumes at that newly authored floor.
+  - Players who want to keep playing immediately are guided to create or switch to a new save slot via `SaveSlotModal`.
+- **Update Visibility UI:** `UpdateLogModal` displays `LATEST_AUTHORED_FLOOR`, per-realm authored floor progress bars, and the most recently added floors.
+
+### 6.5 Social Sharing (X / Twitter)
+- Implemented client-side in `src/utils/share.ts` and `src/components/XShareButton.tsx` (zero server/Paid Functions required; shares attach `window.location.origin` to render the static `public/ogp.png` card).
+- **Placements:** Title screen (current progress), Wardrobe Archive (cleared run record), Dimensional Leap screen (50F clear), and Defeat / Frontier Reached screens.
+- **Character Budget & Fallback:** Text is constrained to `MAX_X_TEXT_WEIGHT = 250` weighted units (CJK = 2, ASCII = 1) with `#DailyTower` appended. If `window.open` is blocked by a popup blocker, the post text + URL is automatically copied to the clipboard with an inline user notice.
+
 ---
 
-## 7. Autosave, Mid-Floor Resilience & Self-Healing
+## 7. Autosave, Multi-Slot Persistence, Backup & Error Resilience
 
 ```typescript
 export interface MidFloorState {
@@ -337,16 +350,24 @@ export interface SaveData {
   gold: number;
   cosmeticGems: number;
   unlockedCosmetics: string[];
+  activeSkinSpriteId: string;
+  activeSkinPaletteId: string;
+  activeTitle: string;
   archive: RunArchiveRecord[];
 }
 ```
 
-1. **Autosave Trigger:** Fired at the beginning of each encounter and on floor reward resolution.
-2. **State Recovery:** Browser reload immediately restores `currentFloor` and `currentEncounterIndex` with exact HP and consumables preserved.
-3. **Schema & Fallback:** If `localStorage` data fails schema validation or contains unregistered IDs:
+1. **Multi-Slot Architecture (`SaveSlotManager.ts`):**
+   - Supports **3 independent save slots** (`1 | 2 | 3`) managed via `SaveSlotModal` (accessible from the Title Screen and `frontier_reached` screen).
+   - **Backward Compatibility:** Slot 1 uses `DAILY_TOWER_SAVE`, Slot 2 uses `DAILY_TOWER_SAVE_SLOT_2`, Slot 3 uses `DAILY_TOWER_SAVE_SLOT_3`, and the active slot is stored in `DAILY_TOWER_ACTIVE_SLOT`. Existing single-slot saves seamlessly map to Slot 1.
+2. **Autosave Trigger & Quota Alert:** Fired at the beginning of each encounter and on floor reward resolution. If `localStorage.setItem` fails (e.g. private browsing or quota exceeded), `storageError` surfaces a dismissible warning banner in the UI.
+3. **State Recovery:** Browser reload immediately restores the active slot's `currentFloor` and `currentEncounterIndex` with exact HP and consumables preserved (or `frontier_reached` if `!isFloorAuthored(currentFloor)`).
+4. **Schema & Fallback:** If `localStorage` data fails schema validation or contains unregistered IDs:
    - Invalid equipment or skills revert to default starter items.
    - Floor position rolls back to the safe `RespawnFloor` start.
    - Permanent records (`gold`, `cosmeticGems`, `archive`) are strictly preserved.
+5. **JSON Export / Import (`DataManagementModal.tsx`):** Players can export the active slot's save as a JSON file or clipboard text and restore it via `StorageValidator.parseAndHealSaveJson`.
+6. **React ErrorBoundary (`ErrorBoundary.tsx`):** Wraps `<App />` in `src/main.tsx` to catch unexpected runtime errors and offer page reload, emergency JSON save export for the active slot, and confirmed slot reset.
 
 ---
 

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { StorageValidator } from '../src/core/StorageValidator';
+import { getSlotStorageKey, summarizeSaveData } from '../src/core/SaveSlotManager';
+import { SAVE_STORAGE_KEY, StorageValidator } from '../src/core/StorageValidator';
 import {
   LATEST_AUTHORED_FLOOR,
   getRealmProgressSummary,
@@ -12,6 +13,7 @@ import {
   calcXWeight,
   formatArchiveXShareText,
   formatDefeatXShareText,
+  formatFrontierXShareText,
   formatProgressXShareText,
 } from '../src/utils/share';
 
@@ -140,5 +142,38 @@ describe('X share text formatting and weight limits', () => {
     expect(url).toMatch(/^https:\/\/twitter\.com\/intent\/tweet\?/);
     expect(url).toContain('DailyTower');
     expect(url).toContain(encodeURIComponent('https://daily-tower.pages.dev'));
+  });
+
+  it('keeps frontier reached share text within X weight limit and includes #DailyTower', () => {
+    const frontier = formatFrontierXShareText({
+      clearedFloor: LATEST_AUTHORED_FLOOR,
+      realmName: '虚空の図書館',
+      weaponName: '星詠みの銀剣',
+      activeTitle: '【塔の挑戦者】',
+    });
+    expect(frontier).toContain('#DailyTower');
+    expect(frontier).toContain(`第${LATEST_AUTHORED_FLOOR}層`);
+    expect(calcXWeight(frontier)).toBeLessThanOrEqual(MAX_X_TEXT_WEIGHT);
+  });
+});
+
+describe('SaveSlotManager', () => {
+  it('keeps Slot 1 key backward-compatible with SAVE_STORAGE_KEY and isolates Slot 2/3', () => {
+    expect(getSlotStorageKey(1)).toBe(SAVE_STORAGE_KEY);
+    expect(getSlotStorageKey(2)).toBe(`${SAVE_STORAGE_KEY}_SLOT_2`);
+    expect(getSlotStorageKey(3)).toBe(`${SAVE_STORAGE_KEY}_SLOT_3`);
+  });
+
+  it('summarizes save data and detects frontier status accurately', () => {
+    const save = StorageValidator.createDefaultSave();
+    save.midFloor.currentFloor = LATEST_AUTHORED_FLOOR;
+    const authoredSummary = summarizeSaveData(1, save, true);
+    expect(authoredSummary.exists).toBe(true);
+    expect(authoredSummary.isFrontier).toBe(false);
+
+    save.midFloor.currentFloor = LATEST_AUTHORED_FLOOR + 1;
+    const frontierSummary = summarizeSaveData(2, save, true);
+    expect(frontierSummary.slotId).toBe(2);
+    expect(frontierSummary.isFrontier).toBe(true);
   });
 });
