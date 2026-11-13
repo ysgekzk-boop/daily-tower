@@ -54,7 +54,7 @@ export function HelpModal({ variant = 'header' }: { variant?: 'header' | 'title'
         className={
           variant === 'title'
             ? 'flex w-full items-center justify-center gap-1.5 rounded-2xl border border-sky-500/40 bg-sky-950/50 px-4 py-2.5 text-sm font-bold text-sky-200 transition hover:bg-sky-900/60 cursor-pointer'
-            : 'inline-flex items-center gap-1.5 rounded-lg border border-sky-500/40 bg-sky-950/50 px-3 py-1.5 text-xs font-semibold text-sky-200 transition hover:bg-sky-900/60 cursor-pointer'
+            : 'inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg border border-sky-500/40 bg-sky-950/50 px-2.5 py-1.5 text-xs font-semibold text-sky-200 transition hover:bg-sky-900/60 cursor-pointer sm:gap-1.5 sm:px-3'
         }
       >
         <span>📖 用語集</span>

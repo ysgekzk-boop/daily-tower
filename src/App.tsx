@@ -89,6 +89,7 @@ export function App() {
   const [targetIndex, setTargetIndex] = useState<number>(0);
   const [showTitle, setShowTitle] = useState<boolean>(true);
   const [isMuted, setIsMuted] = useState<boolean>(() => isSfxMuted());
+  const [mobileConsoleTab, setMobileConsoleTab] = useState<'commands' | 'equipment'>('commands');
 
   // Achievement unlock toast queue
   const isFirstMountRef = useRef<boolean>(true);
@@ -491,6 +492,66 @@ export function App() {
 
   const isCurrentFloorAuthored = isFloorAuthored(saveData.midFloor.currentFloor);
 
+  const equipmentStatusContent = (
+    <div>
+      <span className="text-xs font-extrabold tracking-wider text-amber-300">
+        現在の装備
+      </span>
+      <div className="mt-2 flex flex-col gap-2 text-xs">
+        <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
+          <span className="block text-[10px] text-slate-400">武器</span>
+          <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
+            <PixelSpriteCanvas
+              spriteId={saveData.inventory.weapon.spriteId}
+              scale={3}
+              className="shrink-0"
+            />
+            <span className="truncate">{saveData.inventory.weapon.name}</span>
+          </span>
+          <span className="shrink-0 text-[10px] font-bold text-amber-300">
+            ATK +{saveData.inventory.weapon.atk}
+          </span>
+        </div>
+
+        <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
+          <span className="block text-[10px] text-slate-400">防具</span>
+          <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
+            <PixelSpriteCanvas
+              spriteId={saveData.inventory.armor.spriteId}
+              scale={3}
+              className="shrink-0"
+            />
+            <span className="truncate">{saveData.inventory.armor.name}</span>
+          </span>
+          <span className="shrink-0 text-[10px] font-bold text-sky-300">
+            DEF +{saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}
+          </span>
+        </div>
+
+        <div className="rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
+          <div className="flex items-center gap-2">
+            <span className="block text-[10px] text-slate-400">レリック</span>
+            <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
+              {saveData.inventory.relic && (
+                <PixelSpriteCanvas
+                  spriteId={saveData.inventory.relic.spriteId}
+                  scale={3}
+                  className="shrink-0"
+                />
+              )}
+              <span className="truncate">{saveData.inventory.relic?.name ?? 'なし'}</span>
+            </span>
+          </div>
+          {saveData.inventory.relic && (
+            <p className="mt-1 text-[10px] font-bold leading-relaxed text-fuchsia-300">
+              {saveData.inventory.relic.description}
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="anim-fade-in min-h-dvh flex flex-col bg-slate-950 text-slate-100">
       {/* Compact RPG Header */}
@@ -517,21 +578,21 @@ export function App() {
             )}
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-950 px-3 py-1 text-xs font-bold">
+          <div className="flex w-full flex-wrap items-center justify-between gap-2 sm:w-auto sm:justify-end sm:gap-3">
+            <div className="flex shrink-0 items-center gap-2.5 whitespace-nowrap rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-1 text-xs font-bold sm:gap-3 sm:px-3">
               <span className="text-amber-300">💰 {saveData.gold} G</span>
               <span className="text-slate-700">|</span>
               <span className="text-fuchsia-300">💎 {saveData.cosmeticGems}</span>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <button
                 type="button"
                 onClick={() => {
                   playSfx('click');
                   setShowTitle(true);
                 }}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-600/60 bg-slate-800/60 px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer"
+                className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-lg border border-slate-600/60 bg-slate-800/60 px-2.5 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer sm:gap-1.5 sm:px-3"
               >
                 <span>🏠 タイトル</span>
               </button>
@@ -540,7 +601,7 @@ export function App() {
                 onClick={toggleMute}
                 aria-label={isMuted ? '効果音をONにする' : '効果音をミュートにする'}
                 title={isMuted ? '効果音をONにする' : '効果音をミュートにする'}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-slate-600/60 bg-slate-800/60 px-2.5 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer"
+                className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-slate-600/60 bg-slate-800/60 px-2.5 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-slate-700/70 cursor-pointer"
               >
                 <span aria-hidden="true">{isMuted ? '🔇' : '🔊'}</span>
               </button>
@@ -634,9 +695,49 @@ export function App() {
 
         </div>
 
-        {/* 2. Consoles & Panels (grid-placed on PC, stacked on mobile) */}
+        {/* 2. Consoles & Panels (grid-placed on PC, tabbed on mobile) */}
+        <div className="flex gap-2 lg:hidden" role="tablist" aria-label="操作と装備の切り替え">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mobileConsoleTab === 'commands'}
+            onClick={() => {
+              playSfx('click');
+              setMobileConsoleTab('commands');
+            }}
+            className={`flex-1 rounded-xl border px-3 py-2 text-xs font-extrabold transition cursor-pointer ${
+              mobileConsoleTab === 'commands'
+                ? 'border-amber-400/70 bg-amber-500/20 text-amber-200'
+                : 'border-slate-700 bg-slate-900/80 text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            ⚔️ コマンド・選択
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={mobileConsoleTab === 'equipment'}
+            onClick={() => {
+              playSfx('click');
+              setMobileConsoleTab('equipment');
+            }}
+            className={`flex-1 rounded-xl border px-3 py-2 text-xs font-extrabold transition cursor-pointer ${
+              mobileConsoleTab === 'equipment'
+                ? 'border-amber-400/70 bg-amber-500/20 text-amber-200'
+                : 'border-slate-700 bg-slate-900/80 text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            🛡️ 現在の装備
+          </button>
+        </div>
+
           {/* COMMANDS CONSOLE: Commands / Event Choices / Rewards */}
-          <div aria-label="コマンドとメッセージウィンドウ" className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl">
+          <div
+            aria-label="コマンドとメッセージウィンドウ"
+            className={`${
+              mobileConsoleTab === 'commands' ? 'flex' : 'hidden lg:flex'
+            } flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl`}
+          >
             {/* COMBAT COMMANDS */}
             {stage === 'combat' && battleSession && (
               <>
@@ -1104,6 +1205,13 @@ export function App() {
             )}
           </div>
 
+        {/* MOBILE EQUIPMENT TAB PANEL */}
+        {mobileConsoleTab === 'equipment' && (
+          <div className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl lg:hidden">
+            {equipmentStatusContent}
+          </div>
+        )}
+
         {/* Bottom strip: message log (wide) + equipment (narrow) */}
         <div className="grid min-h-0 gap-3 lg:flex-1 lg:grid-cols-[minmax(0,1fr)_380px]">
         {/* Message Log Panel */}
@@ -1140,66 +1248,9 @@ export function App() {
         </div>
         </div>
 
-          {/* Equipment Status (rail, under commands) */}
-          <div className="flex flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl">
-            {/* Compact Equipment Status Window */}
-            <div>
-              <span className="text-xs font-extrabold tracking-wider text-amber-300">
-                現在の装備
-              </span>
-              <div className="mt-2 flex flex-col gap-2 text-xs">
-                <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
-                  <span className="block text-[10px] text-slate-400">武器</span>
-                  <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
-                    <PixelSpriteCanvas
-                      spriteId={saveData.inventory.weapon.spriteId}
-                      scale={3}
-                      className="shrink-0"
-                    />
-                    <span className="truncate">{saveData.inventory.weapon.name}</span>
-                  </span>
-                  <span className="shrink-0 text-[10px] font-bold text-amber-300">
-                    ATK +{saveData.inventory.weapon.atk}
-                  </span>
-                </div>
-
-                <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
-                  <span className="block text-[10px] text-slate-400">防具</span>
-                  <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
-                    <PixelSpriteCanvas
-                      spriteId={saveData.inventory.armor.spriteId}
-                      scale={3}
-                      className="shrink-0"
-                    />
-                    <span className="truncate">{saveData.inventory.armor.name}</span>
-                  </span>
-                  <span className="shrink-0 text-[10px] font-bold text-sky-300">
-                    DEF +{saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}
-                  </span>
-                </div>
-
-                <div className="rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
-                  <div className="flex items-center gap-2">
-                    <span className="block text-[10px] text-slate-400">レリック</span>
-                    <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
-                      {saveData.inventory.relic && (
-                        <PixelSpriteCanvas
-                          spriteId={saveData.inventory.relic.spriteId}
-                          scale={3}
-                          className="shrink-0"
-                        />
-                      )}
-                      <span className="truncate">{saveData.inventory.relic?.name ?? 'なし'}</span>
-                    </span>
-                  </div>
-                  {saveData.inventory.relic && (
-                    <p className="mt-1 text-[10px] font-bold leading-relaxed text-fuchsia-300">
-                      {saveData.inventory.relic.description}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
+          {/* Equipment Status (PC rail; on mobile it lives in the tab above) */}
+          <div className="hidden flex-col rounded-2xl border-2 border-slate-700/90 bg-slate-900/95 px-4 py-3 shadow-xl lg:flex">
+            {equipmentStatusContent}
           </div>
         </div>
       </main>
