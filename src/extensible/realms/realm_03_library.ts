@@ -58,4 +58,29 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
       ],
     },
   },
+  {
+    floor: 103,
+    realm: 3,
+    title: '第103層：星図の閲覧室',
+    subtitle: '宙に浮かぶ星図の合間に虚空の筆記者が潜み、旅人に束の間の休息をもたらす静寂の間',
+    encounters: [
+      { type: 'battle', enemyId: 'void_scribe', enemyStatScale: 1 },
+      { type: 'battle', enemyIds: ['ink_phantom', 'chronos_moth'], enemyStatScale: 1 },
+      { type: 'event', eventId: 'silent_alcove' },
+      { type: 'battle', enemyIds: ['void_scribe', 'brass_astrolabe'], enemyStatScale: 1 },
+      { type: 'battle', enemyIds: ['living_tome', 'ink_phantom'], enemyStatScale: 1 },
+    ],
+    rewardPool: {
+      equipmentIds: ['starlight_robe', 'astral_quill', 'stargazer_silver_sword', 'librarian_robe'],
+      skillIds: ['arcane_ward', 'ink_burst', 'chrono_flip', 'flame_wave', 'frost_lance', 'aegis_stance'],
+      utilityIds: [
+        'guardian_crest_relic',
+        'bookmark_charm_relic',
+        'vampiric_fang_relic',
+        'berserker_idol_relic',
+        'venom_gland_relic',
+        'golden_compass_relic',
+      ],
+    },
+  },
 ];

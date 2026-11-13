@@ -1467,6 +1467,21 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '終焉炉の破甲核',
     colors: ['transparent', '#1e1b4b', '#6366f1', '#fb923c'],
   },
+  void_scribe: {
+    id: 'void_scribe',
+    name: '虚空の筆記者',
+    colors: ['transparent', '#14111f', '#4a3f6b', '#9d8df1'],
+  },
+  item_starlight_robe: {
+    id: 'item_starlight_robe',
+    name: '星明かりの法衣',
+    colors: ['transparent', '#162038', '#3a5a8c', '#a9c6f5'],
+  },
+  item_arcane_ward: {
+    id: 'item_arcane_ward',
+    name: '秘術の結界',
+    colors: ['transparent', '#1d2d44', '#4ea8de', '#caf0f8'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1765,6 +1780,9 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_doomsday_quench_vial: { id: 'item_doomsday_quench_vial', matrixId: 'item_doomsday_quench_vial', defaultPalette: 'item_doomsday_quench_vial' },
   item_core_furnace_brand_relic: { id: 'item_core_furnace_brand_relic', matrixId: 'item_core_furnace_brand_relic', defaultPalette: 'item_core_furnace_brand_relic' },
   item_doomsday_slag_core_relic: { id: 'item_doomsday_slag_core_relic', matrixId: 'item_doomsday_slag_core_relic', defaultPalette: 'item_doomsday_slag_core_relic' },
+  void_scribe: { id: 'void_scribe', matrixId: 'void_scribe', defaultPalette: 'void_scribe' },
+  item_starlight_robe: { id: 'item_starlight_robe', matrixId: 'item_starlight_robe', defaultPalette: 'item_starlight_robe' },
+  item_arcane_ward: { id: 'item_arcane_ward', matrixId: 'item_arcane_ward', defaultPalette: 'item_arcane_ward' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

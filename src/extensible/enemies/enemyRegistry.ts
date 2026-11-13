@@ -794,6 +794,67 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  void_scribe: {
+    id: 'void_scribe',
+    name: '虚空の筆記者',
+    spriteId: 'void_scribe',
+    palette: 'void_scribe',
+    hp: 62,
+    atk: 14,
+    def: 4,
+    goldReward: 20,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '羽ペンの一閃',
+            type: 'attack',
+            weight: 60,
+            damageMultiplier: 1.0,
+            logMessage: '虚空の筆記者が鋭利な羽ペンで切り裂いた！',
+          },
+          {
+            name: '虚空の防護陣',
+            type: 'buff',
+            weight: 40,
+            statusId: 'def_buff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '虚空の筆記者が空間に術式を刻み、防御力を高めた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 45,
+        phaseName: '呪詛顕現',
+        actions: [
+          {
+            name: '呪詛の書き付け',
+            type: 'debuff',
+            weight: 65,
+            damageMultiplier: 1.35,
+            statusId: 'poison',
+            statusValue: 4,
+            statusDuration: 2,
+            logMessage: '虚空の筆記者が呪いの文字を刻み、毒を流し込んだ！',
+          },
+          {
+            name: '精神集中',
+            type: 'buff',
+            weight: 35,
+            statusId: 'atk_buff',
+            statusValue: 25,
+            statusDuration: 2,
+            logMessage: '虚空の筆記者が禁書を詠唱し、攻撃力が大きく上昇した！',
+          },
+        ],
+      },
+    ],
+  },
   forest_bat: {
     id: 'forest_bat',
     name: 'フォレスト・バット',

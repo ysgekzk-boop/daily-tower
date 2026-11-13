@@ -262,6 +262,37 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
     ],
   },
 
+  silent_alcove: {
+    id: 'silent_alcove',
+    title: '星灯りの小部屋',
+    category: 'rest',
+    isRestEvent: true,
+    description:
+      '閲覧室の片隅に、柔らかな星明かりが灯る小さな休憩所を見つけた。魔力の残滓が傷を癒やし、携行品を整える時間を与えてくれる。',
+    speakerSpriteId: 'tome',
+    palette: 'arcane_tome',
+    options: [
+      {
+        id: 'silent_rest',
+        label: '星灯りの下で休息する（HP 50%回復）',
+        description: '静寂の中で呼吸を整え、体力を大きく回復する。',
+        outcome: {
+          healHpPercent: 50,
+          logMessage: '星灯りの下で休息し、HPが50%回復した！',
+        },
+      },
+      {
+        id: 'silent_refill',
+        label: '魔導インクの瓶を補充する（秘薬 +1回分）',
+        description: '机に残された純粋な魔導インクを移し替え、消耗品の使用回数を1回分補充する。',
+        outcome: {
+          refillConsumable: 1,
+          logMessage: '魔導インクの瓶を補充し、秘薬を 1回分 補充した！',
+        },
+      },
+    ],
+  },
+
   mossy_stump_shrine: {
     id: 'mossy_stump_shrine',
     title: '苔むした切り株の祠',
