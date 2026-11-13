@@ -11,7 +11,7 @@ import {
 import { FloorDefinition } from '../src/extensible/realms/realm_01_greenwood';
 
 const strongLoadout: PlayerLoadout = {
-  weapon: { ...WEAPON_CATALOG.obsidian_reaver, atk: 46 },
+  weapon: WEAPON_CATALOG.obsidian_reaver, // ATK 27
   armor: ARMOR_CATALOG.leather_tunic,
   skills: [SKILL_CATALOG.flame_wave, SKILL_CATALOG.armor_crush, null],
   consumable: CONSUMABLE_CATALOG.crimson_vial,
@@ -97,6 +97,8 @@ describe('Multi-enemy battles (enemyIds / target selection / AoE skills)', () =>
     expect(session.enemies[0].currentHp).toBe(0);
     expect(session.status).toBe('ongoing'); // second enemy still stands
 
+    session = CombatEngine.executeTurn(session, { type: 'attack', targetIndex: 1 }, strongLoadout, undefined, rng);
+    expect(session.status).toBe('ongoing');
     session = CombatEngine.executeTurn(session, { type: 'attack', targetIndex: 1 }, strongLoadout, undefined, rng);
     expect(session.status).toBe('ongoing');
     session = CombatEngine.executeTurn(session, { type: 'attack', targetIndex: 1 }, strongLoadout, undefined, rng);
