@@ -115,6 +115,12 @@ Every weapon and armor in a floor's `rewardPool.equipmentIds` MUST be at or belo
 |---|---|---|---|---|---|---|---|---|---|---|
 | HP | 30 | 30 | 35 | 40 | 43 | 48 | 52 | 58 | 62 | 68 |
 
+- **Per-realm escalation rule (Realm $r \ge 1$):** The tables above define the **base caps**. Official upper caps for Realm $r$ add a per-realm increment:
+  - Weapon ATK cap: base table value $+ (r - 1)$
+  - Armor DEF cap: base table value $+ (r - 1)$
+  - Armor HP bonus cap: base table value $+ 5 \times (r - 1)$
+  - Enemy `enemyStatScale` is likewise escalated by $+5\%$ per realm as a baseline ($1 + 0.05 \times (r - 1)$).
+
 - **Dimensional-leap starter gear (`verdant_blade` / `bark_cuirass`):** Entry steps in Realm 2+ have higher caps (ATK 19 / DEF 7) to accommodate the Dimensional Leap starting loadout (`verdant_blade` ATK 18, `bark_cuirass` DEF 7 / HP +25). **`verdant_blade` and `bark_cuirass` are leap-exclusive starters and must NEVER be placed in any floor's `rewardPool`.**
 - **Weapon elements:** Realm 1 uses `physical` / `nature` only; Realm 2+ follows each realm's own elemental design (e.g. `fire` / `void` / `physical` in Realm 2).
 - **Skills:** attack ×3 (one with a status, one high-multiplier low-charge, one with a rider effect), heal ×1, buff ×1, debuff ×1, free ×1. Caps: single-target damage multiplier ≤ 1.75, all-enemies ≤ 0.85, heal ≤ 40% or ≤ 55 flat, charges 1–3, self-buff ≤ 30%, shield ≤ 20% of max HP. Skills have no element of their own (the weapon's element applies).

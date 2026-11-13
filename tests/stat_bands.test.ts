@@ -21,12 +21,13 @@ function getStepCaps(floor: number) {
   const relFloor = ((floor - 1) % 50) + 1;
   const step = Math.ceil(relFloor / 5);
   const idx = step - 1;
+  const realmBonus = realm - 1;
   return {
     realm,
     step,
-    maxAtk: (realm === 1 ? WEAPON_ATK_CAPS_REALM_1 : WEAPON_ATK_CAPS_REALM_2_PLUS)[idx],
-    maxDef: (realm === 1 ? ARMOR_DEF_CAPS_REALM_1 : ARMOR_DEF_CAPS_REALM_2_PLUS)[idx],
-    maxHp: ARMOR_HP_CAPS[idx],
+    maxAtk: (realm === 1 ? WEAPON_ATK_CAPS_REALM_1 : WEAPON_ATK_CAPS_REALM_2_PLUS)[idx] + realmBonus,
+    maxDef: (realm === 1 ? ARMOR_DEF_CAPS_REALM_1 : ARMOR_DEF_CAPS_REALM_2_PLUS)[idx] + realmBonus,
+    maxHp: ARMOR_HP_CAPS[idx] + 5 * realmBonus,
   };
 }
 

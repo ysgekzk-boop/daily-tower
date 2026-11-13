@@ -122,7 +122,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'spore_fungus', enemyStatScale: 0.66 },
       { type: 'battle', enemyId: 'amber_beetle', enemyStatScale: 0.66 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'thorn_queen_vespa', enemyStatScale: 0.66 },
+      { type: 'miniboss', enemyId: 'thorn_queen_vespa', enemyStatScale: 0.76 },
     ],
     rewardPool: {
       equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
@@ -215,7 +215,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'forest_dryad', enemyStatScale: 0.71 },
       { type: 'battle', enemyId: 'bramble_boar', enemyStatScale: 0.71 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'ancient_ursus', enemyStatScale: 0.71 },
+      { type: 'miniboss', enemyId: 'ancient_ursus', enemyStatScale: 0.82 },
     ],
     rewardPool: {
       equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
@@ -310,7 +310,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'glen_elk', enemyStatScale: 0.77 },
       { type: 'battle', enemyId: 'ivy_creeper', enemyStatScale: 0.77 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'shadow_panther', enemyStatScale: 0.77 },
+      { type: 'miniboss', enemyId: 'shadow_panther', enemyStatScale: 0.89 },
     ],
     rewardPool: {
       equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'mistweave_cloak'],
@@ -404,7 +404,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['moss_crab', 'amber_wisp'], enemyStatScale: 0.83 },
       { type: 'battle', enemyId: 'bark_chameleon', enemyStatScale: 0.83 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'ironwood_colossus', enemyStatScale: 0.83 },
+      { type: 'miniboss', enemyId: 'ironwood_colossus', enemyStatScale: 0.95 },
     ],
     rewardPool: {
       equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
@@ -497,7 +497,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'swamp_croc', enemyStatScale: 0.89 },
       { type: 'battle', enemyId: 'mist_moth', enemyStatScale: 0.89 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 0.89 },
+      { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.02 },
     ],
     rewardPool: {
       equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'reed_scale_jerkin'],
@@ -592,7 +592,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['needle_porcupine', 'mist_moth'], enemyStatScale: 0.95 },
       { type: 'battle', enemyIds: ['moss_tortoise', 'verdant_falcon'], enemyStatScale: 0.95 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'verdant_gryphon', enemyStatScale: 0.95 },
+      { type: 'miniboss', enemyId: 'verdant_gryphon', enemyStatScale: 1.09 },
     ],
     rewardPool: {
       equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
@@ -686,7 +686,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'thorn_centipede', enemyStatScale: 1.01 },
       { type: 'battle', enemyIds: ['dusk_crow', 'bog_toad'], enemyStatScale: 1.01 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'sylvan_hydra', enemyStatScale: 1.01 },
+      { type: 'miniboss', enemyId: 'sylvan_hydra', enemyStatScale: 1.16 },
     ],
     rewardPool: {
       equipmentIds: ['mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass'],
@@ -779,7 +779,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_gargoyle', enemyStatScale: 1.07 },
       { type: 'battle', enemyId: 'vine_stalker', enemyStatScale: 1.07 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'verdant_basilisk', enemyStatScale: 1.07 },
+      { type: 'miniboss', enemyId: 'verdant_basilisk', enemyStatScale: 1.23 },
     ],
     rewardPool: {
       equipmentIds: ['mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass', 'elder_root_brigandine'],
@@ -874,7 +874,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'worldtree_sprout', enemyStatScale: 1.13 },
       { type: 'battle', enemyId: 'rootbound_armor', enemyStatScale: 1.13 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'miniboss', enemyId: 'verdant_archon', enemyStatScale: 1.13 },
+      { type: 'miniboss', enemyId: 'verdant_archon', enemyStatScale: 1.3 },
     ],
     rewardPool: {
       equipmentIds: ['hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'thorn_halberd', 'ironwood_plate'],
@@ -967,7 +967,7 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'rootbound_armor', enemyStatScale: 1.18 },
       { type: 'event', eventId: 'sanctuary_campfire' },
-      { type: 'apex_boss', enemyId: 'primordial_treant', enemyStatScale: 0.6 },
+      { type: 'apex_boss', enemyId: 'primordial_treant', enemyStatScale: 0.69 },
     ],
     rewardPool: {
       equipmentIds: ['hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'yggdrasil_sap_blade', 'worldtree_bark_plate', 'canopy_seed_cuirass', 'thorn_halberd', 'ironwood_plate'],
