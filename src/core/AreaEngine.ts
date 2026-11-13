@@ -1,7 +1,6 @@
 import {
   ARMOR_CATALOG,
   ArmorItem,
-  SKILL_CATALOG,
   SkillItem,
   WEAPON_CATALOG,
   WeaponItem,
@@ -139,9 +138,17 @@ export class AreaEngine {
       nextRealm >= 2 ? WEAPON_CATALOG.verdant_blade : WEAPON_CATALOG.rusty_shortsword;
     const normalizedArmor =
       nextRealm >= 2 ? ARMOR_CATALOG.bark_cuirass : ARMOR_CATALOG.leather_tunic;
+    // Carry over exactly one skill into the new realm (design:
+    // 2026-11-14): the first non-null skill in slot order, placed in
+    // slot 0; the other two slots start empty so the new realm's skill
+    // cards rebuild the kit. Previously this granted power_slash plus
+    // the slot-0 skill, which duplicated power_slash whenever it was
+    // already in slot 0.
+    const carriedSkill =
+      params.skills[0] ?? params.skills[1] ?? params.skills[2] ?? null;
     const normalizedSkills: [SkillItem | null, SkillItem | null, SkillItem | null] = [
-      SKILL_CATALOG.power_slash,
-      params.skills[0] ?? SKILL_CATALOG.aegis_stance,
+      carriedSkill,
+      null,
       null,
     ];
 

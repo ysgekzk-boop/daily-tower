@@ -9,6 +9,7 @@ import {
   SkillItem,
   WEAPON_CATALOG,
   WeaponItem,
+  drawStartingSkills,
 } from '../extensible/items/itemCatalog';
 import { AreaEngine, RunArchiveRecord } from './AreaEngine';
 import { FloorRunner } from './FloorRunner';
@@ -51,7 +52,14 @@ export const SAVE_STORAGE_KEY = 'DAILY_TOWER_SAVE';
 export const BASE_PLAYER_MAX_HP = 100;
 
 export class StorageValidator {
-  static createDefaultSave(): SaveData {
+  /**
+   * Creates a fresh save. Starting skills are drawn (two distinct skills
+   * from STARTING_SKILL_POOL_IDS, third slot empty) so every run opens
+   * differently; pass a seeded rng for reproducible draws (simulations),
+   * the game itself uses Math.random.
+   */
+  static createDefaultSave(rng: () => number = Math.random): SaveData {
+    const [startSkill1, startSkill2] = drawStartingSkills(rng);
     return {
       version: 4,
       midFloor: {
@@ -63,11 +71,7 @@ export class StorageValidator {
       inventory: {
         weapon: WEAPON_CATALOG.rusty_shortsword,
         armor: ARMOR_CATALOG.leather_tunic,
-        skills: [
-          SKILL_CATALOG.power_slash,
-          SKILL_CATALOG.aegis_stance,
-          SKILL_CATALOG.purifying_light,
-        ],
+        skills: [startSkill1, startSkill2, null],
         consumable: CONSUMABLE_CATALOG.crimson_vial,
         relic: RELIC_CATALOG.guardian_crest_relic,
       },

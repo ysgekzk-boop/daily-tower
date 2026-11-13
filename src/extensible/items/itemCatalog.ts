@@ -2431,3 +2431,34 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
 };
 
 
+
+/**
+ * Starting-skill draw pool for new saves (design: 2026-11-14).
+ * A new game starts with two distinct skills drawn from this pool of
+ * functional early-Realm-1 skills; the third slot starts empty so early
+ * skill reward cards carry real value. Measured difficulty-neutral
+ * against the old fixed trio (power_slash / aegis_stance /
+ * purifying_light) in the random-play statistics tool.
+ */
+export const STARTING_SKILL_POOL_IDS = [
+  'flame_burst',
+  'frost_lance',
+  'vine_snare',
+  'pollen_haze',
+  'forest_dew',
+  'wisp_flame_strike',
+  'mist_step_strike',
+  'oak_splitter',
+  'sap_guard',
+  'mist_spring_prayer',
+] as const;
+
+/** Draws two distinct starting skills using the given rng. */
+export function drawStartingSkills(
+  rng: () => number
+): [SkillItem, SkillItem] {
+  const pool = [...STARTING_SKILL_POOL_IDS];
+  const first = pool.splice(Math.floor(rng() * pool.length), 1)[0];
+  const second = pool[Math.floor(rng() * pool.length)];
+  return [SKILL_CATALOG[first], SKILL_CATALOG[second]];
+}

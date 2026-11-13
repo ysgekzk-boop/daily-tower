@@ -118,7 +118,7 @@ function applyEquip(save: SaveData, item: AnyCatalogItem): void {
  */
 export function simulateRun(seed: number, maxFloor = 100): RunResult {
   const rng = mulberry32(seed);
-  const save = StorageValidator.createDefaultSave();
+  const save = StorageValidator.createDefaultSave(rng);
   const result: RunResult = {
     seed,
     floorsCleared: 0,
