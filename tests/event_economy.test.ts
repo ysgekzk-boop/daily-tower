@@ -52,7 +52,8 @@ describe('EventEngine scaled gold costs', () => {
 describe('EventEngine era-locked grants', () => {
   it('era ids only include items from pools at or below the floor', () => {
     const era3 = EventEngine.eraItemIds(3);
-    expect(era3.has('verdant_blade')).toBe(true);
+    expect(era3.has('ashwood_spear')).toBe(true);
+    expect(era3.has('verdant_blade')).toBe(false);
     // astral_quill debuts in the Floor 102 reward pool (Realm 3)
     expect(era3.has('astral_quill')).toBe(false);
     expect(EventEngine.eraItemIds(103).has('astral_quill')).toBe(true);

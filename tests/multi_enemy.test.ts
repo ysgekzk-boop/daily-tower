@@ -11,7 +11,7 @@ import {
 import { FloorDefinition } from '../src/extensible/realms/realm_01_greenwood';
 
 const strongLoadout: PlayerLoadout = {
-  weapon: WEAPON_CATALOG.obsidian_reaver, // ATK 46
+  weapon: { ...WEAPON_CATALOG.obsidian_reaver, atk: 46 },
   armor: ARMOR_CATALOG.leather_tunic,
   skills: [SKILL_CATALOG.flame_wave, SKILL_CATALOG.armor_crush, null],
   consumable: CONSUMABLE_CATALOG.crimson_vial,

@@ -87,40 +87,39 @@ my_golem: {
 
 ---
 
-### 2.8 Item Stat Bands (the recorded upgrade progression)
+### 2.8 Item Stat Bands (Per-Realm 5-Floor Step Caps)
 
-Item data carries raw stats only — there is no tier field. The bands below are
-the record of how equipment and skills scale, and every new item must fit the
-band of its debut block. "Strictly better/worse" between two items is derived
-from raw stats at runtime (`DropPacingEngine.isWeaponDominated` /
-`isArmorDominated`): for weapons, same element + higher ATK wins; for armor,
-higher DEF and HP bonus wins. Blocks are 10 floors each (B1 = floors 1–10).
+Item data carries raw stats only — there is no tier field. Equipment progression resets every 50-floor realm via Dimensional Leap (`AreaEngine`), so stat bands are defined **per realm** in **5-floor steps**:
 
-- **Weapon ATK by block:** B1 13–16 / B2 16–19 / B3 19–22 / B4 21–24 /
-  B5 24–27 / B6 27–31 / B7 30–34 / B8 33–37 / B9 37–41 / B10 41–45.
-  Elements: B1–B5 physical / nature only. B6–B10 fire / void / physical
-  (at least one fire or void weapon per block).
-- **Armor DEF / HP bonus by block:** B1 4–5 / 22–30, B2 5–6 / 30–40,
-  B3 6–7 / 38–48, B4 7–8 / 46–58, B5 8–9 / 55–68, B6 9–10 / 62–75,
-  B7 10–11 / 72–85, B8 11–12 / 82–95, B9 11–13 / 90–105, B10 12–14 / 100–115.
-- **Skills (7 per block):** attack ×3 (one with a status, one high-multiplier
-  low-charge, one with a rider effect), heal ×1, buff ×1, debuff ×1, free ×1.
-  Caps: single-target damage multiplier ≤ 1.75, all-enemies ≤ 0.85 (AoE only
-  from B6, at most once per two blocks), heal ≤ 40% or ≤ 55 flat, charges
-  1–3, self-buff ≤ 30%, shield ≤ 20% of max HP. Skills have no element of
-  their own (the weapon's element applies).
-- **Relics (2 per block):** effects must compose from the existing
-  `effectRegistry` vocabulary. Caps: on-hit heal ≤ 5% of max HP, battle-start
-  shield ≤ 15% of max HP, buffs ≤ 25%, victory gold ≤ +20.
-- **Consumables (2 per block):** healPercent 30–55, optional cleanse,
-  self-status from registered statuses only (shield ≤ 35, atk/def buff
-  ≤ 20%, duration ≤ 3), maxCharges 2–3. Consumables never enter the normal
-  reward draw (miniboss item cards and event grants only).
-- **New realms:** a realm's first block restarts near the dimensional-leap
-  baseline gear (weapon ATK ≈ 13–19, armor DEF ≈ 4–6 / HP ≈ 15–30) instead
-  of continuing the previous realm's last band, then grows ≈ +3 ATK per
-  block within the realm, mirroring the B1→B5 slope. Weapon elements follow
-  the new realm's own pool design.
+$$\text{step } s = \lceil \text{inRealmRelativeFloor} / 5 \rceil \quad (s = 1..10, \text{ where } s=1 \text{ is relative floors } 1\text{–}5)$$
+
+Every weapon and armor in a floor's `rewardPool.equipmentIds` MUST be at or below the cap for that floor's realm and step. **New items must be authored within the cap of their debut floor's step.** Lower stats (e.g., older/starter items remaining in a pool) are allowed; exceeding the cap is forbidden and enforced by `tests/stat_bands.test.ts`. "Strictly better/worse" between two items is derived from raw stats at runtime (`DropPacingEngine.isWeaponDominated` / `isArmorDominated`): for weapons, same element + higher ATK wins; for armor, higher DEF and HP bonus wins.
+
+- **Weapon ATK upper cap by step:**
+
+| step | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Realm 1 | 16 | 16 | 18 | 19 | 21 | 22 | 23 | 24 | 26 | 27 |
+| Realm 2+ | 19 | 19 | 19 | 19 | 21 | 22 | 23 | 24 | 26 | 27 |
+
+- **Armor DEF upper cap by step:**
+
+| step | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Realm 1 | 5 | 6 | 6 | 6 | 7 | 7 | 8 | 8 | 9 | 9 |
+| Realm 2+ | 7 | 7 | 7 | 7 | 7 | 7 | 8 | 8 | 9 | 9 |
+
+- **Armor HP bonus upper cap by step (all realms):**
+
+| step | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| HP | 30 | 30 | 35 | 40 | 43 | 48 | 52 | 58 | 62 | 68 |
+
+- **Dimensional-leap starter gear (`verdant_blade` / `bark_cuirass`):** Entry steps in Realm 2+ have higher caps (ATK 19 / DEF 7) to accommodate the Dimensional Leap starting loadout (`verdant_blade` ATK 18, `bark_cuirass` DEF 7 / HP +25). **`verdant_blade` and `bark_cuirass` are leap-exclusive starters and must NEVER be placed in any floor's `rewardPool`.**
+- **Weapon elements:** Realm 1 uses `physical` / `nature` only; Realm 2+ follows each realm's own elemental design (e.g. `fire` / `void` / `physical` in Realm 2).
+- **Skills:** attack ×3 (one with a status, one high-multiplier low-charge, one with a rider effect), heal ×1, buff ×1, debuff ×1, free ×1. Caps: single-target damage multiplier ≤ 1.75, all-enemies ≤ 0.85, heal ≤ 40% or ≤ 55 flat, charges 1–3, self-buff ≤ 30%, shield ≤ 20% of max HP. Skills have no element of their own (the weapon's element applies).
+- **Relics:** effects must compose from the existing `effectRegistry` vocabulary. Caps: on-hit heal ≤ 5% of max HP, battle-start shield ≤ 15% of max HP, buffs ≤ 25%, victory gold ≤ +20.
+- **Consumables:** healPercent 30–55, optional cleanse, self-status from registered statuses only (shield ≤ 35, atk/def buff ≤ 20%, duration ≤ 3), maxCharges 2–3. Consumables never enter the normal reward draw (miniboss item cards and event grants only).
 
 ## 3. Mandatory Quality Gate Verification
 
