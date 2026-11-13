@@ -141,7 +141,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
     let diedOnFloor = false;
 
     for (let encIdx = 0; encIdx < floorDef.encounters.length; encIdx++) {
-      const enc = FloorRunner.resolveEncounter(floorDef, encIdx);
+      const enc = FloorRunner.resolveEncounter(floorDef, encIdx, save.worldSeed);
       const maxHp = BASE_PLAYER_MAX_HP + save.inventory.armor.maxHpBonus;
 
       if (enc.kind === 'event') {

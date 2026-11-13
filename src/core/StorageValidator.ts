@@ -23,6 +23,14 @@ export interface MidFloorState {
 
 export interface SaveData {
   version: 4;
+  /**
+   * Per-save world seed. Determines which event is drawn for each
+   * floor's non-rest event slot (see FloorRunner.resolveEncounter), so
+   * the draw is stable across renders/reloads but differs per save.
+   * Optional for backward compatibility with pre-seed saves; healing
+   * backfills it on load.
+   */
+  worldSeed?: number;
   midFloor: MidFloorState;
   inventory: {
     weapon: WeaponItem;
@@ -62,6 +70,7 @@ export class StorageValidator {
     const [startSkill1, startSkill2] = drawStartingSkills(rng);
     return {
       version: 4,
+      worldSeed: Math.floor(rng() * 0x7fffffff),
       midFloor: {
         currentFloor: 1,
         currentEncounterIndex: 0,
@@ -283,9 +292,19 @@ export class StorageValidator {
           : 0,
     };
 
+    // Backfill the world seed for pre-seed saves (silent: additive field,
+    // not a repair). Once the healed save is persisted it stays stable.
+    const safeWorldSeed =
+      typeof raw.worldSeed === 'number' &&
+      Number.isFinite(raw.worldSeed) &&
+      raw.worldSeed >= 0
+        ? Math.floor(raw.worldSeed)
+        : Math.floor(Math.random() * 0x7fffffff);
+
     return {
       save: {
         version: 4,
+        worldSeed: safeWorldSeed,
         midFloor: {
           currentFloor,
           currentEncounterIndex,

@@ -62,7 +62,8 @@ export function useGameStore() {
   const currentRealmMeta = REALM_METADATA[floorDef.realm] ?? REALM_METADATA[1];
   const resolvedEncounter: ResolvedEncounter = FloorRunner.resolveEncounter(
     floorDef,
-    saveData.midFloor.currentEncounterIndex
+    saveData.midFloor.currentEncounterIndex,
+    saveData.worldSeed
   );
 
   // Persist saveData whenever it changes (encounter start / reward completion)
@@ -107,7 +108,7 @@ function syncAchievements(save: SaveData): SaveData {
       }
 
       const fDef = FloorRunner.getFloor(currentFloor);
-      const enc = FloorRunner.resolveEncounter(fDef, currentSave.midFloor.currentEncounterIndex);
+      const enc = FloorRunner.resolveEncounter(fDef, currentSave.midFloor.currentEncounterIndex, currentSave.worldSeed);
       const maxHp = BASE_PLAYER_MAX_HP + currentSave.inventory.armor.maxHpBonus;
 
       const prevStats = currentSave.playStats ?? {
