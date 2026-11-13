@@ -1227,6 +1227,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '溶滓の刻印',
     colors: ['transparent', '#3b0764', '#9333ea', '#a3e635'],
   },
+  item_obsidian_tunnel_cleaver: {
+    id: 'item_obsidian_tunnel_cleaver',
+    name: '黒曜坑道の断刀',
+    colors: ['transparent', '#0f172a', '#475569', '#a855f7'],
+  },
+  item_ashen_ember_halberd: {
+    id: 'item_ashen_ember_halberd',
+    name: '灰燼熾火の戦戟',
+    colors: ['transparent', '#27272a', '#71717a', '#f97316'],
+  },
+  item_obsidian_shaft_plate: {
+    id: 'item_obsidian_shaft_plate',
+    name: '黒曜坑道の重鎧',
+    colors: ['transparent', '#020617', '#334155', '#c084fc'],
+  },
+  item_ashen_wastes_cuirass: {
+    id: 'item_ashen_wastes_cuirass',
+    name: '灰荒野の熾火甲',
+    colors: ['transparent', '#1c1917', '#57534e', '#fb923c'],
+  },
+  item_ember_ash_slash: {
+    id: 'item_ember_ash_slash',
+    name: '残り火の灰斬',
+    colors: ['transparent', '#450a0a', '#dc2626', '#fde047'],
+  },
+  item_obsidian_fissure_cleave: {
+    id: 'item_obsidian_fissure_cleave',
+    name: '黒曜断層の必殺斬',
+    colors: ['transparent', '#0f172a', '#64748b', '#e879f9'],
+  },
+  item_cinder_wind_lunge: {
+    id: 'item_cinder_wind_lunge',
+    name: '灰嵐の疾駆撃',
+    colors: ['transparent', '#3f3f46', '#a1a1aa', '#f97316'],
+  },
+  item_warm_ash_respite: {
+    id: 'item_warm_ash_respite',
+    name: '温灰の癒霧',
+    colors: ['transparent', '#134e4a', '#2dd4bf', '#fde68a'],
+  },
+  item_obsidian_bastion_stance: {
+    id: 'item_obsidian_bastion_stance',
+    name: '黒曜石の堅陣',
+    colors: ['transparent', '#1e293b', '#475569', '#38bdf8'],
+  },
+  item_ash_veil_blind: {
+    id: 'item_ash_veil_blind',
+    name: '灰煙の目晦まし',
+    colors: ['transparent', '#18181b', '#52525b', '#fbbf24'],
+  },
+  item_ember_storm_sweep: {
+    id: 'item_ember_storm_sweep',
+    name: '灰燼嵐の薙ぎ払い',
+    colors: ['transparent', '#7c2d12', '#ea580c', '#fef08a'],
+  },
+  item_obsidian_ash_elixir: {
+    id: 'item_obsidian_ash_elixir',
+    name: '黒曜灰の霊薬',
+    colors: ['transparent', '#1e293b', '#64748b', '#5eead4'],
+  },
+  item_ember_spring_vial: {
+    id: 'item_ember_spring_vial',
+    name: '残り火泉の雫薬',
+    colors: ['transparent', '#7c2d12', '#f97316', '#e0f2fe'],
+  },
+  item_obsidian_ember_lens_relic: {
+    id: 'item_obsidian_ember_lens_relic',
+    name: '黒曜の熾火鏡',
+    colors: ['transparent', '#0f172a', '#475569', '#fb923c'],
+  },
+  item_ashen_shard_talon_relic: {
+    id: 'item_ashen_shard_talon_relic',
+    name: '灰燼黒曜の爪',
+    colors: ['transparent', '#18181b', '#71717a', '#f43f5e'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1477,6 +1552,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_molten_core_draught: { id: 'item_molten_core_draught', matrixId: 'item_molten_core_draught', defaultPalette: 'item_molten_core_draught' },
   item_steam_pressure_valve_relic: { id: 'item_steam_pressure_valve_relic', matrixId: 'item_steam_pressure_valve_relic', defaultPalette: 'item_steam_pressure_valve_relic' },
   item_molten_slag_seal_relic: { id: 'item_molten_slag_seal_relic', matrixId: 'item_molten_slag_seal_relic', defaultPalette: 'item_molten_slag_seal_relic' },
+  item_obsidian_tunnel_cleaver: { id: 'item_obsidian_tunnel_cleaver', matrixId: 'item_obsidian_tunnel_cleaver', defaultPalette: 'item_obsidian_tunnel_cleaver' },
+  item_ashen_ember_halberd: { id: 'item_ashen_ember_halberd', matrixId: 'item_ashen_ember_halberd', defaultPalette: 'item_ashen_ember_halberd' },
+  item_obsidian_shaft_plate: { id: 'item_obsidian_shaft_plate', matrixId: 'item_obsidian_shaft_plate', defaultPalette: 'item_obsidian_shaft_plate' },
+  item_ashen_wastes_cuirass: { id: 'item_ashen_wastes_cuirass', matrixId: 'item_ashen_wastes_cuirass', defaultPalette: 'item_ashen_wastes_cuirass' },
+  item_ember_ash_slash: { id: 'item_ember_ash_slash', matrixId: 'item_ember_ash_slash', defaultPalette: 'item_ember_ash_slash' },
+  item_obsidian_fissure_cleave: { id: 'item_obsidian_fissure_cleave', matrixId: 'item_obsidian_fissure_cleave', defaultPalette: 'item_obsidian_fissure_cleave' },
+  item_cinder_wind_lunge: { id: 'item_cinder_wind_lunge', matrixId: 'item_cinder_wind_lunge', defaultPalette: 'item_cinder_wind_lunge' },
+  item_warm_ash_respite: { id: 'item_warm_ash_respite', matrixId: 'item_warm_ash_respite', defaultPalette: 'item_warm_ash_respite' },
+  item_obsidian_bastion_stance: { id: 'item_obsidian_bastion_stance', matrixId: 'item_obsidian_bastion_stance', defaultPalette: 'item_obsidian_bastion_stance' },
+  item_ash_veil_blind: { id: 'item_ash_veil_blind', matrixId: 'item_ash_veil_blind', defaultPalette: 'item_ash_veil_blind' },
+  item_ember_storm_sweep: { id: 'item_ember_storm_sweep', matrixId: 'item_ember_storm_sweep', defaultPalette: 'item_ember_storm_sweep' },
+  item_obsidian_ash_elixir: { id: 'item_obsidian_ash_elixir', matrixId: 'item_obsidian_ash_elixir', defaultPalette: 'item_obsidian_ash_elixir' },
+  item_ember_spring_vial: { id: 'item_ember_spring_vial', matrixId: 'item_ember_spring_vial', defaultPalette: 'item_ember_spring_vial' },
+  item_obsidian_ember_lens_relic: { id: 'item_obsidian_ember_lens_relic', matrixId: 'item_obsidian_ember_lens_relic', defaultPalette: 'item_obsidian_ember_lens_relic' },
+  item_ashen_shard_talon_relic: { id: 'item_ashen_shard_talon_relic', matrixId: 'item_ashen_shard_talon_relic', defaultPalette: 'item_ashen_shard_talon_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

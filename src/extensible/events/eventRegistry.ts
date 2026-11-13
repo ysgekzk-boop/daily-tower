@@ -842,6 +842,126 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  obsidian_tunnel_forge: {
+    id: 'obsidian_tunnel_forge',
+    title: '黒曜坑道の野鍛冶場',
+    category: 'forge',
+    description:
+      '黒曜石の岩盤をくり抜いた坑道の奥で、灰を被った老鍛冶師が残り火の炉を守っている。「黒曜の刃も灰鉄の鎧も、金貨さえ積めば惜しみなく譲ろう」',
+    speakerSpriteId: 'hero_knight',
+    palette: 'steel_knight',
+    options: [
+      {
+        id: 'buy_obsidian_weapon',
+        label: '黒曜鍛えの武器を購入する（45 G ➔ 武器獲得）',
+        description: '45 Gを支払い、坑道の残り火で鍛え上げた武器を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'weapon',
+          logMessage: '老鍛冶師から黒曜の鋭気を帯びた業物の武器を受け取った！',
+        },
+      },
+      {
+        id: 'buy_obsidian_armor',
+        label: '灰鉄の重鎧を購入する（45 G ➔ 防具獲得）',
+        description: '45 Gを支払い、火山灰と黒曜石を打ち合わせた防具を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'armor',
+          logMessage: '老鍛冶師から黒曜石の堅牢な防具を受け取った！',
+        },
+      },
+      {
+        id: 'assist_ash_bellows',
+        label: '残り火の灰掻きを手伝う（+25 G）',
+        description: '炉の灰を掻き出して火勢を整え、手間賃を受け取る。',
+        outcome: {
+          grantGold: 25,
+          logMessage: '炉の灰掻きを手伝い、礼として 25 G を受け取った！',
+        },
+      },
+    ],
+  },
+
+  ashen_geothermal_spring: {
+    id: 'ashen_geothermal_spring',
+    title: '灰荒野の温水溜まり',
+    category: 'shrine',
+    description:
+      '灰の荒野に穿たれた黒曜石の窪みに、地中から湧き出した澄んだ湯が湛えられている。湯気立つ水底には、かつての探索者が残した金貨が鈍く光っている。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_geothermal_spring',
+        label: '澄んだ湧水を飲む（HP 35%回復）',
+        description: '温かな湧水で渇きを潤し、傷を癒やす。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '温水溜まりの澄んだ水を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_ashen_coins',
+        label: '水底の金貨を拾う（+35 G）',
+        description: '灰の積もった水底から金貨を回収する。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '黒曜の窪みの底から金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
+
+  obsidian_ember_altar: {
+    id: 'obsidian_ember_altar',
+    title: '黒曜熾火の契約祭壇',
+    category: 'shrine',
+    description:
+      '漆黒の黒曜石を削り出した祭壇の中央で、消えぬ残り火が静かに脈打っている。「命の火か黄金を捧げよ。さすれば黒曜の秘宝か秘術を授けん」と刻まれている。',
+    speakerSpriteId: 'shrine',
+    palette: 'crimson_knight',
+    options: [
+      {
+        id: 'blood_for_obsidian_relic',
+        label: '生命力を捧げる（HP 20%消費 ➔ レリック獲得）',
+        description: '最大HPの20%を代償に、黒曜の祭壇に眠る古代のレリックを授かる。',
+        cost: {
+          hpPercent: 20,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '黒曜の祭壇に生命力を捧げ、残り火を宿すレリックを授かった！',
+        },
+      },
+      {
+        id: 'gold_for_obsidian_skill',
+        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
+        description: '40 Gを灰盤に奉納し、荒野を踏破する秘伝スキルを得る。',
+        cost: {
+          gold: 40,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '黄金が熾火の閃光へと変わり、新たなスキルの知識が脳裏に刻まれた！',
+        },
+      },
+      {
+        id: 'bow_to_obsidian_altar',
+        label: '静かに一礼して立ち去る（HP 15%回復）',
+        description: '代償を払わず敬意を示し、残り火の穏やかな温もりで傷を癒やす。',
+        outcome: {
+          healHpPercent: 15,
+          logMessage: '黒曜の祭壇に敬意を表し、穏やかな残り火の祝福でHPが15%回復した。',
+        },
+      },
+    ],
+  },
 };
 
 

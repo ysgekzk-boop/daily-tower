@@ -259,7 +259,33 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: `[レリック:溶滓の刻印] 溶滓の毒気が立ち昇り、敵に3ターンの間猛毒(10)を付与した！`,
     }),
   },
+  obsidian_ember_lens: {
+    id: 'obsidian_ember_lens',
+    name: '黒曜の熾火鏡',
+    trigger: 'on_skill_use',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'atk_buff',
+        value: 25,
+        duration: 2,
+      },
+      logMessage: `[レリック:黒曜の熾火鏡] スキル発動に呼応して残り火が輝き、2ターンの間攻撃力+25%を得た！`,
+    }),
+  },
+  ashen_shard_talon: {
+    id: 'ashen_shard_talon',
+    name: '灰燼黒曜の爪',
+    trigger: 'on_attack',
+    handler: (ctx) => {
+      const bonus = Math.max(4, Math.floor(ctx.playerAtk * 0.15));
+      return {
+        bonusDamage: bonus,
+        logMessage: `[レリック:灰燼黒曜の爪] 黒曜の刃先が閃き、追加ダメージ +${bonus}！`,
+      };
+    },
+  },
 };
+
 
 
 

@@ -391,14 +391,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     subtitle: '熱風と火花が舞う3連戦エリア',
     encounters: [
       { type: 'battle', enemyId: 'ashfall_wraith', enemyStatScale: 1.04 },
-      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'event', eventId: 'obsidian_tunnel_forge' },
       { type: 'battle', enemyId: 'quarry_troll', enemyStatScale: 1.04 },
       { type: 'battle', enemyId: 'mold_automaton', enemyStatScale: 1.04 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
@@ -414,9 +415,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'slag_pyro_viper', enemyStatScale: 1.05 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
@@ -427,15 +429,16 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'lava_diver', enemyStatScale: 1.07 },
       { type: 'battle', enemyId: 'blast_furnace_sprite', enemyStatScale: 1.07 },
-      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'event', eventId: 'ashen_geothermal_spring' },
       { type: 'battle', enemyId: 'soot_wraith', enemyStatScale: 1.07 },
       { type: 'battle', enemyId: 'scorch_scorpion', enemyStatScale: 1.07 },
       { type: 'battle', enemyId: 'hearth_custodian', enemyStatScale: 1.07 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
@@ -445,14 +448,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     subtitle: '熱風と火花が舞う3連戦エリア',
     encounters: [
       { type: 'battle', enemyId: 'obsidian_beast', enemyStatScale: 1.08 },
-      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'event', eventId: 'obsidian_ember_altar' },
       { type: 'battle', enemyId: 'crucible_knight', enemyStatScale: 1.08 },
       { type: 'battle', enemyId: 'ashfall_wraith', enemyStatScale: 1.08 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
@@ -467,9 +471,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'obsidian_core_guardian', enemyStatScale: 1.09 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
@@ -486,9 +491,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'obsidian_beast', enemyStatScale: 1.1 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
@@ -498,14 +504,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     subtitle: '熱風と火花が舞う3連戦エリア',
     encounters: [
       { type: 'battle', enemyId: 'scorch_scorpion', enemyStatScale: 1.12 },
-      { type: 'event', eventId: 'emerald_spring' },
+      { type: 'event', eventId: 'ashen_geothermal_spring' },
       { type: 'battle', enemyId: 'crucible_knight', enemyStatScale: 1.12 },
       { type: 'battle', enemyId: 'ashfall_wraith', enemyStatScale: 1.12 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
@@ -516,14 +523,15 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'mold_automaton', enemyStatScale: 1.13 },
       { type: 'battle', enemyId: 'molten_tusk_boar', enemyStatScale: 1.13 },
-      { type: 'event', eventId: 'crimson_pact_altar' },
+      { type: 'event', eventId: 'obsidian_ember_altar' },
       { type: 'battle', enemyId: 'slag_pyro_viper', enemyStatScale: 1.13 },
       { type: 'battle', enemyId: 'blast_furnace_sprite', enemyStatScale: 1.13 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
@@ -534,15 +542,16 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
     encounters: [
       { type: 'battle', enemyId: 'hearth_custodian', enemyStatScale: 1.14 },
       { type: 'battle', enemyId: 'obsidian_beast', enemyStatScale: 1.14 },
-      { type: 'event', eventId: 'wandering_blacksmith' },
+      { type: 'event', eventId: 'obsidian_tunnel_forge' },
       { type: 'battle', enemyIds: ['ashfall_wraith', 'hearth_custodian'], enemyStatScale: 1.14 },
       { type: 'battle', enemyId: 'crucible_knight', enemyStatScale: 1.14 },
       { type: 'battle', enemyId: 'molten_tusk_boar', enemyStatScale: 1.14 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
@@ -557,9 +566,10 @@ export const REALM_02_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'crucible_iron_goliath', enemyStatScale: 1.16 },
     ],
     rewardPool: {
-      equipmentIds: ['ember_greatsword', 'obsidian_reaver', 'cinder_mail', 'ironwood_plate'],
-      skillIds: ['flame_burst', 'frost_lance', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic'],
+      equipmentIds: ['molten_mold_greatsword', 'steam_piston_lance', 'slag_mold_cuirass', 'steam_boiler_plate', 'obsidian_tunnel_cleaver', 'ashen_ember_halberd', 'obsidian_shaft_plate', 'ashen_wastes_cuirass'],
+      skillIds: ['cooling_steam_mist', 'forge_pressure_surge', 'lava_pour_slash', 'molten_cast_impact', 'molten_slag_break', 'slag_mold_barrier', 'steam_vent_thrust', 'ember_ash_slash', 'obsidian_fissure_cleave', 'cinder_wind_lunge', 'warm_ash_respite', 'obsidian_bastion_stance', 'ash_veil_blind', 'ember_storm_sweep'],
+      utilityIds: ['molten_slag_seal_relic', 'steam_pressure_valve_relic', 'obsidian_ember_lens_relic', 'ashen_shard_talon_relic'],
+      consumableIds: ['molten_core_draught', 'steam_condensate_flask', 'obsidian_ash_elixir', 'ember_spring_vial'],
     },
   },
   {
