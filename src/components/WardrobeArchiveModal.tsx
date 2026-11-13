@@ -1,6 +1,8 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { AreaEngine, CosmeticItem, RunArchiveRecord } from '../core/AreaEngine';
+import { formatArchiveXShareText } from '../utils/share';
 import { PixelSpriteCanvas } from './PixelSpriteCanvas';
+import { XShareButton } from './XShareButton';
 
 interface WardrobeArchiveModalProps {
   cosmeticGems: number;
@@ -217,13 +219,19 @@ export function WardrobeArchiveModal({
                         {new Date(rec.timestamp).toLocaleString('ja-JP')}
                       </p>
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => handleCopyShare(rec)}
-                      className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-300 hover:bg-amber-500/20 cursor-pointer"
-                    >
-                      {copiedId === rec.id ? '✅ コピー完了' : '📋 記録をコピー'}
-                    </button>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleCopyShare(rec)}
+                        className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-300 hover:bg-amber-500/20 cursor-pointer"
+                      >
+                        {copiedId === rec.id ? '✅ コピー完了' : '📋 記録をコピー'}
+                      </button>
+                      <XShareButton
+                        text={formatArchiveXShareText(rec, activeTitle)}
+                        className="rounded-lg border border-sky-500/40 bg-sky-950/60 px-3 py-1 text-xs font-semibold text-sky-200 transition hover:bg-sky-900/70 cursor-pointer"
+                      />
+                    </div>
                   </div>
                   <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-slate-300 sm:grid-cols-4">
                     <div className="rounded bg-slate-900 p-2">

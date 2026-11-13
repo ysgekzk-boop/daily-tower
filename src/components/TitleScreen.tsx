@@ -15,6 +15,8 @@ interface TitleScreenProps {
   onReset: () => void;
   /** Non-combat menus (bestiary / wardrobe & records / glossary / sound) rendered under the main buttons. */
   metaMenu?: ReactNode;
+  /** Utility links (update log / data management) rendered below the meta menu. */
+  footerMenu?: ReactNode;
 }
 
 const HOW_TO_PLAY: { icon: string; text: string }[] = [
@@ -37,6 +39,7 @@ export function TitleScreen({
   onContinue,
   onReset,
   metaMenu,
+  footerMenu,
 }: TitleScreenProps) {
   const [confirmingReset, setConfirmingReset] = useState(false);
 
@@ -141,7 +144,11 @@ export function TitleScreen({
           <div className="mt-2.5 grid w-full max-w-sm grid-cols-2 gap-2.5">{metaMenu}</div>
         )}
 
-        <div className="mt-8 w-full rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-left backdrop-blur">
+        {footerMenu && (
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2">{footerMenu}</div>
+        )}
+
+        <div className="mt-7 w-full rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-left backdrop-blur">
           <h2 className="text-xs font-extrabold tracking-wider text-amber-300">遊び方</h2>
           <ul className="mt-2 space-y-1.5">
             {HOW_TO_PLAY.map((row) => (
@@ -154,7 +161,7 @@ export function TitleScreen({
         </div>
 
         <p className="mt-5 text-[11px] text-slate-500">
-          進行状況はこのブラウザに自動保存されます
+          進行状況はこのブラウザの localStorage に自動保存されます（データ管理からバックアップ可能）
         </p>
       </div>
     </div>

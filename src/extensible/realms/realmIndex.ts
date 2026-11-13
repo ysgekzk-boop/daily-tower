@@ -65,11 +65,46 @@ for (const f of [...REALM_01_FLOORS, ...REALM_02_FLOORS, ...REALM_03_FLOORS]) {
   ALL_FLOORS[f.floor] = f;
 }
 
+export const AUTHORED_FLOOR_NUMBERS: number[] = Object.keys(ALL_FLOORS)
+  .map(Number)
+  .sort((a, b) => a - b);
+
+export const LATEST_AUTHORED_FLOOR: number =
+  AUTHORED_FLOOR_NUMBERS[AUTHORED_FLOOR_NUMBERS.length - 1] ?? 1;
+
+export function isFloorAuthored(floor: number): boolean {
+  return Boolean(ALL_FLOORS[floor]);
+}
+
+export function getRecentAuthoredFloors(limit = 5): FloorDefinition[] {
+  return AUTHORED_FLOOR_NUMBERS.slice(-limit)
+    .reverse()
+    .map((n) => ALL_FLOORS[n]);
+}
+
+export interface RealmProgressSummary {
+  meta: RealmMetadata;
+  authoredCount: number;
+  totalCount: number;
+}
+
+export function getRealmProgressSummary(): RealmProgressSummary[] {
+  return Object.values(REALM_METADATA)
+    .sort((a, b) => a.realm - b.realm)
+    .map((meta) => {
+      const totalCount = meta.endFloor - meta.startFloor + 1;
+      const authoredCount = AUTHORED_FLOOR_NUMBERS.filter(
+        (f) => f >= meta.startFloor && f <= meta.endFloor
+      ).length;
+      return { meta, authoredCount, totalCount };
+    });
+}
+
 export function getFloorDefinition(floor: number): FloorDefinition {
   if (ALL_FLOORS[floor]) {
     return ALL_FLOORS[floor];
   }
-  // Fallback for floors > 100: dynamically project from Realm 2 template
+  // Fallback for floors > LATEST_AUTHORED_FLOOR: dynamically project from Realm 2 template
   const templateIndex = ((floor - 1) % 50) + 51;
   const base = ALL_FLOORS[templateIndex] ?? REALM_01_FLOORS[0];
   return {

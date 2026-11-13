@@ -3,12 +3,21 @@ import { AreaEngine } from './core/AreaEngine';
 import { EventEngine } from './core/EventEngine';
 import { BattleStage2D, CombatMotionState, HitFx } from './components/BattleStage2D';
 import { BestiaryModal } from './components/BestiaryModal';
+import { DataManagementModal } from './components/DataManagementModal';
 import { HelpModal } from './components/HelpModal';
 import { TitleScreen } from './components/TitleScreen';
+import { UpdateLogModal } from './components/UpdateLogModal';
 import { WardrobeArchiveModal } from './components/WardrobeArchiveModal';
+import { XShareButton } from './components/XShareButton';
 import { PixelSpriteCanvas } from './components/PixelSpriteCanvas';
 import { ACHIEVEMENTS } from './extensible/achievements/achievements';
+import { LATEST_AUTHORED_FLOOR, isFloorAuthored } from './extensible/realms/realmIndex';
 import { useGameStore } from './store/useGameStore';
+import {
+  formatArchiveXShareText,
+  formatDefeatXShareText,
+  formatProgressXShareText,
+} from './utils/share';
 import { isSfxMuted, playSfx, setSfxMuted, SfxName, unlockAudio } from './utils/sound';
 
 export function App() {
@@ -23,6 +32,8 @@ export function App() {
     rewardCards,
     pendingSkillToEquip,
     systemBanner,
+    storageError,
+    dismissStorageError,
     cosmeticCatalog,
     performCombatCommand,
     proceedAfterCombatVictory,
@@ -33,6 +44,8 @@ export function App() {
     resetSave,
     completeDimensionalLeapModal,
     unlockOrEquipCosmetic,
+    exportSaveJson,
+    importSaveJson,
   } = useGameStore();
 
   const [motionState, setMotionState] = useState<CombatMotionState>('idle');
@@ -407,16 +420,37 @@ export function App() {
             </button>
           </>
         }
+        footerMenu={
+          <>
+            <UpdateLogModal variant="title" />
+            <DataManagementModal
+              onExportSave={exportSaveJson}
+              onImportSave={importSaveJson}
+            />
+            <XShareButton
+              text={formatProgressXShareText({
+                floor: saveData.midFloor.currentFloor,
+                realmName: currentRealmMeta.name,
+                weaponName: saveData.inventory.weapon.name,
+                activeTitle: saveData.activeTitle,
+                maxFloorReached: saveData.playStats?.maxFloorReached,
+              })}
+              label="𝕏 進捗をポスト"
+            />
+          </>
+        }
       />
     );
   }
+
+  const isCurrentFloorAuthored = isFloorAuthored(saveData.midFloor.currentFloor);
 
   return (
     <div className="anim-fade-in min-h-dvh flex flex-col bg-slate-950 text-slate-100">
       {/* Compact RPG Header */}
       <header className="border-b border-slate-800/80 bg-slate-900/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-[1760px] flex-wrap items-center justify-between gap-3 px-3 py-2.5 sm:px-5">
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
             <h1 className="text-base font-extrabold tracking-wider text-amber-400">
               DAILY TOWER
             </h1>
@@ -424,6 +458,14 @@ export function App() {
             <span className="text-xs font-bold text-slate-200">
               {currentRealmMeta.name}（第{saveData.midFloor.currentFloor}層）
             </span>
+            {!isCurrentFloorAuthored && (
+              <span
+                title={`第${LATEST_AUTHORED_FLOOR}層まで固有フロアが実装されています。それ以降は先行プレイ用の仮設回廊です。`}
+                className="rounded-full border border-amber-500/40 bg-amber-950/60 px-2 py-0.5 text-[10px] font-bold text-amber-200"
+              >
+                🚧 先行回廊
+              </span>
+            )}
           </div>
 
           <div className="flex items-center gap-3">
@@ -475,6 +517,21 @@ export function App() {
 
       {/* Main 2D RPG Screen */}
       <main className="mx-auto flex w-full max-w-[1760px] flex-1 flex-col gap-3 px-3 py-3 sm:px-5">
+        {storageError && (
+          <div
+            role="alert"
+            className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-rose-500/50 bg-rose-950/70 px-4 py-2.5 text-xs font-bold text-rose-100"
+          >
+            <span>⚠️ {storageError}</span>
+            <button
+              type="button"
+              onClick={dismissStorageError}
+              className="rounded-lg border border-rose-400/40 bg-rose-900/60 px-2.5 py-1 text-[11px] font-bold text-rose-100 transition hover:bg-rose-800/70 cursor-pointer"
+            >
+              閉じる
+            </button>
+          </div>
+        )}
         {/* PC: stage column + console rail side by side; stacked on smaller screens */}
         <div className="flex flex-col gap-3">
         {/* 1. 2D RPG Stage Viewport (Background + Facing Characters + Motions) */}
@@ -879,16 +936,25 @@ export function App() {
                   <strong className="text-fuchsia-300">💎 ジェム +15</strong> と{' '}
                   <strong className="text-emerald-300">🧪 秘薬 +1回分</strong> を獲得しました。
                 </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    playSfx('leap');
-                    completeDimensionalLeapModal();
-                  }}
-                  className="mt-4 rounded-xl bg-fuchsia-500 px-6 py-2.5 text-sm font-extrabold text-white transition hover:bg-fuchsia-400 cursor-pointer"
-                >
-                  第{saveData.midFloor.currentFloor}層へ進む ➔
-                </button>
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      playSfx('leap');
+                      completeDimensionalLeapModal();
+                    }}
+                    className="rounded-xl bg-fuchsia-500 px-6 py-2.5 text-sm font-extrabold text-white transition hover:bg-fuchsia-400 cursor-pointer"
+                  >
+                    第{saveData.midFloor.currentFloor}層へ進む ➔
+                  </button>
+                  {saveData.archive[0] && (
+                    <XShareButton
+                      text={formatArchiveXShareText(saveData.archive[0], saveData.activeTitle)}
+                      label="𝕏 制覇記録をポスト"
+                      className="rounded-xl border border-sky-500/40 bg-sky-950/60 px-4 py-2.5 text-sm font-bold text-sky-200 transition hover:bg-sky-900/70 cursor-pointer"
+                    />
+                  )}
+                </div>
               </div>
             )}
 
@@ -903,16 +969,28 @@ export function App() {
                   {AreaEngine.calculateRespawnFloor(saveData.midFloor.currentFloor)}
                   層から再び挑むことができます。
                 </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    playSfx('click');
-                    respawnFromCheckpoint();
-                  }}
-                  className="mt-4 rounded-xl bg-rose-600 px-6 py-2.5 text-sm font-extrabold text-white transition hover:bg-rose-500 cursor-pointer"
-                >
-                  第{AreaEngine.calculateRespawnFloor(saveData.midFloor.currentFloor)}層から再挑戦する
-                </button>
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      playSfx('click');
+                      respawnFromCheckpoint();
+                    }}
+                    className="rounded-xl bg-rose-600 px-6 py-2.5 text-sm font-extrabold text-white transition hover:bg-rose-500 cursor-pointer"
+                  >
+                    第{AreaEngine.calculateRespawnFloor(saveData.midFloor.currentFloor)}層から再挑戦する
+                  </button>
+                  <XShareButton
+                    text={formatDefeatXShareText({
+                      floor: saveData.midFloor.currentFloor,
+                      realmName: currentRealmMeta.name,
+                      activeTitle: saveData.activeTitle,
+                      respawnFloor: AreaEngine.calculateRespawnFloor(saveData.midFloor.currentFloor),
+                    })}
+                    label="𝕏 敗北をポスト"
+                    className="rounded-xl border border-sky-500/40 bg-sky-950/60 px-4 py-2.5 text-sm font-bold text-sky-200 transition hover:bg-sky-900/70 cursor-pointer"
+                  />
+                </div>
               </div>
             )}
           </div>

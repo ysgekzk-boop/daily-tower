@@ -46,6 +46,7 @@ export function useGameStore() {
   const [pendingSkillToEquip, setPendingSkillToEquip] = useState<SkillItem | null>(null);
   const [stageAfterSkillPrompt, setStageAfterSkillPrompt] = useState<'next_encounter' | 'next_floor'>('next_floor');
   const [systemBanner, setSystemBanner] = useState<string | null>(null);
+  const [storageError, setStorageError] = useState<string | null>(null);
 
   const playerMaxHp = BASE_PLAYER_MAX_HP + saveData.inventory.armor.maxHpBonus;
   const floorDef = FloorRunner.getFloor(saveData.midFloor.currentFloor);
@@ -59,8 +60,11 @@ export function useGameStore() {
   useEffect(() => {
     try {
       localStorage.setItem(SAVE_STORAGE_KEY, JSON.stringify(saveData));
+      setStorageError(null);
     } catch {
-      // Ignore storage quota errors
+      setStorageError(
+        'ブラウザの保存領域に書き込めませんでした（シークレットモードや容量上限の可能性があります）。必要に応じてデータをエクスポートしてください。'
+      );
     }
   }, [saveData]);
 
@@ -639,6 +643,34 @@ function syncAchievements(save: SaveData): SaveData {
     setSystemBanner(`💎 「${item.name}」を適用しました！`);
   };
 
+  const exportSaveJson = (): string => {
+    return JSON.stringify(saveData, null, 2);
+  };
+
+  const importSaveJson = (rawJson: string): { ok: boolean; message: string } => {
+    const result = StorageValidator.parseAndHealSaveJson(rawJson);
+    if (!result.ok) {
+      return result;
+    }
+    setRewardCards(null);
+    setPendingSkillToEquip(null);
+    setSaveData(result.save);
+    initCurrentEncounter(result.save);
+    const noteSuffix =
+      result.healed && result.healNotes.length > 0
+        ? `（一部修復: ${result.healNotes.join(' / ')}）`
+        : '';
+    setSystemBanner(`📥 セーブデータを復元しました（第${result.save.midFloor.currentFloor}層）${noteSuffix}`);
+    return {
+      ok: true,
+      message: `第${result.save.midFloor.currentFloor}層のデータを復元しました。${noteSuffix}`,
+    };
+  };
+
+  const dismissStorageError = () => {
+    setStorageError(null);
+  };
+
   return {
     saveData,
     playerMaxHp,
@@ -650,6 +682,8 @@ function syncAchievements(save: SaveData): SaveData {
     rewardCards,
     pendingSkillToEquip,
     systemBanner,
+    storageError,
+    dismissStorageError,
     cosmeticCatalog: COSMETIC_SHOP_CATALOG,
     performCombatCommand,
     proceedAfterCombatVictory,
@@ -660,5 +694,7 @@ function syncAchievements(save: SaveData): SaveData {
     resetSave,
     completeDimensionalLeapModal,
     unlockOrEquipCosmetic,
+    exportSaveJson,
+    importSaveJson,
   };
 }

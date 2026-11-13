@@ -317,4 +317,38 @@ export class StorageValidator {
       healNotes,
     };
   }
+
+  /**
+   * Parses a JSON string for save import, rejecting malformed JSON or non-object payloads
+   * before running validateAndHeal.
+   */
+  static parseAndHealSaveJson(
+    rawJson: string
+  ): { ok: true; save: SaveData; healed: boolean; healNotes: string[] } | { ok: false; message: string } {
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(rawJson);
+    } catch {
+      return { ok: false, message: 'JSONの形式が正しくありません。' };
+    }
+
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return { ok: false, message: 'セーブデータの形式が不正です（オブジェクトではありません）。' };
+    }
+
+    const rawObj = parsed as Record<string, unknown>;
+    if (
+      typeof rawObj.version !== 'number' &&
+      !rawObj.midFloor &&
+      !rawObj.inventory
+    ) {
+      return {
+        ok: false,
+        message: 'Daily Towerのセーブデータではないようです（必須項目が見つかりません）。',
+      };
+    }
+
+    const { save, healed, healNotes } = StorageValidator.validateAndHeal(parsed);
+    return { ok: true, save, healed, healNotes };
+  }
 }
