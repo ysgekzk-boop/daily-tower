@@ -76,6 +76,9 @@ export function TitleScreen({
         <p className="mt-2 text-sm font-bold text-slate-300">
           毎日登る、終わりなき塔
         </p>
+        <p className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-950/50 px-3 py-1 text-[11px] font-bold text-emerald-200">
+          📅 毎日更新中：新しいフロアが日々追加されます
+        </p>
 
         {hasProgress && (
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs font-bold">
