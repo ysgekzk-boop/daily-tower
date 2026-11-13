@@ -284,6 +284,35 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       };
     },
   },
+  steam_cog_regulator: {
+    id: 'steam_cog_regulator',
+    name: '蒸気歯車の調律器',
+    trigger: 'on_skill_use',
+    handler: () => ({
+      applyStatusToPlayer: {
+        statusId: 'def_buff',
+        value: 25,
+        duration: 2,
+      },
+      logMessage: `[レリック:蒸気歯車の調律器] 歯車が噛み合い、2ターンの間防御力+25%を得た！`,
+    }),
+  },
+  boiler_shell_plating: {
+    id: 'boiler_shell_plating',
+    name: '圧力外殻の装甲板',
+    trigger: 'on_attack',
+    handler: (ctx) => {
+      const shieldVal = Math.max(10, Math.floor(ctx.playerMaxHp * 0.1));
+      return {
+        applyStatusToPlayer: {
+          statusId: 'shield',
+          value: shieldVal,
+          duration: 2,
+        },
+        logMessage: `[レリック:圧力外殻の装甲板] 外殻蒸気が噴き上がり、障壁(${shieldVal}/2T)を展開した！`,
+      };
+    },
+  },
 };
 
 

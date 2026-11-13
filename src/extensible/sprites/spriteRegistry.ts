@@ -1302,6 +1302,81 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '灰燼黒曜の爪',
     colors: ['transparent', '#18181b', '#71717a', '#f43f5e'],
   },
+  item_boiler_core_greatsword: {
+    id: 'item_boiler_core_greatsword',
+    name: '炉心外殻の大剣',
+    colors: ['transparent', '#451a03', '#b45309', '#fbbf24'],
+  },
+  item_steam_gear_pike: {
+    id: 'item_steam_gear_pike',
+    name: '蒸気歯車の穿槍',
+    colors: ['transparent', '#1e293b', '#64748b', '#e2e8f0'],
+  },
+  item_pressure_shell_plate: {
+    id: 'item_pressure_shell_plate',
+    name: '圧力外殻の重鎧',
+    colors: ['transparent', '#431407', '#9a3412', '#fdba74'],
+  },
+  item_gearwork_steam_cuirass: {
+    id: 'item_gearwork_steam_cuirass',
+    name: '歯車機関の蒸気甲',
+    colors: ['transparent', '#1e293b', '#475569', '#f59e0b'],
+  },
+  item_steam_scald_jet: {
+    id: 'item_steam_scald_jet',
+    name: '過熱蒸気の噴射',
+    colors: ['transparent', '#7c2d12', '#ea580c', '#fef08a'],
+  },
+  item_boiler_overload_smash: {
+    id: 'item_boiler_overload_smash',
+    name: '圧力釜の臨界破砕',
+    colors: ['transparent', '#450a0a', '#dc2626', '#fde047'],
+  },
+  item_gear_drive_strike: {
+    id: 'item_gear_drive_strike',
+    name: '歯車連動の連撃',
+    colors: ['transparent', '#27272a', '#71717a', '#fb923c'],
+  },
+  item_boiler_vent_recovery: {
+    id: 'item_boiler_vent_recovery',
+    name: '蒸気弁の循環療養',
+    colors: ['transparent', '#064e3b', '#10b981', '#e0f2fe'],
+  },
+  item_steam_core_overdrive: {
+    id: 'item_steam_core_overdrive',
+    name: '炉心機関の過給',
+    colors: ['transparent', '#7c2d12', '#f97316', '#fef9c3'],
+  },
+  item_pressure_valve_rupture: {
+    id: 'item_pressure_valve_rupture',
+    name: '圧力破断の排気撃',
+    colors: ['transparent', '#312e81', '#6366f1', '#fca5a5'],
+  },
+  item_iron_boiler_aegis: {
+    id: 'item_iron_boiler_aegis',
+    name: '圧力外殻の防壁',
+    colors: ['transparent', '#0f172a', '#334155', '#38bdf8'],
+  },
+  item_steam_turbine_tonic: {
+    id: 'item_steam_turbine_tonic',
+    name: '蒸気機関の活性水',
+    colors: ['transparent', '#064e3b', '#059669', '#67e8f9'],
+  },
+  item_boiler_pressure_elixir: {
+    id: 'item_boiler_pressure_elixir',
+    name: '圧力釜の蒸留薬',
+    colors: ['transparent', '#7f1d1d', '#ef4444', '#fde047'],
+  },
+  item_steam_cog_regulator_relic: {
+    id: 'item_steam_cog_regulator_relic',
+    name: '蒸気歯車の調律器',
+    colors: ['transparent', '#451a03', '#d97706', '#38bdf8'],
+  },
+  item_boiler_shell_plating_relic: {
+    id: 'item_boiler_shell_plating_relic',
+    name: '圧力外殻の装甲板',
+    colors: ['transparent', '#1e293b', '#64748b', '#fb923c'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1567,6 +1642,21 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_ember_spring_vial: { id: 'item_ember_spring_vial', matrixId: 'item_ember_spring_vial', defaultPalette: 'item_ember_spring_vial' },
   item_obsidian_ember_lens_relic: { id: 'item_obsidian_ember_lens_relic', matrixId: 'item_obsidian_ember_lens_relic', defaultPalette: 'item_obsidian_ember_lens_relic' },
   item_ashen_shard_talon_relic: { id: 'item_ashen_shard_talon_relic', matrixId: 'item_ashen_shard_talon_relic', defaultPalette: 'item_ashen_shard_talon_relic' },
+  item_boiler_core_greatsword: { id: 'item_boiler_core_greatsword', matrixId: 'item_boiler_core_greatsword', defaultPalette: 'item_boiler_core_greatsword' },
+  item_steam_gear_pike: { id: 'item_steam_gear_pike', matrixId: 'item_steam_gear_pike', defaultPalette: 'item_steam_gear_pike' },
+  item_pressure_shell_plate: { id: 'item_pressure_shell_plate', matrixId: 'item_pressure_shell_plate', defaultPalette: 'item_pressure_shell_plate' },
+  item_gearwork_steam_cuirass: { id: 'item_gearwork_steam_cuirass', matrixId: 'item_gearwork_steam_cuirass', defaultPalette: 'item_gearwork_steam_cuirass' },
+  item_steam_scald_jet: { id: 'item_steam_scald_jet', matrixId: 'item_steam_scald_jet', defaultPalette: 'item_steam_scald_jet' },
+  item_boiler_overload_smash: { id: 'item_boiler_overload_smash', matrixId: 'item_boiler_overload_smash', defaultPalette: 'item_boiler_overload_smash' },
+  item_gear_drive_strike: { id: 'item_gear_drive_strike', matrixId: 'item_gear_drive_strike', defaultPalette: 'item_gear_drive_strike' },
+  item_boiler_vent_recovery: { id: 'item_boiler_vent_recovery', matrixId: 'item_boiler_vent_recovery', defaultPalette: 'item_boiler_vent_recovery' },
+  item_steam_core_overdrive: { id: 'item_steam_core_overdrive', matrixId: 'item_steam_core_overdrive', defaultPalette: 'item_steam_core_overdrive' },
+  item_pressure_valve_rupture: { id: 'item_pressure_valve_rupture', matrixId: 'item_pressure_valve_rupture', defaultPalette: 'item_pressure_valve_rupture' },
+  item_iron_boiler_aegis: { id: 'item_iron_boiler_aegis', matrixId: 'item_iron_boiler_aegis', defaultPalette: 'item_iron_boiler_aegis' },
+  item_steam_turbine_tonic: { id: 'item_steam_turbine_tonic', matrixId: 'item_steam_turbine_tonic', defaultPalette: 'item_steam_turbine_tonic' },
+  item_boiler_pressure_elixir: { id: 'item_boiler_pressure_elixir', matrixId: 'item_boiler_pressure_elixir', defaultPalette: 'item_boiler_pressure_elixir' },
+  item_steam_cog_regulator_relic: { id: 'item_steam_cog_regulator_relic', matrixId: 'item_steam_cog_regulator_relic', defaultPalette: 'item_steam_cog_regulator_relic' },
+  item_boiler_shell_plating_relic: { id: 'item_boiler_shell_plating_relic', matrixId: 'item_boiler_shell_plating_relic', defaultPalette: 'item_boiler_shell_plating_relic' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

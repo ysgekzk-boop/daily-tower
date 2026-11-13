@@ -962,6 +962,126 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  steam_boiler_spring: {
+    id: 'steam_boiler_spring',
+    title: '蒸気釜の冷却水盤',
+    category: 'shrine',
+    description:
+      '巨大な圧力釜の傍らに、凝縮した蒸気が澄んだ水盤を作っている。清涼な水は傷を癒やし、水底には機関技師が残した金貨が沈んでいる。',
+    speakerSpriteId: 'shrine',
+    palette: 'emerald_slime',
+    options: [
+      {
+        id: 'drink_boiler_spring',
+        label: '冷却水を飲む（HP 35%回復）',
+        description: '清らかな蒸留水で渇きを潤し、傷を癒やす。',
+        outcome: {
+          healHpPercent: 35,
+          logMessage: '冷却水盤の澄んだ水を飲み干し、HPが35%回復した！',
+        },
+      },
+      {
+        id: 'collect_boiler_coins',
+        label: '水底の金貨を拾う（+35 G）',
+        description: '水盤の底に沈んだ金貨を素早く回収する。',
+        outcome: {
+          grantGold: 35,
+          logMessage: '冷却水盤の底から金貨を拾い上げ、35 G を手に入れた！',
+        },
+      },
+    ],
+  },
+
+  gearwork_pact_furnace: {
+    id: 'gearwork_pact_furnace',
+    title: '歯車炉心の契約壇',
+    category: 'shrine',
+    description:
+      '噛み合う黄金の歯車が炉心を囲む祭壇が鎮座している。「命の鼓動か黄金を捧げよ。さすれば外殻に眠る秘宝か戦技を授けん」と銘板に刻まれている。',
+    speakerSpriteId: 'shrine',
+    palette: 'crimson_knight',
+    options: [
+      {
+        id: 'blood_for_gearwork_relic',
+        label: '生命力を捧げる（HP 20%消費 ➔ レリック獲得）',
+        description: '最大HPの20%を代償に、歯車炉心の奥に眠る古代のレリックを授かる。',
+        cost: {
+          hpPercent: 20,
+        },
+        outcome: {
+          grantItemType: 'relic',
+          logMessage: '歯車炉心の祭壇に生命力を捧げ、機関の秘宝レリックを授かった！',
+        },
+      },
+      {
+        id: 'gold_for_gearwork_skill',
+        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
+        description: '40 Gを歯車の受け皿に納め、炉心外殻を踏破する秘伝スキルを得る。',
+        cost: {
+          gold: 40,
+        },
+        outcome: {
+          grantItemType: 'skill',
+          logMessage: '黄金の歯車が輝きを放ち、新たなスキルの知識が脳裏に刻まれた！',
+        },
+      },
+      {
+        id: 'bow_to_gearwork_furnace',
+        label: '静かに一礼して立ち去る（HP 15%回復）',
+        description: '代償を払わず敬意を示し、蒸気炉の穏やかな温もりで傷を癒やす。',
+        outcome: {
+          healHpPercent: 15,
+          logMessage: '歯車炉心の祭壇に敬意を表し、穏やかな蒸気の祝福でHPが15%回復した。',
+        },
+      },
+    ],
+  },
+
+  boiler_engineer_forge: {
+    id: 'boiler_engineer_forge',
+    title: '蒸気機関の整備工房',
+    category: 'forge',
+    description:
+      '圧力配管と歯車が壁を覆う工房で、煤まみれの機関鍛冶師が蒸気槌を振るっている。「炉心外殻に挑むなら、圧力鍛えの武具を持っていけ」',
+    speakerSpriteId: 'hero_knight',
+    palette: 'steel_knight',
+    options: [
+      {
+        id: 'buy_boiler_weapon',
+        label: '蒸気鍛えの武器を購入する（45 G ➔ 武器獲得）',
+        description: '45 Gを支払い、高圧蒸気槌で鍛え上げた武器を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'weapon',
+          logMessage: '機関鍛冶師から蒸気機関の力を宿した業物の武器を受け取った！',
+        },
+      },
+      {
+        id: 'buy_boiler_armor',
+        label: '圧力外殻の防具を購入する（45 G ➔ 防具獲得）',
+        description: '45 Gを支払い、炉心外殻用の耐熱重装防具を受け取る。',
+        cost: {
+          gold: 45,
+        },
+        outcome: {
+          grantItemType: 'armor',
+          logMessage: '機関鍛冶師から重厚な圧力外殻の防具を受け取った！',
+        },
+      },
+      {
+        id: 'assist_steam_valves',
+        label: '圧力弁の調整を手伝う（+25 G）',
+        description: '蒸気配管の圧力弁を調整し、手間賃を受け取る。',
+        outcome: {
+          grantGold: 25,
+          logMessage: '圧力弁の調整作業を手伝い、礼として 25 G を受け取った！',
+        },
+      },
+    ],
+  },
 };
 
 
