@@ -1139,21 +1139,25 @@ export function App() {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
-                  <span className="block text-[10px] text-slate-400">レリック</span>
-                  <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
-                    {saveData.inventory.relic && (
-                      <PixelSpriteCanvas
-                        spriteId={saveData.inventory.relic.spriteId}
-                        scale={3}
-                        className="shrink-0"
-                      />
-                    )}
-                    <span className="truncate">{saveData.inventory.relic?.name ?? 'なし'}</span>
-                  </span>
-                  <span className="max-w-40 truncate text-[10px] font-bold text-fuchsia-300" title={saveData.inventory.relic?.description ?? undefined}>
-                    {saveData.inventory.relic?.description ?? '―'}
-                  </span>
+                <div className="rounded-lg border border-slate-800 bg-slate-950 px-2.5 py-2">
+                  <div className="flex items-center gap-2">
+                    <span className="block text-[10px] text-slate-400">レリック</span>
+                    <span className="flex min-w-0 flex-1 items-center gap-1.5 font-bold text-slate-100">
+                      {saveData.inventory.relic && (
+                        <PixelSpriteCanvas
+                          spriteId={saveData.inventory.relic.spriteId}
+                          scale={3}
+                          className="shrink-0"
+                        />
+                      )}
+                      <span className="truncate">{saveData.inventory.relic?.name ?? 'なし'}</span>
+                    </span>
+                  </div>
+                  {saveData.inventory.relic && (
+                    <p className="mt-1 text-[10px] font-bold leading-relaxed text-fuchsia-300">
+                      {saveData.inventory.relic.description}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
