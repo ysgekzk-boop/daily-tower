@@ -34,6 +34,8 @@ export interface RunResult {
   battles: number;
   totalTurns: number;
   goldEarned: number;
+  /** Gold balance when the run ended (start gold + all income - all spending). */
+  finalGold: number;
   endReason: 'cleared' | 'death_cap' | 'turn_cap';
   /** HP% right after clearing each floor (first clear only). */
   floorEndHpPct: Record<number, number>;
@@ -44,6 +46,27 @@ const MAX_TURNS_PER_BATTLE = 300;
 
 /** Applies an obtained item the way the game store does (old gear salvages). */
 function applyEquip(save: SaveData, item: AnyCatalogItem): void {
+  // Mirror the store: strictly-dominated granted equipment is salvaged.
+  if (
+    item.kind === 'weapon' &&
+    DropPacingEngine.isWeaponDominated(item, {
+      atk: save.inventory.weapon.atk,
+      element: save.inventory.weapon.element,
+    })
+  ) {
+    save.gold += item.salvageGold;
+    return;
+  }
+  if (
+    item.kind === 'armor' &&
+    DropPacingEngine.isArmorDominated(item, {
+      def: save.inventory.armor.def,
+      maxHpBonus: save.inventory.armor.maxHpBonus,
+    })
+  ) {
+    save.gold += item.salvageGold;
+    return;
+  }
   const maxHpNow = BASE_PLAYER_MAX_HP + save.inventory.armor.maxHpBonus;
   if (item.kind === 'weapon') {
     save.gold += save.inventory.weapon.salvageGold;
@@ -105,6 +128,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
     battles: 0,
     totalTurns: 0,
     goldEarned: 0,
+    finalGold: 0,
     endReason: 'cleared',
     floorEndHpPct: {},
   };
@@ -127,6 +151,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
           gold: save.gold,
           consumableCharges: save.midFloor.consumableCharges,
           consumableMaxCharges: save.inventory.consumable?.maxCharges ?? 2,
+          currentFloor: floor,
         };
         const optIdx = PlaytestBot.chooseEventOption(enc.eventDef, state, (o) =>
           EventEngine.canAffordOption(state, o)
@@ -229,6 +254,10 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
       armorId: save.inventory.armor.id,
       relicId: save.inventory.relic?.id ?? null,
       consumableId: save.inventory.consumable?.id ?? null,
+      weaponAtk: save.inventory.weapon.atk,
+      weaponElement: save.inventory.weapon.element,
+      armorDef: save.inventory.armor.def,
+      armorMaxHpBonus: save.inventory.armor.maxHpBonus,
     });
     const choice = PlaytestBot.chooseRewardCard(cards, {
       weapon: save.inventory.weapon,
@@ -280,6 +309,7 @@ export function simulateRun(seed: number, maxFloor = 100): RunResult {
     }
   }
 
+  result.finalGold = save.gold;
   return result;
 }
 

@@ -142,4 +142,56 @@ describe('DropPacingEngine owned-item duplicate avoidance', () => {
     expect(card3.type).toBe('item');
     expect(card3.item?.id).toBe('vampiric_fang_relic');
   });
+
+  it('filters strictly-dominated weapons (same element, lower ATK) from Card 1', () => {
+    const floorDef = makeFloor(5, {
+      equipmentIds: ['rusty_shortsword', 'bark_cuirass'],
+    });
+    // rng 0 would pick rusty_shortsword (ATK 12 physical) if not filtered;
+    // owned weapon is ATK 15 physical, so it is strictly dominated.
+    const [card1] = DropPacingEngine.generateFloorRewardCards(floorDef, () => 0, {
+      skillIds: [],
+      weaponAtk: 15,
+      weaponElement: 'physical',
+    });
+    expect(card1.item?.id).toBe('bark_cuirass');
+  });
+
+  it('keeps lower-ATK weapons of a different element as sidegrades', () => {
+    const floorDef = makeFloor(5, { equipmentIds: ['verdant_blade'] });
+    const [card1] = DropPacingEngine.generateFloorRewardCards(floorDef, () => 0, {
+      skillIds: [],
+      weaponAtk: 20,
+      weaponElement: 'physical',
+    });
+    expect(card1.type).toBe('item');
+    expect(card1.item?.id).toBe('verdant_blade');
+  });
+
+  it('filters Pareto-dominated armor from Card 1', () => {
+    const floorDef = makeFloor(5, {
+      equipmentIds: ['leather_tunic', 'verdant_blade'],
+    });
+    // leather_tunic (DEF 4 / HP 0) is dominated by owned DEF 7 / HP 25 armor.
+    const [card1] = DropPacingEngine.generateFloorRewardCards(floorDef, () => 0, {
+      skillIds: [],
+      armorDef: 7,
+      armorMaxHpBonus: 25,
+    });
+    expect(card1.item?.id).toBe('verdant_blade');
+  });
+
+  it('falls back to gold_bonus when every equipment offer is dominated', () => {
+    const floorDef = makeFloor(5, {
+      equipmentIds: ['rusty_shortsword', 'leather_tunic'],
+    });
+    const [card1] = DropPacingEngine.generateFloorRewardCards(floorDef, () => 0, {
+      skillIds: [],
+      weaponAtk: 15,
+      weaponElement: 'physical',
+      armorDef: 7,
+      armorMaxHpBonus: 25,
+    });
+    expect(card1.type).toBe('gold_bonus');
+  });
 });

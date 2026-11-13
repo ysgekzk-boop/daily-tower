@@ -4,7 +4,7 @@ import {
   PlayerCommand,
   PlayerLoadout,
 } from '../core/CombatEngine';
-import { EventExecutionState } from '../core/EventEngine';
+import { EventEngine, EventExecutionState } from '../core/EventEngine';
 import { RewardCard } from '../core/DropPacingEngine';
 import { EventOption, GameEventDefinition } from '../extensible/events/types';
 import {
@@ -194,7 +194,7 @@ export class PlaytestBot {
       }
       if (outcome.cleanseDebuffs) score += 5;
       if (cost?.hpPercent) score -= cost.hpPercent * 1.5;
-      if (cost?.gold) score -= cost.gold / 5;
+      if (cost?.gold) score -= EventEngine.scaledGoldCost(cost.gold, state.currentFloor ?? 1) / 5;
       if (score > bestScore) {
         bestScore = score;
         best = cand;

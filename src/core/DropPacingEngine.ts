@@ -27,9 +27,38 @@ export interface OwnedRewardInfo {
   armorId?: string;
   relicId?: string | null;
   consumableId?: string | null;
+  /** Current equipment stats, used to filter strictly-dominated offers. */
+  weaponAtk?: number;
+  weaponElement?: string;
+  armorDef?: number;
+  armorMaxHpBonus?: number;
 }
 
 export class DropPacingEngine {
+  /**
+   * A weapon offer is strictly dominated when it is weaker than the current
+   * weapon AND shares its element (a different element can still be a
+   * useful sidegrade against enemy weaknesses, so those stay offerable).
+   */
+  static isWeaponDominated(
+    candidate: WeaponItem,
+    current: { atk: number; element: string }
+  ): boolean {
+    return candidate.atk < current.atk && candidate.element === current.element;
+  }
+
+  /** An armor offer is strictly dominated when both stats are no better and at least one is worse. */
+  static isArmorDominated(
+    candidate: ArmorItem,
+    current: { def: number; maxHpBonus: number }
+  ): boolean {
+    return (
+      candidate.def <= current.def &&
+      candidate.maxHpBonus <= current.maxHpBonus &&
+      (candidate.def < current.def || candidate.maxHpBonus < current.maxHpBonus)
+    );
+  }
+
   /**
    * Generates the 3 floor-clear reward cards per Spec §3.1 and §5.3:
    * - Card 1: Equipment (Weapon OR Armor)
@@ -69,9 +98,33 @@ export class DropPacingEngine {
 
     let card1: RewardCard;
     if (owned) {
-      const filteredEquipPool = rawEquipPool.filter(
-        (item) => item.id !== owned.weaponId && item.id !== owned.armorId
-      );
+      const filteredEquipPool = rawEquipPool.filter((item) => {
+        if (item.id === owned.weaponId || item.id === owned.armorId) return false;
+        // Never offer strictly-dominated equipment (feels like a downgrade).
+        if (
+          item.kind === 'weapon' &&
+          owned.weaponAtk !== undefined &&
+          owned.weaponElement !== undefined &&
+          DropPacingEngine.isWeaponDominated(item, {
+            atk: owned.weaponAtk,
+            element: owned.weaponElement,
+          })
+        ) {
+          return false;
+        }
+        if (
+          item.kind === 'armor' &&
+          owned.armorDef !== undefined &&
+          owned.armorMaxHpBonus !== undefined &&
+          DropPacingEngine.isArmorDominated(item, {
+            def: owned.armorDef,
+            maxHpBonus: owned.armorMaxHpBonus,
+          })
+        ) {
+          return false;
+        }
+        return true;
+      });
       if (filteredEquipPool.length === 0) {
         card1 = makeGoldCard(1);
       } else {

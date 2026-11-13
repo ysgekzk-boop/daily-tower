@@ -85,8 +85,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'gold_for_skill',
-        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
-        description: '40 Gを奉納し、新たな秘伝スキルを得る。',
+        label: '黄金を捧げる（スキル習得）',
+        description: '黄金を奉納し、新たな秘伝スキルを得る。',
         cost: {
           gold: 40,
         },
@@ -118,8 +118,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
     options: [
       {
         id: 'buy_weapon',
-        label: '業物の武器を購入する（45 G ➔ 武器獲得）',
-        description: '45 Gを支払い、より強力な武器を受け取る。',
+        label: '業物の武器を購入する（武器獲得）',
+        description: '代金を支払い、より強力な武器を受け取る。',
         cost: {
           gold: 45,
         },
@@ -130,8 +130,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'buy_armor',
-        label: '堅牢な防具を購入する（45 G ➔ 防具獲得）',
-        description: '45 Gを支払い、より堅牢な防具を受け取る。',
+        label: '堅牢な防具を購入する（防具獲得）',
+        description: '代金を支払い、より堅牢な防具を受け取る。',
         cost: {
           gold: 45,
         },
@@ -316,8 +316,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'offer_gold_to_stump',
-        label: '旅の金貨を祠に納める（40 G消費 ➔ スキル習得）',
-        description: '40 Gを納め、木霊が囁く森の戦闘術を習得する。',
+        label: '旅の金貨を祠に納める（スキル習得）',
+        description: '黄金を納め、木霊が囁く森の戦闘術を習得する。',
         cost: {
           gold: 40,
         },
@@ -457,8 +457,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'offer_gold_to_marsh',
-        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
-        description: '40 Gを水盤に沈め、沼地を踏破する秘伝スキルを得る。',
+        label: '黄金を捧げる（スキル習得）',
+        description: '黄金を水盤に沈め、沼地を踏破する秘伝スキルを得る。',
         cost: {
           gold: 40,
         },
@@ -628,8 +628,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'offer_gold_to_roots',
-        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
-        description: '40 Gを石皿に納め、樹洞の遺跡を踏破する秘伝スキルを得る。',
+        label: '黄金を捧げる（スキル習得）',
+        description: '黄金を石皿に納め、樹洞の遺跡を踏破する秘伝スキルを得る。',
         cost: {
           gold: 40,
         },
@@ -673,8 +673,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'offer_gold_to_worldtree',
-        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
-        description: '40 Gを樹液の器に納め、新たな秘伝スキルを得る。',
+        label: '黄金を捧げる（スキル習得）',
+        description: '黄金を樹液の器に納め、新たな秘伝スキルを得る。',
         cost: {
           gold: 40,
         },
@@ -769,8 +769,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
     options: [
       {
         id: 'buy_forge_weapon',
-        label: '炉鍛えの武器を購入する（45 G ➔ 武器獲得）',
-        description: '45 Gを支払い、鍛冶場で打ち上げられた武器を受け取る。',
+        label: '炉鍛えの武器を購入する（武器獲得）',
+        description: '代金を支払い、鍛冶場で打ち上げられた武器を受け取る。',
         cost: {
           gold: 45,
         },
@@ -781,8 +781,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'buy_forge_armor',
-        label: '厚鉄の防具を購入する（45 G ➔ 防具獲得）',
-        description: '45 Gを支払い、鍛冶場で叩き締めた堅牢な防具を受け取る。',
+        label: '厚鉄の防具を購入する（防具獲得）',
+        description: '代金を支払い、鍛冶場で叩き締めた堅牢な防具を受け取る。',
         cost: {
           gold: 45,
         },
@@ -856,8 +856,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'gold_for_crucible_skill',
-        label: '黄金を投じる（40 G消費 ➔ スキル習得）',
-        description: '40 Gを坩堝に投じ、鋳造ラインの秘伝スキルを得る。',
+        label: '黄金を投じる（スキル習得）',
+        description: '黄金を坩堝に投じ、鋳造ラインの秘伝スキルを得る。',
         cost: {
           gold: 40,
         },
@@ -919,8 +919,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
     options: [
       {
         id: 'buy_obsidian_weapon',
-        label: '黒曜鍛えの武器を購入する（45 G ➔ 武器獲得）',
-        description: '45 Gを支払い、坑道の残り火で鍛え上げた武器を受け取る。',
+        label: '黒曜鍛えの武器を購入する（武器獲得）',
+        description: '代金を支払い、坑道の残り火で鍛え上げた武器を受け取る。',
         cost: {
           gold: 45,
         },
@@ -931,8 +931,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'buy_obsidian_armor',
-        label: '灰鉄の重鎧を購入する（45 G ➔ 防具獲得）',
-        description: '45 Gを支払い、火山灰と黒曜石を打ち合わせた防具を受け取る。',
+        label: '灰鉄の重鎧を購入する（防具獲得）',
+        description: '代金を支払い、火山灰と黒曜石を打ち合わせた防具を受け取る。',
         cost: {
           gold: 45,
         },
@@ -1006,8 +1006,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'gold_for_obsidian_skill',
-        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
-        description: '40 Gを灰盤に奉納し、荒野を踏破する秘伝スキルを得る。',
+        label: '黄金を捧げる（スキル習得）',
+        description: '黄金を灰盤に奉納し、荒野を踏破する秘伝スキルを得る。',
         cost: {
           gold: 40,
         },
@@ -1081,8 +1081,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'gold_for_gearwork_skill',
-        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
-        description: '40 Gを歯車の受け皿に納め、炉心外殻を踏破する秘伝スキルを得る。',
+        label: '黄金を捧げる（スキル習得）',
+        description: '黄金を歯車の受け皿に納め、炉心外殻を踏破する秘伝スキルを得る。',
         cost: {
           gold: 40,
         },
@@ -1114,8 +1114,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
     options: [
       {
         id: 'buy_boiler_weapon',
-        label: '蒸気鍛えの武器を購入する（45 G ➔ 武器獲得）',
-        description: '45 Gを支払い、高圧蒸気槌で鍛え上げた武器を受け取る。',
+        label: '蒸気鍛えの武器を購入する（武器獲得）',
+        description: '代金を支払い、高圧蒸気槌で鍛え上げた武器を受け取る。',
         cost: {
           gold: 45,
         },
@@ -1126,8 +1126,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'buy_boiler_armor',
-        label: '圧力外殻の防具を購入する（45 G ➔ 防具獲得）',
-        description: '45 Gを支払い、炉心外殻用の耐熱重装防具を受け取る。',
+        label: '圧力外殻の防具を購入する（防具獲得）',
+        description: '代金を支払い、炉心外殻用の耐熱重装防具を受け取る。',
         cost: {
           gold: 45,
         },
@@ -1159,8 +1159,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
     options: [
       {
         id: 'buy_core_weapon',
-        label: '終焉鍛えの武器を購入する（45 G ➔ 武器獲得）',
-        description: '45 Gを支払い、炉心の業火で鍛え上げた武器を受け取る。',
+        label: '終焉鍛えの武器を購入する（武器獲得）',
+        description: '代金を支払い、炉心の業火で鍛え上げた武器を受け取る。',
         cost: {
           gold: 45,
         },
@@ -1171,8 +1171,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'buy_core_armor',
-        label: '炉心鋼の重鎧を購入する（45 G ➔ 防具獲得）',
-        description: '45 Gを支払い、最終焼入れを施した堅牢な防具を受け取る。',
+        label: '炉心鋼の重鎧を購入する（防具獲得）',
+        description: '代金を支払い、最終焼入れを施した堅牢な防具を受け取る。',
         cost: {
           gold: 45,
         },
@@ -1246,8 +1246,8 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
       {
         id: 'gold_for_doomsday_skill',
-        label: '黄金を捧げる（40 G消費 ➔ スキル習得）',
-        description: '40 Gを炉心に投じ、最終決戦を生き抜く秘伝スキルを得る。',
+        label: '黄金を捧げる（スキル習得）',
+        description: '黄金を炉心に投じ、最終決戦を生き抜く秘伝スキルを得る。',
         cost: {
           gold: 40,
         },

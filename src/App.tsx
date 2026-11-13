@@ -22,6 +22,34 @@ import {
 } from './utils/share';
 import { isSfxMuted, playSfx, setSfxMuted, SfxName, unlockAudio } from './utils/sound';
 
+/**
+ * Label for a reward card's primary button. Equipment, relics and consumables
+ * always replace the currently held item (the old equipment is auto-salvaged
+ * for gold), and a skill replaces an existing one when all slots are full —
+ * so the label says "exchange" instead of implying a pure gain.
+ */
+function rewardClaimLabel(
+  card: { type: string; item?: { kind: string } | null },
+  skillsFull: boolean
+): string {
+  if (card.type === 'potion_refill') return '補充する';
+  if (card.type === 'gold_bonus') return '受け取る';
+  switch (card.item?.kind) {
+    case 'weapon':
+      return '今の武器と交換する';
+    case 'armor':
+      return '今の防具と交換する';
+    case 'relic':
+      return '今のレリックと交換する';
+    case 'consumable':
+      return '今の消耗品と交換する';
+    case 'skill':
+      return skillsFull ? '今のスキルと交換する' : '手に入れる';
+    default:
+      return '手に入れる';
+  }
+}
+
 export function App() {
   const {
     activeSlotId,
@@ -780,6 +808,7 @@ export function App() {
                         gold: saveData.gold,
                         consumableCharges: saveData.midFloor.consumableCharges,
                         consumableMaxCharges: maxConsCharges,
+                        currentFloor: saveData.midFloor.currentFloor,
                       },
                       opt
                     );
@@ -801,8 +830,19 @@ export function App() {
                             {opt.description}
                           </p>
                         </div>
-                        <span className="ml-3 shrink-0 text-xs font-bold text-amber-300">
-                          {affordable ? '▶' : '不足'}
+                        <span className="ml-3 flex shrink-0 items-center gap-2">
+                          {opt.cost?.gold ? (
+                            <span className="rounded bg-amber-500/20 px-1.5 py-0.5 font-mono text-[10px] font-bold text-amber-200">
+                              {EventEngine.scaledGoldCost(
+                                opt.cost.gold,
+                                saveData.midFloor.currentFloor
+                              )}{' '}
+                              G
+                            </span>
+                          ) : null}
+                          <span className="text-xs font-bold text-amber-300">
+                            {affordable ? '▶' : '不足'}
+                          </span>
                         </span>
                       </button>
                     );
@@ -854,11 +894,10 @@ export function App() {
                           }}
                           className="w-full rounded-lg bg-amber-500 py-1.5 text-xs font-extrabold text-slate-950 transition hover:bg-amber-400 cursor-pointer"
                         >
-                          {card.type === 'potion_refill'
-                            ? '補充する'
-                            : card.type === 'gold_bonus'
-                              ? '受け取る'
-                              : '手に入れる'}
+                          {rewardClaimLabel(
+                            card,
+                            saveData.inventory.skills.every((s) => s !== null)
+                          )}
                         </button>
                         {card.item && 'salvageGold' in card.item && (
                           <button

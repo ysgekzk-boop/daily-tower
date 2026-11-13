@@ -224,15 +224,16 @@ function syncAchievements(save: SaveData): SaveData {
 
   const equipCatalogItem = (
     item: AnyCatalogItem,
-    afterStage: 'next_encounter' | 'next_floor'
+    afterStage: 'next_encounter' | 'next_floor',
+    baseSave: SaveData = saveData
   ) => {
     if (item.kind === 'weapon') {
-      const oldSalvage = saveData.inventory.weapon.salvageGold;
+      const oldSalvage = baseSave.inventory.weapon.salvageGold;
       const nextSave: SaveData = {
-        ...saveData,
-        gold: saveData.gold + oldSalvage,
+        ...baseSave,
+        gold: baseSave.gold + oldSalvage,
         inventory: {
-          ...saveData.inventory,
+          ...baseSave.inventory,
           weapon: item,
         },
       };
@@ -245,18 +246,18 @@ function syncAchievements(save: SaveData): SaveData {
         advanceToNextEncounterWithSave(nextSave);
       }
     } else if (item.kind === 'armor') {
-      const oldSalvage = saveData.inventory.armor.salvageGold;
-      const hpDiff = Math.max(0, item.maxHpBonus - saveData.inventory.armor.maxHpBonus);
+      const oldSalvage = baseSave.inventory.armor.salvageGold;
+      const hpDiff = Math.max(0, item.maxHpBonus - baseSave.inventory.armor.maxHpBonus);
       const newMaxHp = BASE_PLAYER_MAX_HP + item.maxHpBonus;
       const nextSave: SaveData = {
-        ...saveData,
-        gold: saveData.gold + oldSalvage,
+        ...baseSave,
+        gold: baseSave.gold + oldSalvage,
         midFloor: {
-          ...saveData.midFloor,
-          playerCurrentHp: Math.min(newMaxHp, saveData.midFloor.playerCurrentHp + hpDiff),
+          ...baseSave.midFloor,
+          playerCurrentHp: Math.min(newMaxHp, baseSave.midFloor.playerCurrentHp + hpDiff),
         },
         inventory: {
-          ...saveData.inventory,
+          ...baseSave.inventory,
           armor: item,
         },
       };
@@ -269,12 +270,12 @@ function syncAchievements(save: SaveData): SaveData {
         advanceToNextEncounterWithSave(nextSave);
       }
     } else if (item.kind === 'relic') {
-      const oldSalvage = saveData.inventory.relic?.salvageGold ?? 0;
+      const oldSalvage = baseSave.inventory.relic?.salvageGold ?? 0;
       const nextSave: SaveData = {
-        ...saveData,
-        gold: saveData.gold + oldSalvage,
+        ...baseSave,
+        gold: baseSave.gold + oldSalvage,
         inventory: {
-          ...saveData.inventory,
+          ...baseSave.inventory,
           relic: item,
         },
       };
@@ -287,18 +288,18 @@ function syncAchievements(save: SaveData): SaveData {
         advanceToNextEncounterWithSave(nextSave);
       }
     } else if (item.kind === 'skill') {
-      const emptyIdx = saveData.inventory.skills.findIndex((s) => s === null);
+      const emptyIdx = baseSave.inventory.skills.findIndex((s) => s === null);
       if (emptyIdx !== -1) {
-        const nextSkills = [...saveData.inventory.skills] as [
+        const nextSkills = [...baseSave.inventory.skills] as [
           SkillItem | null,
           SkillItem | null,
           SkillItem | null,
         ];
         nextSkills[emptyIdx] = item;
         const nextSave: SaveData = {
-          ...saveData,
+          ...baseSave,
           inventory: {
-            ...saveData.inventory,
+            ...baseSave.inventory,
             skills: nextSkills,
           },
         };
@@ -315,13 +316,13 @@ function syncAchievements(save: SaveData): SaveData {
       }
     } else if (item.kind === 'consumable') {
       const nextSave: SaveData = {
-        ...saveData,
+        ...baseSave,
         midFloor: {
-          ...saveData.midFloor,
+          ...baseSave.midFloor,
           consumableCharges: item.maxCharges,
         },
         inventory: {
-          ...saveData.inventory,
+          ...baseSave.inventory,
           consumable: item,
         },
       };
@@ -403,6 +404,10 @@ function syncAchievements(save: SaveData): SaveData {
         armorId: baseSave.inventory.armor.id,
         relicId: baseSave.inventory.relic?.id ?? null,
         consumableId: baseSave.inventory.consumable?.id ?? null,
+        weaponAtk: baseSave.inventory.weapon.atk,
+        weaponElement: baseSave.inventory.weapon.element,
+        armorDef: baseSave.inventory.armor.def,
+        armorMaxHpBonus: baseSave.inventory.armor.maxHpBonus,
       });
       setRewardCards(cards);
       setStage('floor_reward');
@@ -513,6 +518,7 @@ function syncAchievements(save: SaveData): SaveData {
         gold: saveData.gold,
         consumableCharges: saveData.midFloor.consumableCharges,
         consumableMaxCharges: maxCons,
+        currentFloor: saveData.midFloor.currentFloor,
       },
       option
     );
@@ -535,8 +541,33 @@ function syncAchievements(save: SaveData): SaveData {
     setSystemBanner(`📜 ${res.logMessage}`);
 
     if (res.grantedItem) {
-      setSaveData(updatedSave);
-      equipCatalogItem(res.grantedItem, 'next_encounter');
+      const granted = res.grantedItem;
+      // A granted weapon/armor that is strictly worse than the current one
+      // is salvaged for gold instead of silently downgrading the player.
+      const dominated =
+        (granted.kind === 'weapon' &&
+          DropPacingEngine.isWeaponDominated(granted, {
+            atk: updatedSave.inventory.weapon.atk,
+            element: updatedSave.inventory.weapon.element,
+          })) ||
+        (granted.kind === 'armor' &&
+          DropPacingEngine.isArmorDominated(granted, {
+            def: updatedSave.inventory.armor.def,
+            maxHpBonus: updatedSave.inventory.armor.maxHpBonus,
+          }));
+      if (dominated && 'salvageGold' in granted) {
+        const salvagedSave: SaveData = {
+          ...updatedSave,
+          gold: updatedSave.gold + granted.salvageGold,
+        };
+        setSystemBanner(
+          `📜 ${res.logMessage}（「${granted.name}」は今の装備より弱いため分解して +${granted.salvageGold}G）`
+        );
+        advanceToNextEncounterWithSave(salvagedSave);
+      } else {
+        setSaveData(updatedSave);
+        equipCatalogItem(granted, 'next_encounter', updatedSave);
+      }
     } else {
       advanceToNextEncounterWithSave(updatedSave);
     }
