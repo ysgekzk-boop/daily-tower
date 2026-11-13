@@ -82,6 +82,11 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '真鍮天球',
     colors: ['transparent', '#4a3512', '#a87e2f', '#f2d98c'],
   },
+  chronos_moth: {
+    id: 'chronos_moth',
+    name: '時喰らいの蛾',
+    colors: ['transparent', '#1a162b', '#6b5b95', '#b8a9c9'],
+  },
   item_rusty_shortsword: {
     id: 'item_rusty_shortsword',
     name: '旅立ちの短剣',
@@ -111,6 +116,11 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     id: 'item_stargazer_silver_sword',
     name: '星見の銀剣',
     colors: ['transparent', '#334155', '#e2e8f0', '#f59e0b'],
+  },
+  item_astral_quill: {
+    id: 'item_astral_quill',
+    name: '星屑のペン先',
+    colors: ['transparent', '#1b263b', '#e0a96d', '#f4f1de'],
   },
   item_leather_tunic: {
     id: 'item_leather_tunic',
@@ -146,6 +156,11 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     id: 'item_flame_burst',
     name: '紅蓮撃',
     colors: ['transparent', '#7f1d1d', '#ef4444', '#fde047'],
+  },
+  item_ink_burst: {
+    id: 'item_ink_burst',
+    name: '墨煙弾',
+    colors: ['transparent', '#0d1b2a', '#415a77', '#778da9'],
   },
   item_flame_wave: {
     id: 'item_flame_wave',
@@ -1473,12 +1488,14 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   tome: { id: 'tome', matrixId: 'tome', defaultPalette: 'arcane_tome' },
   phantom: { id: 'phantom', matrixId: 'phantom', defaultPalette: 'ink_phantom' },
   astrolabe: { id: 'astrolabe', matrixId: 'astrolabe', defaultPalette: 'brass_astrolabe' },
+  chronos_moth: { id: 'chronos_moth', matrixId: 'chronos_moth', defaultPalette: 'chronos_moth' },
   item_rusty_shortsword: { id: 'item_rusty_shortsword', matrixId: 'item_rusty_shortsword', defaultPalette: 'item_rusty_shortsword' },
   item_verdant_blade: { id: 'item_verdant_blade', matrixId: 'item_verdant_blade', defaultPalette: 'item_verdant_blade' },
   item_thorn_halberd: { id: 'item_thorn_halberd', matrixId: 'item_thorn_halberd', defaultPalette: 'item_thorn_halberd' },
   item_ember_greatsword: { id: 'item_ember_greatsword', matrixId: 'item_ember_greatsword', defaultPalette: 'item_ember_greatsword' },
   item_obsidian_reaver: { id: 'item_obsidian_reaver', matrixId: 'item_obsidian_reaver', defaultPalette: 'item_obsidian_reaver' },
   item_stargazer_silver_sword: { id: 'item_stargazer_silver_sword', matrixId: 'item_stargazer_silver_sword', defaultPalette: 'item_stargazer_silver_sword' },
+  item_astral_quill: { id: 'item_astral_quill', matrixId: 'item_astral_quill', defaultPalette: 'item_astral_quill' },
   item_leather_tunic: { id: 'item_leather_tunic', matrixId: 'item_leather_tunic', defaultPalette: 'item_leather_tunic' },
   item_bark_cuirass: { id: 'item_bark_cuirass', matrixId: 'item_bark_cuirass', defaultPalette: 'item_bark_cuirass' },
   item_ironwood_plate: { id: 'item_ironwood_plate', matrixId: 'item_ironwood_plate', defaultPalette: 'item_ironwood_plate' },
@@ -1486,6 +1503,7 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_librarian_robe: { id: 'item_librarian_robe', matrixId: 'item_librarian_robe', defaultPalette: 'item_librarian_robe' },
   item_power_slash: { id: 'item_power_slash', matrixId: 'item_power_slash', defaultPalette: 'item_power_slash' },
   item_flame_burst: { id: 'item_flame_burst', matrixId: 'item_flame_burst', defaultPalette: 'item_flame_burst' },
+  item_ink_burst: { id: 'item_ink_burst', matrixId: 'item_ink_burst', defaultPalette: 'item_ink_burst' },
   item_flame_wave: { id: 'item_flame_wave', matrixId: 'item_flame_wave', defaultPalette: 'item_flame_wave' },
   item_frost_lance: { id: 'item_frost_lance', matrixId: 'item_frost_lance', defaultPalette: 'item_frost_lance' },
   item_armor_crush: { id: 'item_armor_crush', matrixId: 'item_armor_crush', defaultPalette: 'item_armor_crush' },

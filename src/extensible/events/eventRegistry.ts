@@ -228,6 +228,40 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
     ],
   },
 
+  catalog_pedestal: {
+    id: 'catalog_pedestal',
+    title: '目録の台座',
+    category: 'shrine',
+    description:
+      '回廊の中央に、青く発光する水晶が埋め込まれた石造りの目録台座が佇んでいる。触れると古代文字の索引が虚空に浮かび上がる。',
+    speakerSpriteId: 'tome',
+    palette: 'arcane_tome',
+    options: [
+      {
+        id: 'take_safe_call_number',
+        label: '安全な索書票を抜き取る',
+        description: '保守的な記録を選び取り、即座に換金可能な価値を得る（+20 G）。',
+        outcome: {
+          grantGold: 20,
+          logMessage: '安全な索書票を抜き取り、20 G を得た！',
+        },
+      },
+      {
+        id: 'infuse_forbidden_index',
+        label: '禁書の索引に生気を注ぐ',
+        description: '最大HPの15%を代償に、秘匿された装備の記録を具現化する（防具獲得 + 10 G）。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          grantItemType: 'armor',
+          grantGold: 10,
+          logMessage: '禁書の索引に生気を注ぎ、防具の記録を具現化して 10 G を得た！',
+        },
+      },
+    ],
+  },
+
   mossy_stump_shrine: {
     id: 'mossy_stump_shrine',
     title: '苔むした切り株の祠',

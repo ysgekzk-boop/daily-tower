@@ -733,6 +733,67 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  chronos_moth: {
+    id: 'chronos_moth',
+    name: '時喰らいの蛾',
+    spriteId: 'chronos_moth',
+    palette: 'chronos_moth',
+    hp: 48,
+    atk: 12,
+    def: 3,
+    goldReward: 16,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '翅粉の散布',
+            type: 'debuff',
+            weight: 45,
+            statusId: 'atk_debuff',
+            statusValue: 15,
+            statusDuration: 2,
+            logMessage: '時喰らいの蛾が時の翅粉を撒き散らし、攻撃力を低下させた！',
+          },
+          {
+            name: '針口の刺突',
+            type: 'attack',
+            weight: 55,
+            damageMultiplier: 1.0,
+            logMessage: '時喰らいの蛾の鋭い針口が突き刺さる！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 40,
+        phaseName: '時蝕',
+        actions: [
+          {
+            name: '停滞の燐粉',
+            type: 'debuff',
+            weight: 60,
+            damageMultiplier: 1.25,
+            statusId: 'freeze',
+            statusValue: 1,
+            statusDuration: 1,
+            logMessage: '時喰らいの蛾が冷気を帯びた燐粉を放ち、動きを封じた！',
+          },
+          {
+            name: '時の加速',
+            type: 'buff',
+            weight: 40,
+            statusId: 'atk_buff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '時喰らいの蛾の羽ばたきが加速し、攻撃力が高まった！',
+          },
+        ],
+      },
+    ],
+  },
   forest_bat: {
     id: 'forest_bat',
     name: 'フォレスト・バット',
