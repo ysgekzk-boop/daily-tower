@@ -44,6 +44,9 @@ export class DropPacingEngine {
     candidate: WeaponItem,
     current: { atk: number; element: string }
   ): boolean {
+    // An effect-bearing weapon is never strictly dominated: its value is
+    // not captured by ATK alone.
+    if (candidate.effectId) return false;
     return candidate.atk < current.atk && candidate.element === current.element;
   }
 
@@ -52,6 +55,8 @@ export class DropPacingEngine {
     candidate: ArmorItem,
     current: { def: number; maxHpBonus: number }
   ): boolean {
+    // Effect-bearing armor is never strictly dominated (see weapon note).
+    if (candidate.effectId) return false;
     return (
       candidate.def <= current.def &&
       candidate.maxHpBonus <= current.maxHpBonus &&

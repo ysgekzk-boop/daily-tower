@@ -10,6 +10,8 @@ export interface WeaponItem {
   element: ElementType;
   salvageGold: number;
   description: string;
+  /** Optional combat effect (EFFECT_REGISTRY id), fired like a relic effect while equipped. */
+  effectId?: string;
 }
 
 export interface ArmorItem {
@@ -21,6 +23,14 @@ export interface ArmorItem {
   maxHpBonus: number;
   salvageGold: number;
   description: string;
+  /** Optional combat effect (EFFECT_REGISTRY id), fired like a relic effect while equipped. */
+  effectId?: string;
+  /**
+   * Persistent attack modifier applied while this armor is equipped
+   * (e.g. -5 for a cursed heavy plate). Added to the weapon's ATK when
+   * a battle session is created; not a status, so it never expires.
+   */
+  atkDelta?: number;
 }
 
 export interface SkillStatusPayload {
@@ -351,6 +361,28 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     salvageGold: 39,
     description: '最終鍛造の金床で虚空鋼を叩き締めた戦戟。空間ごと敵の守りを断ち切る。',
   },
+  emberbrand_shortsword: {
+    id: 'emberbrand_shortsword',
+    name: '残り火の短剣',
+    kind: 'weapon',
+    spriteId: 'item_emberbrand_shortsword',
+    atk: 17,
+    element: 'fire',
+    salvageGold: 26,
+    effectId: 'emberbrand',
+    description: '刃に残り火を宿す短剣。通常攻撃のたび、敵に燃焼(3ダメージ/2ターン)を付与する。',
+  },
+  dewdrinker_rapier: {
+    id: 'dewdrinker_rapier',
+    name: '雫吸いの細剣',
+    kind: 'weapon',
+    spriteId: 'item_dewdrinker_rapier',
+    atk: 20,
+    element: 'nature',
+    salvageGold: 32,
+    effectId: 'dewdrinker',
+    description: '雫を吸って輝く細剣。HPが半分未満のとき、通常攻撃のたびHPを3回復する。',
+  },
 };
 
 export const ARMOR_CATALOG: Record<string, ArmorItem> = {
@@ -613,6 +645,17 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     maxHpBonus: 60,
     salvageGold: 41,
     description: '終焉の鍛造場で最終焼入れを施した漆黒の胸甲。あらゆる業火と強打を弾き返す。',
+  },
+  oathbound_plate: {
+    id: 'oathbound_plate',
+    name: '誓縛の重鎧',
+    kind: 'armor',
+    spriteId: 'item_oathbound_plate',
+    def: 8,
+    maxHpBonus: 62,
+    salvageGold: 38,
+    atkDelta: -5,
+    description: '誓いに縛られた重鎧。屈強な守りを誇るが、その重さが腕を引くため、装備している間は攻撃力が5低下する。',
   },
 };
 

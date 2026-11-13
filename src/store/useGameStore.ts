@@ -25,7 +25,7 @@ import {
   saveSlotData,
   setActiveSlotId,
 } from '../core/SaveSlotManager';
-import { EFFECT_REGISTRY } from '../extensible/effects/effectRegistry';
+import { collectEquippedEffects } from '../extensible/effects/effectRegistry';
 import { EventOption } from '../extensible/events/types';
 import { AnyCatalogItem, SkillItem } from '../extensible/items/itemCatalog';
 import {
@@ -479,20 +479,18 @@ function syncAchievements(save: SaveData): SaveData {
     if (!battleSession || battleSession.status !== 'victory') return;
 
     let bonusGold = battleSession.totalGoldReward;
-    if (saveData.inventory.relic) {
-      const eff = EFFECT_REGISTRY[saveData.inventory.relic.effectId];
-      if (eff && eff.trigger === 'battle_victory') {
-        const res = eff.handler({
-          playerCurrentHp: battleSession.player.currentHp,
-          playerMaxHp: battleSession.player.maxHp,
-          playerAtk: battleSession.player.baseAtk,
-          playerDef: battleSession.player.baseDef,
-          enemyCurrentHp: 0,
-          enemyMaxHp: battleSession.enemies[0]?.maxHp ?? 0,
-          turnNumber: battleSession.turn,
-        });
-        if (res.grantGold) bonusGold += res.grantGold;
-      }
+    for (const eff of collectEquippedEffects(saveData.inventory)) {
+      if (eff.trigger !== 'battle_victory') continue;
+      const res = eff.handler({
+        playerCurrentHp: battleSession.player.currentHp,
+        playerMaxHp: battleSession.player.maxHp,
+        playerAtk: battleSession.player.baseAtk,
+        playerDef: battleSession.player.baseDef,
+        enemyCurrentHp: 0,
+        enemyMaxHp: battleSession.enemies[0]?.maxHp ?? 0,
+        turnNumber: battleSession.turn,
+      });
+      if (res.grantGold) bonusGold += res.grantGold;
     }
 
     const updatedSave: SaveData = {

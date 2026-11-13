@@ -339,8 +339,55 @@ export const EFFECT_REGISTRY: Record<string, RegisteredEffect> = {
       logMessage: `[レリック:終焉炉の破甲核] スキル発動に呼応し、終焉の熱波が敵の防御力を3ターンの間25%低下させた！`,
     }),
   },
+  // --- Equipment effects (pilot, 2026-11-14) ---
+  emberbrand: {
+    id: 'emberbrand',
+    name: '残り火の灯',
+    trigger: 'on_attack',
+    handler: () => ({
+      applyStatusToEnemy: {
+        statusId: 'burn',
+        value: 3,
+        duration: 2,
+      },
+      logMessage: `[装備:残り火の短剣] 刃の残り火が敵に燃え移った！`,
+    }),
+  },
+  dewdrinker: {
+    id: 'dewdrinker',
+    name: '雫吸いの霊',
+    trigger: 'on_attack',
+    handler: (ctx) => {
+      if (ctx.playerCurrentHp * 2 >= ctx.playerMaxHp) {
+        return { logMessage: '' };
+      }
+      return {
+        healPlayer: 3,
+        logMessage: `[装備:雫吸いの細剣] 刃が雫を吸い、HPを 3 回復した！`,
+      };
+    },
+  },
 };
 
 
 
 
+
+/**
+ * Collects the registered effects of everything currently equipped
+ * (relic first, then weapon, then armor). Since the equipment-effects
+ * wiring (2026-11-14), weapons and armor may carry an effectId just
+ * like relics; every trigger site resolves all of them.
+ */
+export function collectEquippedEffects(equipment: {
+  weapon?: { effectId?: string } | null;
+  armor?: { effectId?: string } | null;
+  relic?: { effectId?: string } | null;
+}): RegisteredEffect[] {
+  const out: RegisteredEffect[] = [];
+  for (const item of [equipment.relic, equipment.weapon, equipment.armor]) {
+    const eff = item?.effectId ? EFFECT_REGISTRY[item.effectId] : undefined;
+    if (eff) out.push(eff);
+  }
+  return out;
+}

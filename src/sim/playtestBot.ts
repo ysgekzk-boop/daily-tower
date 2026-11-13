@@ -226,12 +226,18 @@ export class PlaytestBot {
         action = 'take';
       } else if (card.item?.kind === 'weapon') {
         score = (card.item.atk - ctx.weapon.atk) * 12;
+        // Effect premium: an effect's value is not in the ATK number.
+        // +36 ≈ +3 ATK, enough to try most effect weapons once.
+        if (card.item.effectId) score += 36;
         action = score > 0 ? 'equip' : 'salvage';
         if (action === 'salvage') score = card.item.salvageGold * 0.6;
       } else if (card.item?.kind === 'armor') {
         score =
           (card.item.def - ctx.armor.def) * 8 +
           (card.item.maxHpBonus - ctx.armor.maxHpBonus) * 0.25;
+        if (card.item.effectId) score += 24;
+        // Price a persistent ATK modifier at the weapon-ATK rate.
+        if (card.item.atkDelta) score += card.item.atkDelta * 12;
         action = score > 0 ? 'equip' : 'salvage';
         if (action === 'salvage') score = card.item.salvageGold * 0.6;
       } else if (card.item?.kind === 'skill') {

@@ -31,7 +31,7 @@ import {
   SaveData,
   StorageValidator,
 } from '../core/StorageValidator';
-import { EFFECT_REGISTRY } from '../extensible/effects/effectRegistry';
+import { collectEquippedEffects } from '../extensible/effects/effectRegistry';
 import { EVENT_REGISTRY } from '../extensible/events/eventRegistry';
 import { AnyCatalogItem } from '../extensible/items/itemCatalog';
 import { SKILL_CATALOG, SkillItem } from '../extensible/items/itemCatalog';
@@ -256,20 +256,18 @@ export function simulateMixedRun(
 
       if (session.status === 'victory') {
         let gold = session.totalGoldReward;
-        if (save.inventory.relic) {
-          const eff = EFFECT_REGISTRY[save.inventory.relic.effectId];
-          if (eff && eff.trigger === 'battle_victory') {
-            const res = eff.handler({
-              playerCurrentHp: session.player.currentHp,
-              playerMaxHp: session.player.maxHp,
-              playerAtk: session.player.baseAtk,
-              playerDef: session.player.baseDef,
-              enemyCurrentHp: 0,
-              enemyMaxHp: session.enemies[0]?.maxHp ?? 0,
-              turnNumber: session.turn,
-            });
-            if (res.grantGold) gold += res.grantGold;
-          }
+        for (const eff of collectEquippedEffects(save.inventory)) {
+          if (eff.trigger !== 'battle_victory') continue;
+          const res = eff.handler({
+            playerCurrentHp: session.player.currentHp,
+            playerMaxHp: session.player.maxHp,
+            playerAtk: session.player.baseAtk,
+            playerDef: session.player.baseDef,
+            enemyCurrentHp: 0,
+            enemyMaxHp: session.enemies[0]?.maxHp ?? 0,
+            turnNumber: session.turn,
+          });
+          if (res.grantGold) gold += res.grantGold;
         }
         save.gold += gold;
         save.midFloor.playerCurrentHp = session.player.currentHp;

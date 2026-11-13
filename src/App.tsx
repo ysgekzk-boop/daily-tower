@@ -525,6 +525,9 @@ export function App() {
           </span>
           <span className="shrink-0 text-[10px] font-bold text-sky-300">
             DEF +{saveData.inventory.armor.def} / HP +{saveData.inventory.armor.maxHpBonus}
+            {saveData.inventory.armor.atkDelta ? (
+              <span className="text-red-300"> / ATK {saveData.inventory.armor.atkDelta}</span>
+            ) : null}
           </span>
         </div>
 
@@ -657,7 +660,7 @@ export function App() {
           playerTitle={saveData.activeTitle}
           playerCurrentHp={currentHp}
           playerMaxHp={playerMaxHp}
-          playerAtk={saveData.inventory.weapon.atk}
+          playerAtk={saveData.inventory.weapon.atk + (saveData.inventory.armor.atkDelta ?? 0)}
           playerDef={saveData.inventory.armor.def}
           battleSession={stage === 'combat' ? battleSession : null}
           hitFx={hitFx}

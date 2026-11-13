@@ -162,6 +162,21 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '墨煙弾',
     colors: ['transparent', '#0d1b2a', '#415a77', '#778da9'],
   },
+  item_emberbrand_shortsword: {
+    id: 'item_emberbrand_shortsword',
+    name: '残り火の短剣',
+    colors: ['transparent', '#431407', '#ea580c', '#fbbf24'],
+  },
+  item_dewdrinker_rapier: {
+    id: 'item_dewdrinker_rapier',
+    name: '雫吸いの細剣',
+    colors: ['transparent', '#164e63', '#38bdf8', '#a5f3fc'],
+  },
+  item_oathbound_plate: {
+    id: 'item_oathbound_plate',
+    name: '誓縛の重鎧',
+    colors: ['transparent', '#27272a', '#71717a', '#a16207'],
+  },
   item_flame_wave: {
     id: 'item_flame_wave',
     name: '炎の波動',
@@ -1519,6 +1534,9 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   item_power_slash: { id: 'item_power_slash', matrixId: 'item_power_slash', defaultPalette: 'item_power_slash' },
   item_flame_burst: { id: 'item_flame_burst', matrixId: 'item_flame_burst', defaultPalette: 'item_flame_burst' },
   item_ink_burst: { id: 'item_ink_burst', matrixId: 'item_ink_burst', defaultPalette: 'item_ink_burst' },
+  item_emberbrand_shortsword: { id: 'item_emberbrand_shortsword', matrixId: 'item_emberbrand_shortsword', defaultPalette: 'item_emberbrand_shortsword' },
+  item_dewdrinker_rapier: { id: 'item_dewdrinker_rapier', matrixId: 'item_dewdrinker_rapier', defaultPalette: 'item_dewdrinker_rapier' },
+  item_oathbound_plate: { id: 'item_oathbound_plate', matrixId: 'item_oathbound_plate', defaultPalette: 'item_oathbound_plate' },
   item_flame_wave: { id: 'item_flame_wave', matrixId: 'item_flame_wave', defaultPalette: 'item_flame_wave' },
   item_frost_lance: { id: 'item_frost_lance', matrixId: 'item_frost_lance', defaultPalette: 'item_frost_lance' },
   item_armor_crush: { id: 'item_armor_crush', matrixId: 'item_armor_crush', defaultPalette: 'item_armor_crush' },

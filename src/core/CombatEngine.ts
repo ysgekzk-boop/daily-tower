@@ -1,4 +1,4 @@
-import { EFFECT_REGISTRY } from '../extensible/effects/effectRegistry';
+import { collectEquippedEffects } from '../extensible/effects/effectRegistry';
 import { EnemyAction, EnemyDefinition, EnemyPhase } from '../extensible/enemies/types';
 import {
   ArmorItem,
@@ -103,14 +103,21 @@ defs.length > 1
 : `⚔️ ${defs[0].name} があらわれた！`,
 ];
 
-// Trigger battle_start relic if equipped (context: first enemy)
-if (loadout.relic) {
-const eff = EFFECT_REGISTRY[loadout.relic.effectId];
-if (eff && eff.trigger === 'battle_start') {
+// Effective attack: weapon ATK plus the equipped armor's persistent
+// atkDelta (e.g. a cursed heavy plate at -5). Applies for the whole
+// battle; it is a gear property, not a status, so it never expires.
+const playerBaseAtk = Math.max(
+1,
+loadout.weapon.atk + (loadout.armor.atkDelta ?? 0)
+);
+
+// Trigger battle_start effects from all equipped gear (context: first enemy)
+for (const eff of collectEquippedEffects(loadout)) {
+if (eff.trigger !== 'battle_start') continue;
 const res = eff.handler({
 playerCurrentHp,
 playerMaxHp,
-playerAtk: loadout.weapon.atk,
+playerAtk: playerBaseAtk,
 playerDef: loadout.armor.def,
 enemyCurrentHp: scaled[0].hp,
 enemyMaxHp: scaled[0].hp,
@@ -126,7 +133,6 @@ enemyStatusesList[0] = applied.nextList;
 }
 if (res.logMessage) logs.push(res.logMessage);
 }
-}
 
 const skillCharges: [number, number, number] = [
 loadout.skills[0]?.maxChargesPerBattle?? 0,
@@ -140,7 +146,7 @@ player: {
 name: 'プレイヤー',
 currentHp: Math.min(playerCurrentHp, playerMaxHp),
 maxHp: playerMaxHp,
-baseAtk: loadout.weapon.atk,
+baseAtk: playerBaseAtk,
 baseDef: loadout.armor.def,
 statuses: playerStatuses,
 },
@@ -459,24 +465,37 @@ logs: [...session.logs],
         if (dmgRes.isWeak) lastActionFx.weakTargets.push(primaryIdx);
         if (dmgRes.isResist) lastActionFx.resistTargets.push(primaryIdx);
 
-        // Relic on_attack trigger
-        if (loadout.relic) {
-          const eff = EFFECT_REGISTRY[loadout.relic.effectId];
-          if (eff && eff.trigger === 'on_attack') {
-            const rRes = eff.handler({
-              playerCurrentHp: next.player.currentHp,
-              playerMaxHp: next.player.maxHp,
-              playerAtk: next.player.baseAtk,
-              playerDef: next.player.baseDef,
-              enemyCurrentHp: target.currentHp,
-              enemyMaxHp: target.maxHp,
-              turnNumber: next.turn,
-            });
-            if (rRes.healPlayer) {
-              next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + rRes.healPlayer);
-            }
-            if (rRes.logMessage) next.logs.push(rRes.logMessage);
+        // Equipped on_attack effects (relic / weapon / armor). The full
+        // EffectResolution is applied: before the equipment-effects
+        // wiring (2026-11-14) only healPlayer was honored here, which
+        // silently dropped bonusDamage (briar_thorn, ashen_shard_talon)
+        // and applyStatusToPlayer (boiler_shell_plating) from relics.
+        for (const eff of collectEquippedEffects(loadout)) {
+          if (eff.trigger !== 'on_attack') continue;
+          const rRes = eff.handler({
+            playerCurrentHp: next.player.currentHp,
+            playerMaxHp: next.player.maxHp,
+            playerAtk: next.player.baseAtk,
+            playerDef: next.player.baseDef,
+            enemyCurrentHp: target.currentHp,
+            enemyMaxHp: target.maxHp,
+            turnNumber: next.turn,
+          });
+          if (rRes.bonusDamage) {
+            target.currentHp = Math.max(0, target.currentHp - rRes.bonusDamage);
           }
+          if (rRes.healPlayer) {
+            next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + rRes.healPlayer);
+          }
+          if (rRes.applyStatusToPlayer) {
+            const app = StatusEngine.applyStatus(next.player.statuses, rRes.applyStatusToPlayer);
+            next.player.statuses = app.nextList;
+          }
+          if (rRes.applyStatusToEnemy) {
+            const app = StatusEngine.applyStatus(target.statuses, rRes.applyStatusToEnemy);
+            target.statuses = app.nextList;
+          }
+          if (rRes.logMessage) next.logs.push(rRes.logMessage);
         }
         logNewDefeats(beforeHp);
       } else if (playerCommand.type === 'skill') {
@@ -567,26 +586,36 @@ logs: [...session.logs],
             }
           }
 
-          // Relic on_skill_use trigger (context: primary target)
-          if (loadout.relic) {
-            const eff = EFFECT_REGISTRY[loadout.relic.effectId];
-            if (eff && eff.trigger === 'on_skill_use') {
-              const target = next.enemies[primaryIdx];
-              const rRes = eff.handler({
-                playerCurrentHp: next.player.currentHp,
-                playerMaxHp: next.player.maxHp,
-                playerAtk: next.player.baseAtk,
-                playerDef: next.player.baseDef,
-                enemyCurrentHp: target.currentHp,
-                enemyMaxHp: target.maxHp,
-                turnNumber: next.turn,
-              });
-              if (rRes.applyStatusToEnemy) {
-                const app = StatusEngine.applyStatus(target.statuses, rRes.applyStatusToEnemy);
-                target.statuses = app.nextList;
-              }
-              if (rRes.logMessage) next.logs.push(rRes.logMessage);
+          // Equipped on_skill_use effects (context: primary target).
+          // Full resolution applied (applyStatusToPlayer included —
+          // steam_cog_regulator's self-buff was dropped before).
+          for (const eff of collectEquippedEffects(loadout)) {
+            if (eff.trigger !== 'on_skill_use') continue;
+            const target = next.enemies[primaryIdx];
+            const rRes = eff.handler({
+              playerCurrentHp: next.player.currentHp,
+              playerMaxHp: next.player.maxHp,
+              playerAtk: next.player.baseAtk,
+              playerDef: next.player.baseDef,
+              enemyCurrentHp: target.currentHp,
+              enemyMaxHp: target.maxHp,
+              turnNumber: next.turn,
+            });
+            if (rRes.bonusDamage) {
+              target.currentHp = Math.max(0, target.currentHp - rRes.bonusDamage);
             }
+            if (rRes.healPlayer) {
+              next.player.currentHp = Math.min(next.player.maxHp, next.player.currentHp + rRes.healPlayer);
+            }
+            if (rRes.applyStatusToPlayer) {
+              const app = StatusEngine.applyStatus(next.player.statuses, rRes.applyStatusToPlayer);
+              next.player.statuses = app.nextList;
+            }
+            if (rRes.applyStatusToEnemy) {
+              const app = StatusEngine.applyStatus(target.statuses, rRes.applyStatusToEnemy);
+              target.statuses = app.nextList;
+            }
+            if (rRes.logMessage) next.logs.push(rRes.logMessage);
           }
         }
       } else if (playerCommand.type === 'consumable') {
