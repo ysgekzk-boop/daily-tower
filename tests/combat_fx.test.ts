@@ -9,7 +9,7 @@ import {
   WEAPON_CATALOG,
 } from '../src/extensible/items/itemCatalog';
 import { mulberry32 } from '../src/sim/runSimulation';
-import { extractTurnHitFx } from '../src/utils/combatFx';
+import { applyHitFxEventToSession, extractTurnHitFx } from '../src/utils/combatFx';
 
 const makeLoadout = (over: Partial<PlayerLoadout> = {}): PlayerLoadout => ({
   weapon: WEAPON_CATALOG.rusty_shortsword,
@@ -160,5 +160,32 @@ describe('extractTurnHitFx (explicit per-source damage presentation)', () => {
     expect(shieldFx?.sourceLabel).toContain(ENEMY_REGISTRY.moss_slime.name);
     expect(shieldFx?.sourceLabel).toContain('障壁吸収');
     expect(shieldFx?.amount).toBeGreaterThan(0);
+  });
+
+  it('steps HP and shield values one event at a time via applyHitFxEventToSession', () => {
+    const lo = makeLoadout({ relic: RELIC_CATALOG.briar_thorn_relic });
+    const prev = CombatEngine.createBattleSession(120, 120, 2, lo, ENEMY_REGISTRY.moss_slime);
+    prev.player.statuses = [{ statusId: 'shield', value: 5, duration: 2 }];
+    const cmd: PlayerCommand = { type: 'attack', targetIndex: 0 };
+    const next = CombatEngine.executeTurn(prev, cmd, lo, undefined, mulberry32(7));
+    const events = extractTurnHitFx(prev, next, lo, cmd);
+
+    let stepped = prev;
+    const weaponEv = events.find((e) => e.side === 'enemy' && e.sourceType === 'weapon')!;
+    const relicEv = events.find((e) => e.side === 'enemy' && e.sourceType === 'relic')!;
+    const enemyEv = events.find((e) => e.side === 'player')!;
+
+    stepped = applyHitFxEventToSession(stepped, weaponEv);
+    expect(stepped.enemies[0].currentHp).toBe(prev.enemies[0].currentHp - weaponEv.amount);
+    expect(stepped.player.currentHp).toBe(prev.player.currentHp);
+
+    stepped = applyHitFxEventToSession(stepped, relicEv);
+    expect(stepped.enemies[0].currentHp).toBe(
+      prev.enemies[0].currentHp - weaponEv.amount - relicEv.amount
+    );
+
+    stepped = applyHitFxEventToSession(stepped, enemyEv);
+    expect(stepped.player.currentHp).toBe(next.player.currentHp);
+    expect(stepped.player.statuses.find((s) => s.statusId === 'shield')).toBeUndefined();
   });
 });

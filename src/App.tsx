@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AreaEngine } from './core/AreaEngine';
-import { PlayerCommand } from './core/CombatEngine';
+import { BattleSessionState, PlayerCommand } from './core/CombatEngine';
 import { EventEngine } from './core/EventEngine';
 import { BattleStage2D, CombatMotionState, HitFx } from './components/BattleStage2D';
 import { BestiaryModal } from './components/BestiaryModal';
@@ -15,7 +15,8 @@ import { PixelSpriteCanvas } from './components/PixelSpriteCanvas';
 import { ACHIEVEMENTS } from './extensible/achievements/achievements';
 import { LATEST_AUTHORED_FLOOR, isFloorAuthored } from './extensible/realms/realmIndex';
 import { useGameStore } from './store/useGameStore';
-import { extractTurnHitFx } from './utils/combatFx';
+import { applyHitFxEventToSession, extractTurnHitFx } from './utils/combatFx';
+import { computeActionPreview } from './utils/combatPreview';
 import {
   formatArchiveXShareText,
   formatDefeatXShareText,
@@ -220,13 +221,17 @@ export function App() {
     saveData.midFloor.currentEncounterIndex,
   ]);
 
-  // Floating combat numbers: diff the battle session before/after each resolved turn.
+  // Floating combat numbers & step-by-step displayed HP/shield state:
   // Each damage source (weapon, skill, relic, burn, poison, enemy attack, event)
-  // is emitted separately with an explicit sourceLabel and staggered timing.
+  // is emitted separately with an explicit sourceLabel and staggered timing,
+  // and displaySession updates HP/shield in sync with each FX popup.
   const [hitFx, setHitFx] = useState<HitFx[]>([]);
+  const [displaySession, setDisplaySession] = useState<BattleSessionState | null>(battleSession);
+  const [previewCommand, setPreviewCommand] = useState<PlayerCommand | null>(null);
   const prevSessionRef = useRef<typeof battleSession>(null);
   const prevBattleKeyRef = useRef<string>('');
   const fxKeyRef = useRef(0);
+  const fxTimersRef = useRef<number[]>([]);
   const lastCombatCmdRef = useRef<PlayerCommand | undefined>(undefined);
   const eventFxActiveUntilRef = useRef<number>(0);
 
@@ -271,34 +276,61 @@ export function App() {
     }
   };
 
-  const spawnHitFx = (fx: Omit<HitFx, 'key'>, delayMs: number) => {
+  const spawnHitFx = (
+    fx: Omit<HitFx, 'key'>,
+    delayMs: number,
+    onLand?: () => void
+  ) => {
     const key = ++fxKeyRef.current;
     const entry: HitFx = { ...fx, key };
-    window.setTimeout(() => {
+    const t1 = window.setTimeout(() => {
+      onLand?.();
       setHitFx((cur) => [...cur.slice(-11), entry]);
       playHitFxSound(fx);
-      window.setTimeout(() => {
+      const t2 = window.setTimeout(() => {
         setHitFx((cur) => cur.filter((f) => f.key !== key));
       }, 1350);
+      fxTimersRef.current.push(t2);
     }, delayMs);
+    fxTimersRef.current.push(t1);
   };
+
+  useEffect(() => {
+    return () => {
+      for (const id of fxTimersRef.current) window.clearTimeout(id);
+      fxTimersRef.current = [];
+    };
+  }, []);
 
   useEffect(() => {
     const battleKey = `${saveData.midFloor.currentFloor}:${saveData.midFloor.currentEncounterIndex}`;
     const prev = prevSessionRef.current;
     const next = battleSession;
     if (!next || !prev || prev === next || prevBattleKeyRef.current !== battleKey) {
+      for (const id of fxTimersRef.current) window.clearTimeout(id);
+      fxTimersRef.current = [];
       if (prevBattleKeyRef.current !== battleKey && Date.now() >= eventFxActiveUntilRef.current) {
         setHitFx([]);
       }
+      setDisplaySession(next);
       prevSessionRef.current = next;
       prevBattleKeyRef.current = battleKey;
       return;
     }
     prevSessionRef.current = next;
 
+    // Keep previous HP & shield values at turn start, while updating logs/charges
+    setDisplaySession({
+      ...prev,
+      logs: next.logs,
+      skillCharges: next.skillCharges,
+      consumableCharges: next.consumableCharges,
+    });
+
     const events = extractTurnHitFx(prev, next, saveData.inventory, lastCombatCmdRef.current);
+    let maxDelay = 0;
     for (const ev of events) {
+      if (ev.delayMs > maxDelay) maxDelay = ev.delayMs;
       spawnHitFx(
         {
           side: ev.side,
@@ -309,17 +341,37 @@ export function App() {
           sourceLabel: ev.sourceLabel,
           shieldAbsorbed: ev.shieldAbsorbed,
         },
-        ev.delayMs
+        ev.delayMs,
+        () => {
+          setDisplaySession((cur) => (cur ? applyHitFxEventToSession(cur, ev) : cur));
+        }
       );
     }
+
+    // Final sync after all staggered FX land (ensures status durations, victory/defeat, etc. match)
+    const syncTimer = window.setTimeout(() => {
+      setDisplaySession(next);
+    }, maxDelay + 180);
+    fxTimersRef.current.push(syncTimer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [battleSession, saveData.midFloor.currentFloor, saveData.midFloor.currentEncounterIndex]);
 
+  const shownSession = stage === 'combat' ? (displaySession ?? battleSession) : null;
+
   const currentHp =
-    stage === 'combat' && battleSession
-      ? battleSession.player.currentHp
+    stage === 'combat' && shownSession
+      ? shownSession.player.currentHp
       : saveData.midFloor.playerCurrentHp;
   const maxConsCharges = saveData.inventory.consumable?.maxCharges ?? 2;
+
+  const actionPreview =
+    !isAnimating &&
+    stage === 'combat' &&
+    shownSession &&
+    shownSession.status === 'ongoing' &&
+    previewCommand
+      ? computeActionPreview(shownSession, previewCommand, saveData.inventory)
+      : null;
 
   const activeEvent =
     stage === 'event' && resolvedEncounter.kind === 'event'
@@ -332,8 +384,10 @@ export function App() {
       | { type: 'attack' }
       | { type: 'skill'; slotIndex: 0 | 1 | 2 }
       | { type: 'consumable' }
-  ) => {    if (isAnimating || !battleSession || battleSession.status !== 'ongoing') return;
+  ) => {
+    if (isAnimating || !battleSession || battleSession.status !== 'ongoing') return;
 
+    setPreviewCommand(null);
     setIsAnimating(true);
 
     let playerMotion: CombatMotionState = 'player_attack';
@@ -660,15 +714,16 @@ export function App() {
           playerMaxHp={playerMaxHp}
           playerAtk={saveData.inventory.weapon.atk + (saveData.inventory.armor.atkDelta ?? 0)}
           playerDef={saveData.inventory.armor.def}
-          battleSession={stage === 'combat' ? battleSession : null}
+          battleSession={shownSession}
           hitFx={hitFx}
+          actionPreview={actionPreview}
           activeEvent={activeEvent}
           motionState={motionState}
           activeSkillName={activeSkillCallout}
           selectedTargetIndex={targetIndex}
           onSelectTarget={setTargetIndex}
         />
-        {stage === 'defeat' && (
+        {stage === 'defeat' && !isAnimating && (
           <div className="defeat-pulse pointer-events-none absolute inset-0 z-30 flex items-center justify-center rounded-2xl bg-slate-950/60">
             <div className="anim-rise-in px-4 text-center">
               <p className="text-4xl" aria-hidden="true">💀</p>
@@ -763,13 +818,19 @@ export function App() {
                   </div>
                 ) : (
                   <div className="flex flex-1 flex-col justify-between gap-2.5">
-                    <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
                       <span className="text-xs font-extrabold tracking-wider text-amber-300">
                         コマンド
                       </span>
-                      <span className="text-[11px] text-slate-400">
-                        {isAnimating ? '行動中…' : '行動を選択してください'}
-                      </span>
+                      {actionPreview ? (
+                        <span className="rounded-md border border-sky-400/40 bg-sky-950/60 px-2 py-0.5 text-[11px] font-bold text-sky-200">
+                          🔮 プレビュー（{actionPreview.label}）：{actionPreview.summaryText}
+                        </span>
+                      ) : (
+                        <span className="text-[11px] text-slate-400">
+                          {isAnimating ? '行動中…' : '行動を選択してください（カーソルで効果プレビュー）'}
+                        </span>
+                      )}
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
@@ -777,6 +838,10 @@ export function App() {
                       <button
                         type="button"
                         disabled={isAnimating}
+                        onMouseEnter={() => setPreviewCommand({ type: 'attack', targetIndex })}
+                        onMouseLeave={() => setPreviewCommand(null)}
+                        onFocus={() => setPreviewCommand({ type: 'attack', targetIndex })}
+                        onBlur={() => setPreviewCommand(null)}
                         onClick={() => handleCombatAction({ type: 'attack' })}
                         className="col-span-2 flex items-center justify-between rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-left transition hover:border-amber-400 hover:bg-slate-800/90 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer sm:col-span-1"
                       >
@@ -811,6 +876,16 @@ export function App() {
                             key={slotIdx}
                             type="button"
                             disabled={disabled}
+                            onMouseEnter={() =>
+                              !disabled &&
+                              setPreviewCommand({ type: 'skill', slotIndex: slotIdx, targetIndex })
+                            }
+                            onMouseLeave={() => setPreviewCommand(null)}
+                            onFocus={() =>
+                              !disabled &&
+                              setPreviewCommand({ type: 'skill', slotIndex: slotIdx, targetIndex })
+                            }
+                            onBlur={() => setPreviewCommand(null)}
                             onClick={() =>
                               handleCombatAction({ type: 'skill', slotIndex: slotIdx })
                             }
@@ -859,6 +934,10 @@ export function App() {
                           !saveData.inventory.consumable ||
                           battleSession.consumableCharges <= 0
                         }
+                        onMouseEnter={() => setPreviewCommand({ type: 'consumable' })}
+                        onMouseLeave={() => setPreviewCommand(null)}
+                        onFocus={() => setPreviewCommand({ type: 'consumable' })}
+                        onBlur={() => setPreviewCommand(null)}
                         onClick={() => handleCombatAction({ type: 'consumable' })}
                         className="flex flex-col justify-between rounded-xl border border-emerald-500/35 bg-emerald-950/30 px-3.5 py-2 text-left transition hover:border-emerald-400 hover:bg-emerald-900/40 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
                       >

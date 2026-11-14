@@ -9,6 +9,7 @@ import { InfoTip } from './InfoTip';
 import { EnemyPhase } from '../extensible/enemies/types';
 import { ELEMENT_META } from '../utils/elements';
 import { HitFxKind, HitFxSourceType } from '../utils/combatFx';
+import { CombatActionPreview, PreviewStatusBadge } from '../utils/combatPreview';
 
 export type CombatMotionState =
   | 'idle'
@@ -47,6 +48,7 @@ interface BattleStage2DProps {
   playerDef: number;
   battleSession: BattleSessionState | null;
   hitFx?: HitFx[];
+  actionPreview?: CombatActionPreview | null;
   activeEvent: GameEventDefinition | null;
   motionState?: CombatMotionState;
   activeSkillName?: string | null;
@@ -115,8 +117,55 @@ function StatusRow({ statuses, align = 'left' }: { statuses: ActiveStatusInstanc
   );
 }
 
-function HpBar({ value, max, color, label }: { value: number; max: number; color: string; label: string }) {
-  const pct = Math.max(0, Math.min(100, (value / Math.max(1, max)) * 100));
+function PreviewStatusBadges({
+  badges,
+  cleansedCount = 0,
+}: {
+  badges: PreviewStatusBadge[];
+  cleansedCount?: number;
+}) {
+  if (badges.length === 0 && cleansedCount === 0) return null;
+  return (
+    <div className="mt-1 flex flex-wrap items-center gap-1">
+      {cleansedCount > 0 && (
+        <span className="animate-pulse inline-flex items-center gap-0.5 rounded-md border border-dashed border-emerald-400/70 bg-emerald-950/70 px-1.5 py-0.5 text-[9px] font-bold text-emerald-200 sm:text-[10px]">
+          ✨ 浄化(-{cleansedCount})
+        </span>
+      )}
+      {badges.map((b, i) => (
+        <span
+          key={`${b.statusId}-${i}`}
+          className="animate-pulse inline-flex items-center gap-0.5 rounded-md border border-dashed border-sky-400/75 bg-sky-950/75 px-1.5 py-0.5 text-[9px] font-bold text-sky-200 sm:text-[10px]"
+        >
+          <span>+{b.icon}</span>
+          <span>{b.name}</span>
+          <span className="opacity-80">{b.duration}T</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function HpBar({
+  value,
+  max,
+  color,
+  label,
+  previewValue,
+}: {
+  value: number;
+  max: number;
+  color: string;
+  label: string;
+  previewValue?: number;
+}) {
+  const safeMax = Math.max(1, max);
+  const pct = Math.max(0, Math.min(100, (value / safeMax) * 100));
+  const hasDamagePreview = previewValue !== undefined && previewValue < value;
+  const hasHealPreview = previewValue !== undefined && previewValue > value;
+  const previewPct =
+    previewValue !== undefined ? Math.max(0, Math.min(100, (previewValue / safeMax) * 100)) : pct;
+
   return (
     <div
       role="progressbar"
@@ -130,9 +179,21 @@ function HpBar({ value, max, color, label }: { value: number; max: number; color
         className="absolute inset-y-0 left-0 rounded bg-white/45 transition-[width] delay-200 duration-700 ease-out"
         style={{ width: `${pct}%` }}
       />
+      {hasHealPreview && (
+        <div
+          className="animate-pulse absolute inset-y-0 left-0 rounded bg-emerald-300/75 transition-[width] duration-200"
+          style={{ width: `${previewPct}%` }}
+        />
+      )}
+      {hasDamagePreview && (
+        <div
+          className="animate-pulse absolute inset-y-0 left-0 rounded bg-amber-300/80 transition-[width] duration-200"
+          style={{ width: `${pct}%` }}
+        />
+      )}
       <div
         className="absolute inset-y-0 left-0 rounded transition-[width] duration-300 ease-out"
-        style={{ width: `${pct}%`, background: color }}
+        style={{ width: `${hasDamagePreview ? previewPct : pct}%`, background: color }}
       />
     </div>
   );
@@ -275,6 +336,7 @@ export function BattleStage2D({
   playerDef,
   battleSession,
   hitFx,
+  actionPreview = null,
   activeEvent,
   motionState = 'idle',
   activeSkillName = null,
@@ -605,6 +667,11 @@ export function BattleStage2D({
                 <span className="text-emerald-400">HP</span>
                 <span className="font-mono text-slate-100">
                   {hpShown} / {maxHpShown}
+                  {actionPreview && actionPreview.player.healAmount > 0 && (
+                    <span className="ml-1 text-emerald-300">
+                      → {actionPreview.player.afterHp} (+{actionPreview.player.healAmount})
+                    </span>
+                  )}
                 </span>
               </div>
               <HpBar
@@ -612,6 +679,11 @@ export function BattleStage2D({
                 max={maxHpShown}
                 color={hpShown / maxHpShown > 0.3 ? '#10b981' : '#f43f5e'}
                 label="プレイヤーのHP"
+                previewValue={
+                  actionPreview && actionPreview.player.healAmount > 0
+                    ? actionPreview.player.afterHp
+                    : undefined
+                }
               />
             </div>
 
@@ -619,6 +691,12 @@ export function BattleStage2D({
               <div className="mt-1.5">
                 <StatusRow statuses={playerStatuses} align="left" />
               </div>
+            )}
+            {actionPreview && (
+              <PreviewStatusBadges
+                badges={actionPreview.player.appliedStatuses}
+                cleansedCount={actionPreview.player.cleansedCount}
+              />
             )}
           </div>
 
@@ -657,6 +735,9 @@ export function BattleStage2D({
                 isMulti && !isDead && battleSession.status === 'ongoing' && idx === effectiveTargetIndex;
               const phase = phaseFor(idx);
               const phaseBadge = phase?.phaseName;
+              const enemyPreview = actionPreview?.enemies.find((ep) => ep.enemyIndex === idx);
+              const hasEnemyDmgPreview =
+                enemyPreview && (enemyPreview.hpDamage > 0 || enemyPreview.shieldAbsorbed > 0);
               return (
                 <div
                   key={idx}
@@ -699,9 +780,47 @@ export function BattleStage2D({
                         <span className="text-rose-400">HP</span>
                         <span className="font-mono text-slate-100">
                           {enemy.currentHp} / {enemy.maxHp}
+                          {hasEnemyDmgPreview && (
+                            <span
+                              className={`ml-1 ${
+                                enemyPreview.isLethal ? 'text-rose-300 font-black' : 'text-amber-300'
+                              }`}
+                            >
+                              → {enemyPreview.afterHp} (-{enemyPreview.hpDamage})
+                              {enemyPreview.isLethal ? ' 💀' : ''}
+                            </span>
+                          )}
                         </span>
                       </div>
-                      <HpBar value={enemy.currentHp} max={enemy.maxHp} color="#f43f5e" label={`${enemy.name}のHP`} />
+                      <HpBar
+                        value={enemy.currentHp}
+                        max={enemy.maxHp}
+                        color="#f43f5e"
+                        label={`${enemy.name}のHP`}
+                        previewValue={hasEnemyDmgPreview ? enemyPreview.afterHp : undefined}
+                      />
+                      {hasEnemyDmgPreview &&
+                        (enemyPreview.isWeak ||
+                          enemyPreview.isResist ||
+                          enemyPreview.shieldAbsorbed > 0) && (
+                          <div className="mt-1 flex flex-wrap justify-end gap-1 text-[9px] font-bold">
+                            {enemyPreview.isWeak && (
+                              <span className="rounded bg-amber-500/25 px-1 py-0.5 text-amber-200">
+                                🎯 弱点
+                              </span>
+                            )}
+                            {enemyPreview.isResist && (
+                              <span className="rounded bg-slate-700/70 px-1 py-0.5 text-slate-300">
+                                🛡️ 耐性
+                              </span>
+                            )}
+                            {enemyPreview.shieldAbsorbed > 0 && (
+                              <span className="rounded bg-sky-500/25 px-1 py-0.5 text-sky-200">
+                                🛡️ 障壁-{enemyPreview.shieldAbsorbed}
+                              </span>
+                            )}
+                          </div>
+                        )}
                       <div className="mt-1 text-right text-[9px] font-bold text-slate-400 sm:text-[10px]">
                         ATK {enemy.baseAtk} / DEF {enemy.baseDef}
                       </div>
@@ -735,6 +854,9 @@ export function BattleStage2D({
                       <div className="mt-1.5">
                         <StatusRow statuses={enemy.statuses} align="right" />
                       </div>
+                    )}
+                    {enemyPreview && (
+                      <PreviewStatusBadges badges={enemyPreview.appliedStatuses} />
                     )}
                   </div>
 

@@ -514,3 +514,76 @@ export function extractTurnHitFx(
 
   return events;
 }
+
+function reduceShieldStatus(
+  statuses: BattleSessionState['player']['statuses'],
+  absorbed: number
+): BattleSessionState['player']['statuses'] {
+  if (absorbed <= 0) return statuses;
+  let remaining = absorbed;
+  const next: BattleSessionState['player']['statuses'] = [];
+  for (const s of statuses) {
+    if (s.statusId === 'shield' && remaining > 0) {
+      const take = Math.min(s.value, remaining);
+      remaining -= take;
+      const left = s.value - take;
+      if (left > 0) {
+        next.push({ ...s, value: left });
+      }
+    } else {
+      next.push({ ...s });
+    }
+  }
+  return next;
+}
+
+/**
+ * Applies a single HitFxEvent's HP/shield delta to a displayed BattleSessionState
+ * so HP bars, numbers, and shield badges update step-by-step with the FX animation.
+ */
+export function applyHitFxEventToSession(
+  session: BattleSessionState,
+  ev: HitFxEvent
+): BattleSessionState {
+  if (ev.side === 'enemy') {
+    const target = session.enemies[ev.index];
+    if (!target) return session;
+    const nextEnemy = {
+      ...target,
+      statuses: [...target.statuses],
+    };
+    if (ev.kind === 'shield') {
+      nextEnemy.statuses = reduceShieldStatus(nextEnemy.statuses, ev.amount);
+    } else if (ev.kind !== 'heal') {
+      nextEnemy.currentHp = Math.max(0, nextEnemy.currentHp - ev.amount);
+      if (ev.shieldAbsorbed) {
+        nextEnemy.statuses = reduceShieldStatus(nextEnemy.statuses, ev.shieldAbsorbed);
+      }
+    }
+    const nextEnemies = session.enemies.map((e, i) => (i === ev.index ? nextEnemy : e));
+    return {
+      ...session,
+      enemies: nextEnemies,
+    };
+  }
+
+  const nextPlayer = {
+    ...session.player,
+    statuses: [...session.player.statuses],
+  };
+  if (ev.kind === 'heal') {
+    nextPlayer.currentHp = Math.min(nextPlayer.maxHp, nextPlayer.currentHp + ev.amount);
+  } else if (ev.kind === 'shield') {
+    nextPlayer.statuses = reduceShieldStatus(nextPlayer.statuses, ev.amount);
+  } else {
+    nextPlayer.currentHp = Math.max(0, nextPlayer.currentHp - ev.amount);
+    if (ev.shieldAbsorbed) {
+      nextPlayer.statuses = reduceShieldStatus(nextPlayer.statuses, ev.shieldAbsorbed);
+    }
+  }
+  return {
+    ...session,
+    player: nextPlayer,
+  };
+}
+
