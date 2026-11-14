@@ -67,19 +67,27 @@ describe('Combat Engine, Skill Charges & Balance Simulation (Spec §3.2, §4.3, 
     }
 
     // 2. Strategic Skill Usage simulation (uses Armor Crush, Power Slash, and Purifying Light)
-    let skillSession = CombatEngine.createBattleSession(75, 100, 0, baseLoadout, boss, 1.0);
+    // Since the 2026-11-14 heal redesign, heal skills grant regeneration
+    // over time instead of an instant burst, so the strategy casts
+    // Purifying Light early and handles the pinch with a consumable --
+    // burst recovery is the consumables' role now.
+    const strategicLoadout = { ...baseLoadout, consumable: CONSUMABLE_CATALOG.crimson_vial };
+    let skillSession = CombatEngine.createBattleSession(75, 100, 2, strategicLoadout, boss, 1.0);
     safety = 0;
     while (skillSession.status === 'ongoing' && safety < 30) {
       let cmd:
         | { type: 'attack' }
+        | { type: 'consumable' }
         | { type: 'skill'; slotIndex: 0 | 1 | 2 } = { type: 'attack' };
 
       if (
         skillSession.player.currentHp < 40 &&
-        skillSession.skillCharges[2] > 0
+        skillSession.consumableCharges > 0
       ) {
-        cmd = { type: 'skill', slotIndex: 2 }; // Heal & Cleanse
-      } else if (skillSession.skillCharges[1] > 0 && skillSession.turn <= 2) {
+        cmd = { type: 'consumable' }; // Burst heal in a pinch
+      } else if (skillSession.turn === 1 && skillSession.skillCharges[2] > 0) {
+        cmd = { type: 'skill', slotIndex: 2 }; // Regeneration, cast early
+      } else if (skillSession.skillCharges[1] > 0 && skillSession.turn <= 3) {
         cmd = { type: 'skill', slotIndex: 1 }; // Armor Crush (DEF debuff)
       } else if (skillSession.skillCharges[0] > 0) {
         cmd = { type: 'skill', slotIndex: 0 }; // Power Slash (1.75x)
@@ -88,7 +96,7 @@ describe('Combat Engine, Skill Charges & Balance Simulation (Spec §3.2, §4.3, 
       skillSession = CombatEngine.executeTurn(
         skillSession,
         cmd,
-        baseLoadout,
+        strategicLoadout,
         undefined,
         () => 0.2
       );

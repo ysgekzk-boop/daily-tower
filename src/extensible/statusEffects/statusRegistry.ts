@@ -22,6 +22,27 @@ export const STATUS_REGISTRY: Record<string, StatusDefinition> = {
     },
   },
 
+  regen: {
+    id: 'regen',
+    name: '再生',
+    icon: '🌿',
+    description: 'ターン開始時に、最大HPの効果値%を回復する。',
+    category: 'buff',
+    stacking: 'refresh',
+    maxDuration: 6,
+    cleansable: false,
+    hooks: {
+      turn_start: (ctx) => {
+        const pct = Math.max(1, ctx.value || 5);
+        const heal = Math.max(1, Math.floor((ctx.ownerMaxHp * pct) / 100));
+        return {
+          healAmount: heal,
+          logMessage: `再生により ${heal} 回復した！`,
+        };
+      },
+    },
+  },
+
   poison: {
     id: 'poison',
     name: '猛毒',

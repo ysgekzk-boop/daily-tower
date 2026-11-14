@@ -42,8 +42,9 @@ export class PlaytestBot {
     }
 
     // 2. Heal skill when hurt
+    const regenActive = session.player.statuses.some((st) => st.statusId === 'regen');
     const healSlot = PlaytestBot.findSkillSlot(session, loadout, (s) =>
-      Boolean(s.healPercent || s.healFlat)
+      Boolean(s.healPercent || s.healFlat || (s.applyStatus?.statusId === 'regen' && !regenActive))
     );
     if (hpPct <= 0.45 && healSlot >= 0) {
       return { type: 'skill', slotIndex: healSlot as 0 | 1 | 2, targetIndex: target.i };
@@ -154,6 +155,7 @@ export class PlaytestBot {
     return (
       (skill.damageMultiplier ?? 0) * 20 +
       (skill.healPercent ?? 0) * 0.5 +
+      (skill.applyStatus?.statusId === 'regen' ? skill.applyStatus.value * skill.applyStatus.duration * 0.5 : 0) +
       (skill.healFlat ?? 0) * 0.2 +
       (skill.applyStatus ? 8 : 0) +
       (skill.cleanse ? 5 : 0) +
