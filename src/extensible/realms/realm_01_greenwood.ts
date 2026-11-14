@@ -50,10 +50,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 0.6 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -70,10 +70,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'forest_bat', enemyStatScale: 0.61 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -88,10 +88,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'thorn_goblin', enemyStatScale: 0.63 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -107,10 +107,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.64 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -125,10 +125,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'thorn_queen_vespa', enemyStatScale: 0.76 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -143,10 +143,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_slime', enemyStatScale: 0.66 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -162,10 +162,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'amber_beetle', enemyStatScale: 0.67 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -182,10 +182,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.69 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -200,10 +200,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['moss_slime', 'spore_fungus'], enemyStatScale: 0.7 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -218,10 +218,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'ancient_ursus', enemyStatScale: 0.82 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine'],
-      skillIds: ['power_slash', 'flame_burst', 'armor_crush', 'venom_strike', 'aegis_stance', 'war_cry', 'purifying_light', 'frost_lance', 'briar_lash', 'oak_splitter', 'vine_snare', 'forest_dew', 'moss_ward', 'pollen_haze', 'sap_guard'],
-      utilityIds: ['vampiric_fang_relic', 'guardian_crest_relic', 'berserker_idol_relic', 'venom_gland_relic', 'golden_compass_relic', 'forest_dewdrop_relic', 'briar_thorn_relic'],
-      consumableIds: ['crimson_vial', 'ambrosia_flask', 'sylvan_tonic', 'moss_elixir'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['ancient_roar', 'canopy_aegis', 'flame_burst', 'forest_dew', 'frost_lance', 'mist_spring_prayer', 'mist_step_strike', 'oak_splitter', 'pollen_haze', 'purifying_light', 'reed_crescent_slash', 'reed_veil_stance', 'sap_guard', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['briar_thorn_relic', 'elder_sap_seal_relic', 'forest_dewdrop_relic', 'guardian_crest_relic', 'mirror_talisman_relic', 'mist_veil_bell_relic', 'reed_whistle_relic'],
+      consumableIds: ['crimson_vial', 'mist_herb_draught', 'moss_elixir', 'reed_nectar_flask'],
     },
   },
   {
@@ -238,10 +238,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'dire_wolf', enemyStatScale: 0.72 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'mistweave_cloak'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -256,10 +256,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'forest_bat', enemyStatScale: 0.73 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'mistweave_cloak'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -275,10 +275,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'bramble_boar', enemyStatScale: 0.75 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'mistweave_cloak'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -295,10 +295,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_crab', enemyStatScale: 0.76 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'mistweave_cloak'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -313,10 +313,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'shadow_panther', enemyStatScale: 0.89 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'mistweave_cloak'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ashwood_spear', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -332,10 +332,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'glen_elk', enemyStatScale: 0.78 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ancient_bark_mail', 'ashwood_spear', 'elder_thorn_sword', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -352,10 +352,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_crab', enemyStatScale: 0.79 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ancient_bark_mail', 'ashwood_spear', 'elder_thorn_sword', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -370,10 +370,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'amber_wisp', enemyStatScale: 0.81 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ancient_bark_mail', 'ashwood_spear', 'elder_thorn_sword', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -389,10 +389,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'glen_elk', enemyStatScale: 0.81 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ancient_bark_mail', 'ashwood_spear', 'elder_thorn_sword', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -407,10 +407,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'ironwood_colossus', enemyStatScale: 0.95 },
     ],
     rewardPool: {
-      equipmentIds: ['ashwood_spear', 'mossfang_blade', 'leafweave_vest', 'oakheart_brigandine', 'mistwood_glaive', 'elder_thorn_sword', 'mistweave_cloak', 'ancient_bark_mail'],
-      skillIds: ['briar_lash', 'forest_dew', 'moss_ward', 'oak_splitter', 'pollen_haze', 'sap_guard', 'vine_snare', 'wisp_flame_strike', 'ancient_trunk_cleave', 'mist_step_strike', 'mist_spring_prayer', 'ancient_roar', 'mist_rend', 'canopy_aegis'],
-      utilityIds: ['briar_thorn_relic', 'forest_dewdrop_relic', 'mist_veil_bell_relic', 'elder_sap_seal_relic'],
-      consumableIds: ['moss_elixir', 'sylvan_tonic', 'mist_herb_draught', 'ancient_sap_vial'],
+      equipmentIds: ['ancient_bark_mail', 'ashwood_spear', 'elder_thorn_sword', 'leafweave_vest', 'mistweave_cloak', 'mistwood_glaive', 'mossfang_blade', 'oakheart_brigandine'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'briar_lash', 'flame_burst', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'mist_step_strike', 'pollen_haze', 'reed_crescent_slash', 'sap_guard', 'venom_strike', 'vine_snare', 'wisp_flame_strike'],
+      utilityIds: ['ancient_amber_relic', 'elder_sap_seal_relic', 'golden_compass_relic', 'mist_veil_bell_relic'],
+      consumableIds: ['crimson_vial', 'lotus_dew_phial', 'mist_herb_draught', 'sylvan_tonic'],
     },
   },
   {
@@ -425,10 +425,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'bark_chameleon', enemyStatScale: 0.84 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'reed_scale_jerkin'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -444,10 +444,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'amber_wisp', enemyStatScale: 0.85 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'reed_scale_jerkin'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -464,10 +464,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'amber_wisp', enemyStatScale: 0.87 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'reed_scale_jerkin'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -482,10 +482,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'bloom_mandragora', enemyStatScale: 0.87 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'reed_scale_jerkin'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -500,10 +500,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'elder_oak_warden', enemyStatScale: 1.02 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'reed_scale_jerkin'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -520,10 +520,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['mist_moth', 'swamp_croc'], enemyStatScale: 0.9 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'emberbrand_shortsword', 'marsh_shell_cuirass', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -538,10 +538,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'thorn_mantis', enemyStatScale: 0.91 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'emberbrand_shortsword', 'marsh_shell_cuirass', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -557,10 +557,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['verdant_falcon', 'moss_tortoise'], enemyStatScale: 0.92 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'emberbrand_shortsword', 'marsh_shell_cuirass', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -577,10 +577,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['spirit_fox', 'bloom_mandragora'], enemyStatScale: 0.93 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'emberbrand_shortsword', 'marsh_shell_cuirass', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -595,10 +595,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'verdant_gryphon', enemyStatScale: 1.09 },
     ],
     rewardPool: {
-      equipmentIds: ['elder_thorn_sword', 'mistwood_glaive', 'ancient_bark_mail', 'mistweave_cloak', 'reed_harpoon', 'mirror_lotus_blade', 'reed_scale_jerkin', 'marsh_shell_cuirass'],
-      skillIds: ['ancient_roar', 'ancient_trunk_cleave', 'canopy_aegis', 'mist_rend', 'mist_spring_prayer', 'mist_step_strike', 'wisp_flame_strike', 'bog_venom_strike', 'reed_crescent_slash', 'marsh_lunge', 'water_mirror_grace', 'reed_veil_stance', 'fen_frost_mist', 'bog_miasma'],
-      utilityIds: ['elder_sap_seal_relic', 'mist_veil_bell_relic', 'mirror_talisman_relic', 'reed_whistle_relic'],
-      consumableIds: ['ancient_sap_vial', 'mist_herb_draught', 'reed_nectar_flask', 'lotus_dew_phial'],
+      equipmentIds: ['ancient_bark_mail', 'elder_thorn_sword', 'emberbrand_shortsword', 'marsh_shell_cuirass', 'mistweave_cloak', 'mistwood_glaive', 'reed_harpoon', 'reed_scale_jerkin'],
+      skillIds: ['aegis_stance', 'ancient_trunk_cleave', 'armor_crush', 'bog_miasma', 'briar_lash', 'elder_bark_resonance', 'fen_frost_mist', 'hollow_root_pierce', 'marsh_lunge', 'mist_rend', 'moss_ward', 'venom_strike', 'water_mirror_grace', 'worldtree_sap_elixir'],
+      utilityIds: ['ancient_amber_relic', 'golden_compass_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ancient_sap_vial', 'hollow_stone_elixir', 'lotus_dew_phial', 'sylvan_tonic'],
     },
   },
   {
@@ -614,10 +614,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['bog_toad', 'swamp_croc'], enemyStatScale: 0.96 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -634,10 +634,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['thorn_centipede', 'thorn_mantis'], enemyStatScale: 0.97 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -652,10 +652,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_tortoise', enemyStatScale: 0.98 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -671,10 +671,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['lichen_ape', 'fungal_strider'], enemyStatScale: 0.99 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -689,10 +689,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'sylvan_hydra', enemyStatScale: 1.16 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -707,10 +707,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['dusk_crow', 'lichen_ape'], enemyStatScale: 1.02 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass', 'elder_root_brigandine'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -726,10 +726,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'thorn_centipede', enemyStatScale: 1.02 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass', 'elder_root_brigandine'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -746,10 +746,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_gargoyle', enemyStatScale: 1.04 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass', 'elder_root_brigandine'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -764,10 +764,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'moss_gargoyle', enemyStatScale: 1.05 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass', 'elder_root_brigandine'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -782,10 +782,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'verdant_basilisk', enemyStatScale: 1.23 },
     ],
     rewardPool: {
-      equipmentIds: ['dewdrinker_rapier', 'emberbrand_shortsword', 'mirror_lotus_blade', 'reed_harpoon', 'marsh_shell_cuirass', 'reed_scale_jerkin', 'rootstone_mace', 'hollow_bough_blade', 'moss_stone_cuirass', 'elder_root_brigandine'],
-      skillIds: ['bog_miasma', 'bog_venom_strike', 'fen_frost_mist', 'marsh_lunge', 'reed_crescent_slash', 'reed_veil_stance', 'water_mirror_grace', 'lichen_ember_strike', 'root_breaker_smash', 'hollow_root_pierce', 'hollow_spring_blessing', 'moss_stone_bastion', 'ancient_root_bind', 'elder_bark_resonance'],
-      utilityIds: ['mirror_talisman_relic', 'reed_whistle_relic', 'rootstone_ember_seal_relic', 'ancient_amber_relic'],
-      consumableIds: ['lotus_dew_phial', 'reed_nectar_flask', 'root_marrow_draught', 'hollow_stone_elixir'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'emberbrand_shortsword', 'hollow_bough_blade', 'marsh_shell_cuirass', 'mirror_lotus_blade', 'moss_stone_cuirass', 'reed_harpoon', 'reed_scale_jerkin', 'rootstone_mace'],
+      skillIds: ['amber_sap_surge', 'armor_crush', 'bog_miasma', 'bog_venom_strike', 'elder_bark_resonance', 'fen_frost_mist', 'moss_stone_bastion', 'moss_ward', 'root_breaker_smash', 'seed_of_bastion', 'war_cry', 'water_mirror_grace', 'worldtree_sap_elixir', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'rootstone_ember_seal_relic', 'vampiric_fang_relic', 'venom_gland_relic'],
+      consumableIds: ['ambrosia_flask', 'ancient_sap_vial', 'hollow_stone_elixir', 'root_marrow_draught'],
     },
   },
   {
@@ -802,10 +802,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'worldtree_sprout', enemyStatScale: 1.08 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_branch_spear'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
   {
@@ -820,10 +820,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'vine_stalker', enemyStatScale: 1.08 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_branch_spear'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
   {
@@ -839,10 +839,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyIds: ['chasm_moss_core', 'worldtree_sprout'], enemyStatScale: 1.1 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_branch_spear'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
   {
@@ -859,10 +859,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'silicified_wraith', enemyStatScale: 1.11 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_branch_spear'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
   {
@@ -877,10 +877,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'miniboss', enemyId: 'verdant_archon', enemyStatScale: 1.3 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_branch_spear'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
   {
@@ -896,10 +896,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'ancient_mask_spirit', enemyStatScale: 1.13 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'yggdrasil_sap_blade', 'worldtree_bark_plate', 'canopy_seed_cuirass', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['canopy_seed_cuirass', 'dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_bark_plate', 'worldtree_branch_spear', 'yggdrasil_sap_blade'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
   {
@@ -916,10 +916,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'silicified_wraith', enemyStatScale: 1.14 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'yggdrasil_sap_blade', 'worldtree_bark_plate', 'canopy_seed_cuirass', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['canopy_seed_cuirass', 'dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_bark_plate', 'worldtree_branch_spear', 'yggdrasil_sap_blade'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
   {
@@ -934,10 +934,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'runic_hollow', enemyStatScale: 1.16 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'yggdrasil_sap_blade', 'worldtree_bark_plate', 'canopy_seed_cuirass', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['canopy_seed_cuirass', 'dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_bark_plate', 'worldtree_branch_spear', 'yggdrasil_sap_blade'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
   {
@@ -953,10 +953,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'battle', enemyId: 'worldtree_sprout', enemyStatScale: 1.17 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'yggdrasil_sap_blade', 'worldtree_bark_plate', 'canopy_seed_cuirass', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['canopy_seed_cuirass', 'dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_bark_plate', 'worldtree_branch_spear', 'yggdrasil_sap_blade'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
   {
@@ -970,10 +970,10 @@ export const REALM_01_FLOORS: FloorDefinition[] = [
       { type: 'apex_boss', enemyId: 'primordial_treant', enemyStatScale: 0.69 },
     ],
     rewardPool: {
-      equipmentIds: ['oathbound_plate', 'hollow_bough_blade', 'rootstone_mace', 'elder_root_brigandine', 'moss_stone_cuirass', 'worldtree_branch_spear', 'yggdrasil_sap_blade', 'worldtree_bark_plate', 'canopy_seed_cuirass', 'thorn_halberd', 'ironwood_plate'],
-      skillIds: ['ancient_root_bind', 'elder_bark_resonance', 'hollow_root_pierce', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'root_breaker_smash', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave', 'amber_sap_surge', 'worldtree_sap_elixir', 'seed_of_bastion', 'root_crush_break', 'worldtree_seed_ward'],
-      utilityIds: ['ancient_amber_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic', 'canopy_crown_relic'],
-      consumableIds: ['hollow_stone_elixir', 'root_marrow_draught', 'worldtree_nectar', 'canopy_seed_balm'],
+      equipmentIds: ['canopy_seed_cuirass', 'dewdrinker_rapier', 'elder_root_brigandine', 'hollow_bough_blade', 'ironwood_plate', 'mirror_lotus_blade', 'moss_stone_cuirass', 'oathbound_plate', 'rootstone_mace', 'thorn_halberd', 'worldtree_bark_plate', 'worldtree_branch_spear', 'yggdrasil_sap_blade'],
+      skillIds: ['amber_sap_surge', 'ancient_root_bind', 'bog_venom_strike', 'hollow_spring_blessing', 'lichen_ember_strike', 'moss_stone_bastion', 'power_slash', 'root_breaker_smash', 'root_crush_break', 'seed_of_bastion', 'war_cry', 'worldtree_seed_ward', 'worldtree_spore_sting', 'yggdrasil_canopy_cleave'],
+      utilityIds: ['berserker_idol_relic', 'canopy_crown_relic', 'rootstone_ember_seal_relic', 'worldtree_seed_heart_relic'],
+      consumableIds: ['ambrosia_flask', 'canopy_seed_balm', 'root_marrow_draught', 'worldtree_nectar'],
     },
   },
 ];
