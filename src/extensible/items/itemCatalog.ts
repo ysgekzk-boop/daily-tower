@@ -98,7 +98,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_rusty_shortsword',
     atk: 12,
     element: 'physical',
-    salvageGold: 10,
+    salvageGold: 3,
     description: '塔の入口で支給される標準的な鉄の短剣。',
   },
   verdant_blade: {
@@ -108,7 +108,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_verdant_blade',
     atk: 18,
     element: 'nature',
-    salvageGold: 25,
+    salvageGold: 6,
     description: '樹海の魔力を宿した鋭利な長剣。',
   },
   thorn_halberd: {
@@ -118,7 +118,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_thorn_halberd',
     atk: 25,
     element: 'nature',
-    salvageGold: 40,
+    salvageGold: 10,
     description: '硬い樹皮をも貫く重厚な斧槍。',
   },
   ember_greatsword: {
@@ -128,7 +128,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_ember_greatsword',
     atk: 22,
     element: 'fire',
-    salvageGold: 38,
+    salvageGold: 10,
     description: '黄昏の製鉄所で鍛えられた灼熱の大剣。',
   },
   obsidian_reaver: {
@@ -138,7 +138,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_obsidian_reaver',
     atk: 27,
     element: 'void',
-    salvageGold: 50,
+    salvageGold: 12,
     description: 'あらゆる装甲を断ち切る黒曜石の刃。',
   },
   stargazer_silver_sword: {
@@ -148,7 +148,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_stargazer_silver_sword',
     atk: 14,
     element: 'void',
-    salvageGold: 20,
+    salvageGold: 5,
     description: '虚空の図書館の銀細工で鍛えられた、静かな星光を宿す剣。',
   },
   astral_quill: {
@@ -158,7 +158,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_astral_quill',
     atk: 18,
     element: 'fire',
-    salvageGold: 15,
+    salvageGold: 4,
     description: '虚空に青白い軌跡を残す硬質ガラスのペン先。摩擦熱で敵を焼き焦がす。',
   },
   ashwood_spear: {
@@ -168,7 +168,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_ashwood_spear',
     atk: 14,
     element: 'physical',
-    salvageGold: 18,
+    salvageGold: 4,
     description: 'しなやかなトネリコの木柄を持つ、扱いやすい森の狩猟槍。',
   },
   mossfang_blade: {
@@ -178,7 +178,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_mossfang_blade',
     atk: 16,
     element: 'nature',
-    salvageGold: 22,
+    salvageGold: 6,
     description: '苔むした古樹の精気を帯びた、鋭利な自然属性の細剣。',
   },
   mistwood_glaive: {
@@ -188,7 +188,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_mistwood_glaive',
     atk: 17,
     element: 'physical',
-    salvageGold: 26,
+    salvageGold: 6,
     description: '霧深い古樹林の硬木を削り出して作られた、リーチに優れる長柄の薙刀。',
   },
   elder_thorn_sword: {
@@ -198,7 +198,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_elder_thorn_sword',
     atk: 19,
     element: 'nature',
-    salvageGold: 28,
+    salvageGold: 7,
     description: '千年の霧と樹液を吸い込んだ古木の棘から鍛えられた、自然属性の魔剣。',
   },
   reed_harpoon: {
@@ -208,7 +208,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_reed_harpoon',
     atk: 20,
     element: 'physical',
-    salvageGold: 30,
+    salvageGold: 8,
     description: '水辺の硬い葦と鍛鉄を組み合わせた、貫通力に優れる狩猟用の銛槍。',
   },
   mirror_lotus_blade: {
@@ -218,7 +218,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_mirror_lotus_blade',
     atk: 22,
     element: 'nature',
-    salvageGold: 34,
+    salvageGold: 8,
     description: '水鏡の沼に咲く蓮の精気を宿した、清冽な自然属性の長剣。',
   },
   rootstone_mace: {
@@ -228,7 +228,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_rootstone_mace',
     atk: 21,
     element: 'physical',
-    salvageGold: 32,
+    salvageGold: 8,
     description: '古樹の根が絡み付いた苔石の戦鎚。重厚な一撃で敵を粉砕する。',
   },
   hollow_bough_blade: {
@@ -238,7 +238,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_hollow_bough_blade',
     atk: 23,
     element: 'nature',
-    salvageGold: 36,
+    salvageGold: 9,
     description: '古樹の樹洞で育まれた霊木と苔石の魔力を宿す、鋭利な自然属性の剣。',
   },
   worldtree_branch_spear: {
@@ -248,7 +248,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_worldtree_branch_spear',
     atk: 26,
     element: 'physical',
-    salvageGold: 40,
+    salvageGold: 10,
     description: '世界樹の大枝を削り出して鍛えた強靭な長槍。圧倒的な貫通力で敵を貫く。',
   },
   yggdrasil_sap_blade: {
@@ -258,7 +258,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_yggdrasil_sap_blade',
     atk: 27,
     element: 'nature',
-    salvageGold: 42,
+    salvageGold: 10,
     description: '黄金の樹液を宿した世界樹の霊剣。神域の魔力が刃に満ちている。',
   },
   twilight_forge_hammer: {
@@ -268,7 +268,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_twilight_forge_hammer',
     atk: 18,
     element: 'fire',
-    salvageGold: 30,
+    salvageGold: 8,
     description: '赤熱する炉の火を宿した鍛冶師の戦鎚。重厚な一撃で敵を打ち砕く。',
   },
   soot_iron_blade: {
@@ -278,7 +278,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_soot_iron_blade',
     atk: 19,
     element: 'void',
-    salvageGold: 32,
+    salvageGold: 8,
     description: '製鉄所の煤と黒鉄を幾度も折り返して鍛えた漆黒の刀。虚空の鋭気を帯びる。',
   },
   molten_mold_greatsword: {
@@ -288,7 +288,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_molten_mold_greatsword',
     atk: 19,
     element: 'fire',
-    salvageGold: 31,
+    salvageGold: 8,
     description: '溶岩を流し込んだ鋳型から鍛え上げた大剣。灼熱の刃で敵を両断する。',
   },
   steam_piston_lance: {
@@ -298,7 +298,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_steam_piston_lance',
     atk: 19,
     element: 'physical',
-    salvageGold: 31,
+    salvageGold: 8,
     description: '高圧蒸気の推進機構を組み込んだ鍛鋼の槍。凄まじい貫通力で敵を穿つ。',
   },
   obsidian_tunnel_cleaver: {
@@ -308,7 +308,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_obsidian_tunnel_cleaver',
     atk: 21,
     element: 'void',
-    salvageGold: 34,
+    salvageGold: 8,
     description: '黒曜石の坑道から切り出した漆黒の断刀。虚空の魔力を帯び、一閃で敵を両断する。',
   },
   ashen_ember_halberd: {
@@ -318,7 +318,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_ashen_ember_halberd',
     atk: 21,
     element: 'fire',
-    salvageGold: 34,
+    salvageGold: 8,
     description: '消えぬ残り火を槍先に宿した灰鉄の戦戟。灼熱の刃で敵の装甲を焼き貫く。',
   },
   boiler_core_greatsword: {
@@ -328,7 +328,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_boiler_core_greatsword',
     atk: 23,
     element: 'fire',
-    salvageGold: 36,
+    salvageGold: 9,
     description: '高圧炉心の外殻鋼を鍛え上げた大剣。赤熱する蒸気の刃で敵を焼き斬る。',
   },
   steam_gear_pike: {
@@ -338,7 +338,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_steam_gear_pike',
     atk: 23,
     element: 'physical',
-    salvageGold: 36,
+    salvageGold: 9,
     description: '噛み合う歯車と蒸気ピストンを備えた穿槍。凄まじい貫通力で装甲を撃ち抜く。',
   },
   core_crucible_greatsword: {
@@ -348,7 +348,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_core_crucible_greatsword',
     atk: 26,
     element: 'fire',
-    salvageGold: 40,
+    salvageGold: 10,
     description: '終焉の鍛造場の炉心で打ち上げられた最高峰の灼熱大剣。あらゆる敵を灰燼に帰す。',
   },
   doomsday_anvil_halberd: {
@@ -358,7 +358,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_doomsday_anvil_halberd',
     atk: 26,
     element: 'void',
-    salvageGold: 39,
+    salvageGold: 10,
     description: '最終鍛造の金床で虚空鋼を叩き締めた戦戟。空間ごと敵の守りを断ち切る。',
   },
   emberbrand_shortsword: {
@@ -368,7 +368,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_emberbrand_shortsword',
     atk: 17,
     element: 'fire',
-    salvageGold: 26,
+    salvageGold: 6,
     effectId: 'emberbrand',
     description: '刃に残り火を宿す短剣。通常攻撃のたび、敵に燃焼(3ダメージ/2ターン)を付与する。',
   },
@@ -379,7 +379,7 @@ export const WEAPON_CATALOG: Record<string, WeaponItem> = {
     spriteId: 'item_dewdrinker_rapier',
     atk: 20,
     element: 'nature',
-    salvageGold: 32,
+    salvageGold: 8,
     effectId: 'dewdrinker',
     description: '雫を吸って輝く細剣。HPが半分未満のとき、通常攻撃のたびHPを3回復する。',
   },
@@ -393,7 +393,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_leather_tunic',
     def: 4,
     maxHpBonus: 0,
-    salvageGold: 10,
+    salvageGold: 3,
     description: '動きやすさを重視した基本的な革の胸当て。',
   },
   bark_cuirass: {
@@ -403,7 +403,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_bark_cuirass',
     def: 7,
     maxHpBonus: 25,
-    salvageGold: 25,
+    salvageGold: 6,
     description: '千年樹の樹皮を編み込んだ頑丈な防具。',
   },
   ironwood_plate: {
@@ -413,7 +413,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_ironwood_plate',
     def: 9,
     maxHpBonus: 60,
-    salvageGold: 40,
+    salvageGold: 10,
     description: '鋼鉄並みの硬度を持つ鉄木で作られた全身鎧。',
   },
   cinder_mail: {
@@ -423,7 +423,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_cinder_mail',
     def: 9,
     maxHpBonus: 65,
-    salvageGold: 44,
+    salvageGold: 11,
     description: '熱と衝撃を分散する特殊な合金メイル。',
   },
   librarian_robe: {
@@ -433,7 +433,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_librarian_robe',
     def: 5,
     maxHpBonus: 15,
-    salvageGold: 20,
+    salvageGold: 5,
     description: '知識の守り手が纏う、防護術式が織り込まれた法衣。',
   },
   starlight_robe: {
@@ -443,7 +443,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_starlight_robe',
     def: 6,
     maxHpBonus: 20,
-    salvageGold: 16,
+    salvageGold: 4,
     description: '星図の糸で織り上げられた蒼い法衣。魔力の障壁が着用者の生命力を底上げする。',
   },
   leafweave_vest: {
@@ -453,7 +453,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_leafweave_vest',
     def: 4,
     maxHpBonus: 24,
-    salvageGold: 18,
+    salvageGold: 4,
     description: '強靭な蔓と葉を編み込んで作られた、軽快な森の防具。',
   },
   oakheart_brigandine: {
@@ -463,7 +463,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_oakheart_brigandine',
     def: 5,
     maxHpBonus: 30,
-    salvageGold: 22,
+    salvageGold: 6,
     description: '硬質な樫の芯材を革で覆った、耐久性に優れる森の胴鎧。',
   },
   mistweave_cloak: {
@@ -473,7 +473,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_mistweave_cloak',
     def: 5,
     maxHpBonus: 34,
-    salvageGold: 26,
+    salvageGold: 6,
     description: '朝霧を閉じ込めた繊維と樹皮で編まれた、軽やかで強靭な森の外套。',
   },
   ancient_bark_mail: {
@@ -483,7 +483,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_ancient_bark_mail',
     def: 6,
     maxHpBonus: 40,
-    salvageGold: 28,
+    salvageGold: 7,
     description: '幾重にも重なった古木の厚い樹皮を継ぎ合わせた、重厚な自然の鎧。',
   },
   reed_scale_jerkin: {
@@ -493,7 +493,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_reed_scale_jerkin',
     def: 6,
     maxHpBonus: 42,
-    salvageGold: 30,
+    salvageGold: 8,
     description: '湿地棲の鱗皮と編み込んだ葦で仕立てられた、水辺でも動きやすい胴鎧。',
   },
   marsh_shell_cuirass: {
@@ -503,7 +503,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_marsh_shell_cuirass',
     def: 7,
     maxHpBonus: 48,
-    salvageGold: 34,
+    salvageGold: 8,
     description: '沼の主の硬質な甲羅を加工して作られた、高い防御力と生命力を授ける重胸甲。',
   },
   moss_stone_cuirass: {
@@ -513,7 +513,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_moss_stone_cuirass',
     def: 7,
     maxHpBonus: 50,
-    salvageGold: 34,
+    salvageGold: 8,
     description: '遺跡の苔むした切石を鍛え上げた胸甲。高い防御力と持久力を与える。',
   },
   elder_root_brigandine: {
@@ -523,7 +523,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_elder_root_brigandine',
     def: 8,
     maxHpBonus: 56,
-    salvageGold: 38,
+    salvageGold: 10,
     description: '幾重もの古根と石板を編み込んだ重厚な胴鎧。強固な守りと生命力を授ける。',
   },
   worldtree_bark_plate: {
@@ -533,7 +533,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_worldtree_bark_plate',
     def: 9,
     maxHpBonus: 64,
-    salvageGold: 42,
+    salvageGold: 10,
     description: '世界樹の厚い樹皮を鍛え上げた重装鎧。強固な守りと豊かな生命力を与える。',
   },
   canopy_seed_cuirass: {
@@ -543,7 +543,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_canopy_seed_cuirass',
     def: 9,
     maxHpBonus: 68,
-    salvageGold: 44,
+    salvageGold: 11,
     description: '世界樹の樹冠に実る守護の種子を織り込んだ胸甲。最高峰の防御と活力を授ける。',
   },
   anvil_guard_plate: {
@@ -553,7 +553,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_anvil_guard_plate',
     def: 7,
     maxHpBonus: 28,
-    salvageGold: 26,
+    salvageGold: 6,
     description: '金床で叩き締められた厚鉄の胸甲。過酷な熱気と打撃から身を守る。',
   },
   soot_apron_cuirass: {
@@ -563,7 +563,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_soot_apron_cuirass',
     def: 7,
     maxHpBonus: 30,
-    salvageGold: 28,
+    salvageGold: 7,
     description: '炉の煤と耐熱鋼を織り合わせた重装鎧。強固な守りと高い耐久力を授ける。',
   },
   slag_mold_cuirass: {
@@ -573,7 +573,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_slag_mold_cuirass',
     def: 7,
     maxHpBonus: 33,
-    salvageGold: 30,
+    salvageGold: 8,
     description: '厚手の鋳型用耐熱鋼を打ち出して仕立てた胸甲。溶岩の熱気と強打を弾き返す。',
   },
   steam_boiler_plate: {
@@ -583,7 +583,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_steam_boiler_plate',
     def: 7,
     maxHpBonus: 35,
-    salvageGold: 31,
+    salvageGold: 8,
     description: '高圧蒸気炉の装甲板を転用した重装鎧。圧倒的な防御力と強靭な活力を授ける。',
   },
   obsidian_shaft_plate: {
@@ -593,7 +593,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_obsidian_shaft_plate',
     def: 7,
     maxHpBonus: 43,
-    salvageGold: 34,
+    salvageGold: 8,
     description: '黒曜石の装甲板を幾重にも重ねた重装鎧。圧倒的な堅牢さと強靭な活力を授ける。',
   },
   ashen_wastes_cuirass: {
@@ -603,7 +603,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_ashen_wastes_cuirass',
     def: 7,
     maxHpBonus: 40,
-    salvageGold: 33,
+    salvageGold: 8,
     description: '灰の荒野を吹く熱風を耐え抜く耐熱胸甲。高い防御力と豊かな生命力を与える。',
   },
   pressure_shell_plate: {
@@ -613,7 +613,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_pressure_shell_plate',
     def: 8,
     maxHpBonus: 52,
-    salvageGold: 38,
+    salvageGold: 10,
     description: '炉心圧力釜の厚鋼板を転用した重装鎧。極限の耐熱性と強固な守りを授ける。',
   },
   gearwork_steam_cuirass: {
@@ -623,7 +623,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_gearwork_steam_cuirass',
     def: 8,
     maxHpBonus: 50,
-    salvageGold: 37,
+    salvageGold: 9,
     description: '精密な歯車機構と蒸気排気弁を組み込んだ胸甲。衝撃を逃がし高い耐久力を与える。',
   },
   core_hearth_plate: {
@@ -633,7 +633,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_core_hearth_plate',
     def: 9,
     maxHpBonus: 62,
-    salvageGold: 42,
+    salvageGold: 10,
     description: '炉心の超耐熱合金で鍛え上げられた終極の重装鎧。強固な守りと最大の活力を授ける。',
   },
   doomsday_forge_cuirass: {
@@ -643,7 +643,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_doomsday_forge_cuirass',
     def: 9,
     maxHpBonus: 60,
-    salvageGold: 41,
+    salvageGold: 10,
     description: '終焉の鍛造場で最終焼入れを施した漆黒の胸甲。あらゆる業火と強打を弾き返す。',
   },
   oathbound_plate: {
@@ -653,7 +653,7 @@ export const ARMOR_CATALOG: Record<string, ArmorItem> = {
     spriteId: 'item_oathbound_plate',
     def: 8,
     maxHpBonus: 62,
-    salvageGold: 38,
+    salvageGold: 10,
     atkDelta: -5,
     description: '誓いに縛られた重鎧。屈強な守りを誇るが、その重さが腕を引くため、装備している間は攻撃力が5低下する。',
   },
@@ -668,7 +668,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     category: 'attack',
     maxChargesPerBattle: 2,
     damageMultiplier: 1.75,
-    salvageGold: 15,
+    salvageGold: 4,
     description: '全体重を乗せた一撃。1.75倍のダメージを与える（1戦2回まで）。',
   },
   flame_burst: {
@@ -685,7 +685,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 10,
       duration: 3,
     },
-    salvageGold: 25,
+    salvageGold: 6,
     description: '1.4倍ダメージ＋敵に火傷(最大HP10%/3T)を付与（1戦2回）。',
   },
   ink_burst: {
@@ -702,7 +702,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 30,
       duration: 2,
     },
-    salvageGold: 25,
+    salvageGold: 6,
     description: '凝縮した魔導インクを炸裂させ、1.4倍ダメージ＋敵の攻撃力を30%低下(2T)させる（1戦2回）。',
   },
   flame_wave: {
@@ -714,7 +714,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     maxChargesPerBattle: 2,
     targetScope: 'all_enemies',
     damageMultiplier: 0.8,
-    salvageGold: 30,
+    salvageGold: 8,
     description: '敵全体に0.8倍ダメージを与える全体攻撃（1戦2回）。',
   },
   frost_lance: {
@@ -731,7 +731,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 1,
       duration: 1,
     },
-    salvageGold: 35,
+    salvageGold: 9,
     description: '1.2倍ダメージ＋敵を1ターン凍結(行動不能)にする切り札（1戦1回）。',
   },
   armor_crush: {
@@ -748,7 +748,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 35,
       duration: 3,
     },
-    salvageGold: 25,
+    salvageGold: 6,
     description: '1.25倍ダメージ＋敵の防御力を35%低下(3T)（1戦2回）。',
   },
   venom_strike: {
@@ -765,7 +765,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 12,
       duration: 4,
     },
-    salvageGold: 25,
+    salvageGold: 6,
     description: '1.1倍ダメージ＋蓄積する猛毒(12ダメージ/4T)を付与（1戦3回）。',
   },
   aegis_stance: {
@@ -781,7 +781,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 35,
       duration: 3,
     },
-    salvageGold: 20,
+    salvageGold: 5,
     description: '自身に35ダメージを吸収する障壁(3T)を展開（1戦2回）。',
   },
   arcane_ward: {
@@ -798,7 +798,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 18,
       duration: 2,
     },
-    salvageGold: 25,
+    salvageGold: 6,
     description: '図書館の守護術式を展開し、あらゆる状態異常を払い除けて強固な障壁を張る。',
   },
   war_cry: {
@@ -814,7 +814,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 35,
       duration: 3,
     },
-    salvageGold: 25,
+    salvageGold: 6,
     description: '自身の攻撃力を35%上昇(3T)させる（1戦2回）。',
   },
   purifying_light: {
@@ -831,7 +831,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 4,
     },
     cleanse: true,
-    salvageGold: 30,
+    salvageGold: 8,
     description: '4ターンの間、ターン開始時に最大HPの8%ずつ回復（合計32%）し、すべてのデバフを解除する（1戦1回）。',
   },
   chrono_flip: {
@@ -848,7 +848,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 35,
       duration: 3,
     },
-    salvageGold: 30,
+    salvageGold: 8,
     description: '時の頁を鋭くめくる一撃。1.5倍ダメージ＋敵の防御力を35%低下(3T)（1戦2回）。',
   },
   briar_lash: {
@@ -865,7 +865,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 8,
       duration: 3,
     },
-    salvageGold: 20,
+    salvageGold: 5,
     description: '棘のある蔦で打ち据え、1.1倍ダメージ＋敵に猛毒(8/3T)を付与（1戦3回）。',
   },
   oak_splitter: {
@@ -876,7 +876,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     category: 'attack',
     maxChargesPerBattle: 1,
     damageMultiplier: 1.7,
-    salvageGold: 20,
+    salvageGold: 5,
     description: '大木をも断つ渾身の一撃。1.7倍のダメージを与える（1戦1回）。',
   },
   vine_snare: {
@@ -893,7 +893,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 2,
     },
-    salvageGold: 20,
+    salvageGold: 5,
     description: '足元を蔦で絡め取り、1.2倍ダメージ＋敵の防御力を25%低下(2T)（1戦2回）。',
   },
   forest_dew: {
@@ -909,7 +909,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 5,
       duration: 5,
     },
-    salvageGold: 20,
+    salvageGold: 5,
     description: '木漏れ日の露を纏い、5ターンの間、ターン開始時に最大HPの5%ずつ回復（合計25%）する（1戦2回）。',
   },
   moss_ward: {
@@ -925,7 +925,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 30,
       duration: 3,
     },
-    salvageGold: 20,
+    salvageGold: 5,
     description: '森の苔が身を包み、3ターンの間自身の防御力を30%上昇させる（1戦2回）。',
   },
   pollen_haze: {
@@ -942,7 +942,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 20,
+    salvageGold: 5,
     description: '痺れ胞子を散らし、1.05倍ダメージ＋敵の攻撃力を25%低下(3T)（1戦2回）。',
   },
   sap_guard: {
@@ -959,7 +959,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 18,
       duration: 2,
     },
-    salvageGold: 20,
+    salvageGold: 5,
     description: '最大HPの18%を回復し、自身に18ダメージを吸収する障壁(2T)を展開（1戦2回）。',
   },
   wisp_flame_strike: {
@@ -976,7 +976,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 8,
       duration: 3,
     },
-    salvageGold: 22,
+    salvageGold: 6,
     description: '霧に揺らめく鬼火を刃に纏わせ、1.3倍ダメージ＋敵に火傷(最大HP8%/3T)を付与（1戦3回）。',
   },
   ancient_trunk_cleave: {
@@ -987,7 +987,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     category: 'attack',
     maxChargesPerBattle: 3,
     damageMultiplier: 1.6,
-    salvageGold: 24,
+    salvageGold: 6,
     description: '古樹の大幹をも両断する必殺の一閃。1.6倍のダメージを与える（1戦3回）。',
   },
   mist_step_strike: {
@@ -1004,7 +1004,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 20,
       duration: 2,
     },
-    salvageGold: 22,
+    salvageGold: 6,
     description: '霧に紛れて踏み込み、1.25倍ダメージ＋自身に攻撃強化(+20%/2T)を付与（1戦2回）。',
   },
   mist_spring_prayer: {
@@ -1021,7 +1021,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 4,
     },
     cleanse: true,
-    salvageGold: 24,
+    salvageGold: 6,
     description: '霧の湧水で傷を洗い流し、4ターンの間、ターン開始時に最大HPの7%ずつ回復（合計28%）＋すべてのデバフを解除（1戦2回）。',
   },
   ancient_roar: {
@@ -1037,7 +1037,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 20,
       duration: 3,
     },
-    salvageGold: 22,
+    salvageGold: 6,
     description: '深森の精気を呼び覚まし、3ターンの間自身の攻撃力を20%上昇させる（1戦3回）。',
   },
   mist_rend: {
@@ -1054,7 +1054,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 22,
+    salvageGold: 6,
     description: '霧を切り裂く一撃で1.3倍ダメージ＋敵の防御力を25%低下(3T)（1戦2回）。',
   },
   canopy_aegis: {
@@ -1070,7 +1070,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 28,
       duration: 3,
     },
-    salvageGold: 22,
+    salvageGold: 6,
     description: '深い霧と枝葉で身を覆い、自身に28ダメージを吸収する障壁(3T)を展開（1戦3回）。',
   },
   bog_venom_strike: {
@@ -1087,7 +1087,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 10,
       duration: 3,
     },
-    salvageGold: 24,
+    salvageGold: 6,
     description: '沼の猛毒を刃に塗って斬りつけ、1.1倍ダメージ＋敵に猛毒(10/3T)を付与（1戦3回）。',
   },
   reed_crescent_slash: {
@@ -1104,7 +1104,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 6,
       duration: 2,
     },
-    salvageGold: 26,
+    salvageGold: 6,
     description: '水辺の葦を一閃で薙ぎ払う斬撃。1.65倍ダメージ＋敵に毒(最大HP6%/2T)を付与（1戦2回）。',
   },
   marsh_lunge: {
@@ -1121,7 +1121,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 20,
       duration: 2,
     },
-    salvageGold: 24,
+    salvageGold: 6,
     description: '水しぶきを上げて踏み込み、1.2倍ダメージ＋自身に防御強化(+20%/2T)を付与（1戦2回）。',
   },
   water_mirror_grace: {
@@ -1137,7 +1137,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 7,
       duration: 5,
     },
-    salvageGold: 26,
+    salvageGold: 6,
     description: '澄んだ水鏡の魔力で傷を癒やし、5ターンの間、ターン開始時に最大HPの7%ずつ回復（合計35%）する（1戦2回）。',
   },
   reed_veil_stance: {
@@ -1153,7 +1153,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 24,
+    salvageGold: 6,
     description: '葦の葉陰に身を潜め、3ターンの間自身の防御力を25%上昇させる（1戦3回）。',
   },
   fen_frost_mist: {
@@ -1170,7 +1170,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 1,
       duration: 1,
     },
-    salvageGold: 28,
+    salvageGold: 7,
     description: '凍てつく水霧を放ち、1.15倍ダメージ＋敵を1ターン凍結(行動不能)にする（1戦2回）。',
   },
   bog_miasma: {
@@ -1187,7 +1187,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 24,
+    salvageGold: 6,
     description: '淀んだ瘴気を浴びせ、1.1倍ダメージ＋敵の攻撃力を25%低下(3T)させる（1戦2回）。',
   },
   lichen_ember_strike: {
@@ -1204,7 +1204,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 10,
       duration: 2,
     },
-    salvageGold: 28,
+    salvageGold: 7,
     description: '樹洞に灯る燐火を纏わせ、1.35倍ダメージ＋敵に火傷(最大HP10%/2T)を付与（1戦3回）。',
   },
   root_breaker_smash: {
@@ -1215,7 +1215,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     category: 'attack',
     maxChargesPerBattle: 3,
     damageMultiplier: 1.65,
-    salvageGold: 28,
+    salvageGold: 7,
     description: '古樹の太根をも粉砕する渾身の一撃。1.65倍のダメージを与える（1戦3回）。',
   },
   hollow_root_pierce: {
@@ -1232,7 +1232,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 20,
       duration: 2,
     },
-    salvageGold: 26,
+    salvageGold: 6,
     description: '石根の隙間を突く鋭い一撃。1.25倍ダメージ＋敵の防御力を20%低下(2T)させる（1戦2回）。',
   },
   hollow_spring_blessing: {
@@ -1249,7 +1249,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 5,
     },
     cleanse: true,
-    salvageGold: 28,
+    salvageGold: 7,
     description: '樹洞の奥に湧く清泉で傷を癒やし、5ターンの間、ターン開始時に最大HPの8%ずつ回復（合計40%）＋すべてのデバフを解除（1戦2回）。',
   },
   moss_stone_bastion: {
@@ -1265,7 +1265,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 40,
       duration: 2,
     },
-    salvageGold: 26,
+    salvageGold: 6,
     description: '苔むした石壁の加護を纏い、自身に40ダメージを吸収する障壁(2T)を展開する（1戦2回）。',
   },
   ancient_root_bind: {
@@ -1282,7 +1282,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 26,
+    salvageGold: 6,
     description: '地中から伸びる古根で絡め取り、1.15倍ダメージ＋敵の攻撃力を25%低下(3T)させる（1戦2回）。',
   },
   elder_bark_resonance: {
@@ -1298,7 +1298,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 35,
       duration: 2,
     },
-    salvageGold: 28,
+    salvageGold: 7,
     description: '古樹の核と共鳴して闘気を高め、2ターンの間自身の攻撃力を35%上昇させる（1戦3回）。',
   },
   worldtree_spore_sting: {
@@ -1315,7 +1315,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 12,
       duration: 3,
     },
-    salvageGold: 32,
+    salvageGold: 8,
     description: '樹冠の濃縮胞子を纏わせた一撃。1.2倍ダメージ＋敵に猛毒(12/3T)を付与（1戦3回）。',
   },
   yggdrasil_canopy_cleave: {
@@ -1332,7 +1332,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 15,
       duration: 2,
     },
-    salvageGold: 34,
+    salvageGold: 8,
     description: '世界樹の樹冠を仰ぐ渾身の必殺斬撃。1.75倍ダメージ＋敵の防御力を15%低下(2T)させる（1戦2回）。',
   },
   amber_sap_surge: {
@@ -1349,7 +1349,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 2,
     },
-    salvageGold: 32,
+    salvageGold: 8,
     description: '黄金の樹液を刃に纏わせて踏み込む。1.3倍ダメージ＋自身に攻撃強化(+25%/2T)を付与（1戦3回）。',
   },
   worldtree_sap_elixir: {
@@ -1366,7 +1366,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 4,
     },
     cleanse: true,
-    salvageGold: 34,
+    salvageGold: 8,
     description: '生命の樹液を浴びて傷を癒やし、4ターンの間、ターン開始時に最大HPの10%ずつ回復（合計40%）＋すべてのデバフを解除（1戦2回）。',
   },
   seed_of_bastion: {
@@ -1382,7 +1382,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 30,
       duration: 3,
     },
-    salvageGold: 32,
+    salvageGold: 8,
     description: '巨樹の種子が放つ守護のオーラを纏い、3ターンの間自身の防御力を30%上昇させる（1戦3回）。',
   },
   root_crush_break: {
@@ -1399,7 +1399,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 32,
+    salvageGold: 8,
     description: '世界樹の太根を叩きつけ、1.25倍ダメージ＋敵の防御力を25%低下(3T)させる（1戦3回）。',
   },
   worldtree_seed_ward: {
@@ -1415,7 +1415,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 35,
       duration: 3,
     },
-    salvageGold: 32,
+    salvageGold: 8,
     description: '聖なる種子の結界を張り、自身に35ダメージを吸収する障壁(3T)を展開する（1戦3回）。',
   },
   cinder_spark_strike: {
@@ -1432,7 +1432,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 10,
       duration: 3,
     },
-    salvageGold: 30,
+    salvageGold: 8,
     description: '炉の火の粉を纏わせて斬りつける。1.2倍ダメージ＋敵に火傷(最大HP10%/3T)を付与（1戦3回）。',
   },
   anvil_breaker_blow: {
@@ -1443,7 +1443,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     category: 'attack',
     maxChargesPerBattle: 3,
     damageMultiplier: 1.7,
-    salvageGold: 35,
+    salvageGold: 9,
     description: '金床をも砕く渾身の重撃。1.7倍のダメージを与える（1戦3回）。',
   },
   bellows_surge_slash: {
@@ -1460,7 +1460,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 32,
+    salvageGold: 8,
     description: 'ふいごの勢いで踏み込み、1.3倍ダメージ＋自身に攻撃強化(+25%/3T)を付与（1戦3回）。',
   },
   quench_steam_breath: {
@@ -1477,7 +1477,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 4,
     },
     cleanse: true,
-    salvageGold: 34,
+    salvageGold: 8,
     description: '焼き入れの清涼な蒸気で傷を癒やし、4ターンの間、ターン開始時に最大HPの9%ずつ回復（合計36%）＋すべてのデバフを解除（1戦3回）。',
   },
   tempered_iron_stance: {
@@ -1493,7 +1493,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 35,
       duration: 2,
     },
-    salvageGold: 32,
+    salvageGold: 8,
     description: '鍛え上げた鋼の構えをとり、2ターンの間自身の防御力を35%上昇させる（1戦3回）。',
   },
   soot_cloud_veil: {
@@ -1510,7 +1510,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 32,
+    salvageGold: 8,
     description: '濃い煤煙を浴びせて視界を奪い、1.2倍ダメージ＋敵の攻撃力を25%低下(3T)（1戦3回）。',
   },
   slag_shower_sweep: {
@@ -1522,7 +1522,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     maxChargesPerBattle: 3,
     targetScope: 'all_enemies',
     damageMultiplier: 0.85,
-    salvageGold: 34,
+    salvageGold: 8,
     description: '灼熱の鉱滓を周囲に撒き散らす全体攻撃。敵全体に0.85倍ダメージを与える（1戦3回）。',
   },
   lava_pour_slash: {
@@ -1539,7 +1539,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 10,
       duration: 3,
     },
-    salvageGold: 32,
+    salvageGold: 8,
     description: '刃に溶岩を纏わせて斬りつける。1.25倍ダメージ＋敵に火傷(最大HP10%/3T)を付与（1戦3回）。',
   },
   molten_cast_impact: {
@@ -1550,7 +1550,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     category: 'attack',
     maxChargesPerBattle: 3,
     damageMultiplier: 1.75,
-    salvageGold: 36,
+    salvageGold: 9,
     description: '溶鉄の質量を乗せた渾身の破砕撃。1.75倍のダメージを与える（1戦3回）。',
   },
   steam_vent_thrust: {
@@ -1567,7 +1567,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 30,
       duration: 2,
     },
-    salvageGold: 34,
+    salvageGold: 8,
     description: '高圧蒸気を噴射して踏み込む。1.3倍ダメージ＋自身に攻撃強化(+30%/2T)を付与（1戦3回）。',
   },
   cooling_steam_mist: {
@@ -1584,7 +1584,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 5,
     },
     cleanse: true,
-    salvageGold: 35,
+    salvageGold: 9,
     description: '清涼な冷却蒸気を纏って傷を癒やし、5ターンの間、ターン開始時に最大HPの8%ずつ回復（合計40%）＋すべてのデバフを解除（1戦3回）。',
   },
   forge_pressure_surge: {
@@ -1600,7 +1600,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 34,
+    salvageGold: 8,
     description: '炉の蒸気圧を全身に巡らせ、3ターンの間自身の攻撃力を25%上昇させる（1戦3回）。',
   },
   molten_slag_break: {
@@ -1617,7 +1617,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 34,
+    salvageGold: 8,
     description: '灼熱の鉱滓を叩きつけて装甲を融かし、1.3倍ダメージ＋敵の防御力を25%低下(3T)させる（1戦3回）。',
   },
   slag_mold_barrier: {
@@ -1633,7 +1633,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 40,
       duration: 3,
     },
-    salvageGold: 34,
+    salvageGold: 8,
     description: '溶鉄を鋳型に流し込んで強固な防壁を築き、自身に40ダメージを吸収する障壁(3T)を展開する（1戦3回）。',
   },
   ember_ash_slash: {
@@ -1650,7 +1650,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 12,
       duration: 3,
     },
-    salvageGold: 36,
+    salvageGold: 9,
     description: '刃に残り火を纏わせて斬り払う。1.25倍ダメージ＋敵に火傷(最大HP12%/3T)を付与（1戦3回）。',
   },
   obsidian_fissure_cleave: {
@@ -1667,7 +1667,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 2,
     },
-    salvageGold: 38,
+    salvageGold: 10,
     description: '黒曜石の岩盤ごと敵を両断する渾身の一撃。1.7倍ダメージ＋敵の防御力を25%低下(2T)させる（1戦2回）。',
   },
   cinder_wind_lunge: {
@@ -1684,7 +1684,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 30,
       duration: 2,
     },
-    salvageGold: 36,
+    salvageGold: 9,
     description: '舞い上がる灰嵐に乗じて踏み込む。1.35倍ダメージ＋自身に攻撃強化(+30%/2T)を付与（1戦3回）。',
   },
   warm_ash_respite: {
@@ -1701,7 +1701,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 4,
     },
     cleanse: true,
-    salvageGold: 38,
+    salvageGold: 10,
     description: '残り火の温もりを帯びた灰霧で傷を癒やし、4ターンの間、ターン開始時に最大HPの10%ずつ回復（合計40%）＋すべてのデバフを解除（1戦3回）。',
   },
   obsidian_bastion_stance: {
@@ -1717,7 +1717,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 45,
       duration: 3,
     },
-    salvageGold: 36,
+    salvageGold: 9,
     description: '黒曜石のごとき不動の構えをとり、自身に45ダメージを吸収する障壁(3T)を展開する（1戦3回）。',
   },
   ash_veil_blind: {
@@ -1734,7 +1734,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 36,
+    salvageGold: 9,
     description: '濃密な火山灰を叩きつけて視界を奪い、1.25倍ダメージ＋敵の攻撃力を25%低下(3T)させる（1戦3回）。',
   },
   ember_storm_sweep: {
@@ -1752,7 +1752,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 8,
       duration: 2,
     },
-    salvageGold: 38,
+    salvageGold: 10,
     description: '残り火と火山灰の嵐を巻き起こす全体攻撃。敵全体に0.8倍ダメージ＋火傷(最大HP8%/2T)を付与（1戦3回）。',
   },
   steam_scald_jet: {
@@ -1769,7 +1769,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 12,
       duration: 2,
     },
-    salvageGold: 38,
+    salvageGold: 10,
     description: '超高圧の過熱蒸気を噴射して焼き払う。1.3倍ダメージ＋敵に火傷(最大HP12%/2T)を付与（1戦3回）。',
   },
   boiler_overload_smash: {
@@ -1786,7 +1786,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 20,
       duration: 2,
     },
-    salvageGold: 40,
+    salvageGold: 10,
     description: '炉心圧力釜の限界圧力を解放して叩き込む渾身の一撃。1.7倍ダメージ＋敵の攻撃力を20%低下(2T)させる（1戦2回）。',
   },
   gear_drive_strike: {
@@ -1803,7 +1803,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 30,
       duration: 3,
     },
-    salvageGold: 38,
+    salvageGold: 10,
     description: '高速回転する歯車の推進力で踏み込む。1.3倍ダメージ＋自身に攻撃強化(+30%/3T)を付与（1戦3回）。',
   },
   boiler_vent_recovery: {
@@ -1820,7 +1820,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 3,
     },
     cleanse: true,
-    salvageGold: 40,
+    salvageGold: 10,
     description: '浄化蒸気を循環させて傷を癒やし、3ターンの間、ターン開始時に最大HPの13%ずつ回復（合計39%）＋すべてのデバフを解除（1戦3回）。',
   },
   steam_core_overdrive: {
@@ -1836,7 +1836,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 30,
       duration: 3,
     },
-    salvageGold: 38,
+    salvageGold: 10,
     description: '蒸気機関の圧力を限界まで高め、3ターンの間自身の攻撃力を30%上昇させる（1戦3回）。',
   },
   pressure_valve_rupture: {
@@ -1853,7 +1853,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 30,
       duration: 3,
     },
-    salvageGold: 38,
+    salvageGold: 10,
     description: '高圧蒸気を敵の装甲隙間に叩き込み、1.25倍ダメージ＋敵の防御力を30%低下(3T)させる（1戦3回）。',
   },
   iron_boiler_aegis: {
@@ -1869,7 +1869,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 50,
       duration: 3,
     },
-    salvageGold: 38,
+    salvageGold: 10,
     description: '炉心外殻の蒸気障壁を展開し、自身に50ダメージを吸収する障壁(3T)を付与する（1戦3回）。',
   },
   core_ember_brand: {
@@ -1886,7 +1886,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 10,
       duration: 3,
     },
-    salvageGold: 40,
+    salvageGold: 10,
     description: '炉心の業火を刃に宿して斬りつける。1.3倍ダメージ＋敵に火傷(最大HP10%/3T)を付与（1戦3回）。',
   },
   final_forge_obliteration: {
@@ -1903,7 +1903,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 20,
       duration: 3,
     },
-    salvageGold: 42,
+    salvageGold: 10,
     description: '最終鍛造の総力を込めた究極の一撃。1.75倍ダメージ＋敵の防御力を20%低下(3T)させる（1戦3回）。',
   },
   crucible_drive_cleave: {
@@ -1920,7 +1920,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 30,
       duration: 2,
     },
-    salvageGold: 40,
+    salvageGold: 10,
     description: '炉心の高熱を推進力に踏み込む。1.4倍ダメージ＋自身に攻撃強化(+30%/2T)を付与（1戦3回）。',
   },
   core_quench_renewal: {
@@ -1937,7 +1937,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       duration: 3,
     },
     cleanse: true,
-    salvageGold: 42,
+    salvageGold: 10,
     description: '清冽な冷却蒸気を巡らせて傷を癒やし、3ターンの間、ターン開始時に最大HPの14%ずつ回復（合計42%）＋すべてのデバフを解除（1戦3回）。',
   },
   hearth_bastion_protocol: {
@@ -1953,7 +1953,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 35,
       duration: 3,
     },
-    salvageGold: 40,
+    salvageGold: 10,
     description: '終焉炉心の堅牢な構えをとり、3ターンの間自身の防御力を35%上昇させる（1戦3回）。',
   },
   doomsday_soot_shackle: {
@@ -1970,7 +1970,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 25,
       duration: 3,
     },
-    salvageGold: 40,
+    salvageGold: 10,
     description: '濃密な終焉の煤煙を叩きつけ、1.35倍ダメージ＋敵の攻撃力を25%低下(3T)させる（1戦3回）。',
   },
   core_eruption_sweep: {
@@ -1988,7 +1988,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 6,
       duration: 2,
     },
-    salvageGold: 42,
+    salvageGold: 10,
     description: '炉心の熱波を周囲に解放する全体攻撃。敵全体に0.85倍ダメージ＋火傷(最大HP6%/2T)を付与（1戦3回）。',
   },
   star_rend: {
@@ -2005,7 +2005,7 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
       value: 15,
       duration: 2,
     },
-    salvageGold: 30,
+    salvageGold: 8,
     description: '星光を纏った二連撃を叩き込み、攻撃の勢いをそのまま次の行動へ繋げる。',
   },
 };
@@ -2367,7 +2367,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_vampiric_fang_relic',
     effectId: 'vampiric_fang',
-    salvageGold: 40,
+    salvageGold: 10,
     description: '通常攻撃を行うたび、最大HPの4%を回復する。',
   },
   guardian_crest_relic: {
@@ -2376,7 +2376,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_guardian_crest_relic',
     effectId: 'guardian_crest',
-    salvageGold: 40,
+    salvageGold: 10,
     description: '各バトルの開始時、最大HPの15%分の障壁を自動的に展開する。',
   },
   berserker_idol_relic: {
@@ -2385,7 +2385,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_berserker_idol_relic',
     effectId: 'berserker_idol',
-    salvageGold: 45,
+    salvageGold: 11,
     description: '各バトルの開始時、3ターンの間攻撃力+25%を得る。',
   },
   venom_gland_relic: {
@@ -2394,7 +2394,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_venom_gland_relic',
     effectId: 'venom_gland',
-    salvageGold: 45,
+    salvageGold: 11,
     description: 'スキルを使用するたび、敵に猛毒(8)を追加付与する。',
   },
   golden_compass_relic: {
@@ -2403,7 +2403,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_golden_compass_relic',
     effectId: 'golden_compass',
-    salvageGold: 35,
+    salvageGold: 9,
     description: 'バトル勝利時に獲得するゴールドが +15 増加する。',
   },
   bookmark_charm_relic: {
@@ -2412,7 +2412,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_bookmark_charm_relic',
     effectId: 'bookmark_charm',
-    salvageGold: 40,
+    salvageGold: 10,
     description: '各バトルの1ターン目の攻撃時、+15%相当の追加ダメージを与える。',
   },
   forest_dewdrop_relic: {
@@ -2421,7 +2421,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_forest_dewdrop_relic',
     effectId: 'forest_dewdrop',
-    salvageGold: 35,
+    salvageGold: 9,
     description: '各バトルの開始時、3ターンの間防御力+25%を得る。',
   },
   briar_thorn_relic: {
@@ -2430,7 +2430,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_briar_thorn_relic',
     effectId: 'briar_thorn',
-    salvageGold: 35,
+    salvageGold: 9,
     description: '通常攻撃を行うたび、攻撃力の12%相当の追加ダメージを与える。',
   },
   mist_veil_bell_relic: {
@@ -2439,7 +2439,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_mist_veil_bell_relic',
     effectId: 'mist_veil_bell',
-    salvageGold: 40,
+    salvageGold: 10,
     description: '各バトルの開始時、敵の攻撃力を3ターンの間15%低下させる。',
   },
   elder_sap_seal_relic: {
@@ -2448,7 +2448,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_elder_sap_seal_relic',
     effectId: 'elder_sap_seal',
-    salvageGold: 40,
+    salvageGold: 10,
     description: 'スキルを使用するたび、敵の防御力を2ターンの間15%低下させる。',
   },
   mirror_talisman_relic: {
@@ -2457,7 +2457,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_mirror_talisman_relic',
     effectId: 'mirror_talisman',
-    salvageGold: 42,
+    salvageGold: 10,
     description: '各バトルの開始時、敵の防御力を3ターンの間15%低下させる。',
   },
   reed_whistle_relic: {
@@ -2466,7 +2466,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_reed_whistle_relic',
     effectId: 'reed_whistle',
-    salvageGold: 42,
+    salvageGold: 10,
     description: 'スキルを使用するたび、敵の攻撃力を2ターンの間15%低下させる。',
   },
   rootstone_ember_seal_relic: {
@@ -2475,7 +2475,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_rootstone_ember_seal_relic',
     effectId: 'rootstone_ember_seal',
-    salvageGold: 44,
+    salvageGold: 11,
     description: '各バトルの開始時、敵に3ターンの間火傷(最大HP8%)を付与する。',
   },
   ancient_amber_relic: {
@@ -2484,7 +2484,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_ancient_amber_relic',
     effectId: 'ancient_amber',
-    salvageGold: 44,
+    salvageGold: 11,
     description: 'バトル勝利時に獲得するゴールドが +20 増加する。',
   },
   worldtree_seed_heart_relic: {
@@ -2493,7 +2493,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_worldtree_seed_heart_relic',
     effectId: 'worldtree_seed_heart',
-    salvageGold: 48,
+    salvageGold: 12,
     description: 'スキルを使用するたび、最大HPの5%を回復する。',
   },
   canopy_crown_relic: {
@@ -2502,7 +2502,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_canopy_crown_relic',
     effectId: 'canopy_crown',
-    salvageGold: 48,
+    salvageGold: 12,
     description: 'スキルを使用するたび、最大HPの12%分の障壁(2T)を展開する。',
   },
   forge_cinder_talisman_relic: {
@@ -2511,7 +2511,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_forge_cinder_talisman_relic',
     effectId: 'forge_cinder_talisman',
-    salvageGold: 50,
+    salvageGold: 12,
     description: 'スキルを使用するたび、敵に3ターンの間火傷(最大HP10%)を付与する。',
   },
   ember_leech_stone_relic: {
@@ -2520,7 +2520,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_ember_leech_stone_relic',
     effectId: 'ember_leech_stone',
-    salvageGold: 50,
+    salvageGold: 12,
     description: '通常攻撃を行うたび、最大HPの5%を回復する。',
   },
   steam_pressure_valve_relic: {
@@ -2529,7 +2529,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_steam_pressure_valve_relic',
     effectId: 'steam_pressure_valve',
-    salvageGold: 52,
+    salvageGold: 13,
     description: '各バトルの開始時、3ターンの間攻撃力に固定値 +8 を加算する。',
   },
   molten_slag_seal_relic: {
@@ -2538,7 +2538,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_molten_slag_seal_relic',
     effectId: 'molten_slag_seal',
-    salvageGold: 52,
+    salvageGold: 13,
     description: '各バトルの開始時、敵に3ターンの間猛毒(10)を付与する。',
   },
   obsidian_ember_lens_relic: {
@@ -2547,7 +2547,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_obsidian_ember_lens_relic',
     effectId: 'obsidian_ember_lens',
-    salvageGold: 56,
+    salvageGold: 14,
     description: 'スキルを使用するたび、2ターンの間攻撃力+25%を得る。',
   },
   ashen_shard_talon_relic: {
@@ -2556,7 +2556,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_ashen_shard_talon_relic',
     effectId: 'ashen_shard_talon',
-    salvageGold: 56,
+    salvageGold: 14,
     description: '通常攻撃を行うたび、攻撃力の15%相当の追加ダメージを与える。',
   },
   steam_cog_regulator_relic: {
@@ -2565,7 +2565,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_steam_cog_regulator_relic',
     effectId: 'steam_cog_regulator',
-    salvageGold: 60,
+    salvageGold: 15,
     description: 'スキルを使用するたび、2ターンの間防御力+25%を得る。',
   },
   boiler_shell_plating_relic: {
@@ -2574,7 +2574,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_boiler_shell_plating_relic',
     effectId: 'boiler_shell_plating',
-    salvageGold: 60,
+    salvageGold: 15,
     description: '通常攻撃を行うたび、最大HPの10%分の障壁(2T)を展開する。',
   },
   core_furnace_brand_relic: {
@@ -2583,7 +2583,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_core_furnace_brand_relic',
     effectId: 'core_furnace_brand',
-    salvageGold: 64,
+    salvageGold: 16,
     description: '各バトルの開始時、敵の攻撃力を3ターンの間固定値 -12 低下させる。',
   },
   doomsday_slag_core_relic: {
@@ -2592,7 +2592,7 @@ export const RELIC_CATALOG: Record<string, RelicItem> = {
     kind: 'relic',
     spriteId: 'item_doomsday_slag_core_relic',
     effectId: 'doomsday_slag_core',
-    salvageGold: 64,
+    salvageGold: 16,
     description: 'スキルを使用するたび、敵の防御力を3ターンの間25%低下させる。',
   },
 };

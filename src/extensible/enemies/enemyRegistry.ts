@@ -9,7 +9,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 46,
     atk: 11,
     def: 2,
-    goldReward: 12,
+    goldReward: 4,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -69,7 +69,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 58,
     atk: 13,
     def: 3,
-    goldReward: 16,
+    goldReward: 5,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -131,7 +131,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 68,
     atk: 15,
     def: 4,
-    goldReward: 18,
+    goldReward: 5,
     weakness: 'fire',
     resistance: 'physical',
     phases: [
@@ -190,7 +190,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 82,
     atk: 18,
     def: 5,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'physical',
     resistance: 'ice',
     phases: [
@@ -250,7 +250,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 85,
     atk: 16,
     def: 4,
-    goldReward: 55,
+    goldReward: 16,
     isBoss: true,
     weakness: 'fire',
     resistance: 'ice',
@@ -344,7 +344,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 340,
     atk: 32,
     def: 12,
-    goldReward: 200,
+    goldReward: 60,
     isBoss: true,
     weakness: 'fire',
     resistance: 'physical',
@@ -436,7 +436,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 95,
     atk: 20,
     def: 7,
-    goldReward: 28,
+    goldReward: 8,
     weakness: 'ice',
     resistance: 'fire',
     phases: [
@@ -497,7 +497,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 420,
     atk: 38,
     def: 14,
-    goldReward: 300,
+    goldReward: 90,
     isBoss: true,
     weakness: 'ice',
     resistance: 'fire',
@@ -567,7 +567,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 52,
     atk: 11,
     def: 4,
-    goldReward: 18,
+    goldReward: 5,
     weakness: 'fire',
     resistance: 'void',
     phases: [
@@ -625,7 +625,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 44,
     atk: 13,
     def: 2,
-    goldReward: 16,
+    goldReward: 5,
     weakness: 'void',
     resistance: 'physical',
     phases: [
@@ -684,7 +684,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 64,
     atk: 10,
     def: 6,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'physical',
     phases: [
@@ -742,7 +742,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 48,
     atk: 12,
     def: 3,
-    goldReward: 16,
+    goldReward: 5,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -803,7 +803,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 62,
     atk: 14,
     def: 4,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -863,7 +863,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 52,
     atk: 12,
     def: 2,
-    goldReward: 14,
+    goldReward: 4,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -923,7 +923,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 64,
     atk: 13,
     def: 4,
-    goldReward: 16,
+    goldReward: 5,
     weakness: 'fire',
     resistance: 'void',
     phases: [
@@ -985,7 +985,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 72,
     atk: 14,
     def: 6,
-    goldReward: 19,
+    goldReward: 6,
     weakness: 'ice',
     resistance: 'fire',
     phases: [
@@ -1043,7 +1043,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 60,
     atk: 16,
     def: 3,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'ice',
     resistance: 'void',
     phases: [
@@ -1106,7 +1106,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 66,
     atk: 15,
     def: 4,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -1165,7 +1165,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 88,
     atk: 17,
     def: 5,
-    goldReward: 26,
+    goldReward: 8,
     weakness: 'physical',
     resistance: 'fire',
     phases: [
@@ -1224,7 +1224,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 80,
     atk: 15,
     def: 4,
-    goldReward: 75,
+    goldReward: 22,
     isBoss: true,
     weakness: 'fire',
     resistance: 'ice',
@@ -1295,7 +1295,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 95,
     atk: 18,
     def: 4,
-    goldReward: 90,
+    goldReward: 27,
     isBoss: true,
     weakness: 'fire',
     resistance: 'void',
@@ -1364,7 +1364,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 58,
     atk: 15,
     def: 3,
-    goldReward: 18,
+    goldReward: 5,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -1424,7 +1424,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 62,
     atk: 16,
     def: 3,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'void',
     phases: [
@@ -1484,7 +1484,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 70,
     atk: 14,
     def: 4,
-    goldReward: 21,
+    goldReward: 6,
     weakness: 'ice',
     resistance: 'void',
     phases: [
@@ -1544,7 +1544,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 76,
     atk: 13,
     def: 6,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -1602,7 +1602,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 68,
     atk: 14,
     def: 4,
-    goldReward: 19,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -1660,7 +1660,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 84,
     atk: 17,
     def: 4,
-    goldReward: 25,
+    goldReward: 8,
     weakness: 'ice',
     resistance: 'fire',
     phases: [
@@ -1718,7 +1718,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 65,
     atk: 15,
     def: 4,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -1778,7 +1778,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 54,
     atk: 18,
     def: 2,
-    goldReward: 23,
+    goldReward: 7,
     weakness: 'ice',
     resistance: 'fire',
     phases: [
@@ -1839,7 +1839,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 82,
     atk: 18,
     def: 4,
-    goldReward: 85,
+    goldReward: 26,
     isBoss: true,
     weakness: 'fire',
     resistance: 'void',
@@ -1910,7 +1910,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 98,
     atk: 16,
     def: 4,
-    goldReward: 95,
+    goldReward: 28,
     isBoss: true,
     weakness: 'fire',
     resistance: 'ice',
@@ -1980,7 +1980,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 72,
     atk: 14,
     def: 5,
-    goldReward: 19,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -2038,7 +2038,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 55,
     atk: 15,
     def: 2,
-    goldReward: 18,
+    goldReward: 5,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -2098,7 +2098,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 85,
     atk: 18,
     def: 5,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'physical',
     resistance: 'ice',
     phases: [
@@ -2158,7 +2158,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 64,
     atk: 19,
     def: 3,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'void',
     phases: [
@@ -2216,7 +2216,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 60,
     atk: 14,
     def: 3,
-    goldReward: 19,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'void',
     phases: [
@@ -2279,7 +2279,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 90,
     atk: 12,
     def: 7,
-    goldReward: 23,
+    goldReward: 7,
     weakness: 'nature',
     resistance: 'fire',
     phases: [
@@ -2337,7 +2337,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 58,
     atk: 18,
     def: 3,
-    goldReward: 21,
+    goldReward: 6,
     weakness: 'ice',
     resistance: 'fire',
     phases: [
@@ -2394,7 +2394,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 66,
     atk: 15,
     def: 4,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'nature',
     resistance: 'void',
     phases: [
@@ -2455,7 +2455,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 95,
     atk: 17,
     def: 4,
-    goldReward: 90,
+    goldReward: 27,
     isBoss: true,
     weakness: 'nature',
     resistance: 'ice',
@@ -2525,7 +2525,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 68,
     atk: 13,
     def: 3,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -2585,7 +2585,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 72,
     atk: 14,
     def: 3,
-    goldReward: 21,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -2645,7 +2645,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 74,
     atk: 14,
     def: 3,
-    goldReward: 23,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'void',
     phases: [
@@ -2705,7 +2705,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 66,
     atk: 14,
     def: 4,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'physical',
     resistance: 'void',
     phases: [
@@ -2763,7 +2763,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 78,
     atk: 13,
     def: 5,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'nature',
     resistance: 'fire',
     phases: [
@@ -2821,7 +2821,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 56,
     atk: 15,
     def: 3,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'nature',
     resistance: 'ice',
     phases: [
@@ -2878,7 +2878,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 70,
     atk: 15,
     def: 3,
-    goldReward: 23,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'void',
     phases: [
@@ -2938,7 +2938,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 80,
     atk: 14,
     def: 4,
-    goldReward: 25,
+    goldReward: 8,
     weakness: 'physical',
     resistance: 'ice',
     phases: [
@@ -2998,7 +2998,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 90,
     atk: 16,
     def: 4,
-    goldReward: 85,
+    goldReward: 26,
     isBoss: true,
     weakness: 'fire',
     resistance: 'ice',
@@ -3069,7 +3069,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 92,
     atk: 16,
     def: 4,
-    goldReward: 95,
+    goldReward: 28,
     isBoss: true,
     weakness: 'nature',
     resistance: 'void',
@@ -3139,7 +3139,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 65,
     atk: 14,
     def: 3,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'void',
     resistance: 'ice',
     phases: [
@@ -3199,7 +3199,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 72,
     atk: 13,
     def: 3,
-    goldReward: 23,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'void',
     phases: [
@@ -3259,7 +3259,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 74,
     atk: 15,
     def: 3,
-    goldReward: 25,
+    goldReward: 8,
     weakness: 'nature',
     resistance: 'fire',
     phases: [
@@ -3319,7 +3319,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 68,
     atk: 14,
     def: 3,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -3377,7 +3377,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 76,
     atk: 14,
     def: 4,
-    goldReward: 26,
+    goldReward: 8,
     weakness: 'fire',
     resistance: 'void',
     phases: [
@@ -3437,7 +3437,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 86,
     atk: 15,
     def: 5,
-    goldReward: 27,
+    goldReward: 8,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -3496,7 +3496,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 62,
     atk: 17,
     def: 3,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'physical',
     resistance: 'ice',
     phases: [
@@ -3555,7 +3555,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 72,
     atk: 17,
     def: 4,
-    goldReward: 26,
+    goldReward: 8,
     weakness: 'physical',
     resistance: 'void',
     phases: [
@@ -3615,7 +3615,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 84,
     atk: 15,
     def: 4,
-    goldReward: 85,
+    goldReward: 26,
     isBoss: true,
     weakness: 'fire',
     resistance: 'ice',
@@ -3685,7 +3685,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 68,
     atk: 14,
     def: 4,
-    goldReward: 18,
+    goldReward: 5,
     weakness: 'void',
     resistance: 'nature',
     phases: [
@@ -3745,7 +3745,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 60,
     atk: 16,
     def: 3,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'ice',
     resistance: 'physical',
     phases: [
@@ -3805,7 +3805,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 85,
     atk: 15,
     def: 6,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'physical',
     phases: [
@@ -3863,7 +3863,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 72,
     atk: 18,
     def: 3,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'ice',
     resistance: 'nature',
     phases: [
@@ -3923,7 +3923,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 58,
     atk: 17,
     def: 3,
-    goldReward: 21,
+    goldReward: 6,
     weakness: 'ice',
     resistance: 'nature',
     phases: [
@@ -3983,7 +3983,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 76,
     atk: 19,
     def: 4,
-    goldReward: 27,
+    goldReward: 8,
     weakness: 'void',
     resistance: 'nature',
     phases: [
@@ -4043,7 +4043,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 90,
     atk: 15,
     def: 7,
-    goldReward: 26,
+    goldReward: 8,
     weakness: 'fire',
     resistance: 'physical',
     phases: [
@@ -4101,7 +4101,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 82,
     atk: 20,
     def: 4,
-    goldReward: 28,
+    goldReward: 8,
     weakness: 'ice',
     resistance: 'nature',
     phases: [
@@ -4161,7 +4161,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 92,
     atk: 15,
     def: 5,
-    goldReward: 80,
+    goldReward: 24,
     isBoss: true,
     weakness: 'void',
     resistance: 'physical',
@@ -4232,7 +4232,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 98,
     atk: 17,
     def: 4,
-    goldReward: 95,
+    goldReward: 28,
     isBoss: true,
     weakness: 'ice',
     resistance: 'nature',
@@ -4302,7 +4302,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 68,
     atk: 16,
     def: 4,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'ice',
     resistance: 'nature',
     phases: [
@@ -4362,7 +4362,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 58,
     atk: 15,
     def: 3,
-    goldReward: 18,
+    goldReward: 5,
     weakness: 'fire',
     resistance: 'physical',
     phases: [
@@ -4422,7 +4422,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 74,
     atk: 17,
     def: 5,
-    goldReward: 23,
+    goldReward: 7,
     weakness: 'ice',
     resistance: 'physical',
     phases: [
@@ -4482,7 +4482,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 80,
     atk: 16,
     def: 6,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'void',
     resistance: 'physical',
     phases: [
@@ -4540,7 +4540,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 62,
     atk: 17,
     def: 3,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'physical',
     resistance: 'nature',
     phases: [
@@ -4600,7 +4600,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 92,
     atk: 18,
     def: 5,
-    goldReward: 29,
+    goldReward: 9,
     weakness: 'ice',
     resistance: 'physical',
     phases: [
@@ -4658,7 +4658,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 84,
     atk: 17,
     def: 6,
-    goldReward: 25,
+    goldReward: 8,
     weakness: 'void',
     resistance: 'nature',
     phases: [
@@ -4716,7 +4716,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 64,
     atk: 18,
     def: 4,
-    goldReward: 28,
+    goldReward: 8,
     weakness: 'physical',
     resistance: 'ice',
     phases: [
@@ -4777,7 +4777,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 88,
     atk: 16,
     def: 4,
-    goldReward: 80,
+    goldReward: 24,
     isBoss: true,
     weakness: 'void',
     resistance: 'physical',
@@ -4848,7 +4848,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 95,
     atk: 17,
     def: 4,
-    goldReward: 95,
+    goldReward: 28,
     isBoss: true,
     weakness: 'ice',
     resistance: 'nature',
@@ -4917,7 +4917,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 62,
     atk: 14,
     def: 3,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'ice',
     phases: [
@@ -4976,7 +4976,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 78,
     atk: 15,
     def: 5,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'void',
     resistance: 'physical',
     phases: [
@@ -5034,7 +5034,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 85,
     atk: 17,
     def: 4,
-    goldReward: 26,
+    goldReward: 8,
     weakness: 'ice',
     resistance: 'nature',
     phases: [
@@ -5093,7 +5093,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 72,
     atk: 18,
     def: 5,
-    goldReward: 30,
+    goldReward: 9,
     weakness: 'nature',
     resistance: 'physical',
     phases: [
@@ -5152,7 +5152,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 58,
     atk: 13,
     def: 3,
-    goldReward: 18,
+    goldReward: 5,
     weakness: 'ice',
     resistance: 'nature',
     phases: [
@@ -5211,7 +5211,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 84,
     atk: 18,
     def: 6,
-    goldReward: 32,
+    goldReward: 10,
     weakness: 'fire',
     resistance: 'physical',
     phases: [
@@ -5269,7 +5269,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 56,
     atk: 13,
     def: 3,
-    goldReward: 19,
+    goldReward: 6,
     weakness: 'void',
     resistance: 'ice',
     phases: [
@@ -5328,7 +5328,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 76,
     atk: 15,
     def: 5,
-    goldReward: 25,
+    goldReward: 8,
     weakness: 'physical',
     resistance: 'ice',
     phases: [
@@ -5387,7 +5387,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 92,
     atk: 16,
     def: 4,
-    goldReward: 85,
+    goldReward: 26,
     isBoss: true,
     weakness: 'ice',
     resistance: 'physical',
@@ -5458,7 +5458,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 98,
     atk: 17,
     def: 4,
-    goldReward: 110,
+    goldReward: 33,
     isBoss: true,
     weakness: 'void',
     resistance: 'nature',
@@ -5527,7 +5527,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 62,
     atk: 14,
     def: 3,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'ice',
     resistance: 'nature',
     phases: [
@@ -5585,7 +5585,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 66,
     atk: 15,
     def: 4,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'physical',
     resistance: 'ice',
     phases: [
@@ -5643,7 +5643,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 75,
     atk: 16,
     def: 5,
-    goldReward: 26,
+    goldReward: 8,
     weakness: 'ice',
     resistance: 'physical',
     phases: [
@@ -5701,7 +5701,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 92,
     atk: 19,
     def: 7,
-    goldReward: 32,
+    goldReward: 10,
     weakness: 'void',
     resistance: 'physical',
     phases: [
@@ -5759,7 +5759,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 70,
     atk: 15,
     def: 5,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'physical',
     resistance: 'nature',
     phases: [
@@ -5817,7 +5817,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 64,
     atk: 14,
     def: 4,
-    goldReward: 21,
+    goldReward: 6,
     weakness: 'void',
     resistance: 'ice',
     phases: [
@@ -5875,7 +5875,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 58,
     atk: 13,
     def: 6,
-    goldReward: 18,
+    goldReward: 5,
     weakness: 'void',
     resistance: 'physical',
     phases: [
@@ -5933,7 +5933,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 68,
     atk: 19,
     def: 4,
-    goldReward: 30,
+    goldReward: 9,
     weakness: 'physical',
     resistance: 'nature',
     phases: [
@@ -5991,7 +5991,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 86,
     atk: 16,
     def: 4,
-    goldReward: 85,
+    goldReward: 26,
     isBoss: true,
     weakness: 'void',
     resistance: 'nature',
@@ -6059,7 +6059,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 96,
     atk: 17,
     def: 4,
-    goldReward: 110,
+    goldReward: 33,
     isBoss: true,
     weakness: 'ice',
     resistance: 'physical',
@@ -6127,7 +6127,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 74,
     atk: 16,
     def: 4,
-    goldReward: 24,
+    goldReward: 7,
     weakness: 'ice',
     resistance: 'nature',
     phases: [
@@ -6186,7 +6186,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 85,
     atk: 14,
     def: 6,
-    goldReward: 22,
+    goldReward: 7,
     weakness: 'fire',
     resistance: 'physical',
     phases: [
@@ -6245,7 +6245,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 60,
     atk: 15,
     def: 3,
-    goldReward: 20,
+    goldReward: 6,
     weakness: 'ice',
     resistance: 'physical',
     phases: [
@@ -6304,7 +6304,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 82,
     atk: 15,
     def: 7,
-    goldReward: 26,
+    goldReward: 8,
     weakness: 'void',
     resistance: 'physical',
     phases: [
@@ -6362,7 +6362,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 90,
     atk: 19,
     def: 5,
-    goldReward: 30,
+    goldReward: 9,
     weakness: 'ice',
     resistance: 'nature',
     phases: [
@@ -6420,7 +6420,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 80,
     atk: 17,
     def: 4,
-    goldReward: 25,
+    goldReward: 8,
     weakness: 'ice',
     resistance: 'physical',
     phases: [
@@ -6478,7 +6478,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 68,
     atk: 20,
     def: 3,
-    goldReward: 32,
+    goldReward: 10,
     weakness: 'physical',
     resistance: 'ice',
     phases: [
@@ -6536,7 +6536,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 65,
     atk: 13,
     def: 5,
-    goldReward: 18,
+    goldReward: 5,
     weakness: 'void',
     resistance: 'ice',
     phases: [
@@ -6594,7 +6594,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 94,
     atk: 17,
     def: 4,
-    goldReward: 95,
+    goldReward: 28,
     isBoss: true,
     weakness: 'ice',
     resistance: 'nature',
@@ -6662,7 +6662,7 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
     hp: 54,
     atk: 13,
     def: 3,
-    goldReward: 19,
+    goldReward: 6,
     weakness: 'fire',
     resistance: 'nature',
     phases: [

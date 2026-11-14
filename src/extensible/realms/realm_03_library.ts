@@ -14,11 +14,11 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     title: '第101層：星なき書架の序章',
     subtitle: '静寂に沈む禁書庫への入口',
     encounters: [
-      { type: 'battle', enemyId: 'living_tome', enemyStatScale: 1.1 },
-      { type: 'battle', enemyId: 'ink_phantom', enemyStatScale: 1.1 },
+      { type: 'battle', enemyId: 'living_tome', enemyStatScale: 1.221 },
+      { type: 'battle', enemyId: 'ink_phantom', enemyStatScale: 1.221 },
       { type: 'event', eventId: 'apprentice_desk' },
-      { type: 'battle', enemyId: 'brass_astrolabe', enemyStatScale: 1.1 },
-      { type: 'battle', enemyIds: ['living_tome', 'ink_phantom'], enemyStatScale: 1.1 },
+      { type: 'battle', enemyId: 'brass_astrolabe', enemyStatScale: 1.221 },
+      { type: 'battle', enemyIds: ['living_tome', 'ink_phantom'], enemyStatScale: 1.221 },
     ],
     rewardPool: {
       equipmentIds: ['stargazer_silver_sword', 'librarian_robe'],
@@ -39,11 +39,11 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     title: '第102層：彷徨える目録の回廊',
     subtitle: '宙を漂う羊皮紙の群れと時を刻む天球儀が侵入者を拒む、虚空の図書回廊',
     encounters: [
-      { type: 'battle', enemyId: 'living_tome', enemyStatScale: 1.1 },
-      { type: 'battle', enemyId: 'chronos_moth', enemyStatScale: 1.1 },
+      { type: 'battle', enemyId: 'living_tome', enemyStatScale: 1.221 },
+      { type: 'battle', enemyId: 'chronos_moth', enemyStatScale: 1.221 },
       { type: 'event', eventId: 'catalog_pedestal' },
-      { type: 'battle', enemyIds: ['living_tome', 'ink_phantom'], enemyStatScale: 1.1 },
-      { type: 'battle', enemyIds: ['chronos_moth', 'brass_astrolabe'], enemyStatScale: 1.1 },
+      { type: 'battle', enemyIds: ['living_tome', 'ink_phantom'], enemyStatScale: 1.221 },
+      { type: 'battle', enemyIds: ['chronos_moth', 'brass_astrolabe'], enemyStatScale: 1.221 },
     ],
     rewardPool: {
       equipmentIds: ['astral_quill', 'stargazer_silver_sword', 'librarian_robe'],
@@ -64,11 +64,11 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     title: '第103層：星図の閲覧室',
     subtitle: '宙に浮かぶ星図の合間に虚空の筆記者が潜み、旅人に束の間の休息をもたらす静寂の間',
     encounters: [
-      { type: 'battle', enemyId: 'void_scribe', enemyStatScale: 1.1 },
-      { type: 'battle', enemyIds: ['ink_phantom', 'chronos_moth'], enemyStatScale: 1.1 },
+      { type: 'battle', enemyId: 'void_scribe', enemyStatScale: 1.221 },
+      { type: 'battle', enemyIds: ['ink_phantom', 'chronos_moth'], enemyStatScale: 1.221 },
       { type: 'event', eventId: 'silent_alcove' },
-      { type: 'battle', enemyIds: ['void_scribe', 'brass_astrolabe'], enemyStatScale: 1.1 },
-      { type: 'battle', enemyIds: ['living_tome', 'ink_phantom'], enemyStatScale: 1.1 },
+      { type: 'battle', enemyIds: ['void_scribe', 'brass_astrolabe'], enemyStatScale: 1.221 },
+      { type: 'battle', enemyIds: ['living_tome', 'ink_phantom'], enemyStatScale: 1.221 },
     ],
     rewardPool: {
       equipmentIds: ['starlight_robe', 'astral_quill', 'stargazer_silver_sword', 'librarian_robe'],
@@ -89,11 +89,11 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
     title: '第104層：星影の写字廊',
     subtitle: '音もなく滑空する星影のフクロウが、古の写字室へと続く書架の回廊を監視している',
     encounters: [
-      { type: 'battle', enemyId: 'astral_owl', enemyStatScale: 0.95 },
-      { type: 'battle', enemyIds: ['void_scribe', 'chronos_moth'], enemyStatScale: 0.95 },
+      { type: 'battle', enemyId: 'astral_owl', enemyStatScale: 1.054 },
+      { type: 'battle', enemyIds: ['void_scribe', 'chronos_moth'], enemyStatScale: 1.054 },
       { type: 'event', eventId: 'forgotten_scriptorium' },
-      { type: 'battle', enemyIds: ['astral_owl', 'brass_astrolabe'], enemyStatScale: 0.95 },
-      { type: 'battle', enemyIds: ['void_scribe', 'astral_owl'], enemyStatScale: 0.95 },
+      { type: 'battle', enemyIds: ['astral_owl', 'brass_astrolabe'], enemyStatScale: 1.054 },
+      { type: 'battle', enemyIds: ['void_scribe', 'astral_owl'], enemyStatScale: 1.054 },
     ],
     rewardPool: {
       equipmentIds: ['starlight_robe', 'astral_quill', 'stargazer_silver_sword', 'librarian_robe'],
