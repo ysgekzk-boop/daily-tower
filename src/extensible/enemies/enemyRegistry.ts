@@ -6653,5 +6653,66 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  astral_owl: {
+    id: 'astral_owl',
+    name: '星影のフクロウ',
+    spriteId: 'astral_owl',
+    palette: 'astral_owl',
+    hp: 58,
+    atk: 15,
+    def: 3,
+    goldReward: 19,
+    weakness: 'fire',
+    resistance: 'nature',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '星影の急襲',
+            type: 'attack',
+            weight: 65,
+            damageMultiplier: 1.0,
+            logMessage: '星影のフクロウが音もなく急降下し、鋭い鉤爪で切り裂いた！',
+          },
+          {
+            name: '知恵の眼光',
+            type: 'debuff',
+            weight: 35,
+            statusId: 'def_debuff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '星影のフクロウの冷たい眼光が防御の隙を見抜いた！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 40,
+        phaseName: '星影顕現',
+        actions: [
+          {
+            name: '虚空の羽ばたき',
+            type: 'debuff',
+            weight: 70,
+            damageMultiplier: 1.4,
+            statusId: 'atk_debuff',
+            statusValue: 15,
+            statusDuration: 2,
+            logMessage: '虚空の羽ばたきが虚空の風を巻き起こし、体勢を崩させた！',
+          },
+          {
+            name: '夜闇の翼',
+            type: 'buff',
+            weight: 30,
+            statusId: 'atk_buff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '星影のフクロウが翼を広げ、闇の魔力を纏った！',
+          },
+        ],
+      },
+    ],
+  },
 };
 

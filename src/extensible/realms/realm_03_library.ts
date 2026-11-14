@@ -83,4 +83,29 @@ export const REALM_03_FLOORS: FloorDefinition[] = [
       ],
     },
   },
+  {
+    floor: 104,
+    realm: 3,
+    title: '第104層：星影の写字廊',
+    subtitle: '音もなく滑空する星影のフクロウが、古の写字室へと続く書架の回廊を監視している',
+    encounters: [
+      { type: 'battle', enemyId: 'astral_owl', enemyStatScale: 1.1 },
+      { type: 'battle', enemyIds: ['void_scribe', 'chronos_moth'], enemyStatScale: 1.1 },
+      { type: 'event', eventId: 'forgotten_scriptorium' },
+      { type: 'battle', enemyIds: ['astral_owl', 'brass_astrolabe'], enemyStatScale: 1.1 },
+      { type: 'battle', enemyIds: ['void_scribe', 'astral_owl'], enemyStatScale: 1.1 },
+    ],
+    rewardPool: {
+      equipmentIds: ['starlight_robe', 'astral_quill', 'stargazer_silver_sword', 'librarian_robe'],
+      skillIds: ['star_rend', 'arcane_ward', 'ink_burst', 'chrono_flip', 'flame_wave', 'frost_lance', 'aegis_stance'],
+      utilityIds: [
+        'guardian_crest_relic',
+        'bookmark_charm_relic',
+        'vampiric_fang_relic',
+        'berserker_idol_relic',
+        'venom_gland_relic',
+        'golden_compass_relic',
+      ],
+    },
+  },
 ];

@@ -1497,6 +1497,21 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '秘術の結界',
     colors: ['transparent', '#1d2d44', '#4ea8de', '#caf0f8'],
   },
+  astral_owl: {
+    id: 'astral_owl',
+    name: '星影のフクロウ',
+    colors: ['transparent', '#181d27', '#5c6b73', '#e0fbfc'],
+  },
+  item_starlight_ink_vial: {
+    id: 'item_starlight_ink_vial',
+    name: '星明かりのインク瓶',
+    colors: ['transparent', '#1b263b', '#4ea8de', '#f4f1de'],
+  },
+  item_star_rend: {
+    id: 'item_star_rend',
+    name: '星裂きの連撃',
+    colors: ['transparent', '#1b1f3b', '#f4a261', '#fefae0'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1801,6 +1816,9 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   void_scribe: { id: 'void_scribe', matrixId: 'void_scribe', defaultPalette: 'void_scribe' },
   item_starlight_robe: { id: 'item_starlight_robe', matrixId: 'item_starlight_robe', defaultPalette: 'item_starlight_robe' },
   item_arcane_ward: { id: 'item_arcane_ward', matrixId: 'item_arcane_ward', defaultPalette: 'item_arcane_ward' },
+  astral_owl: { id: 'astral_owl', matrixId: 'astral_owl', defaultPalette: 'astral_owl' },
+  item_starlight_ink_vial: { id: 'item_starlight_ink_vial', matrixId: 'item_starlight_ink_vial', defaultPalette: 'item_starlight_ink_vial' },
+  item_star_rend: { id: 'item_star_rend', matrixId: 'item_star_rend', defaultPalette: 'item_star_rend' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

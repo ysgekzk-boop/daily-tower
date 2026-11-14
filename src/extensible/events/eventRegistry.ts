@@ -1267,6 +1267,40 @@ export const EVENT_REGISTRY: Record<string, GameEventDefinition> = {
       },
     ],
   },
+
+  forgotten_scriptorium: {
+    id: 'forgotten_scriptorium',
+    title: '忘れられた写字室',
+    category: 'lore',
+    description:
+      '書架の奥に、埃をかぶった古い写字台が残されている。机の上には封蝋された小瓶と、金箔で装飾された古文書が置かれている。',
+    speakerSpriteId: 'tome',
+    palette: 'arcane_tome',
+    options: [
+      {
+        id: 'peel_gold_leaf',
+        label: '金箔の装飾を丁寧に剥がして回収する',
+        description: '古文書を傷つけないよう金箔だけを回収し、確実な資金を得る（+22 G）。',
+        outcome: {
+          grantGold: 22,
+          logMessage: '金箔の装飾を丁寧に剥がし、22 G を得た！',
+        },
+      },
+      {
+        id: 'break_starlight_seal',
+        label: '封蝋を解き、星明かりのインク瓶を手に入れる',
+        description:
+          '封印を解く代償として魔力に体力を吸われるが、貴重な携帯用インク瓶を確保する（最大HPの15%を消費し、星明かりのインク瓶を獲得）。',
+        cost: {
+          hpPercent: 15,
+        },
+        outcome: {
+          specificItemId: 'starlight_ink_vial',
+          logMessage: '封蝋を解き、星明かりのインク瓶を手に入れた！',
+        },
+      },
+    ],
+  },
 };
 
 

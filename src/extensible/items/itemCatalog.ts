@@ -1894,6 +1894,23 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     salvageGold: 42,
     description: '炉心の熱波を周囲に解放する全体攻撃。敵全体に0.85倍ダメージを与える（1戦3回）。',
   },
+  star_rend: {
+    id: 'star_rend',
+    name: '星裂きの連撃',
+    kind: 'skill',
+    spriteId: 'item_star_rend',
+    category: 'attack',
+    maxChargesPerBattle: 2,
+    damageMultiplier: 1.55,
+    applyStatus: {
+      target: 'self',
+      statusId: 'atk_buff',
+      value: 15,
+      duration: 2,
+    },
+    salvageGold: 30,
+    description: '星光を纏った二連撃を叩き込み、攻撃の勢いをそのまま次の行動へ繋げる。',
+  },
 };
 
 export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
@@ -2233,6 +2250,16 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
       duration: 3,
     },
     description: 'HPを45%回復し状態異常を浄化、さらに35ダメージを吸収する障壁(3T)を得る秘薬（最大3チャージ）。',
+  },
+  starlight_ink_vial: {
+    id: 'starlight_ink_vial',
+    name: '星明かりのインク瓶',
+    kind: 'consumable',
+    spriteId: 'item_starlight_ink_vial',
+    maxCharges: 2,
+    healPercent: 30,
+    cleanse: true,
+    description: '星屑を溶かし込んだ携帯用の魔導インク瓶。飲むことで傷を癒やし精神の濁りを払う。',
   },
 };
 
