@@ -71,9 +71,9 @@ my_golem: {
 - Every item must declare a `spriteId` of the form `item_<item id>` (see §2.7). `tests/item_sprites.test.ts` fails when an item has no registered sprite.
 
 ### 2.7 Item Sprites (`src/extensible/sprites/`)
-- Items are drawn with the same pixel-sprite system as enemies: an 8×8 grid in `MATRIX_REGISTRY` (`src/extensible/sprites/matrixRegistry.ts`), a 4-color palette in `PALETTE_REGISTRY`, and an entry in `SPRITE_REGISTRY` (`src/extensible/sprites/spriteRegistry.ts`), all keyed `item_<item id>`.
+- Items are drawn with the same pixel-sprite system as enemies: a 32×32 grid in `MATRIX_REGISTRY` (`src/extensible/sprites/matrixRegistry.ts`), a 4-color palette in `PALETTE_REGISTRY`, and an entry in `SPRITE_REGISTRY` (`src/extensible/sprites/spriteRegistry.ts`), all keyed `item_<item id>`.
 - Grid values: 0 = transparent, 1 = dark tone / outline, 2 = main fill, 3 = highlight / accent. Palette `colors` follow the same order (`['transparent', dark, main, accent]`).
-- Style rules for a consistent look: one centered silhouette per icon, readable at 24px; bladed weapons use a diagonal composition (tip top-right, handle bottom-left); armor uses a torso silhouette; keep the accent color (index 3) to small details — gems, glows, buckles, drops.
+- Style rules for a consistent look: one centered silhouette per icon, readable at 24px; bladed weapons use a diagonal composition (tip top-right, handle bottom-left); armor uses a torso silhouette; keep the accent color (index 3) to small details — gems, glows, buckles, drops. At 32×32, fill the silhouette solidly with the main color (no sparse line art): the subject should span at least 22 cells wide, and use the main + accent colors for volume and shading.
 - When adding an item, add its matrix + palette + sprite entry in the same change, and eyeball it next to the existing item sprites (a contact sheet) before committing.
 
 ### 2.5 Multi-Enemy Battles & AoE Skills

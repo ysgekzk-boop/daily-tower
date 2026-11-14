@@ -23,15 +23,15 @@ describe('item sprites (every catalog item has a registered pixel sprite)', () =
   });
 
   it.each(ALL_ITEMS.map((item) => [item.id, item] as const))(
-    '%s: spriteId resolves to an 8x8 or 32x32 grid (values 0-3) and a 4-color palette',
+    '%s: spriteId resolves to a 32x32 grid (values 0-3) and a 4-color palette',
     (_id, item) => {
       const def = SPRITE_REGISTRY[item.spriteId];
       expect(def, `SPRITE_REGISTRY is missing "${item.spriteId}"`).toBeDefined();
       const grid = MATRIX_REGISTRY[def.matrixId];
       expect(grid, `MATRIX_REGISTRY is missing "${def.matrixId}"`).toBeDefined();
-      expect([8, 32]).toContain(grid.length);
+      expect(grid.length).toBe(32);
       for (const row of grid) {
-        expect(row.length).toBe(grid.length);
+        expect(row.length).toBe(32);
         for (const v of row) expect([0, 1, 2, 3]).toContain(v);
       }
       const palette = PALETTE_REGISTRY[def.defaultPalette];
