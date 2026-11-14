@@ -8,6 +8,7 @@ import { PixelSpriteCanvas } from './PixelSpriteCanvas';
 import { InfoTip } from './InfoTip';
 import { EnemyPhase } from '../extensible/enemies/types';
 import { ELEMENT_META } from '../utils/elements';
+import { HitFxKind, HitFxSourceType } from '../utils/combatFx';
 
 export type CombatMotionState =
   | 'idle'
@@ -25,7 +26,10 @@ export interface HitFx {
   side: 'player' | 'enemy';
   index: number; // enemy index (0 for the player)
   amount: number;
-  kind: 'damage' | 'heal' | 'shield' | 'critical' | 'weak' | 'resist';
+  kind: HitFxKind;
+  sourceType?: HitFxSourceType;
+  sourceLabel?: string;
+  shieldAbsorbed?: number;
 }
 
 interface BattleStage2DProps {
@@ -134,6 +138,48 @@ function HpBar({ value, max, color, label }: { value: number; max: number; color
   );
 }
 
+function flashColorClass(f: HitFx): string {
+  switch (f.sourceType) {
+    case 'burn':
+      return 'bg-orange-500/75';
+    case 'poison':
+      return 'bg-purple-500/75';
+    case 'relic':
+      return 'bg-fuchsia-400/75';
+    case 'event':
+      return 'bg-rose-500/70';
+    default:
+      if (f.kind === 'critical') return 'bg-rose-400/80';
+      if (f.kind === 'weak') return 'bg-amber-300/80';
+      return 'bg-white/80';
+  }
+}
+
+function sourceBadgeClass(sourceType?: HitFxSourceType): string {
+  switch (sourceType) {
+    case 'burn':
+      return 'border-orange-400/80 bg-orange-950/95 text-orange-200';
+    case 'poison':
+      return 'border-purple-400/80 bg-purple-950/95 text-purple-200';
+    case 'relic':
+      return 'border-fuchsia-400/80 bg-fuchsia-950/95 text-fuchsia-200';
+    case 'skill':
+      return 'border-indigo-400/80 bg-indigo-950/95 text-indigo-200';
+    case 'weapon':
+      return 'border-amber-400/70 bg-slate-950/95 text-amber-200';
+    case 'enemy_attack':
+      return 'border-rose-400/80 bg-rose-950/95 text-rose-200';
+    case 'event':
+      return 'border-rose-400/80 bg-slate-950/95 text-rose-200';
+    case 'heal':
+      return 'border-emerald-400/80 bg-emerald-950/95 text-emerald-200';
+    case 'shield':
+      return 'border-sky-400/80 bg-sky-950/95 text-sky-200';
+    default:
+      return 'border-slate-500/70 bg-slate-950/95 text-slate-200';
+  }
+}
+
 function FxLayer({ fx, align }: { fx: HitFx[]; align: 'player' | 'enemy' }) {
   if (fx.length === 0) return null;
   const isFlash = (kind: HitFx['kind']) =>
@@ -146,10 +192,10 @@ function FxLayer({ fx, align }: { fx: HitFx[]; align: 'player' | 'enemy' }) {
         .map((f) => (
           <div
             key={`flash-${f.key}`}
-            className="fx-hit-flash pointer-events-none absolute inset-x-2 top-6 bottom-4 z-20 rounded-full bg-white/80 blur-[3px]"
+            className={`fx-hit-flash pointer-events-none absolute inset-x-2 top-6 bottom-4 z-20 rounded-full blur-[3px] ${flashColorClass(f)}`}
           />
         ))}
-      {fx.map((f) => {
+      {fx.map((f, idx) => {
         let label = `-${f.amount}`;
         let colorClass = align === 'player' ? 'text-rose-300' : 'text-amber-200';
         let sizeClass = 'text-lg sm:text-2xl font-extrabold';
@@ -158,8 +204,9 @@ function FxLayer({ fx, align }: { fx: HitFx[]; align: 'player' | 'enemy' }) {
           label = `+${f.amount}`;
           colorClass = 'text-emerald-300';
         } else if (f.kind === 'shield') {
-          label = `🛡️${f.amount}`;
+          label = `🛡️${f.amount} 吸収`;
           colorClass = 'text-sky-300';
+          sizeClass = 'text-base sm:text-xl font-extrabold';
         } else if (f.kind === 'critical') {
           label = `会心！ -${f.amount}`;
           colorClass = 'text-rose-500 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]';
@@ -172,15 +219,41 @@ function FxLayer({ fx, align }: { fx: HitFx[]; align: 'player' | 'enemy' }) {
           label = `-${f.amount}（耐性）`;
           colorClass = 'text-slate-400';
           sizeClass = 'text-base sm:text-lg font-medium';
+        } else if (f.sourceType === 'burn') {
+          colorClass = 'text-orange-400';
+        } else if (f.sourceType === 'poison') {
+          colorClass = 'text-purple-300';
+        } else if (f.sourceType === 'relic') {
+          colorClass = 'text-fuchsia-300';
         }
 
+        // Stagger simultaneous popups vertically so stacked effects remain readable
+        const stackOffsetPx = (fx.length - 1 - idx) * 28;
+
         return (
-          <span
+          <div
             key={f.key}
-            className={`fx-float-damage pointer-events-none absolute -top-6 right-0 left-0 z-30 text-center font-mono whitespace-nowrap ${colorClass} ${sizeClass}`}
+            style={{ top: `${-36 - stackOffsetPx}px` }}
+            className="fx-float-damage pointer-events-none absolute left-1/2 z-30 flex -translate-x-1/2 flex-col items-center whitespace-nowrap"
           >
-            {label}
-          </span>
+            {f.sourceLabel && (
+              <span
+                className={`mb-0.5 rounded-full border px-2 py-0.5 text-[10px] sm:text-[11px] font-extrabold tracking-tight shadow-md ${sourceBadgeClass(
+                  f.sourceType
+                )}`}
+              >
+                {f.sourceLabel}
+              </span>
+            )}
+            <span className={`font-mono leading-none ${colorClass} ${sizeClass}`}>
+              {label}
+            </span>
+            {f.shieldAbsorbed && f.shieldAbsorbed > 0 ? (
+              <span className="mt-0.5 rounded bg-sky-950/90 px-1.5 py-0.5 font-mono text-[9px] sm:text-[10px] font-bold text-sky-300 border border-sky-400/50">
+                🛡️ 障壁が{f.shieldAbsorbed}吸収
+              </span>
+            ) : null}
+          </div>
         );
       })}
     </>
@@ -311,7 +384,13 @@ export function BattleStage2D({
     <div
       key={encounterKey}
       className={`anim-stage-enter relative w-full h-72 sm:h-84 md:h-96 lg:h-[clamp(26rem,52dvh,36rem)] rounded-2xl border-2 overflow-clip select-none shadow-2xl ${
-        hitFx?.some((f) => f.side === 'player' && f.kind === 'damage') ? 'fx-stage-shake' : ''
+        hitFx?.some(
+          (f) =>
+            f.side === 'player' &&
+            (f.kind === 'damage' || f.kind === 'critical' || f.kind === 'weak' || f.kind === 'resist')
+        )
+          ? 'fx-stage-shake'
+          : ''
       } ${
         isVolcano
           ? 'border-orange-900/70 bg-gradient-to-b from-stone-950 via-red-950/80 to-orange-950/90'

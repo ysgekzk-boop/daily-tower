@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { AreaEngine } from './core/AreaEngine';
+import { PlayerCommand } from './core/CombatEngine';
 import { EventEngine } from './core/EventEngine';
 import { BattleStage2D, CombatMotionState, HitFx } from './components/BattleStage2D';
 import { BestiaryModal } from './components/BestiaryModal';
@@ -14,6 +15,7 @@ import { PixelSpriteCanvas } from './components/PixelSpriteCanvas';
 import { ACHIEVEMENTS } from './extensible/achievements/achievements';
 import { LATEST_AUTHORED_FLOOR, isFloorAuthored } from './extensible/realms/realmIndex';
 import { useGameStore } from './store/useGameStore';
+import { extractTurnHitFx } from './utils/combatFx';
 import {
   formatArchiveXShareText,
   formatDefeatXShareText,
@@ -219,12 +221,14 @@ export function App() {
   ]);
 
   // Floating combat numbers: diff the battle session before/after each resolved turn.
-  // Enemy-side results appear with the player's action; player-side results are
-  // delayed ~700ms so they land with the enemy's retaliation motion.
+  // Each damage source (weapon, skill, relic, burn, poison, enemy attack, event)
+  // is emitted separately with an explicit sourceLabel and staggered timing.
   const [hitFx, setHitFx] = useState<HitFx[]>([]);
   const prevSessionRef = useRef<typeof battleSession>(null);
   const prevBattleKeyRef = useRef<string>('');
   const fxKeyRef = useRef(0);
+  const lastCombatCmdRef = useRef<PlayerCommand | undefined>(undefined);
+  const eventFxActiveUntilRef = useRef<number>(0);
 
   const SFX_KNOWN_PRESETS = new Set<string>([
     'click',
@@ -246,6 +250,10 @@ export function App() {
   ]);
 
   const playHitFxSound = (fx: Omit<HitFx, 'key'>) => {
+    if (fx.sourceType === 'burn' || fx.sourceType === 'poison' || fx.sourceType === 'status') {
+      playSfx('debuff');
+      return;
+    }
     const kindStr = fx.kind as string;
     // Prefer preset matching the kind name if available (e.g. 'critical' / 'weak')
     if (kindStr !== 'damage' && SFX_KNOWN_PRESETS.has(kindStr)) {
@@ -253,7 +261,7 @@ export function App() {
       return;
     }
     if (fx.kind === 'damage' || fx.kind === 'resist') {
-      if (fx.side === 'enemy') {
+      if (fx.side === 'enemy' || fx.sourceType === 'event') {
         playSfx('hit');
       }
     } else if (fx.kind === 'heal') {
@@ -263,59 +271,48 @@ export function App() {
     }
   };
 
+  const spawnHitFx = (fx: Omit<HitFx, 'key'>, delayMs: number) => {
+    const key = ++fxKeyRef.current;
+    const entry: HitFx = { ...fx, key };
+    window.setTimeout(() => {
+      setHitFx((cur) => [...cur.slice(-11), entry]);
+      playHitFxSound(fx);
+      window.setTimeout(() => {
+        setHitFx((cur) => cur.filter((f) => f.key !== key));
+      }, 1350);
+    }, delayMs);
+  };
+
   useEffect(() => {
     const battleKey = `${saveData.midFloor.currentFloor}:${saveData.midFloor.currentEncounterIndex}`;
     const prev = prevSessionRef.current;
     const next = battleSession;
     if (!next || !prev || prev === next || prevBattleKeyRef.current !== battleKey) {
-      if (prevBattleKeyRef.current !== battleKey) setHitFx([]);
+      if (prevBattleKeyRef.current !== battleKey && Date.now() >= eventFxActiveUntilRef.current) {
+        setHitFx([]);
+      }
       prevSessionRef.current = next;
       prevBattleKeyRef.current = battleKey;
       return;
     }
     prevSessionRef.current = next;
 
-    const spawn = (fx: Omit<HitFx, 'key'>, delayMs: number) => {
-      const key = ++fxKeyRef.current;
-      const entry: HitFx = { ...fx, key };
-      window.setTimeout(() => {
-        setHitFx((cur) => [...cur.slice(-11), entry]);
-        playHitFxSound(fx);
-        window.setTimeout(() => {
-          setHitFx((cur) => cur.filter((f) => f.key !== key));
-        }, 1000);
-      }, delayMs);
-    };
-    const shieldOf = (c: { statuses: { statusId: string; value: number }[] }): number =>
-      c.statuses.find((x) => x.statusId === 'shield')?.value ?? 0;
-
-    next.enemies.forEach((enemy, i) => {
-      const before = prev.enemies[i];
-      if (!before) return;
-      const dmg = before.currentHp - enemy.currentHp;
-      if (dmg > 0) {
-        let kind: HitFx['kind'] = 'damage';
-        const fxMeta = next.lastActionFx;
-        if (fxMeta?.critTargets.includes(i)) {
-          kind = 'critical';
-        } else if (fxMeta?.weakTargets.includes(i)) {
-          kind = 'weak';
-        } else if (fxMeta?.resistTargets.includes(i)) {
-          kind = 'resist';
-        }
-        spawn({ side: 'enemy', index: i, amount: dmg, kind }, 0);
-      }
-      const absorbed = shieldOf(before) - shieldOf(enemy);
-      if (absorbed > 0) spawn({ side: 'enemy', index: i, amount: absorbed, kind: 'shield' }, 0);
-    });
-    const pDmg = prev.player.currentHp - next.player.currentHp;
-    if (pDmg > 0) {
-      const kind: HitFx['kind'] = next.lastActionFx?.playerCrit ? 'critical' : 'damage';
-      spawn({ side: 'player', index: 0, amount: pDmg, kind }, 700);
+    const events = extractTurnHitFx(prev, next, saveData.inventory, lastCombatCmdRef.current);
+    for (const ev of events) {
+      spawnHitFx(
+        {
+          side: ev.side,
+          index: ev.index,
+          amount: ev.amount,
+          kind: ev.kind,
+          sourceType: ev.sourceType,
+          sourceLabel: ev.sourceLabel,
+          shieldAbsorbed: ev.shieldAbsorbed,
+        },
+        ev.delayMs
+      );
     }
-    if (pDmg < 0) spawn({ side: 'player', index: 0, amount: -pDmg, kind: 'heal' }, 0);
-    const pAbsorbed = shieldOf(prev.player) - shieldOf(next.player);
-    if (pAbsorbed > 0) spawn({ side: 'player', index: 0, amount: pAbsorbed, kind: 'shield' }, 700);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [battleSession, saveData.midFloor.currentFloor, saveData.midFloor.currentEncounterIndex]);
 
   const currentHp =
@@ -382,9 +379,10 @@ export function App() {
       }
 
       // Execute actual combat calculations (with the selected target)
-      performCombatCommand(
-        cmd.type === 'consumable' ? cmd : { ...cmd, targetIndex }
-      );
+      const resolvedCmd: PlayerCommand =
+        cmd.type === 'consumable' ? cmd : { ...cmd, targetIndex };
+      lastCombatCmdRef.current = resolvedCmd;
+      performCombatCommand(resolvedCmd);
 
       setTimeout(() => {
         // Step 3: Enemy retaliate motion if combat is still ongoing
@@ -924,6 +922,40 @@ export function App() {
                         disabled={!affordable}
                         onClick={() => {
                           playSfx('event');
+                          const hpCost = opt.cost?.hpPercent
+                            ? Math.floor((playerMaxHp * opt.cost.hpPercent) / 100)
+                            : 0;
+                          const hpHeal = opt.outcome.healHpPercent
+                            ? Math.floor((playerMaxHp * opt.outcome.healHpPercent) / 100)
+                            : 0;
+                          if (hpCost > 0) {
+                            eventFxActiveUntilRef.current = Date.now() + 1400;
+                            spawnHitFx(
+                              {
+                                side: 'player',
+                                index: 0,
+                                amount: hpCost,
+                                kind: 'damage',
+                                sourceType: 'event',
+                                sourceLabel: `📜 ${activeEvent.title}`,
+                              },
+                              0
+                            );
+                          }
+                          if (hpHeal > 0) {
+                            eventFxActiveUntilRef.current = Date.now() + 1400;
+                            spawnHitFx(
+                              {
+                                side: 'player',
+                                index: 0,
+                                amount: hpHeal,
+                                kind: 'heal',
+                                sourceType: 'heal',
+                                sourceLabel: `📜 ${activeEvent.title}`,
+                              },
+                              hpCost > 0 ? 220 : 0
+                            );
+                          }
                           selectEventOption(opt);
                         }}
                         className="flex w-full items-center justify-between rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-left transition hover:border-amber-400 hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"

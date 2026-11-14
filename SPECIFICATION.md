@@ -218,6 +218,23 @@ export interface EnemyDefinition {
 - **Phase Selection:** `FloorRunner` chooses the highest-priority phase whose `hpThresholdPercent >= (currentHp / maxHp) * 100`.
 - **Early Game vs Low HP:** At 100% HP, enemy uses basic attacks and minor buffs with balanced weights. When HP falls (e.g., < 40%), an enraged phase triggers with heavier damage multipliers or multi-turn debuffs.
 
+### 4.5 Explicit Damage-Source Presentation (`src/utils/combatFx.ts`, `BattleStage2D.tsx`)
+Every HP loss, heal, and shield absorption on both the player and enemies must explicitly display its cause on the 2D battle stage (`FxLayer`) rather than lumping multiple sources into a single turn-end number:
+1. **Per-Source Extraction (`extractTurnHitFx`):** Parses the resolved turn's `CombatEngine` logs and reconciles against HP deltas without modifying `src/core/`:
+   - **Player -> Enemy:**
+     - **Weapon Attack:** `<ElementIcon> <WeaponName>` (with critical / weak / resist / shield-absorb callouts).
+     - **Skill Attack:** `✨ <SkillName>` (single-target or per-target for `all_enemies`).
+     - **Relic / Equipment Bonus Damage (`on_attack` / `on_skill_use`):** `📿 <RelicName>` / `⚔️ <EquipmentName>` (staggered at `+220ms`).
+     - **Turn-Start Status DoT:** `🔥 火傷` / `☠️ 猛毒` / `<Icon> <StatusName>` (staggered at enemy turn start).
+   - **Enemy / Environment / Event -> Player:**
+     - **Turn-Start Status DoT:** `🔥 火傷` / `☠️ 猛毒` / `<Icon> <StatusName>` (shown at turn start, never merged into enemy retaliation).
+     - **Enemy Attack:** `👾 <EnemyName>「<ActionName>」` (staggered per living enemy in multi-enemy encounters; shown even when 100% absorbed by `shield`).
+     - **Event HP Cost / Heal:** `📜 <EventTitle>` (shown when an event option spends or restores HP).
+   - **Player Heal:** `✨ <SkillName>` / `🧪 <ConsumableName>` / `📿 <RelicName>` / `⚔️ <EquipmentName>`.
+2. **Visual & Audio Differentiation:**
+   - Each popup displays a color-coded source pill badge above the damage/heal value, source-tinted hit flashes (`burn` = orange, `poison` = purple, `relic` = fuchsia, `critical` = rose, `weak` = amber), and vertical stacking offsets when multiple effects land simultaneously.
+   - Status DoT triggers the `debuff` SFX preset; `fx-stage-shake` triggers on any player damage kind including criticals.
+
 ---
 
 ## 5. Floor, Encounter & Event Structure
