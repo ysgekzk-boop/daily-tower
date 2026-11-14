@@ -1512,6 +1512,21 @@ export const PALETTE_REGISTRY: Record<string, PaletteConfig> = {
     name: '星裂きの連撃',
     colors: ['transparent', '#1b1f3b', '#f4a261', '#fefae0'],
   },
+  tome_warden: {
+    id: 'tome_warden',
+    name: '禁書庫の番人',
+    colors: ['transparent', '#1a1829', '#5c5470', '#dbd8e3'],
+  },
+  item_chronos_hourglass: {
+    id: 'item_chronos_hourglass',
+    name: '刻戻しの砂時計',
+    colors: ['transparent', '#22223b', '#c9ada7', '#f2e9e4'],
+  },
+  item_void_spark: {
+    id: 'item_void_spark',
+    name: '虚空の火花',
+    colors: ['transparent', '#2b193d', '#e76f51', '#f4a261'],
+  },
 };
 
 export interface SpriteDefinition {
@@ -1819,6 +1834,9 @@ export const SPRITE_REGISTRY: Record<string, SpriteDefinition> = {
   astral_owl: { id: 'astral_owl', matrixId: 'astral_owl', defaultPalette: 'astral_owl' },
   item_starlight_ink_vial: { id: 'item_starlight_ink_vial', matrixId: 'item_starlight_ink_vial', defaultPalette: 'item_starlight_ink_vial' },
   item_star_rend: { id: 'item_star_rend', matrixId: 'item_star_rend', defaultPalette: 'item_star_rend' },
+  tome_warden: { id: 'tome_warden', matrixId: 'tome_warden', defaultPalette: 'tome_warden' },
+  item_chronos_hourglass: { id: 'item_chronos_hourglass', matrixId: 'item_chronos_hourglass', defaultPalette: 'item_chronos_hourglass' },
+  item_void_spark: { id: 'item_void_spark', matrixId: 'item_void_spark', defaultPalette: 'item_void_spark' },
 };
 
 export function resolveSpriteData(spriteId: string, paletteOverride?: string): {

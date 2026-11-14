@@ -2008,6 +2008,23 @@ export const SKILL_CATALOG: Record<string, SkillItem> = {
     salvageGold: 8,
     description: '星光を纏った二連撃を叩き込み、攻撃の勢いをそのまま次の行動へ繋げる。',
   },
+  void_spark: {
+    id: 'void_spark',
+    name: '虚空の火花',
+    kind: 'skill',
+    spriteId: 'item_void_spark',
+    category: 'attack',
+    maxChargesPerBattle: 3,
+    damageMultiplier: 1.25,
+    applyStatus: {
+      target: 'enemy',
+      statusId: 'burn',
+      value: 4,
+      duration: 2,
+    },
+    salvageGold: 6,
+    description: '虚空から小さな火種を呼び出し、敵を焼く。序盤から扱いやすい燃焼系スキルの基本型。',
+  },
 };
 
 export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
@@ -2357,6 +2374,21 @@ export const CONSUMABLE_CATALOG: Record<string, ConsumableItem> = {
     healPercent: 30,
     cleanse: true,
     description: '星屑を溶かし込んだ携帯用の魔導インク瓶。飲むことで傷を癒やし精神の濁りを払う。',
+  },
+  chronos_hourglass: {
+    id: 'chronos_hourglass',
+    name: '刻戻しの砂時計',
+    kind: 'consumable',
+    spriteId: 'item_chronos_hourglass',
+    maxCharges: 2,
+    healPercent: 30,
+    applyStatus: {
+      target: 'self',
+      statusId: 'shield',
+      value: 12,
+      duration: 2,
+    },
+    description: '逆回転する星砂を封じた小さな砂時計。使用者の傷を巻き戻し、光の障壁を纏わせる。',
   },
 };
 

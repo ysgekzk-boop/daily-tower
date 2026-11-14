@@ -6714,5 +6714,67 @@ export const ENEMY_REGISTRY: Record<string, EnemyDefinition> = {
       },
     ],
   },
+
+  tome_warden: {
+    id: 'tome_warden',
+    name: '禁書庫の番人',
+    spriteId: 'tome_warden',
+    palette: 'tome_warden',
+    hp: 88,
+    atk: 16,
+    def: 6,
+    goldReward: 56,
+    isBoss: true,
+    weakness: 'fire',
+    resistance: 'ice',
+    phases: [
+      {
+        hpThresholdPercent: 100,
+        actions: [
+          {
+            name: '封印の鉄槌',
+            type: 'attack',
+            weight: 55,
+            damageMultiplier: 1.0,
+            logMessage: '禁書庫の番人が重厚な鉄槌を振り下ろした！',
+          },
+          {
+            name: '禁書の盾展開',
+            type: 'buff',
+            weight: 45,
+            statusId: 'shield',
+            statusValue: 14,
+            statusDuration: 2,
+            logMessage: '禁書庫の番人が魔導書の頁を開き、強固な障壁を展開した！',
+          },
+        ],
+      },
+      {
+        hpThresholdPercent: 50,
+        phaseName: '封印解放',
+        actions: [
+          {
+            name: '鎖の拘束',
+            type: 'debuff',
+            weight: 50,
+            damageMultiplier: 1.35,
+            statusId: 'atk_debuff',
+            statusValue: 20,
+            statusDuration: 2,
+            logMessage: '【封印解放】禁書庫の番人が魔導の鎖を放ち、動きを鈍らせた！',
+          },
+          {
+            name: '番人の激昂',
+            type: 'buff',
+            weight: 50,
+            statusId: 'atk_buff',
+            statusValue: 25,
+            statusDuration: 2,
+            logMessage: '【封印解放】禁書庫の番人の甲冑が赤く輝き、攻撃力が上昇した！',
+          },
+        ],
+      },
+    ],
+  },
 };
 
